@@ -1,0 +1,1111 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+        
+        <meta charset="UTF-8">
+        <title>C из Haskell | О Haskell по-человечески</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="denisshevchenko">
+        <meta name="description" content="Book generated using GitBook">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+        
+        <link href='http://fonts.googleapis.com/css?family=Cuprum:400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+        
+        <link rel="next" href="../end/README.html" />
+        
+        
+        <link rel="prev" href="../integration/README.html" />
+        
+
+        <meta property="og:title" content="C из Haskell | О Haskell по-человечески">
+        <meta property="og:site_name" content="О Haskell по-человечески">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="https://github.com/denisshevchenko">
+        <meta property="book:tag" content="GitBook">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+        
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+        
+    </head>
+    <body>
+        
+<div class="book" data-github="denisshevchenko/ohaskell" data-level="10.1" data-basepath=".." data-revision="1397481264092">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="https://github.com/denisshevchenko/ohaskell" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
+    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+
+    <!-- Actions Right -->
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+
+    <!-- <a href="https://github.com/denisshevchenko/ohaskell/stargazers" target="_blank" class="btn pull-right count-star"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/denisshevchenko/ohaskell/watchers" target="_blank" class="btn pull-right count-watch"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a> -->
+
+
+    <!-- Title -->
+    <h1><a href="../" >О Haskell по-человечески</a></h1>
+</div>
+
+    <div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        <li>
+            <a href="https://github.com/denisshevchenko" target="blank">About the author</a>
+        </li>
+        <li>
+            <a href="https://github.com/denisshevchenko/ohaskell/issues" target="blank">Questions and Issues</a>
+        </li>
+        <li>
+            <a href="https://github.com/denisshevchenko/ohaskell/edit/master/integration/c-from-haskell.md" target="blank">Edit and Contribute</a>
+        </li>
+        <li class="divider"></li>
+        <li data-level="0" data-path="index.html">
+            <a href="../"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+            <li  data-level="1" data-path="intro/README.html">
+                
+                <a href="../intro/README.html">
+                    <i class="fa fa-check"></i> <b>1)</b> Лирическое вступление
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="1.1" data-path="intro/who.html">
+                            
+                            <a href="../intro/who.html">
+                                <i class="fa fa-check"></i> <b>1.1)</b> Кто
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.2" data-path="intro/why.html">
+                            
+                            <a href="../intro/why.html">
+                                <i class="fa fa-check"></i> <b>1.2)</b> Почему
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.3" data-path="intro/what-for.html">
+                            
+                            <a href="../intro/what-for.html">
+                                <i class="fa fa-check"></i> <b>1.3)</b> Зачем
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.4" data-path="intro/for-whom.html">
+                            
+                            <a href="../intro/for-whom.html">
+                                <i class="fa fa-check"></i> <b>1.4)</b> Для кого
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="2" data-path="prepare/README.html">
+                
+                <a href="../prepare/README.html">
+                    <i class="fa fa-check"></i> <b>2)</b> Готовимся к работе
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="2.1" data-path="prepare/create-project.html">
+                            
+                            <a href="../prepare/create-project.html">
+                                <i class="fa fa-check"></i> <b>2.1)</b> Создаём проект
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.2" data-path="prepare/about-modules-minimum.html">
+                            
+                            <a href="../prepare/about-modules-minimum.html">
+                                <i class="fa fa-check"></i> <b>2.2)</b> О модулях, минимум
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.3" data-path="prepare/about-hackage.html">
+                            
+                            <a href="../prepare/about-hackage.html">
+                                <i class="fa fa-check"></i> <b>2.3)</b> О Hackage
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="3" data-path="about-haskell/README.html">
+                
+                <a href="../about-haskell/README.html">
+                    <i class="fa fa-check"></i> <b>3)</b> Несколько слов о Haskell
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="3.1" data-path="about-haskell/pure-functionality.html">
+                            
+                            <a href="../about-haskell/pure-functionality.html">
+                                <i class="fa fa-check"></i> <b>3.1)</b> Чистая функциональность
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.2" data-path="about-haskell/types-three-foundations.html">
+                            
+                            <a href="../about-haskell/types-three-foundations.html">
+                                <i class="fa fa-check"></i> <b>3.2)</b> Три кита типизации
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.3" data-path="about-haskell/immutability.html">
+                            
+                            <a href="../about-haskell/immutability.html">
+                                <i class="fa fa-check"></i> <b>3.3)</b> Неизменность данных
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.4" data-path="about-haskell/laziness.html">
+                            
+                            <a href="../about-haskell/laziness.html">
+                                <i class="fa fa-check"></i> <b>3.4)</b> Лень
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="4" data-path="about-functions/README.html">
+                
+                <a href="../about-functions/README.html">
+                    <i class="fa fa-check"></i> <b>4)</b> О функциях
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="4.1" data-path="about-functions/pure-functions.html">
+                            
+                            <a href="../about-functions/pure-functions.html">
+                                <i class="fa fa-check"></i> <b>4.1)</b> Чистые функции
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="4.2" data-path="about-functions/lambda-functions.html">
+                            
+                            <a href="../about-functions/lambda-functions.html">
+                                <i class="fa fa-check"></i> <b>4.2)</b> λ-функции
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="4.3" data-path="about-functions/higher-order-functions.html">
+                            
+                            <a href="../about-functions/higher-order-functions.html">
+                                <i class="fa fa-check"></i> <b>4.3)</b> Функции высшего порядка
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="4.4" data-path="about-functions/functional-chains.html">
+                            
+                            <a href="../about-functions/functional-chains.html">
+                                <i class="fa fa-check"></i> <b>4.4)</b> Функциональные цепочки
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="5" data-path="about-lists/README.html">
+                
+                <a href="../about-lists/README.html">
+                    <i class="fa fa-check"></i> <b>5)</b> О списках
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="5.1" data-path="about-lists/lists-at-a-glance.html">
+                            
+                            <a href="../about-lists/lists-at-a-glance.html">
+                                <i class="fa fa-check"></i> <b>5.1)</b> Списки - одним взглядом
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.2" data-path="about-lists/ranges.html">
+                            
+                            <a href="../about-lists/ranges.html">
+                                <i class="fa fa-check"></i> <b>5.2)</b> Диапазоны
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.3" data-path="about-lists/tuples.html">
+                            
+                            <a href="../about-lists/tuples.html">
+                                <i class="fa fa-check"></i> <b>5.3)</b> Кортежи
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.4" data-path="about-lists/list-comprehension.html">
+                            
+                            <a href="../about-lists/list-comprehension.html">
+                                <i class="fa fa-check"></i> <b>5.4)</b> List comprehension
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="6" data-path="about-user-types/README.html">
+                
+                <a href="../about-user-types/README.html">
+                    <i class="fa fa-check"></i> <b>6)</b> О пользовательских типах
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="6.1" data-path="about-user-types/types-at-a-glance.html">
+                            
+                            <a href="../about-user-types/types-at-a-glance.html">
+                                <i class="fa fa-check"></i> <b>6.1)</b> Типы - одним взглядом
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.2" data-path="about-user-types/about-value-constructors.html">
+                            
+                            <a href="../about-user-types/about-value-constructors.html">
+                                <i class="fa fa-check"></i> <b>6.2)</b> О конструкторах значений
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.3" data-path="about-user-types/type-context.html">
+                            
+                            <a href="../about-user-types/type-context.html">
+                                <i class="fa fa-check"></i> <b>6.3)</b> Контекст типа
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.4" data-path="about-user-types/composite-types.html">
+                            
+                            <a href="../about-user-types/composite-types.html">
+                                <i class="fa fa-check"></i> <b>6.4)</b> Составные типы
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.5" data-path="about-user-types/deriving.html">
+                            
+                            <a href="../about-user-types/deriving.html">
+                                <i class="fa fa-check"></i> <b>6.5)</b> Наследуемые типы
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.6" data-path="about-user-types/own-type-classes.html">
+                            
+                            <a href="../about-user-types/own-type-classes.html">
+                                <i class="fa fa-check"></i> <b>6.6)</b> Собственные классы типов
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.7" data-path="about-user-types/newtype.html">
+                            
+                            <a href="../about-user-types/newtype.html">
+                                <i class="fa fa-check"></i> <b>6.7)</b> Новый тип
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="7" data-path="io/README.html">
+                
+                <a href="../io/README.html">
+                    <i class="fa fa-check"></i> <b>7)</b> Ввод и вывод
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="7.1" data-path="io/functions-with-side-effects.html">
+                            
+                            <a href="../io/functions-with-side-effects.html">
+                                <i class="fa fa-check"></i> <b>7.1)</b> Функции с побочными эффектами
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="7.2" data-path="io/IO-a.html">
+                            
+                            <a href="../io/IO-a.html">
+                                <i class="fa fa-check"></i> <b>7.2)</b> IO a
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="7.3" data-path="io/do-imperative-world.html">
+                            
+                            <a href="../io/do-imperative-world.html">
+                                <i class="fa fa-check"></i> <b>7.3)</b> do: императивный мир
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="7.4" data-path="io/exceptions-handling.html">
+                            
+                            <a href="../io/exceptions-handling.html">
+                                <i class="fa fa-check"></i> <b>7.4)</b> Обработка исключений
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="7.5" data-path="io/own-exceptions.html">
+                            
+                            <a href="../io/own-exceptions.html">
+                                <i class="fa fa-check"></i> <b>7.5)</b> Собственные исключения
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="8" data-path="delicious/README.html">
+                
+                <a href="../delicious/README.html">
+                    <i class="fa fa-check"></i> <b>8)</b> Деликатесы
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="8.1" data-path="delicious/monads-essence.html">
+                            
+                            <a href="../delicious/monads-essence.html">
+                                <i class="fa fa-check"></i> <b>8.1)</b> Монады: суть
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.2" data-path="delicious/monads-IO.html">
+                            
+                            <a href="../delicious/monads-IO.html">
+                                <i class="fa fa-check"></i> <b>8.2)</b> Монады: на примере IO
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.3" data-path="delicious/monads-practice.html">
+                            
+                            <a href="../delicious/monads-practice.html">
+                                <i class="fa fa-check"></i> <b>8.3)</b> Монады: практика
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.4" data-path="delicious/maybe.html">
+                            
+                            <a href="../delicious/maybe.html">
+                                <i class="fa fa-check"></i> <b>8.4)</b> Может быть
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.5" data-path="delicious/functors.html">
+                            
+                            <a href="../delicious/functors.html">
+                                <i class="fa fa-check"></i> <b>8.5)</b> Функторы
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.6" data-path="delicious/applicative-functors.html">
+                            
+                            <a href="../delicious/applicative-functors.html">
+                                <i class="fa fa-check"></i> <b>8.6)</b> Аппликативные функторы
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="9" data-path="miscellaneous/README.html">
+                
+                <a href="../miscellaneous/README.html">
+                    <i class="fa fa-check"></i> <b>9)</b> Остальное
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="9.1" data-path="miscellaneous/about-modules.html">
+                            
+                            <a href="../miscellaneous/about-modules.html">
+                                <i class="fa fa-check"></i> <b>9.1)</b> О модулях
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.2" data-path="miscellaneous/recursive-functions.html">
+                            
+                            <a href="../miscellaneous/recursive-functions.html">
+                                <i class="fa fa-check"></i> <b>9.2)</b> Рекурсивные функции
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.3" data-path="miscellaneous/about-apostrophe.html">
+                            
+                            <a href="../miscellaneous/about-apostrophe.html">
+                                <i class="fa fa-check"></i> <b>9.3)</b> Про апостроф
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.4" data-path="miscellaneous/about-formatting.html">
+                            
+                            <a href="../miscellaneous/about-formatting.html">
+                                <i class="fa fa-check"></i> <b>9.4)</b> О форматировании
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.5" data-path="miscellaneous/about-hlint.html">
+                            
+                            <a href="../miscellaneous/about-hlint.html">
+                                <i class="fa fa-check"></i> <b>9.5)</b> Про hlint
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="10" data-path="integration/README.html">
+                
+                <a href="../integration/README.html">
+                    <i class="fa fa-check"></i> <b>10)</b> Интеграция
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="10.1" data-path="integration/c-from-haskell.html">
+                            
+                            <a href="../integration/c-from-haskell.html">
+                                <i class="fa fa-check"></i> <b>10.1)</b> C из Haskell
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="11" data-path="end/README.html">
+                
+                <a href="../end/README.html">
+                    <i class="fa fa-check"></i> <b>11)</b> Заключение
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="11.1" data-path="end/is-this-end.html">
+                            
+                            <a href="../end/is-this-end.html">
+                                <i class="fa fa-check"></i> <b>11.1)</b> И что, это всё??
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="11.2" data-path="end/gratitudes.html">
+                            
+                            <a href="../end/gratitudes.html">
+                                <i class="fa fa-check"></i> <b>11.2)</b> Благодарности
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="12" data-path="appendix/README.html">
+                
+                <a href="../appendix/README.html">
+                    <i class="fa fa-check"></i> <b>12)</b> Приложения
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="12.1" data-path="appendix/useful-links.html">
+                            
+                            <a href="../appendix/useful-links.html">
+                                <i class="fa fa-check"></i> <b>12.1)</b> Полезные ссылки
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body" tabindex="-1">
+        <div class="body-inner">
+            <div class="page-wrapper">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 12.068965517241379%;min-width: 10.344827586206897%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../intro/README.html" title="Лирическое вступление" class="chapter done new-chapter" data-progress="1" style="left: 1.7241379310344827%;"></a>
+    
+        <a href="../intro/who.html" title="Кто" class="chapter done " data-progress="1.1" style="left: 3.4482758620689653%;"></a>
+    
+        <a href="../intro/why.html" title="Почему" class="chapter done " data-progress="1.2" style="left: 5.172413793103448%;"></a>
+    
+        <a href="../intro/what-for.html" title="Зачем" class="chapter done " data-progress="1.3" style="left: 6.896551724137931%;"></a>
+    
+        <a href="../intro/for-whom.html" title="Для кого" class="chapter done " data-progress="1.4" style="left: 8.620689655172415%;"></a>
+    
+        <a href="../integration/README.html" title="Интеграция" class="chapter done " data-progress="10" style="left: 10.344827586206897%;"></a>
+    
+        <a href="../integration/c-from-haskell.html" title="C из Haskell" class="chapter done " data-progress="10.1" style="left: 12.068965517241379%;"></a>
+    
+        <a href="../end/README.html" title="Заключение" class="chapter  " data-progress="11" style="left: 13.793103448275861%;"></a>
+    
+        <a href="../end/is-this-end.html" title="И что, это всё??" class="chapter  " data-progress="11.1" style="left: 15.517241379310345%;"></a>
+    
+        <a href="../end/gratitudes.html" title="Благодарности" class="chapter  " data-progress="11.2" style="left: 17.24137931034483%;"></a>
+    
+        <a href="../appendix/README.html" title="Приложения" class="chapter  " data-progress="12" style="left: 18.96551724137931%;"></a>
+    
+        <a href="../appendix/useful-links.html" title="Полезные ссылки" class="chapter  " data-progress="12.1" style="left: 20.689655172413794%;"></a>
+    
+        <a href="../prepare/README.html" title="Готовимся к работе" class="chapter  new-chapter" data-progress="2" style="left: 22.413793103448278%;"></a>
+    
+        <a href="../prepare/create-project.html" title="Создаём проект" class="chapter  " data-progress="2.1" style="left: 24.137931034482758%;"></a>
+    
+        <a href="../prepare/about-modules-minimum.html" title="О модулях, минимум" class="chapter  " data-progress="2.2" style="left: 25.862068965517242%;"></a>
+    
+        <a href="../prepare/about-hackage.html" title="О Hackage" class="chapter  " data-progress="2.3" style="left: 27.586206896551722%;"></a>
+    
+        <a href="../about-haskell/README.html" title="Несколько слов о Haskell" class="chapter  new-chapter" data-progress="3" style="left: 29.310344827586206%;"></a>
+    
+        <a href="../about-haskell/pure-functionality.html" title="Чистая функциональность" class="chapter  " data-progress="3.1" style="left: 31.03448275862069%;"></a>
+    
+        <a href="../about-haskell/types-three-foundations.html" title="Три кита типизации" class="chapter  " data-progress="3.2" style="left: 32.758620689655174%;"></a>
+    
+        <a href="../about-haskell/immutability.html" title="Неизменность данных" class="chapter  " data-progress="3.3" style="left: 34.48275862068966%;"></a>
+    
+        <a href="../about-haskell/laziness.html" title="Лень" class="chapter  " data-progress="3.4" style="left: 36.206896551724135%;"></a>
+    
+        <a href="../about-functions/README.html" title="О функциях" class="chapter  new-chapter" data-progress="4" style="left: 37.93103448275862%;"></a>
+    
+        <a href="../about-functions/pure-functions.html" title="Чистые функции" class="chapter  " data-progress="4.1" style="left: 39.6551724137931%;"></a>
+    
+        <a href="../about-functions/lambda-functions.html" title="λ-функции" class="chapter  " data-progress="4.2" style="left: 41.37931034482759%;"></a>
+    
+        <a href="../about-functions/higher-order-functions.html" title="Функции высшего порядка" class="chapter  " data-progress="4.3" style="left: 43.10344827586207%;"></a>
+    
+        <a href="../about-functions/functional-chains.html" title="Функциональные цепочки" class="chapter  " data-progress="4.4" style="left: 44.827586206896555%;"></a>
+    
+        <a href="../about-lists/README.html" title="О списках" class="chapter  new-chapter" data-progress="5" style="left: 46.55172413793103%;"></a>
+    
+        <a href="../about-lists/lists-at-a-glance.html" title="Списки - одним взглядом" class="chapter  " data-progress="5.1" style="left: 48.275862068965516%;"></a>
+    
+        <a href="../about-lists/ranges.html" title="Диапазоны" class="chapter  " data-progress="5.2" style="left: 50%;"></a>
+    
+        <a href="../about-lists/tuples.html" title="Кортежи" class="chapter  " data-progress="5.3" style="left: 51.724137931034484%;"></a>
+    
+        <a href="../about-lists/list-comprehension.html" title="List comprehension" class="chapter  " data-progress="5.4" style="left: 53.44827586206897%;"></a>
+    
+        <a href="../about-user-types/README.html" title="О пользовательских типах" class="chapter  new-chapter" data-progress="6" style="left: 55.172413793103445%;"></a>
+    
+        <a href="../about-user-types/types-at-a-glance.html" title="Типы - одним взглядом" class="chapter  " data-progress="6.1" style="left: 56.89655172413793%;"></a>
+    
+        <a href="../about-user-types/about-value-constructors.html" title="О конструкторах значений" class="chapter  " data-progress="6.2" style="left: 58.62068965517241%;"></a>
+    
+        <a href="../about-user-types/type-context.html" title="Контекст типа" class="chapter  " data-progress="6.3" style="left: 60.3448275862069%;"></a>
+    
+        <a href="../about-user-types/composite-types.html" title="Составные типы" class="chapter  " data-progress="6.4" style="left: 62.06896551724138%;"></a>
+    
+        <a href="../about-user-types/deriving.html" title="Наследуемые типы" class="chapter  " data-progress="6.5" style="left: 63.793103448275865%;"></a>
+    
+        <a href="../about-user-types/own-type-classes.html" title="Собственные классы типов" class="chapter  " data-progress="6.6" style="left: 65.51724137931035%;"></a>
+    
+        <a href="../about-user-types/newtype.html" title="Новый тип" class="chapter  " data-progress="6.7" style="left: 67.24137931034483%;"></a>
+    
+        <a href="../io/README.html" title="Ввод и вывод" class="chapter  new-chapter" data-progress="7" style="left: 68.96551724137932%;"></a>
+    
+        <a href="../io/functions-with-side-effects.html" title="Функции с побочными эффектами" class="chapter  " data-progress="7.1" style="left: 70.6896551724138%;"></a>
+    
+        <a href="../io/IO-a.html" title="IO a" class="chapter  " data-progress="7.2" style="left: 72.41379310344827%;"></a>
+    
+        <a href="../io/do-imperative-world.html" title="do: императивный мир" class="chapter  " data-progress="7.3" style="left: 74.13793103448276%;"></a>
+    
+        <a href="../io/exceptions-handling.html" title="Обработка исключений" class="chapter  " data-progress="7.4" style="left: 75.86206896551724%;"></a>
+    
+        <a href="../io/own-exceptions.html" title="Собственные исключения" class="chapter  " data-progress="7.5" style="left: 77.58620689655173%;"></a>
+    
+        <a href="../delicious/README.html" title="Деликатесы" class="chapter  new-chapter" data-progress="8" style="left: 79.3103448275862%;"></a>
+    
+        <a href="../delicious/monads-essence.html" title="Монады: суть" class="chapter  " data-progress="8.1" style="left: 81.03448275862068%;"></a>
+    
+        <a href="../delicious/monads-IO.html" title="Монады: на примере IO" class="chapter  " data-progress="8.2" style="left: 82.75862068965517%;"></a>
+    
+        <a href="../delicious/monads-practice.html" title="Монады: практика" class="chapter  " data-progress="8.3" style="left: 84.48275862068965%;"></a>
+    
+        <a href="../delicious/maybe.html" title="Может быть" class="chapter  " data-progress="8.4" style="left: 86.20689655172414%;"></a>
+    
+        <a href="../delicious/functors.html" title="Функторы" class="chapter  " data-progress="8.5" style="left: 87.93103448275862%;"></a>
+    
+        <a href="../delicious/applicative-functors.html" title="Аппликативные функторы" class="chapter  " data-progress="8.6" style="left: 89.65517241379311%;"></a>
+    
+        <a href="../miscellaneous/README.html" title="Остальное" class="chapter  new-chapter" data-progress="9" style="left: 91.37931034482759%;"></a>
+    
+        <a href="../miscellaneous/about-modules.html" title="О модулях" class="chapter  " data-progress="9.1" style="left: 93.10344827586206%;"></a>
+    
+        <a href="../miscellaneous/recursive-functions.html" title="Рекурсивные функции" class="chapter  " data-progress="9.2" style="left: 94.82758620689656%;"></a>
+    
+        <a href="../miscellaneous/about-apostrophe.html" title="Про апостроф" class="chapter  " data-progress="9.3" style="left: 96.55172413793103%;"></a>
+    
+        <a href="../miscellaneous/about-formatting.html" title="О форматировании" class="chapter  " data-progress="9.4" style="left: 98.27586206896552%;"></a>
+    
+        <a href="../miscellaneous/about-hlint.html" title="Про hlint" class="chapter  " data-progress="9.5" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_61">
+                    
+                        <h2 id="c-haskell">C из Haskell</h2>
+<p>В ряде случаев нам необходима интеграция Haskell-кода с кодом, написанным на другом языке. Вот вам не выдуманный сценарий. Жила-была программная система, и было в ней несколько модулей. Один модуль решили переписать на Haskell, а вот другой, не менее важный модуль, переписать на Haskell нет времени/возможности/желания. Здесь и возникает потребность в том, чтобы подружить Haskell-код с кодом чужеродным.</p>
+<p>Возможен и второй сценарий. Есть Haskell-приложение, и присутствует в нём одна секция, очень уж критичная к скорости выполнения. К счастью, имеется готовое решение, написанное на языке C. Опять-таки, без интеграции не обойтись.</p>
+<p>Вы спросите, почему мы начинаем именно с языка C? Причина проста: стандарт гласит, что Haskell проще всего подружить со старым добрым C, что обусловлено, прежде всего, историческими причинами. Приступим.</p>
+<h3 id="hello-foreign-world-">Hello foreign world!</h3>
+<p>Для начала откроем <code>Real.cabal</code> и, найдя поле <code>extensions</code>, добавим в него через запятую параметр <code>ForeignFunctionInterface</code>. А в <code>Main.h</code>s напишем следующее:</p>
+<pre><code class="lang-haskell"><span class="hljs-module"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span></span>
+
+<span class="hljs-import"><span class="hljs-keyword">import</span> Prelude <span class="hljs-keyword">hiding</span> <span class="hljs-container">(<span class="hljs-title">sin</span>)</span>  <span class="hljs-comment">-- Во избежание конфликта имён.</span></span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.C             <span class="hljs-comment">-- Наш проводник в мир языка C.</span></span>
+
+<span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> sin :: <span class="hljs-type">CDouble</span> -&gt; <span class="hljs-type">CDouble</span></span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+    putStrLn <span class="hljs-string">"Please input your number:"</span>
+    number &lt;- getLine
+    putStr <span class="hljs-string">"This is sinus: "</span>
+    print $ sin $ read number
+</code></pre>
+<p>Вывод будет таким:</p>
+<pre><code class="lang-bash">Please input your number:
+<span class="hljs-number">1</span>
+This is sinus: <span class="hljs-number">0.8414709848078965</span>
+</code></pre>
+<p>Вот и случилось маленькое чудо: мы вызвали стандартную функцию <code>sin</code> прямо из Haskell-приложения. Как же нам это удалось?</p>
+<p>Прежде всего мы импортировали важный модуль:</p>
+<pre><code class="lang-haskell"><span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.C</span>
+</code></pre>
+<p>Этот стандартный модуль является нашим проводником в мир языка C. А теперь рассмотрим следующую строку:</p>
+<pre><code class="lang-haskell"><span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> sin :: <span class="hljs-type">CDouble</span> -&gt; <span class="hljs-type">CDouble</span></span>
+</code></pre>
+<p>Эта строка представляет для нас наибольший интерес, ведь главное чудо произошло именно здесь. С помощью ключевого слова <code>foreign</code> мы приглашаем чужака в наше Haskell-приложение. Далее следует слово import, потому что чужак импортный, ибо пришёл к нам извне. После него следует специальный стандартный идентификатор, показывающий тип чужака: <code>ccall</code> означает &quot;вызов функции языка C&quot;. После идёт имя функции и её аргументы. Всё это можно прочесть так:</p>
+<pre><code><span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span>      <span class="hljs-keyword">ccall</span>      sin :: <span class="hljs-type">CDouble</span> -&gt; <span class="hljs-type">CDouble</span></span>
+
+импортируем чужака: <span class="hljs-type">C</span>-функция  sin    с сигнатурой как в <span class="hljs-type">Haskell</span>
+</code></pre><p>Обратите внимание на тип <code>CDouble</code>. Это - тип-обёртка. Объявление стандартной функции <code>sin</code> выглядит так:</p>
+<pre><code class="lang-c"><span class="hljs-keyword">double</span> <span class="hljs-built_in">sin</span>(<span class="hljs-keyword">double</span> x);
+</code></pre>
+<p>Однако компилятор Haskell не имеет ни малейшего представления о том, что такое <code>double</code>. Именно поэтому мы оборачиваем чужеродный тип <code>double</code> в специальный Haskell-тип <code>CDouble</code>, определённый в модуле Foreign.C.Types. После этого мы можем вызывать функцию <code>sin</code> так же, как если бы она была родной Haskell-функцией.</p>
+<h3 id="-">Псевдоним</h3>
+<p>Поскольку в модуле <code>Prelude</code> тоже присутствует функция по имени <code>sin</code>, мы скрыли её, во избежание конфликта имён:</p>
+<pre><code class="lang-haskell"><span class="hljs-import"><span class="hljs-keyword">import</span> Prelude <span class="hljs-keyword">hiding</span> <span class="hljs-container">(<span class="hljs-title">sin</span>)</span>  <span class="hljs-comment">-- Не желаем видеть Haskell-функцию sin!</span></span>
+</code></pre>
+<p>Однако можно пойти другим путём, а именно добавить псевдоним для чужака. В этом случае объявление изменится вот так:</p>
+<pre><code class="lang-haskell"><span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> <span class="hljs-string">"sin"</span> c_sin :: <span class="hljs-type">CDouble</span> -&gt; <span class="hljs-type">CDouble</span></span>
+</code></pre>
+<p>В кавычках - реальное имя чужака. После кавычек идёт псевдоним. Теперь вызов функции будет записан так:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">print</span> $ c_sin $ read number
+</code></pre>
+<p>Кстати, если вдруг вы ошибётесь в написании реального имени чужой функции и напишете, например, так:</p>
+<pre><code class="lang-haskell"><span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> <span class="hljs-string">"sinu"</span> c_sin :: <span class="hljs-type">CDouble</span> -&gt; <span class="hljs-type">CDouble</span></span>
+</code></pre>
+<p>на стадии компоновки вы получите грозное сообщение:</p>
+<pre><code class="lang-bash">Linking dist/build/Real/Real ...
+Undefined symbols <span class="hljs-keyword">for</span> architecture x86_64:
+  <span class="hljs-string">"_sinu"</span>, referenced from:
+      _s24m_info <span class="hljs-keyword">in</span> Main.o
+      _s2aR_info <span class="hljs-keyword">in</span> Main.o
+ld: symbol(s) not found <span class="hljs-keyword">for</span> architecture x86_64
+</code></pre>
+<p>И ещё. Стандарт Haskell 2010 рекомендует указывать перед псевдонимом имя заголовочного файла, в котором объявлена функция-чужак. В нашем случае это будет выглядеть так:</p>
+<pre><code class="lang-haskell"><span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> <span class="hljs-string">"math.h sin"</span> c_sin :: <span class="hljs-type">CDouble</span> -&gt; <span class="hljs-type">CDouble</span></span>
+</code></pre>
+<p>Впрочем, признаюсь вам: имя заголовочника будет проигнорировано. Так что воспринимайте его просто как пояснительный комментарий о том, где живёт функция-чужак.</p>
+<h3 id="-">Идём во внешний мир</h3>
+<p>Функция <code>sin</code> - чистая, поэтому с ней всё просто. Теперь попробуем пригласить в наш код чужака с побочными эффектами. Узнаем, который час:</p>
+<pre><code class="lang-haskell"><span class="hljs-module"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span></span>
+
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.C</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.Ptr  <span class="hljs-comment">-- Для работы с C-указателями.</span></span>
+
+<span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> time :: <span class="hljs-type">Ptr</span> <span class="hljs-type">CTime</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">CTime</span></span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+    posixTime &lt;- time nullPtr  <span class="hljs-comment">-- Заменитель для NULL.</span>
+    print posixTime
+</code></pre>
+<p>В результате мы увидим старое доброе Unix-время:</p>
+<pre><code class="lang-bash"><span class="hljs-number">1395350583</span>
+</code></pre>
+<p>Теперь разберёмся. Во-первых, мы добавили дополнительный модуль <code>Foreign.Ptr</code>, необходимый для работы с C-указателями. Во-вторых, вспомним объявление стандартной функции time:</p>
+<pre><code class="lang-c">time_t time(time_t* timer);
+</code></pre>
+<p>Чужак объявлен как принимающий значение типа <code>Ptr CTime</code>, то есть указатель на значение типа <code>CTime</code>, и возвращающий монаду <code>IO</code>, содержащую в себе значение типа <code>CTime</code> (ведь мы знаем, что получить реальное время можно лишь из внешнего мира). В итоге, передавая в качестве аргумента нулевой указатель, мы и получаем текущее время.</p>
+<h3 id="-void-">А если void?</h3>
+<p>В функциях C часто используется тип <code>void</code>, однако в Haskell такого типа нет. Но поскольку <code>void</code> означает пустоту, создатели Haskell решили пойти самым простым путём: если функция принимает <code>void</code> (то есть не принимает ничего), в своей Haskell-сигнатуре она объявляется без аргумента.</p>
+<p>Проверим это на стандартной функции clock, объявленной вот так:</p>
+<pre><code class="lang-c">clock_t clock(<span class="hljs-keyword">void</span>);
+</code></pre>
+<p>Пригласим её в наш код:</p>
+<pre><code class="lang-haskell"><span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> clock :: <span class="hljs-type">IO</span> <span class="hljs-type">CClock</span>  <span class="hljs-comment">-- Аргумента нет.</span></span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+    ticks &lt;- clock
+    print ticks
+</code></pre>
+<p>Но как же нам быть, если функця объявлена как <em>возвращающая</em> тип <code>void</code>? Ведь мы не можем объявить Haskell-функцию без возвращаемого значения. Для таких случаев создатели Haskell предусмотрели маленький трюк: если C-функция не возвращает ничего, то в своей Haskell-сигнатуре она объявляется как возвращающая пустую <code>IO</code>-монаду.</p>
+<p>Например, стандартная функция <code>exit</code> объявлена так:</p>
+<pre><code class="lang-c"><span class="hljs-keyword">void</span> <span class="hljs-built_in">exit</span>(<span class="hljs-keyword">int</span> status);
+</code></pre>
+<p>Пригласим её в гости:</p>
+<pre><code class="lang-haskell"><span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> exit :: <span class="hljs-type">CInt</span> -&gt; <span class="hljs-type">IO</span> ()  <span class="hljs-comment">-- Возвращает... ничего.</span></span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = exit <span class="hljs-number">2</span>  <span class="hljs-comment">-- Выходим из приложения со статусом 2.</span>
+</code></pre>
+<p>При запуске получим:</p>
+<pre><code class="lang-bash">shell returned <span class="hljs-number">2</span>
+</code></pre>
+<p>Кстати, тип <code>void*</code>, часто используемый в языке C, соответствует типу <code>Ptr ()</code>, то есть указатель на ничего.</p>
+<h3 id="-">Структура и память</h3>
+<p>Следующий пример поинтереснее. Поработаем с локальным временем с помощью стандартных функций <code>time</code>, <code>localtime</code> и <code>asctime</code>:</p>
+<pre><code class="lang-c"><span class="hljs-keyword">int</span> main() {
+    time_t rawtime;
+    <span class="hljs-keyword">struct</span> tm* timeinfo;
+
+    time( &amp;rawtime );
+    timeinfo = localtime( &amp;rawtime );
+
+    <span class="hljs-built_in">printf</span>( <span class="hljs-string">"%s"</span>, asctime( timeinfo ) );
+}
+</code></pre>
+<p>Результат:</p>
+<pre><code class="lang-bash">Tue Mar <span class="hljs-number">25</span> <span class="hljs-number">08</span>:<span class="hljs-number">33</span>:<span class="hljs-number">02</span> <span class="hljs-number">2014</span>
+</code></pre>
+<p>И так нам приглянулись эти функции, что решили мы использовать их в нашем Haskell-приложении. Сказано - сделано. Для начала вспомним родные объявления этих функций, чтобы написать их Haskell-аналоги:</p>
+<pre><code class="lang-c">time_t time(time_t* timer);
+
+<span class="hljs-keyword">struct</span> tm* localtime(<span class="hljs-keyword">const</span> time_t* timer);
+
+<span class="hljs-keyword">char</span>* asctime(<span class="hljs-keyword">const</span> <span class="hljs-keyword">struct</span> tm* timeptr);
+</code></pre>
+<p>С функцией <code>time</code> мы уже знакомы, а вот две её коллеги заслуживают нашего пристального внимания. Функция <code>localtime</code> возвращает указатель на структуру <code>tm</code>. А функция <code>asctime</code>, во-первых, принимает этот указатель в качестве единственного аргумента, а во-вторых, возвращает старую добрую C-строку.</p>
+<p>Главный вопрос: что нам делать со структурой? Ведь тип <code>struct tm</code>, хотя и определён в стандартном заголовочнике <code>&lt;time.h&gt;</code>, не является стандартным типом языка C, поэтому ему нет аналога в модуле <code>Foreign.C.Types</code>. А это значит, нам потребуется небольшой трюк. Пишем:</p>
+<pre><code class="lang-haskell"><span class="hljs-module"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span></span> 
+
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.C</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.Ptr</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.Marshal.Alloc</span>
+
+<span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">CTmStruct</span> = <span class="hljs-type">CTmStruct</span>         <span class="hljs-comment">-- Наш аналог для типа struct tm.</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">CTmStructPtr</span> = <span class="hljs-type">Ptr</span> <span class="hljs-type">CTmStruct</span>  <span class="hljs-comment">-- Определяем указатель на этот аналог.</span></span>
+
+<span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> time :: <span class="hljs-type">Ptr</span> <span class="hljs-type">CTime</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">CTime</span></span>
+<span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> localtime :: <span class="hljs-type">Ptr</span> <span class="hljs-type">CTime</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">CTmStructPtr</span></span>
+<span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> asctime :: <span class="hljs-type">CTmStructPtr</span> -&gt; <span class="hljs-type">CString</span></span>
+</code></pre>
+<p>Трюк оказался предельно простым: мы ввели новый тип <code>CTmStruct</code>, &quot;заменяющий&quot; C-тип struct tm. Но постойте, ведь тип <code>CTmStruct</code> не более чем пустышка, как же он может заменить тип <code>struct tm</code>? А он и не должен его заменять, он должен лишь <em>отобразить</em> его. Мы говорим: &quot;Теперь у нас есть тип <code>CTmStruct</code>, и есть указатель на него, но что этот тип представляет собой на самом деле мы не знаем и знать не хотим&quot;. Именно поэтому импорт функции <code>localtime</code> выглядит так:</p>
+<pre><code class="lang-haskell"><span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> localtime :: <span class="hljs-type">Ptr</span> <span class="hljs-type">CTime</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">CTmStructPtr</span></span>
+</code></pre>
+<p>Да, мы знаем, что эта функция принесёт из внешнего мира значение типа  <code>CTmStruct</code>, но поскольку мы не будем копаться во внутренностях этого значения, нам и незачем знать, что оно собою представляет. Мы даже могли бы обойтись без типа <code>CTmStruct</code> и воспользоваться &quot;пустым указателем&quot;, написав просто:</p>
+<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">CTmStructPtr</span> = <span class="hljs-type">Ptr</span> <span class="hljs-container">()</span>  <span class="hljs-comment">-- Просто указатель на нечто.</span></span>
+</code></pre>
+<p>С этим разобрались. Но есть ещё одна трудность. Вспомним код на C:</p>
+<pre><code class="lang-c">    time_t rawtime;
+    <span class="hljs-keyword">struct</span> tm* timeinfo;
+
+    time( &amp;rawtime );                  -- Взятие адреса переменной?    
+    timeinfo = localtime( &amp;rawtime );  -- Опять берём адрес??
+</code></pre>
+<p>Здесь нужно совершить действие, обычное для языка C: применить к некоторому значению унарный оператор взятия адреса <code>&amp;</code>. Однако в Haskell такого оператора нет. Следовательно, нам не обойтись без ещё одного трюка.</p>
+<p>Определим функцию, работающую с нашими друзьями-чужаками:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">timeObtainer</span> :: <span class="hljs-type">Ptr</span> <span class="hljs-type">CTime</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">String</span>
+<span class="hljs-title">timeObtainer</span> timePtr = <span class="hljs-keyword">do</span>
+    time timePtr
+    tm &lt;- localtime timePtr
+    peekCString $ asctime tm
+</code></pre>
+<p>Всё просто: вызываем три функции так же, как и в том примере на C. Даже новая для нас функция <code>peekCString</code> предельно ясна, ибо превращает C-строку в Haskell-строку. В общем, ничего примечательного в <code>timeObtainer</code> нет. Но, глядя на эту функцию, у вас обязательно возникнет вопрос о том, откуда же мы возьмём этот <code>timePtr</code>? Тут-то и выходит на сцену упомянутый выше трюк. Определим ещё одну функцию:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">getTime</span> :: <span class="hljs-type">IO</span> <span class="hljs-type">String</span>
+<span class="hljs-title">getTime</span> = alloca $ timeObtainer  <span class="hljs-comment">-- Трюк со взятием адреса.</span>
+</code></pre>
+<p>Мы видим новую для нас функцию <code>alloca</code>, определённую в стандартном модуле <code>Foreign.Marshal.Alloc</code>. Вот её объявление:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">alloca</span> :: <span class="hljs-type">Storable</span> a =&gt; (<span class="hljs-type">Ptr</span> a -&gt; <span class="hljs-type">IO</span> b) -&gt; <span class="hljs-type">IO</span> b
+</code></pre>
+<p>Именно она предоставляет указатель для нашей функции <code>timeObtainer</code>. Обратите внимание: тип <code>a</code>, указатель на который принимает функция <code>timeObtainer</code>, должен входить в контекст класса <code>Storable</code>. Суть этого класса ясна из его названия: значение типа, относящегося к этому классу, можно сохранить в &quot;сырой&quot; памяти. Таким образом, функция <code>timeObtainer</code> имеет дело с указателем <code>timePtr</code>, <em>уже</em> инициализированным реальным адресом локального значения типа <code>CTime</code>, и всё благодаря функции <code>alloca</code>.</p>
+<p>Теперь пишем:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+    timeFromCWorld &lt;- getTime
+    putStr timeFromCWorld
+</code></pre>
+<p>и получаем ожидаемый результат:</p>
+<pre><code class="lang-bash">Wed Mar <span class="hljs-number">26</span> <span class="hljs-number">23</span>:<span class="hljs-number">42</span>:<span class="hljs-number">15</span> <span class="hljs-number">2014</span>
+</code></pre>
+<h3 id="-">Работаем с внутренностями</h3>
+<p>Работая с указателем на значение типа <code>CTmStruct</code>, мы не проявляли ни малейшего интереса к содержимому этого значения. Именно поэтому мы смогли полностью абстрагироваться от внутренностей <code>CTmStruct</code> и написать так:</p>
+<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">CTmStructPtr</span> = <span class="hljs-type">Ptr</span> <span class="hljs-container">()</span>  <span class="hljs-comment">-- Просто указатель на нечто.</span></span>
+</code></pre>
+<p>Однако в ряде случаев мы <em>обязаны</em> работать с содержимым чужеродного значения. Канонический пример: необходимая нам C-функция ожидает на вход указатель на структуру, поля которой нам необходимо выставить в некие известные нам значения.</p>
+<p>Рассмотрим функцию <code>utime</code>. Эта функция, определённая в стандартном заголовочнике <code>&lt;utime.h&gt;</code>, предназначена для установки времени последнего доступа к файлу и времени его последней модификации. Вот как это выглядит в C:</p>
+<pre><code class="lang-c"><span class="hljs-preprocessor">#include &lt;utime.h&gt;</span>
+<span class="hljs-preprocessor">#include &lt;stdio.h&gt;</span>
+
+<span class="hljs-keyword">int</span> main() {
+    <span class="hljs-keyword">struct</span> utimbuf real_time;
+    real_time.actime = <span class="hljs-number">1396126594</span>;  <span class="hljs-comment">/* Дату мы как-то получили... */</span>
+    real_time.modtime = <span class="hljs-number">1396126594</span>; <span class="hljs-comment">/* И эту тоже. */</span>
+
+    <span class="hljs-keyword">int</span> code = utime( <span class="hljs-string">"/Users/dshevchenko/test.c"</span>, &amp;real_time );
+    <span class="hljs-keyword">if</span>( code == <span class="hljs-number">0</span> ) {
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"It's done."</span> );
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">printf</span>( <span class="hljs-string">"Something wrong..."</span> );
+    }
+}
+</code></pre>
+<p>И вот случилось так, что нам позарез понадобилась функция <code>utime</code> в нашем Haskell-приложении. В этом случае абстрактным указателем мы уже не обойдёмся, ведь нам придётся полноценно работать со значением типа <code>struct utimbuf</code>. Как же это делается?</p>
+<p>Для начала создадим новый файл <code>UTime.hsc</code> в каталоге <code>src/Utils</code>. Вы заметили? У этого файла какое-то странное расширение, <code>.hsc</code> вместо привычного <code>.hs</code>. А всё потому, что этот файл является своего рода посредником между Haskell и C: содержащийся в нём код представляет собой необычную смесь из C-кода и Haskell-кода. Откроем этот файл и напишем следующее:</p>
+<pre><code class="lang-haskell"><span class="hljs-module"><span class="hljs-keyword">module</span> Utils.UTime <span class="hljs-keyword">where</span></span>
+
+<span class="hljs-preprocessor">#include &lt;utime.h&gt;  -- Знакомимся с C-типом struct utimbuf...</span>
+
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.C</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.Ptr</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.Storable</span>
+
+<span class="hljs-comment">-- Тип-посредник с двумя такими же полями, как в структуре utimbuf.</span>
+
+<span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">UTimeBuffer</span> = <span class="hljs-type">UTimeBuffer</span> <span class="hljs-container">{ <span class="hljs-title">accessTime</span> :: <span class="hljs-type">CTime</span>
+                               , <span class="hljs-title">modificationTime</span> :: <span class="hljs-type">CTime</span>
+                               }</span></span>
+
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">UTimeBufferPtr</span> = <span class="hljs-type">Ptr</span> <span class="hljs-type">UTimeBuffer</span></span>
+<span class="hljs-class">
+<span class="hljs-keyword">instance</span> <span class="hljs-type">Storable</span> <span class="hljs-type">UTimeBuffer</span> <span class="hljs-keyword">where</span></span>
+    sizeOf _ = (#const sizeof (struct utimbuf))
+    alignment _ = alignment (undefined :: <span class="hljs-type">CInt</span>)
+
+    peek ptr = <span class="hljs-keyword">do</span>
+        c_actime &lt;- (#peek struct utimbuf, actime) ptr
+        c_modtime &lt;- (#peek struct utimbuf, modtime) ptr
+        return $ <span class="hljs-type">UTimeBuffer</span> c_actime c_modtime
+
+    poke ptr realValue = <span class="hljs-keyword">do</span>
+        (#poke struct utimbuf, actime) ptr (accessTime realValue)
+        (#poke struct utimbuf, modtime) ptr (modificationTime realValue)
+
+<span class="hljs-comment">-- Наше приглашение для функции-чужака.  </span>
+<span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> <span class="hljs-string">"utime.h utime"</span></span>
+                     c_utime :: <span class="hljs-type">CString</span> -&gt; <span class="hljs-type">UTimeBufferPtr</span> -&gt; <span class="hljs-type">IO</span> <span class="hljs-type">CInt</span>
+</code></pre>
+<p>Необычно выглядит, не правда ли? Давайте разбираться.</p>
+<p>Первое новшество - тип <code>UTimeBuffer</code>. Поскольку мы не можем работать с нестандартным C-типом напрямую, нам необходим Haskell-посредник. В этом типе определены два поля тех же типов, что и поля в структуре <code>utimbuf</code>.</p>
+<p>Второе новшество - экземпляр класса <code>Storable</code> для нашего типа <code>UTimeBuffer</code>. Как уже было упомянуто выше, мы обязаны добавить наш тип в контекст этого класса, если планируем сохранять значения нашего типа в &quot;сырой&quot; памяти. Здесь определяются четыре метода, заслушивающие нашего внимания.</p>
+<p>Метод <code>sizeOf</code> возвращает размер нашего типа, подобно ключевому слову <code>sizeof</code> в языке C. Метод <code>alignment</code> возвращает величину <a href="https://en.wikipedia.org/wiki/Data_structure_alignment" target="_blank">выравнивания структуры</a>. Метод <code>peek</code> читает значение, расположенное по указанному адресу. Ну а метод <code>poke</code>, напротив, записывает некое значение по указанному адресу.</p>
+<p>Вы спросите, что это за странный синтаксис? Какие-то круглые скобки и решётки... А это именно то, о чём было сказано выше: содержимое <code>.hsc</code>-файлов не является полноценным кодом на Haskell. Этот файл - препроцессорный, и чтобы превратить его в настоящий Haskell-код, нужен препроцессор под названием <a href="http://www.haskell.org/ghc/docs/7.6.3/html/users_guide/hsc2hs.html" target="_blank"><code>hsc2hs</code></a>. Однако непосредственное его использование вам едва ли понадобится, ведь наша подруга <code>cabal</code> сама разберётся, какие файлы проекта являются препроцессорными, и сама выполнит для них команду <code>hsc2hs</code>. Поэтому просто добавьте имя модуля <code>Utils.UTime</code> в <code>Real.cabal</code>, в параметре <code>other-modules</code>.</p>
+<p>Теперь рассмотрим эти препроцессорные инструкции внимательнее. Вот <code>sizeOf</code>:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">sizeOf</span> _ = (#const sizeof (struct utimbuf))
+</code></pre>
+<p>Мы говорим: &quot;Метод <code>sizeOf</code>, применяемый к некоторому значению нашего типа, вернёт целочисленную константу, соответствующую размеру типа <code>struct utimbuf</code>&quot;. Обратите внимание: мы используем полноценное выражение на языке C:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">sizeof</span> (struct utimbuf)
+</code></pre>
+<p>включающее в себя родное имя той самой структуры, с которой мы собираемся работать. И чтобы препроцессор знал, о какой структуре идёт речь, мы включаем заголовочный файл, в котором она определена:</p>
+<pre><code class="lang-haskell"><span class="hljs-preprocessor">#include &lt;utime.h&gt;</span>
+</code></pre>
+<p>А вот метод <code>peek</code>:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">peek</span> ptr = <span class="hljs-keyword">do</span>
+    c_actime &lt;- (#peek struct utimbuf, actime) ptr
+    c_modtime &lt;- (#peek struct utimbuf, modtime) ptr
+    return $ <span class="hljs-type">UTimeBuffer</span> c_actime c_modtime
+</code></pre>
+<p>Этот метод должен вернуть Haskell-значение, находящееся по адресу <code>ptr</code>, а значит, мы последовательно считываем два значения, входящие в нашу структуру-посредника. Рассмотрим первое прочтение:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">c_actime</span> &lt;- (#peek struct utimbuf, actime) ptr
+</code></pre>
+<p>Мы говорим: &quot;Читаем значение типа <code>struct utimbuf</code>, находящееся по адресу <code>ptr</code>, и значение его поля <code>actime</code> ассоциируем с идентификатором <code>c_actime</code>&quot;. После прочтения обоих полей мы создаём значение нашего типа-посредника <code>UTimeBuffer</code> и возвращаем его в <code>IO</code>-монаду.</p>
+<p>Как видите, данный препроцессорный код читается довольно легко, ведь по своему виду он очень приближен к родному Haskell-коду. Теперь откроем наш <code>Main.hs</code> и напишем в нём следующее:</p>
+<pre><code class="lang-haskell"><span class="hljs-module"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span></span>
+
+<span class="hljs-import"><span class="hljs-keyword">import</span> Utils.UTime</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.C</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.Marshal.Alloc</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.Storable</span>
+
+<span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+    path &lt;- newCString <span class="hljs-string">"/Users/dshevchenko/test.c"</span>
+    utimeBufferPtr &lt;- malloc
+    poke utimeBufferPtr realTime
+    code &lt;- c_utime path utimeBufferPtr
+    putStrLn $ <span class="hljs-keyword">if</span> code == <span class="hljs-number">0</span> <span class="hljs-keyword">then</span> <span class="hljs-string">"It's done"</span> <span class="hljs-keyword">else</span> <span class="hljs-string">"Something wrong..."</span>
+    <span class="hljs-keyword">where</span> realTime = <span class="hljs-type">UTimeBuffer</span> { accessTime = <span class="hljs-number">1396123253</span>
+                                 , modificationTime = <span class="hljs-number">1333050979</span>
+                                 }
+</code></pre>
+<p>Наше внимание привлекают следующие строки:</p>
+<pre><code class="lang-haskell">    path &lt;- newCString <span class="hljs-string">"/Users/dshevchenko/test.c"</span>
+    utimeBufferPtr &lt;- malloc    <span class="hljs-comment">-- Повеяло языком C, не правда ли?</span>
+    poke utimeBufferPtr realTime
+</code></pre>
+<p>В первой мы используем функцию <code>newCString</code>, превращающую Haskell-строку в C-строку. Далее мы выделяем память для нашей структуры-посредника с помощью стандартной функции <code>malloc</code>. А потом мы сохраняем значение <code>realTime</code> по адресу, ассоциированному с указателем <code>utimeBufferPtr</code>.</p>
+<p>Обратите внимание и на нашего старого знакомого - на составной тип, формируемый с помощью фигурных скобок:</p>
+<pre><code class="lang-haskell">    <span class="hljs-keyword">where</span> realTime = <span class="hljs-type">UTimeBuffer</span> { accessTime = <span class="hljs-number">1396123253</span>
+                                 , modificationTime = <span class="hljs-number">1333050979</span>
+                                 }
+</code></pre>
+<p>Не важно, откуда мы получили эти posixtime-значения, важно, что когда мы запустим этот код, получим ожидаемый результат:</p>
+<pre><code class="lang-bash">It<span class="hljs-string">'s done</span>
+</code></pre>
+<p>Поверьте мне на слово - это работает, и время модификации файла действительно изменяется.</p>
+<h3 id="-">А убираться кто будет?!</h3>
+<p>Ай-яй-яй, мы чуть не забыли... Вот наш код:</p>
+<pre><code class="lang-haskell">    path &lt;- newCString <span class="hljs-string">"/Users/dshevchenko/test.c"</span>
+    utimeBufferPtr &lt;- malloc  <span class="hljs-comment">-- Радостно выделяем память в куче...   </span>
+    poke utimeBufferPtr realTime
+    code &lt;- c_utime path utimeBufferPtr
+    putStrLn $ <span class="hljs-keyword">if</span> code == <span class="hljs-number">0</span> <span class="hljs-keyword">then</span> <span class="hljs-string">"It's done"</span> <span class="hljs-keyword">else</span> <span class="hljs-string">"Something wrong..."</span>
+    ...
+    <span class="hljs-comment">-- А освободить-то забыли...</span>
+</code></pre>
+<p>В самом деле, выделить-то мы выделили, а убираться кто будет? Встроенный в Haskell уборщик мусора здесь нам не помощник, ведь взаимодействие с чужаками вынудило нас выделить память вручную, как в языке C. А если выделили явно - нужно явно и освободить.</p>
+<p>А кстати, вдруг я вас обманываю? Действительно ли утечка имеет место в нашем примере? Обратимся к нашему верному помощнику <a href="http://valgrind.org" target="_blank">valgrind</a>. Выполним:</p>
+<pre><code class="lang-bash">$ valgrind --leak-check=full ./dist/build/Real/Real
+</code></pre>
+<p>И вот грустный, но вполне ожидаемый отчёт:</p>
+<pre><code class="lang-bash">==<span class="hljs-number">25303</span>== <span class="hljs-number">16</span> bytes <span class="hljs-keyword">in</span> <span class="hljs-number">1</span> blocks are definitely lost <span class="hljs-keyword">in</span> loss record <span class="hljs-number">4</span> of <span class="hljs-number">14</span>
+==<span class="hljs-number">25303</span>==    at <span class="hljs-number">0</span>xE0D6: malloc (vg_replace_malloc.c:<span class="hljs-number">274</span>)
+==<span class="hljs-number">25303</span>==    by <span class="hljs-number">0</span>x1000019DA: s25W_info (<span class="hljs-keyword">in</span> ./dist/build/Real/Real)
+</code></pre>
+<p>Утекло. А чтобы этого избежать, воспользуемся стандартной функцией free и напишем так:</p>
+<pre><code class="lang-haskell">...
+    path &lt;- newCString <span class="hljs-string">"/Users/dshevchenko/test.c"</span>
+    utimeBufferPtr &lt;- malloc  <span class="hljs-comment">-- Радостно выделяем память в куче...   </span>
+    poke utimeBufferPtr realTime
+    code &lt;- c_utime path utimeBufferPtr
+    free utimeBufferPtr       <span class="hljs-comment">-- И столь же радостно освобождаем.</span>
+    putStrLn $ <span class="hljs-keyword">if</span> code == <span class="hljs-number">0</span> <span class="hljs-keyword">then</span> <span class="hljs-string">"It's done"</span> <span class="hljs-keyword">else</span> <span class="hljs-string">"Something wrong..."</span>
+    ...
+</code></pre>
+<p>Теперь проверим:</p>
+<pre><code class="lang-bash">$ valgrind --leak-check=full ./dist/build/Real/Real
+</code></pre>
+<p>И вот он, радостный отчёт:</p>
+<pre><code class="lang-bash">==<span class="hljs-number">25356</span>==  LEAK SUMMARY:
+==<span class="hljs-number">25356</span>==    definitely lost: <span class="hljs-number">0</span> bytes <span class="hljs-keyword">in</span> <span class="hljs-number">0</span> blocks
+</code></pre>
+<p>Память освобождается.</p>
+<h3 id="-">Выводы</h3>
+<p>Haskell водит крепкую дружбу с языком C, и во многих реальных приложениях эта дружба часто используется.</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../integration/README.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../end/README.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
+        <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+        <script src="../gitbook/app.js"></script>
+        
+    </body>
+</html>

@@ -1,0 +1,961 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+        
+        <meta charset="UTF-8">
+        <title>Функции высшего порядка | О Haskell по-человечески</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="denisshevchenko">
+        <meta name="description" content="Book generated using GitBook">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+        
+        <link href='http://fonts.googleapis.com/css?family=Cuprum:400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+        
+        <link rel="next" href="../about-functions/functional-chains.html" />
+        
+        
+        <link rel="prev" href="../about-functions/lambda-functions.html" />
+        
+
+        <meta property="og:title" content="Функции высшего порядка | О Haskell по-человечески">
+        <meta property="og:site_name" content="О Haskell по-человечески">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="https://github.com/denisshevchenko">
+        <meta property="book:tag" content="GitBook">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+        
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+        
+    </head>
+    <body>
+        
+<div class="book" data-github="denisshevchenko/ohaskell" data-level="4.3" data-basepath=".." data-revision="1397481264092">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="https://github.com/denisshevchenko/ohaskell" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
+    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+
+    <!-- Actions Right -->
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+
+    <!-- <a href="https://github.com/denisshevchenko/ohaskell/stargazers" target="_blank" class="btn pull-right count-star"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/denisshevchenko/ohaskell/watchers" target="_blank" class="btn pull-right count-watch"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a> -->
+
+
+    <!-- Title -->
+    <h1><a href="../" >О Haskell по-человечески</a></h1>
+</div>
+
+    <div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        <li>
+            <a href="https://github.com/denisshevchenko" target="blank">About the author</a>
+        </li>
+        <li>
+            <a href="https://github.com/denisshevchenko/ohaskell/issues" target="blank">Questions and Issues</a>
+        </li>
+        <li>
+            <a href="https://github.com/denisshevchenko/ohaskell/edit/master/about-functions/higher-order-functions.md" target="blank">Edit and Contribute</a>
+        </li>
+        <li class="divider"></li>
+        <li data-level="0" data-path="index.html">
+            <a href="../"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+            <li  data-level="1" data-path="intro/README.html">
+                
+                <a href="../intro/README.html">
+                    <i class="fa fa-check"></i> <b>1)</b> Лирическое вступление
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="1.1" data-path="intro/who.html">
+                            
+                            <a href="../intro/who.html">
+                                <i class="fa fa-check"></i> <b>1.1)</b> Кто
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.2" data-path="intro/why.html">
+                            
+                            <a href="../intro/why.html">
+                                <i class="fa fa-check"></i> <b>1.2)</b> Почему
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.3" data-path="intro/what-for.html">
+                            
+                            <a href="../intro/what-for.html">
+                                <i class="fa fa-check"></i> <b>1.3)</b> Зачем
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="1.4" data-path="intro/for-whom.html">
+                            
+                            <a href="../intro/for-whom.html">
+                                <i class="fa fa-check"></i> <b>1.4)</b> Для кого
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="2" data-path="prepare/README.html">
+                
+                <a href="../prepare/README.html">
+                    <i class="fa fa-check"></i> <b>2)</b> Готовимся к работе
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="2.1" data-path="prepare/create-project.html">
+                            
+                            <a href="../prepare/create-project.html">
+                                <i class="fa fa-check"></i> <b>2.1)</b> Создаём проект
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.2" data-path="prepare/about-modules-minimum.html">
+                            
+                            <a href="../prepare/about-modules-minimum.html">
+                                <i class="fa fa-check"></i> <b>2.2)</b> О модулях, минимум
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="2.3" data-path="prepare/about-hackage.html">
+                            
+                            <a href="../prepare/about-hackage.html">
+                                <i class="fa fa-check"></i> <b>2.3)</b> О Hackage
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="3" data-path="about-haskell/README.html">
+                
+                <a href="../about-haskell/README.html">
+                    <i class="fa fa-check"></i> <b>3)</b> Несколько слов о Haskell
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="3.1" data-path="about-haskell/pure-functionality.html">
+                            
+                            <a href="../about-haskell/pure-functionality.html">
+                                <i class="fa fa-check"></i> <b>3.1)</b> Чистая функциональность
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.2" data-path="about-haskell/types-three-foundations.html">
+                            
+                            <a href="../about-haskell/types-three-foundations.html">
+                                <i class="fa fa-check"></i> <b>3.2)</b> Три кита типизации
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.3" data-path="about-haskell/immutability.html">
+                            
+                            <a href="../about-haskell/immutability.html">
+                                <i class="fa fa-check"></i> <b>3.3)</b> Неизменность данных
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="3.4" data-path="about-haskell/laziness.html">
+                            
+                            <a href="../about-haskell/laziness.html">
+                                <i class="fa fa-check"></i> <b>3.4)</b> Лень
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="4" data-path="about-functions/README.html">
+                
+                <a href="../about-functions/README.html">
+                    <i class="fa fa-check"></i> <b>4)</b> О функциях
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="4.1" data-path="about-functions/pure-functions.html">
+                            
+                            <a href="../about-functions/pure-functions.html">
+                                <i class="fa fa-check"></i> <b>4.1)</b> Чистые функции
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="4.2" data-path="about-functions/lambda-functions.html">
+                            
+                            <a href="../about-functions/lambda-functions.html">
+                                <i class="fa fa-check"></i> <b>4.2)</b> λ-функции
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="4.3" data-path="about-functions/higher-order-functions.html">
+                            
+                            <a href="../about-functions/higher-order-functions.html">
+                                <i class="fa fa-check"></i> <b>4.3)</b> Функции высшего порядка
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="4.4" data-path="about-functions/functional-chains.html">
+                            
+                            <a href="../about-functions/functional-chains.html">
+                                <i class="fa fa-check"></i> <b>4.4)</b> Функциональные цепочки
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="5" data-path="about-lists/README.html">
+                
+                <a href="../about-lists/README.html">
+                    <i class="fa fa-check"></i> <b>5)</b> О списках
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="5.1" data-path="about-lists/lists-at-a-glance.html">
+                            
+                            <a href="../about-lists/lists-at-a-glance.html">
+                                <i class="fa fa-check"></i> <b>5.1)</b> Списки - одним взглядом
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.2" data-path="about-lists/ranges.html">
+                            
+                            <a href="../about-lists/ranges.html">
+                                <i class="fa fa-check"></i> <b>5.2)</b> Диапазоны
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.3" data-path="about-lists/tuples.html">
+                            
+                            <a href="../about-lists/tuples.html">
+                                <i class="fa fa-check"></i> <b>5.3)</b> Кортежи
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="5.4" data-path="about-lists/list-comprehension.html">
+                            
+                            <a href="../about-lists/list-comprehension.html">
+                                <i class="fa fa-check"></i> <b>5.4)</b> List comprehension
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="6" data-path="about-user-types/README.html">
+                
+                <a href="../about-user-types/README.html">
+                    <i class="fa fa-check"></i> <b>6)</b> О пользовательских типах
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="6.1" data-path="about-user-types/types-at-a-glance.html">
+                            
+                            <a href="../about-user-types/types-at-a-glance.html">
+                                <i class="fa fa-check"></i> <b>6.1)</b> Типы - одним взглядом
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.2" data-path="about-user-types/about-value-constructors.html">
+                            
+                            <a href="../about-user-types/about-value-constructors.html">
+                                <i class="fa fa-check"></i> <b>6.2)</b> О конструкторах значений
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.3" data-path="about-user-types/type-context.html">
+                            
+                            <a href="../about-user-types/type-context.html">
+                                <i class="fa fa-check"></i> <b>6.3)</b> Контекст типа
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.4" data-path="about-user-types/composite-types.html">
+                            
+                            <a href="../about-user-types/composite-types.html">
+                                <i class="fa fa-check"></i> <b>6.4)</b> Составные типы
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.5" data-path="about-user-types/deriving.html">
+                            
+                            <a href="../about-user-types/deriving.html">
+                                <i class="fa fa-check"></i> <b>6.5)</b> Наследуемые типы
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.6" data-path="about-user-types/own-type-classes.html">
+                            
+                            <a href="../about-user-types/own-type-classes.html">
+                                <i class="fa fa-check"></i> <b>6.6)</b> Собственные классы типов
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="6.7" data-path="about-user-types/newtype.html">
+                            
+                            <a href="../about-user-types/newtype.html">
+                                <i class="fa fa-check"></i> <b>6.7)</b> Новый тип
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="7" data-path="io/README.html">
+                
+                <a href="../io/README.html">
+                    <i class="fa fa-check"></i> <b>7)</b> Ввод и вывод
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="7.1" data-path="io/functions-with-side-effects.html">
+                            
+                            <a href="../io/functions-with-side-effects.html">
+                                <i class="fa fa-check"></i> <b>7.1)</b> Функции с побочными эффектами
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="7.2" data-path="io/IO-a.html">
+                            
+                            <a href="../io/IO-a.html">
+                                <i class="fa fa-check"></i> <b>7.2)</b> IO a
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="7.3" data-path="io/do-imperative-world.html">
+                            
+                            <a href="../io/do-imperative-world.html">
+                                <i class="fa fa-check"></i> <b>7.3)</b> do: императивный мир
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="7.4" data-path="io/exceptions-handling.html">
+                            
+                            <a href="../io/exceptions-handling.html">
+                                <i class="fa fa-check"></i> <b>7.4)</b> Обработка исключений
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="7.5" data-path="io/own-exceptions.html">
+                            
+                            <a href="../io/own-exceptions.html">
+                                <i class="fa fa-check"></i> <b>7.5)</b> Собственные исключения
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="8" data-path="delicious/README.html">
+                
+                <a href="../delicious/README.html">
+                    <i class="fa fa-check"></i> <b>8)</b> Деликатесы
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="8.1" data-path="delicious/monads-essence.html">
+                            
+                            <a href="../delicious/monads-essence.html">
+                                <i class="fa fa-check"></i> <b>8.1)</b> Монады: суть
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.2" data-path="delicious/monads-IO.html">
+                            
+                            <a href="../delicious/monads-IO.html">
+                                <i class="fa fa-check"></i> <b>8.2)</b> Монады: на примере IO
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.3" data-path="delicious/monads-practice.html">
+                            
+                            <a href="../delicious/monads-practice.html">
+                                <i class="fa fa-check"></i> <b>8.3)</b> Монады: практика
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.4" data-path="delicious/maybe.html">
+                            
+                            <a href="../delicious/maybe.html">
+                                <i class="fa fa-check"></i> <b>8.4)</b> Может быть
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.5" data-path="delicious/functors.html">
+                            
+                            <a href="../delicious/functors.html">
+                                <i class="fa fa-check"></i> <b>8.5)</b> Функторы
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="8.6" data-path="delicious/applicative-functors.html">
+                            
+                            <a href="../delicious/applicative-functors.html">
+                                <i class="fa fa-check"></i> <b>8.6)</b> Аппликативные функторы
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="9" data-path="miscellaneous/README.html">
+                
+                <a href="../miscellaneous/README.html">
+                    <i class="fa fa-check"></i> <b>9)</b> Остальное
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="9.1" data-path="miscellaneous/about-modules.html">
+                            
+                            <a href="../miscellaneous/about-modules.html">
+                                <i class="fa fa-check"></i> <b>9.1)</b> О модулях
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.2" data-path="miscellaneous/recursive-functions.html">
+                            
+                            <a href="../miscellaneous/recursive-functions.html">
+                                <i class="fa fa-check"></i> <b>9.2)</b> Рекурсивные функции
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.3" data-path="miscellaneous/about-apostrophe.html">
+                            
+                            <a href="../miscellaneous/about-apostrophe.html">
+                                <i class="fa fa-check"></i> <b>9.3)</b> Про апостроф
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.4" data-path="miscellaneous/about-formatting.html">
+                            
+                            <a href="../miscellaneous/about-formatting.html">
+                                <i class="fa fa-check"></i> <b>9.4)</b> О форматировании
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="9.5" data-path="miscellaneous/about-hlint.html">
+                            
+                            <a href="../miscellaneous/about-hlint.html">
+                                <i class="fa fa-check"></i> <b>9.5)</b> Про hlint
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="10" data-path="integration/README.html">
+                
+                <a href="../integration/README.html">
+                    <i class="fa fa-check"></i> <b>10)</b> Интеграция
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="10.1" data-path="integration/c-from-haskell.html">
+                            
+                            <a href="../integration/c-from-haskell.html">
+                                <i class="fa fa-check"></i> <b>10.1)</b> C из Haskell
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="11" data-path="end/README.html">
+                
+                <a href="../end/README.html">
+                    <i class="fa fa-check"></i> <b>11)</b> Заключение
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="11.1" data-path="end/is-this-end.html">
+                            
+                            <a href="../end/is-this-end.html">
+                                <i class="fa fa-check"></i> <b>11.1)</b> И что, это всё??
+                            </a>
+                            
+                        </li>
+                    
+                        <li  data-level="11.2" data-path="end/gratitudes.html">
+                            
+                            <a href="../end/gratitudes.html">
+                                <i class="fa fa-check"></i> <b>11.2)</b> Благодарности
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+            <li  data-level="12" data-path="appendix/README.html">
+                
+                <a href="../appendix/README.html">
+                    <i class="fa fa-check"></i> <b>12)</b> Приложения
+                </a>
+                
+                
+                <ul class="articles">
+                    
+                        <li  data-level="12.1" data-path="appendix/useful-links.html">
+                            
+                            <a href="../appendix/useful-links.html">
+                                <i class="fa fa-check"></i> <b>12.1)</b> Полезные ссылки
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body" tabindex="-1">
+        <div class="body-inner">
+            <div class="page-wrapper">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 43.10344827586207%;min-width: 41.37931034482759%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../intro/README.html" title="Лирическое вступление" class="chapter done new-chapter" data-progress="1" style="left: 1.7241379310344827%;"></a>
+    
+        <a href="../intro/who.html" title="Кто" class="chapter done " data-progress="1.1" style="left: 3.4482758620689653%;"></a>
+    
+        <a href="../intro/why.html" title="Почему" class="chapter done " data-progress="1.2" style="left: 5.172413793103448%;"></a>
+    
+        <a href="../intro/what-for.html" title="Зачем" class="chapter done " data-progress="1.3" style="left: 6.896551724137931%;"></a>
+    
+        <a href="../intro/for-whom.html" title="Для кого" class="chapter done " data-progress="1.4" style="left: 8.620689655172415%;"></a>
+    
+        <a href="../integration/README.html" title="Интеграция" class="chapter done " data-progress="10" style="left: 10.344827586206897%;"></a>
+    
+        <a href="../integration/c-from-haskell.html" title="C из Haskell" class="chapter done " data-progress="10.1" style="left: 12.068965517241379%;"></a>
+    
+        <a href="../end/README.html" title="Заключение" class="chapter done " data-progress="11" style="left: 13.793103448275861%;"></a>
+    
+        <a href="../end/is-this-end.html" title="И что, это всё??" class="chapter done " data-progress="11.1" style="left: 15.517241379310345%;"></a>
+    
+        <a href="../end/gratitudes.html" title="Благодарности" class="chapter done " data-progress="11.2" style="left: 17.24137931034483%;"></a>
+    
+        <a href="../appendix/README.html" title="Приложения" class="chapter done " data-progress="12" style="left: 18.96551724137931%;"></a>
+    
+        <a href="../appendix/useful-links.html" title="Полезные ссылки" class="chapter done " data-progress="12.1" style="left: 20.689655172413794%;"></a>
+    
+        <a href="../prepare/README.html" title="Готовимся к работе" class="chapter done new-chapter" data-progress="2" style="left: 22.413793103448278%;"></a>
+    
+        <a href="../prepare/create-project.html" title="Создаём проект" class="chapter done " data-progress="2.1" style="left: 24.137931034482758%;"></a>
+    
+        <a href="../prepare/about-modules-minimum.html" title="О модулях, минимум" class="chapter done " data-progress="2.2" style="left: 25.862068965517242%;"></a>
+    
+        <a href="../prepare/about-hackage.html" title="О Hackage" class="chapter done " data-progress="2.3" style="left: 27.586206896551722%;"></a>
+    
+        <a href="../about-haskell/README.html" title="Несколько слов о Haskell" class="chapter done new-chapter" data-progress="3" style="left: 29.310344827586206%;"></a>
+    
+        <a href="../about-haskell/pure-functionality.html" title="Чистая функциональность" class="chapter done " data-progress="3.1" style="left: 31.03448275862069%;"></a>
+    
+        <a href="../about-haskell/types-three-foundations.html" title="Три кита типизации" class="chapter done " data-progress="3.2" style="left: 32.758620689655174%;"></a>
+    
+        <a href="../about-haskell/immutability.html" title="Неизменность данных" class="chapter done " data-progress="3.3" style="left: 34.48275862068966%;"></a>
+    
+        <a href="../about-haskell/laziness.html" title="Лень" class="chapter done " data-progress="3.4" style="left: 36.206896551724135%;"></a>
+    
+        <a href="../about-functions/README.html" title="О функциях" class="chapter done new-chapter" data-progress="4" style="left: 37.93103448275862%;"></a>
+    
+        <a href="../about-functions/pure-functions.html" title="Чистые функции" class="chapter done " data-progress="4.1" style="left: 39.6551724137931%;"></a>
+    
+        <a href="../about-functions/lambda-functions.html" title="λ-функции" class="chapter done " data-progress="4.2" style="left: 41.37931034482759%;"></a>
+    
+        <a href="../about-functions/higher-order-functions.html" title="Функции высшего порядка" class="chapter done " data-progress="4.3" style="left: 43.10344827586207%;"></a>
+    
+        <a href="../about-functions/functional-chains.html" title="Функциональные цепочки" class="chapter  " data-progress="4.4" style="left: 44.827586206896555%;"></a>
+    
+        <a href="../about-lists/README.html" title="О списках" class="chapter  new-chapter" data-progress="5" style="left: 46.55172413793103%;"></a>
+    
+        <a href="../about-lists/lists-at-a-glance.html" title="Списки - одним взглядом" class="chapter  " data-progress="5.1" style="left: 48.275862068965516%;"></a>
+    
+        <a href="../about-lists/ranges.html" title="Диапазоны" class="chapter  " data-progress="5.2" style="left: 50%;"></a>
+    
+        <a href="../about-lists/tuples.html" title="Кортежи" class="chapter  " data-progress="5.3" style="left: 51.724137931034484%;"></a>
+    
+        <a href="../about-lists/list-comprehension.html" title="List comprehension" class="chapter  " data-progress="5.4" style="left: 53.44827586206897%;"></a>
+    
+        <a href="../about-user-types/README.html" title="О пользовательских типах" class="chapter  new-chapter" data-progress="6" style="left: 55.172413793103445%;"></a>
+    
+        <a href="../about-user-types/types-at-a-glance.html" title="Типы - одним взглядом" class="chapter  " data-progress="6.1" style="left: 56.89655172413793%;"></a>
+    
+        <a href="../about-user-types/about-value-constructors.html" title="О конструкторах значений" class="chapter  " data-progress="6.2" style="left: 58.62068965517241%;"></a>
+    
+        <a href="../about-user-types/type-context.html" title="Контекст типа" class="chapter  " data-progress="6.3" style="left: 60.3448275862069%;"></a>
+    
+        <a href="../about-user-types/composite-types.html" title="Составные типы" class="chapter  " data-progress="6.4" style="left: 62.06896551724138%;"></a>
+    
+        <a href="../about-user-types/deriving.html" title="Наследуемые типы" class="chapter  " data-progress="6.5" style="left: 63.793103448275865%;"></a>
+    
+        <a href="../about-user-types/own-type-classes.html" title="Собственные классы типов" class="chapter  " data-progress="6.6" style="left: 65.51724137931035%;"></a>
+    
+        <a href="../about-user-types/newtype.html" title="Новый тип" class="chapter  " data-progress="6.7" style="left: 67.24137931034483%;"></a>
+    
+        <a href="../io/README.html" title="Ввод и вывод" class="chapter  new-chapter" data-progress="7" style="left: 68.96551724137932%;"></a>
+    
+        <a href="../io/functions-with-side-effects.html" title="Функции с побочными эффектами" class="chapter  " data-progress="7.1" style="left: 70.6896551724138%;"></a>
+    
+        <a href="../io/IO-a.html" title="IO a" class="chapter  " data-progress="7.2" style="left: 72.41379310344827%;"></a>
+    
+        <a href="../io/do-imperative-world.html" title="do: императивный мир" class="chapter  " data-progress="7.3" style="left: 74.13793103448276%;"></a>
+    
+        <a href="../io/exceptions-handling.html" title="Обработка исключений" class="chapter  " data-progress="7.4" style="left: 75.86206896551724%;"></a>
+    
+        <a href="../io/own-exceptions.html" title="Собственные исключения" class="chapter  " data-progress="7.5" style="left: 77.58620689655173%;"></a>
+    
+        <a href="../delicious/README.html" title="Деликатесы" class="chapter  new-chapter" data-progress="8" style="left: 79.3103448275862%;"></a>
+    
+        <a href="../delicious/monads-essence.html" title="Монады: суть" class="chapter  " data-progress="8.1" style="left: 81.03448275862068%;"></a>
+    
+        <a href="../delicious/monads-IO.html" title="Монады: на примере IO" class="chapter  " data-progress="8.2" style="left: 82.75862068965517%;"></a>
+    
+        <a href="../delicious/monads-practice.html" title="Монады: практика" class="chapter  " data-progress="8.3" style="left: 84.48275862068965%;"></a>
+    
+        <a href="../delicious/maybe.html" title="Может быть" class="chapter  " data-progress="8.4" style="left: 86.20689655172414%;"></a>
+    
+        <a href="../delicious/functors.html" title="Функторы" class="chapter  " data-progress="8.5" style="left: 87.93103448275862%;"></a>
+    
+        <a href="../delicious/applicative-functors.html" title="Аппликативные функторы" class="chapter  " data-progress="8.6" style="left: 89.65517241379311%;"></a>
+    
+        <a href="../miscellaneous/README.html" title="Остальное" class="chapter  new-chapter" data-progress="9" style="left: 91.37931034482759%;"></a>
+    
+        <a href="../miscellaneous/about-modules.html" title="О модулях" class="chapter  " data-progress="9.1" style="left: 93.10344827586206%;"></a>
+    
+        <a href="../miscellaneous/recursive-functions.html" title="Рекурсивные функции" class="chapter  " data-progress="9.2" style="left: 94.82758620689656%;"></a>
+    
+        <a href="../miscellaneous/about-apostrophe.html" title="Про апостроф" class="chapter  " data-progress="9.3" style="left: 96.55172413793103%;"></a>
+    
+        <a href="../miscellaneous/about-formatting.html" title="О форматировании" class="chapter  " data-progress="9.4" style="left: 98.27586206896552%;"></a>
+    
+        <a href="../miscellaneous/about-hlint.html" title="Про hlint" class="chapter  " data-progress="9.5" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_29">
+                    
+                        <h2 id="-">Функции высшего порядка</h2>
+<p>Функции высшего порядка (higher-order functions) занимают важное место в языке Haskell. Из предыдущих глав вы узнали, что чистые функции - это, в конечном итоге, значения. Следовательно, чистые функции можно, во-первых, передавать другим функциям в качестве аргументов, а во-вторых, возвращать их из других функций.</p>
+<p>Функцией высшего порядка называют такую функцию, которая принимает другую функцию в качестве аргумента и/или возвращает другую функцию.</p>
+<h3 id="-">Разоблачение функций</h3>
+<p>Помните, в рассказе о чистых функциях было упомянуто, что они могут принимать как один, так и множество аргументов? Пришло время признаться в обмане, ибо правда такова:</p>
+<blockquote>
+<p><strong>Чистые функции в Haskell всегда принимают только один аргумент.</strong> </p>
+</blockquote>
+<p>Постойте, но как же мы тогда смогли определить функции, принимающие по два и даже по три аргумента?</p>
+<p>Это была хитрость, и называется она &quot;каррирование&quot; (currying), иногда говорят &quot;карринг&quot;. Слово это знаменитое, ибо происходит от имени <a href="https://en.wikipedia.org/wiki/Haskell_Curry" target="_blank">Haskell Curry</a>. Каррирование - это превращение функции, принимающей множество аргументов, в функцию, принимающую все эти аргументы по одному.</p>
+<p>Определим функцию деления двух чисел:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">divide</span> :: <span class="hljs-type">Double</span> -&gt; <span class="hljs-type">Double</span> -&gt; <span class="hljs-type">Double</span>
+<span class="hljs-title">divide</span> arg1 arg2 = arg1 / arg2
+</code></pre>
+<p>Функция принимает два значения стандартного типа <code>Double</code> и возвращает результат деления первого значения на второе. Всё предельно просто. Но если мы заглянем &quot;под капот&quot; вызова этой функции:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">main</span> = print (divide <span class="hljs-number">10.03</span> <span class="hljs-number">2.1</span>)
+</code></pre>
+<p>то узнаем, что этот вызов происходит в два этапа:</p>
+<ol>
+<li>Функция <code>divide</code> применяется к первому аргументу <code>10.03</code> и - внимание! - возвращает функцию типа <code>Double -&gt; Double</code>.</li>
+<li>Эта возвращённая функция, в свою очередь, применяется ко второму аргументу <code>2.1</code> и возвращает конечное значение <code>4.77</code>.</li>
+</ol>
+<p>Мы можем явно отразить эту &quot;двухэтапность&quot;, переписав вызов функции так:</p>
+<pre><code class="lang-haskell">(divide <span class="hljs-number">10.03</span>) <span class="hljs-number">2.1</span>
+</code></pre>
+<p>Функция применяется только к одному значению: сначала к <code>10.03</code>, а уже потом функция, возвращённая первым вызовом, применяется к <code>2.1</code>. Именно по причине такой &quot;двухэтапности&quot; объявление функции <code>divide</code> содержит две стрелочки вместо одной:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">divide</span> :: <span class="hljs-type">Double</span> -&gt; <span class="hljs-type">Double</span> -&gt; <span class="hljs-type">Double</span>
+</code></pre>
+<p>С концептуальной точки зрения такое объявление звучит так: &quot;Функция <code>divide</code> принимает два значения типа <code>Double</code> и возвращает значение типа <code>Double</code>&quot;. Однако правильнее читать его так: &quot;Функция <code>divide</code> применяется к первому значению типа <code>Double</code> и возвращает функцию типа <code>Double -&gt; Double</code>, которая применяется ко второму значению типа <code>Double</code> и возвращает конечное значение типа <code>Double</code>&quot;. Кстати, правильное прочтение объявления можно отразить и в самом этом объявлении:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">divide</span> :: <span class="hljs-type">Double</span> -&gt; (<span class="hljs-type">Double</span> -&gt; <span class="hljs-type">Double</span>)
+</code></pre>
+<p>Теперь мы ясно видим, что на первом этапе происходит вызов функции от одного аргумента, возвращающей функцию типа <code>Double -&gt; Double</code>, а на втором этапе происходит вызов второй функции, возвращённой на первом этапе.</p>
+<p>По аналогии, если у нас есть функция, принимающая три аргумента:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">totalSum</span> :: <span class="hljs-type">Double</span> -&gt; <span class="hljs-type">Double</span> -&gt; <span class="hljs-type">Double</span> -&gt; <span class="hljs-type">Double</span>
+<span class="hljs-title">totalSum</span> arg1 arg2 arg3 = arg1 + arg2 + arg3
+</code></pre>
+<p>то её вызов:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">main</span> = print (totalSum <span class="hljs-number">10.03</span> <span class="hljs-number">2.1</span> <span class="hljs-number">45.7</span>)
+</code></pre>
+<p>проходил бы в три этапа, и чтобы явно отразить этот факт, мы можем переписать объявление данной функции так:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">totalSum</span> :: <span class="hljs-type">Double</span> -&gt; (<span class="hljs-type">Double</span> -&gt; (<span class="hljs-type">Double</span> -&gt; <span class="hljs-type">Double</span>))
+</code></pre>
+<p>а её вызов - так:</p>
+<pre><code><span class="hljs-list">(<span class="hljs-list">(<span class="hljs-title">totalSum</span> <span class="hljs-number">10.03</span>)</span> <span class="hljs-number">2.1</span>)</span> <span class="hljs-number">45.7</span>
+</code></pre><p>И чтобы всё окончательно прояснилось, изучим одну важную деталь.</p>
+<h3 id="-">Частичное применение функции</h3>
+<p>Несмотря на &quot;двухэтапность&quot; вызова функции <code>divide</code>, её тело будет выполнено один раз. Вызов один, просто он разделён на два последовательных шага. А чтобы понять суть этих шагов, изучим частичное применение функции (partial application).</p>
+<p>Функцию называют частично применённой, если количество аргументов, к которым она применена, оказалось меньше ожидаемого ею количества аргументов. И здесь нам пригодятся уже известные нам λ-функции.</p>
+<p>Применим функцию <code>divide</code> не к двум, а только к одному аргументу:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">main</span> =
+    <span class="hljs-keyword">let</span> temporaryFunction = divide <span class="hljs-number">10.03</span>  <span class="hljs-comment">-- "Запомнили" первое значение...</span>
+    <span class="hljs-keyword">in</span>
+    print (temporaryFunction <span class="hljs-number">2.1</span>)   <span class="hljs-comment">-- А вот теперь можем выполнить работу.</span>
+</code></pre>
+<p>Теперь всё встало на свои места. Здесь наглядно показано, что же на самом деле означает выражение вида:</p>
+<pre><code class="lang-haskell">(divide <span class="hljs-number">10.03</span>) <span class="hljs-number">2.1</span>
+</code></pre>
+<p>В результате первого вызова, когда мы применили функцию <code>divide</code> к первому аргументу, мы ещё не можем получить результат деления, ведь второго-то аргумента ещё нет! Вместо этого мы получили временную λ-функцию, которую для наглядности ассоциировали с выражением <code>temporaryFunction</code>. Эта временная λ-функция как бы запомнила значение первого аргумента, и только когда мы применим её ко второму аргументу, мы и получим результат деления.</p>
+<p>По аналогии, вызов нашей функции <code>totalSum</code>, происходящий в три этапа, можно разложить так:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">main</span> =
+    <span class="hljs-keyword">let</span> firstFunction = totalSum <span class="hljs-number">1.0</span>       <span class="hljs-comment">-- "Запомнили" первый...</span>
+        secondFunction = firstFunction <span class="hljs-number">2.0</span> <span class="hljs-comment">-- "Запомнили" второй...</span>
+    <span class="hljs-keyword">in</span>
+    print (secondFunction <span class="hljs-number">3.0</span>)    <span class="hljs-comment">-- А вот теперь можем складывать.</span>
+</code></pre>
+<p>В процессе вызова у нас появилось уже две временные λ-функции, каждая из которых применялась к очередному аргументу и запоминала его. И только когда вторая промежуточная λ-функция была применена к третьему, последнему аргументу, мы и получили сумму.</p>
+<h3 id="-">Зачем это нужно</h3>
+<p>В подавляющем большинстве случаев знать вышеизложенную информацию о каррировании функций и о частичном применении не обязательно. Основное преимущество каррирования лежит в академической плоскости: выводить математические доказательства гораздо легче, если договориться, что каждая из вычисляемых функций всегда принимает строго один аргумент и возвращает строго одно значение. Но нас с вами больше интересует аспект практический. И поэтому мы возвращаемся к рассмотрению функций высшего порядка (далее - ФВП).</p>
+<p>Формально функции <code>divide</code> и <code>totalSum</code> являются ФВП, в силу тех самых промежуточных λ-функций. Фактически, все функции, принимающие более одного аргумента, являются ФВП. Но все эти промежуточные λ-функции - всего лишь &quot;подкапотные&quot; дела, они скрыты от наших глаз. Гораздо больший интерес для нас представляют &quot;настоящие&quot; ФВП, которые явно объявлены как принимающие на вход функциональные значения и/или возвращающие функциональные значения.</p>
+<p>Рассмотрим небольшой пример:</p>
+<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">Login</span> = <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">Password</span> = <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">AvatarURL</span> = <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">UserId</span> = <span class="hljs-type">Integer</span></span>
+
+<span class="hljs-title">userInfo</span> :: <span class="hljs-type">Login</span> -&gt; <span class="hljs-type">Password</span> -&gt; <span class="hljs-type">AvatarURL</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">String</span>
+<span class="hljs-title">userInfo</span> login password avatarURL userId =
+    <span class="hljs-string">"Full info about user @"</span> ++ (show userId) ++ <span class="hljs-string">":"</span> ++
+    <span class="hljs-string">"\n login: "</span> ++ login ++
+    <span class="hljs-string">"\n password: "</span> ++ password ++
+    <span class="hljs-string">"\n avatar URL: "</span> ++ avatarURL
+
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">EmptyInfo</span> = <span class="hljs-type">Login</span> -&gt; <span class="hljs-type">Password</span> -&gt; <span class="hljs-type">AvatarURL</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">WithLogin</span> =          <span class="hljs-type">Password</span> -&gt; <span class="hljs-type">AvatarURL</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">AndWithPassword</span> =                <span class="hljs-type">AvatarURL</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">AndWithAvatarURL</span> =                            <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">String</span></span>
+
+<span class="hljs-title">storeLoginIn</span> :: <span class="hljs-type">EmptyInfo</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">WithLogin</span>
+<span class="hljs-title">storeLoginIn</span> emptyInfo userId =
+    emptyInfo <span class="hljs-string">"denis"</span>
+    <span class="hljs-comment">{- В реальности логин будет получен
+       в соответствии с переданным userId -}</span>
+
+<span class="hljs-title">storePasswordIn</span> :: <span class="hljs-type">WithLogin</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">AndWithPassword</span>
+<span class="hljs-title">storePasswordIn</span> infoWithLogin userId = infoWithLogin <span class="hljs-string">"123456789abc"</span>
+    <span class="hljs-comment">{- В реальности пароль будет получен
+       в соответствии с переданным userId -}</span>
+
+<span class="hljs-title">storeAvatarURLIn</span> :: <span class="hljs-type">AndWithPassword</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">AndWithAvatarURL</span>
+<span class="hljs-title">storeAvatarURLIn</span> infoWithPassword userId =
+    infoWithPassword <span class="hljs-string">"http://dshevchenko.biz/denis_avatar.png"</span>
+    <span class="hljs-comment">{- В реальности URL будет получен
+       в соответствии с переданным userId -}</span>
+
+<span class="hljs-title">main</span> =
+    <span class="hljs-keyword">let</span> userId = <span class="hljs-number">1234</span>
+        infoWithLogin = storeLoginIn userInfo userId
+        infoWithPassword = storePasswordIn infoWithLogin userId
+        infoWithAvatarURL = storeAvatarURLIn infoWithPassword userId
+        fullInfoAboutUser = infoWithAvatarURL userId
+    <span class="hljs-keyword">in</span>
+    putStrLn fullInfoAboutUser
+</code></pre>
+<p>А теперь разберём это хозяйство по косточкам.</p>
+<p>Во-первых, появилась новая для нас конструкция:</p>
+<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">Login</span> = <span class="hljs-type">String</span></span>
+</code></pre>
+<p>Ключевое слово <code>type</code> добавляет псевдоним для уже известного типа, и теперь вместо типа <code>String</code> можно использовать идентификатор <code>Login</code>.</p>
+<p>Далее мы определили функцию:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">userInfo</span> :: <span class="hljs-type">Login</span> -&gt; <span class="hljs-type">Password</span> -&gt; <span class="hljs-type">AvatarURL</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">String</span>
+</code></pre>
+<p>Тут всё просто: функция <code>userInfo</code> ожидает на вход логин, пароль, адрес аватара и идентификатор пользователя, а на выходе выдаёт некую описывающую строку. Обратите внимание и на двойной плюс:</p>
+<pre><code class="lang-haskell"><span class="hljs-string">"\n login: "</span> ++ login
+</code></pre>
+<p>Это оператор конкатенации двух строк в одну.</p>
+<p>А вот теперь начинается самое интересное. Подразумевается, что изначально у нас имеется только идентификатор пользователя, а соответствующие ему логин, пароль и путь к аватару нам нужно откуда-то получить. К счастью, у нас есть три функции, каждая из которых знает, где взять логин, пароль и путь к аватару соответственно. И каждая из этих трёх функций является ФВП.</p>
+<p>Рассмотрим псевдонимы:</p>
+<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">EmptyInfo</span> = <span class="hljs-type">Login</span> -&gt; <span class="hljs-type">Password</span> -&gt; <span class="hljs-type">AvatarURL</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">WithLogin</span> =          <span class="hljs-type">Password</span> -&gt; <span class="hljs-type">AvatarURL</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">AndWithPassword</span> =                <span class="hljs-type">AvatarURL</span> -&gt; <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">AndWithAvatarURL</span> =                            <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">String</span></span>
+</code></pre>
+<p>Каждый из них вводит упрощающее имя для функционального типа, образованного &quot;урезанием&quot; от типа функции <code>userInfo</code>. Обратите внимание: каждый последующий тип ожидает на один аргумент меньше, чем предыдущий тип. Эти псевдонимы задают типы для очередной промежуточной λ-функции, которые нужны, как вы уже догадались, для частичного применения функции <code>userInfo</code>.</p>
+<p>Рассмотрим первый вызов:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">infoWithLogin</span> = storeLoginIn userInfo userId
+</code></pre>
+<p>Здесь мы передаём функцию <code>userInfo</code> в качестве первого аргумента функции <code>storeLoginIn</code>, внутри которой мы применяем переданную функцию <code>userInfo</code> к единственному аргументу, а именно к логину. Соответственно, на выходе из функции <code>storeLoginIn</code> мы получаем первую промежуточную λ-функцию, в которой мы сохранили значение логина (именно поэтому тип этой λ-функции ассоциирован со словом <code>WithLogin</code>).</p>
+<p>Далее следует вызов:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">infoWithPassword</span> = storePasswordIn infoWithLogin userId
+</code></pre>
+<p>Здесь мы передаём нашу промежуточную λ-функцию в качестве первого аргумента функции <code>storePasswordIn</code>. Эта функция, в свою очередь, применяет переданную ей λ-функцию к единственному аргументу, а именно к паролю. Таким образом, на выходе из функции <code>storePasswordIn</code> мы имеем вторую промежуточную λ-функцию, в которой сохранены уже два значения: полученный на предыдущем вызове логин и на этом вызове - пароль.</p>
+<p>То же самое справедливо и для следующего вызова:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">infoWithAvatarURL</span> = storeAvatarURLIn infoWithPassword userId
+</code></pre>
+<p>На выходе из функции <code>storeAvatarURLIn</code> мы получаем третью λ-функцию, в которой сохранены уже три значения: логин, пароль и путь к аватару.</p>
+<p>В итоге мы применяем эту третью λ-функцию к последнему нужному аргументу, а именно к идентификатору пользователя:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">fullInfoAboutUser</span> = infoWithAvatarURL userId
+</code></pre>
+<p>Здесь-то и происходит &quot;полноценный&quot; вызов функции <code>userInfo</code>, в результате которого мы и получаем описывающую строку:</p>
+<pre><code class="lang-bash">Full info about user @<span class="hljs-number">1234</span>:
+ login: denis
+ password: <span class="hljs-number">123456789</span>abc
+ avatar URL: http://dshevchenko.biz/denis_avatar.png
+</code></pre>
+<p>Таким образом, функция <code>userInfo</code> была частично применена трижды, каждый раз получая очередной аргумент, и лишь к четвёртому применению она получила все необходимые ей аргументы. Это можно сравнить с конвейерной цепочкой, на каждом шаге которой эта функция получала очередной аргумент.</p>
+<p>Впрочем, нужны ли были такие сложности? Ведь мы можем передавать в каждую из этих трёх функций только значение <code>userId</code>, а возвращать никакую не промежуточную λ-функцию, а непосредственно логин, пароль и адрес аватара соответственно. Например, вместо функции <code>storeLoginIn</code> можно определить функцию <code>obtainLogin</code> следующего вида:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">obtainLogin</span> :: <span class="hljs-type">UserId</span> -&gt; <span class="hljs-type">Login</span>
+<span class="hljs-title">obtainLogin</span> userId =
+    <span class="hljs-comment">-- Получаем откуда-то логин и просто возвращаем его.</span>
+</code></pre>
+<p>Ну а что если мы не хотим возвращать логин в явном виде? Ведь в случае с частичным применением мы упаковываем логин в промежуточную λ-функцию (то есть фактически прячем логин в неё), а в этом случае мы явно возвращаем его на показ всему миру. Первое решение может оказаться более приемлемым.</p>
+<p>Или другой пример:</p>
+<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">UserId</span> = <span class="hljs-type">Integer</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">Prefix</span> = <span class="hljs-type">String</span></span>
+
+<span class="hljs-title">obtainLogin</span> :: <span class="hljs-type">UserId</span> -&gt; (<span class="hljs-type">Prefix</span> -&gt; <span class="hljs-type">String</span>)
+<span class="hljs-title">obtainLogin</span> userId =
+    loginStorage <span class="hljs-string">"denis"</span>  <span class="hljs-comment">-- Подразумевается, что логин как-то получен.</span>
+    <span class="hljs-keyword">where</span> loginStorage login prefix = prefix ++ <span class="hljs-string">": "</span> ++ login
+
+<span class="hljs-title">main</span> =
+    <span class="hljs-keyword">let</span> userId = <span class="hljs-number">1234</span>
+    <span class="hljs-keyword">in</span>
+    putStrLn ((obtainLogin userId) <span class="hljs-string">"My login"</span>)
+</code></pre>
+<p>Рассмотрим функцию <code>obtainLogin</code> подробнее:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">obtainLogin</span> :: <span class="hljs-type">UserId</span> -&gt; (<span class="hljs-type">Prefix</span> -&gt; <span class="hljs-type">String</span>)
+<span class="hljs-title">obtainLogin</span> userId =
+    loginStorage <span class="hljs-string">"denis"</span>
+    <span class="hljs-keyword">where</span> loginStorage login prefix = prefix ++ <span class="hljs-string">": "</span> ++ login
+</code></pre>
+<p>Здесь мы, на основании полученного извне идентификатора пользователя, откуда-то извлекаем логин и сразу же прячем его в λ-функцию, тут же нами и созданную. В результате функция <code>obtainLogin</code> возвращает частично применённую функцию, которую мы вторично применяем к строке-префиксу - и в результате на выходе мы получаем готовый результат:</p>
+<pre><code class="lang-bash">My login: denis
+</code></pre>
+<p>Вас, вероятно, интересует, почему я сказал о λ-функции? Вроде бы здесь нет нашего знакомого <code>\</code>:</p>
+<pre><code class="lang-haskell">    <span class="hljs-keyword">where</span> loginStorage login prefix = prefix ++ <span class="hljs-string">": "</span> ++ login
+</code></pre>
+<p>Однако это не важно, ведь такая запись идентична λ-форме:</p>
+<pre><code class="lang-haskell">    <span class="hljs-keyword">where</span> loginStorage = \login prefix -&gt; prefix ++ <span class="hljs-string">": "</span> ++ login
+</code></pre>
+<p>Помните, выше я говорил, что тривиальную функцию лучше определять без объявления? Вот это тот самый случай.</p>
+<p>Готово. Теперь вы знаете о функциях высшего порядка. Именно по причине того, что с функциями в Haskell можно работать как со значениями, мы можем составлять из них гибкие комбинации.</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../about-functions/lambda-functions.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../about-functions/functional-chains.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
+        <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+        <script src="../gitbook/app.js"></script>
+        
+    </body>
+</html>
