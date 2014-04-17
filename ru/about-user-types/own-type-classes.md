@@ -21,7 +21,6 @@ class Pepper pepper where
 data Poblano = Poblano  -- Распространён в национальных блюдах Мексики.
 
 data TrinidadScorpion = TrinidadScorpion  -- Самый жгучий перец в мире.
-```
 
 instance Pepper Poblano where
     color Poblano = "green"
