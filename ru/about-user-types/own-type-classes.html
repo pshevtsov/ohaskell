@@ -8,7 +8,7 @@
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
         <meta name="author" content="denisshevchenko">
-        <meta name="description" content="Book generated using GitBook">
+        <meta name="description" content="Перед вами — книга о Haskell, удивительном, мощном и красивом языке программирования. Я написал её специально для тех, кто плохо представляет себе, что такое функциональное программирование и с чем его едят, но хочет наконец разобраться.">
         <meta name="keywords" content="gitbook,github" >
         <meta name="generator" content="www.gitbook.io">
         
@@ -42,7 +42,7 @@
     </head>
     <body>
         
-<div class="book" data-github="denisshevchenko/ohaskell" data-level="6.6" data-basepath=".." data-revision="1397481495715">
+<div class="book" data-github="denisshevchenko/ohaskell" data-level="6.6" data-basepath=".." data-revision="1397792961039">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="https://github.com/denisshevchenko/ohaskell" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
@@ -756,21 +756,21 @@
 <pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">Poblano</span> = <span class="hljs-type">Poblano</span>  <span class="hljs-comment">-- Распространён в национальных блюдах Мексики.</span></span>
 
 <span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">TrinidadScorpion</span> = <span class="hljs-type">TrinidadScorpion</span>  <span class="hljs-comment">-- Самый жгучий перец в мире.</span></span>
+<span class="hljs-class">
+<span class="hljs-keyword">instance</span> <span class="hljs-type">Pepper</span> <span class="hljs-type">Poblano</span> <span class="hljs-keyword">where</span></span>
+    color <span class="hljs-type">Poblano</span> = <span class="hljs-string">"green"</span>
+    pungency <span class="hljs-type">Poblano</span> = <span class="hljs-number">1500</span>
+<span class="hljs-class">
+<span class="hljs-keyword">instance</span> <span class="hljs-type">Pepper</span> <span class="hljs-type">TrinidadScorpion</span> <span class="hljs-keyword">where</span></span>
+    color <span class="hljs-type">TrinidadScorpion</span> = <span class="hljs-string">"red"</span>
+    pungency <span class="hljs-type">TrinidadScorpion</span> = <span class="hljs-number">855000</span>
 </code></pre>
-<p>instance Pepper Poblano where
-    color Poblano = &quot;green&quot;
-    pungency Poblano = 1500</p>
-<p>instance Pepper TrinidadScorpion where
-    color TrinidadScorpion = &quot;red&quot;
-    pungency TrinidadScorpion = 855000</p>
-<pre><code>
-Теперь мы можем работать с этими перцами как обычно:
-
-```haskell
-main =
-    putStrLn $ <span class="hljs-operator"><span class="hljs-keyword">show</span> (pungency trinidad) ++ <span class="hljs-string">", "</span> ++ color trinidad
-    <span class="hljs-keyword">where</span> trinidad = TrinidadScorpion</span>
-</code></pre><h3 id="-">Зачем они нужны</h3>
+<p>Теперь мы можем работать с этими перцами как обычно:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">main</span> =
+    putStrLn $ show (pungency trinidad) ++ <span class="hljs-string">", "</span> ++ color trinidad
+    <span class="hljs-keyword">where</span> trinidad = <span class="hljs-type">TrinidadScorpion</span>
+</code></pre>
+<h3 id="-">Зачем они нужны</h3>
 <p>В самом деле, разве мы не можем использовать каждый из типов перца самостоятельно? Конечно можем. Главная цель определения собственного класса типов - указание контекста типов. Определим функцию, выводящую информацию о конкретном перце:</p>
 <pre><code class="lang-haskell"><span class="hljs-title">pepperInfo</span> :: <span class="hljs-type">Pepper</span> pepper =&gt; pepper -&gt; <span class="hljs-type">String</span>
 <span class="hljs-title">pepperInfo</span> pepper = show (pungency pepper) ++ <span class="hljs-string">", "</span> ++ color pepper
