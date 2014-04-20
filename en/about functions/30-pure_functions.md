@@ -200,7 +200,7 @@ the function.
 | address == "127.0.0.1" = "localhost"
 | null address           = "empty IP-address"
 ...
--- логическое условие    = итоговое значение
+-- logical condition = total value
 ```
 
 By the way, branch with condition `otherwise` should always take place. In case 
