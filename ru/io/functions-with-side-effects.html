@@ -11,8 +11,9 @@
         <meta name="description" content="Перед вами — книга о Haskell, удивительном, мощном и красивом языке программирования. Я написал её специально для тех, кто плохо представляет себе, что такое функциональное программирование и с чем его едят, но хочет наконец разобраться.">
         <meta name="keywords" content="gitbook,github" >
         <meta name="generator" content="www.gitbook.io">
-        
-        <link href='http://fonts.googleapis.com/css?family=Cuprum:400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+        <link href='http://fonts.googleapis.com/css?family=Cuprum:400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>                
+        <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
         
         <link rel="next" href="../io/IO-a.html" />
@@ -34,29 +35,61 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-        
-        <link rel="stylesheet" href="../gitbook/style.css">
-        
         
     </head>
     <body>
         
-<div class="book" data-github="denisshevchenko/ohaskell" data-level="7.1" data-basepath=".." data-revision="1397792961039">
+
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+
+
+        
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="7.1" data-basepath=".." data-revision="1398351541751">
     <div class="book-header">
     <!-- Actions Left -->
+    
     <a href="https://github.com/denisshevchenko/ohaskell" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
+    
     <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+	<div class="dropdown-caret">
+  <span class="caret-outer"></span>
+  <span class="caret-inner"></span>
+</div>
+
+	<div class="btn-group btn-block">
+		<button id="reduce-font-size" class="btn btn-default">A</button>
+		<button id="enlarge-font-size" class="btn btn-default">A</button>
+	</div>
+
+	<ul class="list-group font-family-list">
+		<li class="list-group-item" data-font="0">Serif</li>
+		<li class="list-group-item" data-font="1">Sans</li>
+	</ul>
+
+	<div class="btn-group btn-group-xs btn-block color-theme-list">
+	  <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+	</div>
+</div>
+
+    </span>
 
     <!-- Actions Right -->
     <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
     <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
     <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
 
+    
     <!-- <a href="https://github.com/denisshevchenko/ohaskell/stargazers" target="_blank" class="btn pull-right count-star"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
     <a href="https://github.com/denisshevchenko/ohaskell/watchers" target="_blank" class="btn pull-right count-watch"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a> -->
-
+    
 
     <!-- Title -->
     <h1><a href="../" >О Haskell по-человечески</a></h1>
@@ -67,6 +100,7 @@
         <input type="text" placeholder="Search" class="form-control" />
     </div>
     <ul class="summary">
+        
         <li>
             <a href="https://github.com/denisshevchenko" target="blank">About the author</a>
         </li>
@@ -77,6 +111,7 @@
             <a href="https://github.com/denisshevchenko/ohaskell/edit/master/io/functions-with-side-effects.md" target="blank">Edit and Contribute</a>
         </li>
         <li class="divider"></li>
+        
         <li data-level="0" data-path="index.html">
             <a href="../"><i class="fa fa-check"></i> Introduction</a>
         </li>
@@ -84,7 +119,7 @@
             <li  data-level="1" data-path="intro/README.html">
                 
                 <a href="../intro/README.html">
-                    <i class="fa fa-check"></i> <b>1)</b> Лирическое вступление
+                    <i class="fa fa-check"></i> <b>1.</b> Лирическое вступление
                 </a>
                 
                 
@@ -93,7 +128,7 @@
                         <li  data-level="1.1" data-path="intro/who.html">
                             
                             <a href="../intro/who.html">
-                                <i class="fa fa-check"></i> <b>1.1)</b> Кто
+                                <i class="fa fa-check"></i> <b>1.1.</b> Кто
                             </a>
                             
                         </li>
@@ -101,7 +136,7 @@
                         <li  data-level="1.2" data-path="intro/why.html">
                             
                             <a href="../intro/why.html">
-                                <i class="fa fa-check"></i> <b>1.2)</b> Почему
+                                <i class="fa fa-check"></i> <b>1.2.</b> Почему
                             </a>
                             
                         </li>
@@ -109,7 +144,7 @@
                         <li  data-level="1.3" data-path="intro/what-for.html">
                             
                             <a href="../intro/what-for.html">
-                                <i class="fa fa-check"></i> <b>1.3)</b> Зачем
+                                <i class="fa fa-check"></i> <b>1.3.</b> Зачем
                             </a>
                             
                         </li>
@@ -117,7 +152,7 @@
                         <li  data-level="1.4" data-path="intro/for-whom.html">
                             
                             <a href="../intro/for-whom.html">
-                                <i class="fa fa-check"></i> <b>1.4)</b> Для кого
+                                <i class="fa fa-check"></i> <b>1.4.</b> Для кого
                             </a>
                             
                         </li>
@@ -129,7 +164,7 @@
             <li  data-level="2" data-path="prepare/README.html">
                 
                 <a href="../prepare/README.html">
-                    <i class="fa fa-check"></i> <b>2)</b> Готовимся к работе
+                    <i class="fa fa-check"></i> <b>2.</b> Готовимся к работе
                 </a>
                 
                 
@@ -138,7 +173,7 @@
                         <li  data-level="2.1" data-path="prepare/create-project.html">
                             
                             <a href="../prepare/create-project.html">
-                                <i class="fa fa-check"></i> <b>2.1)</b> Создаём проект
+                                <i class="fa fa-check"></i> <b>2.1.</b> Создаём проект
                             </a>
                             
                         </li>
@@ -146,7 +181,7 @@
                         <li  data-level="2.2" data-path="prepare/about-modules-minimum.html">
                             
                             <a href="../prepare/about-modules-minimum.html">
-                                <i class="fa fa-check"></i> <b>2.2)</b> О модулях, минимум
+                                <i class="fa fa-check"></i> <b>2.2.</b> О модулях, минимум
                             </a>
                             
                         </li>
@@ -154,7 +189,7 @@
                         <li  data-level="2.3" data-path="prepare/about-hackage.html">
                             
                             <a href="../prepare/about-hackage.html">
-                                <i class="fa fa-check"></i> <b>2.3)</b> О Hackage
+                                <i class="fa fa-check"></i> <b>2.3.</b> О Hackage
                             </a>
                             
                         </li>
@@ -166,7 +201,7 @@
             <li  data-level="3" data-path="about-haskell/README.html">
                 
                 <a href="../about-haskell/README.html">
-                    <i class="fa fa-check"></i> <b>3)</b> Несколько слов о Haskell
+                    <i class="fa fa-check"></i> <b>3.</b> Несколько слов о Haskell
                 </a>
                 
                 
@@ -175,7 +210,7 @@
                         <li  data-level="3.1" data-path="about-haskell/pure-functionality.html">
                             
                             <a href="../about-haskell/pure-functionality.html">
-                                <i class="fa fa-check"></i> <b>3.1)</b> Чистая функциональность
+                                <i class="fa fa-check"></i> <b>3.1.</b> Чистая функциональность
                             </a>
                             
                         </li>
@@ -183,7 +218,7 @@
                         <li  data-level="3.2" data-path="about-haskell/types-three-foundations.html">
                             
                             <a href="../about-haskell/types-three-foundations.html">
-                                <i class="fa fa-check"></i> <b>3.2)</b> Три кита типизации
+                                <i class="fa fa-check"></i> <b>3.2.</b> Три кита типизации
                             </a>
                             
                         </li>
@@ -191,7 +226,7 @@
                         <li  data-level="3.3" data-path="about-haskell/immutability.html">
                             
                             <a href="../about-haskell/immutability.html">
-                                <i class="fa fa-check"></i> <b>3.3)</b> Неизменность данных
+                                <i class="fa fa-check"></i> <b>3.3.</b> Неизменность данных
                             </a>
                             
                         </li>
@@ -199,7 +234,7 @@
                         <li  data-level="3.4" data-path="about-haskell/laziness.html">
                             
                             <a href="../about-haskell/laziness.html">
-                                <i class="fa fa-check"></i> <b>3.4)</b> Лень
+                                <i class="fa fa-check"></i> <b>3.4.</b> Лень
                             </a>
                             
                         </li>
@@ -211,7 +246,7 @@
             <li  data-level="4" data-path="about-functions/README.html">
                 
                 <a href="../about-functions/README.html">
-                    <i class="fa fa-check"></i> <b>4)</b> О функциях
+                    <i class="fa fa-check"></i> <b>4.</b> О функциях
                 </a>
                 
                 
@@ -220,7 +255,7 @@
                         <li  data-level="4.1" data-path="about-functions/pure-functions.html">
                             
                             <a href="../about-functions/pure-functions.html">
-                                <i class="fa fa-check"></i> <b>4.1)</b> Чистые функции
+                                <i class="fa fa-check"></i> <b>4.1.</b> Чистые функции
                             </a>
                             
                         </li>
@@ -228,7 +263,7 @@
                         <li  data-level="4.2" data-path="about-functions/lambda-functions.html">
                             
                             <a href="../about-functions/lambda-functions.html">
-                                <i class="fa fa-check"></i> <b>4.2)</b> λ-функции
+                                <i class="fa fa-check"></i> <b>4.2.</b> λ-функции
                             </a>
                             
                         </li>
@@ -236,7 +271,7 @@
                         <li  data-level="4.3" data-path="about-functions/higher-order-functions.html">
                             
                             <a href="../about-functions/higher-order-functions.html">
-                                <i class="fa fa-check"></i> <b>4.3)</b> Функции высшего порядка
+                                <i class="fa fa-check"></i> <b>4.3.</b> Функции высшего порядка
                             </a>
                             
                         </li>
@@ -244,7 +279,7 @@
                         <li  data-level="4.4" data-path="about-functions/functional-chains.html">
                             
                             <a href="../about-functions/functional-chains.html">
-                                <i class="fa fa-check"></i> <b>4.4)</b> Функциональные цепочки
+                                <i class="fa fa-check"></i> <b>4.4.</b> Функциональные цепочки
                             </a>
                             
                         </li>
@@ -256,7 +291,7 @@
             <li  data-level="5" data-path="about-lists/README.html">
                 
                 <a href="../about-lists/README.html">
-                    <i class="fa fa-check"></i> <b>5)</b> О списках
+                    <i class="fa fa-check"></i> <b>5.</b> О списках
                 </a>
                 
                 
@@ -265,7 +300,7 @@
                         <li  data-level="5.1" data-path="about-lists/lists-at-a-glance.html">
                             
                             <a href="../about-lists/lists-at-a-glance.html">
-                                <i class="fa fa-check"></i> <b>5.1)</b> Списки - одним взглядом
+                                <i class="fa fa-check"></i> <b>5.1.</b> Списки - одним взглядом
                             </a>
                             
                         </li>
@@ -273,7 +308,7 @@
                         <li  data-level="5.2" data-path="about-lists/ranges.html">
                             
                             <a href="../about-lists/ranges.html">
-                                <i class="fa fa-check"></i> <b>5.2)</b> Диапазоны
+                                <i class="fa fa-check"></i> <b>5.2.</b> Диапазоны
                             </a>
                             
                         </li>
@@ -281,7 +316,7 @@
                         <li  data-level="5.3" data-path="about-lists/tuples.html">
                             
                             <a href="../about-lists/tuples.html">
-                                <i class="fa fa-check"></i> <b>5.3)</b> Кортежи
+                                <i class="fa fa-check"></i> <b>5.3.</b> Кортежи
                             </a>
                             
                         </li>
@@ -289,7 +324,7 @@
                         <li  data-level="5.4" data-path="about-lists/list-comprehension.html">
                             
                             <a href="../about-lists/list-comprehension.html">
-                                <i class="fa fa-check"></i> <b>5.4)</b> List comprehension
+                                <i class="fa fa-check"></i> <b>5.4.</b> List comprehension
                             </a>
                             
                         </li>
@@ -301,7 +336,7 @@
             <li  data-level="6" data-path="about-user-types/README.html">
                 
                 <a href="../about-user-types/README.html">
-                    <i class="fa fa-check"></i> <b>6)</b> О пользовательских типах
+                    <i class="fa fa-check"></i> <b>6.</b> О пользовательских типах
                 </a>
                 
                 
@@ -310,7 +345,7 @@
                         <li  data-level="6.1" data-path="about-user-types/types-at-a-glance.html">
                             
                             <a href="../about-user-types/types-at-a-glance.html">
-                                <i class="fa fa-check"></i> <b>6.1)</b> Типы - одним взглядом
+                                <i class="fa fa-check"></i> <b>6.1.</b> Типы - одним взглядом
                             </a>
                             
                         </li>
@@ -318,7 +353,7 @@
                         <li  data-level="6.2" data-path="about-user-types/about-value-constructors.html">
                             
                             <a href="../about-user-types/about-value-constructors.html">
-                                <i class="fa fa-check"></i> <b>6.2)</b> О конструкторах значений
+                                <i class="fa fa-check"></i> <b>6.2.</b> О конструкторах значений
                             </a>
                             
                         </li>
@@ -326,7 +361,7 @@
                         <li  data-level="6.3" data-path="about-user-types/type-context.html">
                             
                             <a href="../about-user-types/type-context.html">
-                                <i class="fa fa-check"></i> <b>6.3)</b> Контекст типа
+                                <i class="fa fa-check"></i> <b>6.3.</b> Контекст типа
                             </a>
                             
                         </li>
@@ -334,7 +369,7 @@
                         <li  data-level="6.4" data-path="about-user-types/composite-types.html">
                             
                             <a href="../about-user-types/composite-types.html">
-                                <i class="fa fa-check"></i> <b>6.4)</b> Составные типы
+                                <i class="fa fa-check"></i> <b>6.4.</b> Составные типы
                             </a>
                             
                         </li>
@@ -342,7 +377,7 @@
                         <li  data-level="6.5" data-path="about-user-types/deriving.html">
                             
                             <a href="../about-user-types/deriving.html">
-                                <i class="fa fa-check"></i> <b>6.5)</b> Наследуемые типы
+                                <i class="fa fa-check"></i> <b>6.5.</b> Наследуемые типы
                             </a>
                             
                         </li>
@@ -350,7 +385,7 @@
                         <li  data-level="6.6" data-path="about-user-types/own-type-classes.html">
                             
                             <a href="../about-user-types/own-type-classes.html">
-                                <i class="fa fa-check"></i> <b>6.6)</b> Собственные классы типов
+                                <i class="fa fa-check"></i> <b>6.6.</b> Собственные классы типов
                             </a>
                             
                         </li>
@@ -358,7 +393,7 @@
                         <li  data-level="6.7" data-path="about-user-types/newtype.html">
                             
                             <a href="../about-user-types/newtype.html">
-                                <i class="fa fa-check"></i> <b>6.7)</b> Новый тип
+                                <i class="fa fa-check"></i> <b>6.7.</b> Новый тип
                             </a>
                             
                         </li>
@@ -370,7 +405,7 @@
             <li  data-level="7" data-path="io/README.html">
                 
                 <a href="../io/README.html">
-                    <i class="fa fa-check"></i> <b>7)</b> Ввод и вывод
+                    <i class="fa fa-check"></i> <b>7.</b> Ввод и вывод
                 </a>
                 
                 
@@ -379,7 +414,7 @@
                         <li  data-level="7.1" data-path="io/functions-with-side-effects.html">
                             
                             <a href="../io/functions-with-side-effects.html">
-                                <i class="fa fa-check"></i> <b>7.1)</b> Функции с побочными эффектами
+                                <i class="fa fa-check"></i> <b>7.1.</b> Функции с побочными эффектами
                             </a>
                             
                         </li>
@@ -387,7 +422,7 @@
                         <li  data-level="7.2" data-path="io/IO-a.html">
                             
                             <a href="../io/IO-a.html">
-                                <i class="fa fa-check"></i> <b>7.2)</b> IO a
+                                <i class="fa fa-check"></i> <b>7.2.</b> IO a
                             </a>
                             
                         </li>
@@ -395,7 +430,7 @@
                         <li  data-level="7.3" data-path="io/do-imperative-world.html">
                             
                             <a href="../io/do-imperative-world.html">
-                                <i class="fa fa-check"></i> <b>7.3)</b> do: императивный мир
+                                <i class="fa fa-check"></i> <b>7.3.</b> do: императивный мир
                             </a>
                             
                         </li>
@@ -403,7 +438,7 @@
                         <li  data-level="7.4" data-path="io/exceptions-handling.html">
                             
                             <a href="../io/exceptions-handling.html">
-                                <i class="fa fa-check"></i> <b>7.4)</b> Обработка исключений
+                                <i class="fa fa-check"></i> <b>7.4.</b> Обработка исключений
                             </a>
                             
                         </li>
@@ -411,7 +446,7 @@
                         <li  data-level="7.5" data-path="io/own-exceptions.html">
                             
                             <a href="../io/own-exceptions.html">
-                                <i class="fa fa-check"></i> <b>7.5)</b> Собственные исключения
+                                <i class="fa fa-check"></i> <b>7.5.</b> Собственные исключения
                             </a>
                             
                         </li>
@@ -423,7 +458,7 @@
             <li  data-level="8" data-path="delicious/README.html">
                 
                 <a href="../delicious/README.html">
-                    <i class="fa fa-check"></i> <b>8)</b> Деликатесы
+                    <i class="fa fa-check"></i> <b>8.</b> Деликатесы
                 </a>
                 
                 
@@ -432,7 +467,7 @@
                         <li  data-level="8.1" data-path="delicious/monads-essence.html">
                             
                             <a href="../delicious/monads-essence.html">
-                                <i class="fa fa-check"></i> <b>8.1)</b> Монады: суть
+                                <i class="fa fa-check"></i> <b>8.1.</b> Монады: суть
                             </a>
                             
                         </li>
@@ -440,7 +475,7 @@
                         <li  data-level="8.2" data-path="delicious/monads-IO.html">
                             
                             <a href="../delicious/monads-IO.html">
-                                <i class="fa fa-check"></i> <b>8.2)</b> Монады: на примере IO
+                                <i class="fa fa-check"></i> <b>8.2.</b> Монады: на примере IO
                             </a>
                             
                         </li>
@@ -448,7 +483,7 @@
                         <li  data-level="8.3" data-path="delicious/monads-practice.html">
                             
                             <a href="../delicious/monads-practice.html">
-                                <i class="fa fa-check"></i> <b>8.3)</b> Монады: практика
+                                <i class="fa fa-check"></i> <b>8.3.</b> Монады: практика
                             </a>
                             
                         </li>
@@ -456,7 +491,7 @@
                         <li  data-level="8.4" data-path="delicious/maybe.html">
                             
                             <a href="../delicious/maybe.html">
-                                <i class="fa fa-check"></i> <b>8.4)</b> Может быть
+                                <i class="fa fa-check"></i> <b>8.4.</b> Может быть
                             </a>
                             
                         </li>
@@ -464,7 +499,7 @@
                         <li  data-level="8.5" data-path="delicious/functors.html">
                             
                             <a href="../delicious/functors.html">
-                                <i class="fa fa-check"></i> <b>8.5)</b> Функторы
+                                <i class="fa fa-check"></i> <b>8.5.</b> Функторы
                             </a>
                             
                         </li>
@@ -472,7 +507,7 @@
                         <li  data-level="8.6" data-path="delicious/applicative-functors.html">
                             
                             <a href="../delicious/applicative-functors.html">
-                                <i class="fa fa-check"></i> <b>8.6)</b> Аппликативные функторы
+                                <i class="fa fa-check"></i> <b>8.6.</b> Аппликативные функторы
                             </a>
                             
                         </li>
@@ -484,7 +519,7 @@
             <li  data-level="9" data-path="miscellaneous/README.html">
                 
                 <a href="../miscellaneous/README.html">
-                    <i class="fa fa-check"></i> <b>9)</b> Остальное
+                    <i class="fa fa-check"></i> <b>9.</b> Остальное
                 </a>
                 
                 
@@ -493,7 +528,7 @@
                         <li  data-level="9.1" data-path="miscellaneous/about-modules.html">
                             
                             <a href="../miscellaneous/about-modules.html">
-                                <i class="fa fa-check"></i> <b>9.1)</b> О модулях
+                                <i class="fa fa-check"></i> <b>9.1.</b> О модулях
                             </a>
                             
                         </li>
@@ -501,7 +536,7 @@
                         <li  data-level="9.2" data-path="miscellaneous/recursive-functions.html">
                             
                             <a href="../miscellaneous/recursive-functions.html">
-                                <i class="fa fa-check"></i> <b>9.2)</b> Рекурсивные функции
+                                <i class="fa fa-check"></i> <b>9.2.</b> Рекурсивные функции
                             </a>
                             
                         </li>
@@ -509,7 +544,7 @@
                         <li  data-level="9.3" data-path="miscellaneous/about-apostrophe.html">
                             
                             <a href="../miscellaneous/about-apostrophe.html">
-                                <i class="fa fa-check"></i> <b>9.3)</b> Про апостроф
+                                <i class="fa fa-check"></i> <b>9.3.</b> Про апостроф
                             </a>
                             
                         </li>
@@ -517,7 +552,7 @@
                         <li  data-level="9.4" data-path="miscellaneous/about-formatting.html">
                             
                             <a href="../miscellaneous/about-formatting.html">
-                                <i class="fa fa-check"></i> <b>9.4)</b> О форматировании
+                                <i class="fa fa-check"></i> <b>9.4.</b> О форматировании
                             </a>
                             
                         </li>
@@ -525,7 +560,7 @@
                         <li  data-level="9.5" data-path="miscellaneous/about-hlint.html">
                             
                             <a href="../miscellaneous/about-hlint.html">
-                                <i class="fa fa-check"></i> <b>9.5)</b> Про hlint
+                                <i class="fa fa-check"></i> <b>9.5.</b> Про hlint
                             </a>
                             
                         </li>
@@ -537,7 +572,7 @@
             <li  data-level="10" data-path="integration/README.html">
                 
                 <a href="../integration/README.html">
-                    <i class="fa fa-check"></i> <b>10)</b> Интеграция
+                    <i class="fa fa-check"></i> <b>10.</b> Интеграция
                 </a>
                 
                 
@@ -546,7 +581,7 @@
                         <li  data-level="10.1" data-path="integration/c-from-haskell.html">
                             
                             <a href="../integration/c-from-haskell.html">
-                                <i class="fa fa-check"></i> <b>10.1)</b> C из Haskell
+                                <i class="fa fa-check"></i> <b>10.1.</b> C из Haskell
                             </a>
                             
                         </li>
@@ -558,7 +593,7 @@
             <li  data-level="11" data-path="end/README.html">
                 
                 <a href="../end/README.html">
-                    <i class="fa fa-check"></i> <b>11)</b> Заключение
+                    <i class="fa fa-check"></i> <b>11.</b> Заключение
                 </a>
                 
                 
@@ -567,7 +602,7 @@
                         <li  data-level="11.1" data-path="end/is-this-end.html">
                             
                             <a href="../end/is-this-end.html">
-                                <i class="fa fa-check"></i> <b>11.1)</b> И что, это всё??
+                                <i class="fa fa-check"></i> <b>11.1.</b> И что, это всё??
                             </a>
                             
                         </li>
@@ -575,7 +610,7 @@
                         <li  data-level="11.2" data-path="end/gratitudes.html">
                             
                             <a href="../end/gratitudes.html">
-                                <i class="fa fa-check"></i> <b>11.2)</b> Благодарности
+                                <i class="fa fa-check"></i> <b>11.2.</b> Благодарности
                             </a>
                             
                         </li>
@@ -587,7 +622,7 @@
             <li  data-level="12" data-path="appendix/README.html">
                 
                 <a href="../appendix/README.html">
-                    <i class="fa fa-check"></i> <b>12)</b> Приложения
+                    <i class="fa fa-check"></i> <b>12.</b> Приложения
                 </a>
                 
                 
@@ -596,7 +631,7 @@
                         <li  data-level="12.1" data-path="appendix/useful-links.html">
                             
                             <a href="../appendix/useful-links.html">
-                                <i class="fa fa-check"></i> <b>12.1)</b> Полезные ссылки
+                                <i class="fa fa-check"></i> <b>12.1.</b> Полезные ссылки
                             </a>
                             
                         </li>
@@ -608,9 +643,9 @@
     </ul>
 </div>
 
-    <div class="book-body" tabindex="-1">
+    <div class="book-body">
         <div class="body-inner">
-            <div class="page-wrapper">
+            <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
         <div class="inner" style="width: 70.6896551724138%;min-width: 68.96551724137932%;"></div>
@@ -775,10 +810,31 @@
 </div>
 
         
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
         <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
         <script src="../gitbook/app.js"></script>
         
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mixpanel/plugin.js"></script>
+    
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
     </body>
 </html>

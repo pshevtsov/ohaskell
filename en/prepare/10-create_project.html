@@ -8,11 +8,14 @@
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
         <meta name="author" content="denisshevchenko">
-        <meta name="description" content="English translation of the book &quot;О Haskell по-человечески&quot; (http://ohaskell.ru).">
+        <meta name="description" content="A book about Haskell, written in plain language for ordinary programmers.
+Designed for those new to the world of functional programming,
+eager to finally comprehend it.">
         <meta name="keywords" content="gitbook,github" >
         <meta name="generator" content="www.gitbook.io">
-        
-        <link href='http://fonts.googleapis.com/css?family=Cuprum:400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+        <link href='http://fonts.googleapis.com/css?family=Cuprum:400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>                
+        <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
         
         <link rel="next" href="../prepare/11-about_modules.html" />
@@ -34,29 +37,61 @@
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-
-        
-        <link rel="stylesheet" href="../gitbook/style.css">
-        
         
     </head>
     <body>
         
-<div class="book" data-github="denisshevchenko/ohaskell" data-level="2.1" data-basepath=".." data-revision="1397792960296">
+
+        <link rel="stylesheet" href="../gitbook/style.css">
+        
+
+
+        
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="2.1" data-basepath=".." data-revision="1398351541274">
     <div class="book-header">
     <!-- Actions Left -->
+    
     <a href="https://github.com/denisshevchenko/ohaskell" target="_blank" class="btn pull-left"><i class="fa fa-github-alt"></i></a>
+    
     <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
     <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+	<div class="dropdown-caret">
+  <span class="caret-outer"></span>
+  <span class="caret-inner"></span>
+</div>
+
+	<div class="btn-group btn-block">
+		<button id="reduce-font-size" class="btn btn-default">A</button>
+		<button id="enlarge-font-size" class="btn btn-default">A</button>
+	</div>
+
+	<ul class="list-group font-family-list">
+		<li class="list-group-item" data-font="0">Serif</li>
+		<li class="list-group-item" data-font="1">Sans</li>
+	</ul>
+
+	<div class="btn-group btn-group-xs btn-block color-theme-list">
+	  <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+	</div>
+</div>
+
+    </span>
 
     <!-- Actions Right -->
     <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
     <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
     <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
 
+    
     <!-- <a href="https://github.com/denisshevchenko/ohaskell/stargazers" target="_blank" class="btn pull-right count-star"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
     <a href="https://github.com/denisshevchenko/ohaskell/watchers" target="_blank" class="btn pull-right count-watch"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a> -->
-
+    
 
     <!-- Title -->
     <h1><a href="../" >О Haskell по-человечески</a></h1>
@@ -67,6 +102,7 @@
         <input type="text" placeholder="Search" class="form-control" />
     </div>
     <ul class="summary">
+        
         <li>
             <a href="https://github.com/denisshevchenko" target="blank">About the author</a>
         </li>
@@ -77,6 +113,7 @@
             <a href="https://github.com/denisshevchenko/ohaskell/edit/master/prepare/10-create_project.md" target="blank">Edit and Contribute</a>
         </li>
         <li class="divider"></li>
+        
         <li data-level="0" data-path="index.html">
             <a href="../"><i class="fa fa-check"></i> Introduction</a>
         </li>
@@ -84,7 +121,7 @@
             <li  data-level="1" data-path="intro/README.html">
                 
                 <a href="../intro/README.html">
-                    <i class="fa fa-check"></i> <b>1)</b> Introduction
+                    <i class="fa fa-check"></i> <b>1.</b> Introduction
                 </a>
                 
                 
@@ -93,7 +130,7 @@
                         <li  data-level="1.1" data-path="intro/00-who.html">
                             
                             <a href="../intro/00-who.html">
-                                <i class="fa fa-check"></i> <b>1.1)</b> Who
+                                <i class="fa fa-check"></i> <b>1.1.</b> Who
                             </a>
                             
                         </li>
@@ -101,7 +138,7 @@
                         <li  data-level="1.2" data-path="intro/01-why.html">
                             
                             <a href="../intro/01-why.html">
-                                <i class="fa fa-check"></i> <b>1.2)</b> Why
+                                <i class="fa fa-check"></i> <b>1.2.</b> Why
                             </a>
                             
                         </li>
@@ -109,7 +146,7 @@
                         <li  data-level="1.3" data-path="intro/02-for_what.html">
                             
                             <a href="../intro/02-for_what.html">
-                                <i class="fa fa-check"></i> <b>1.3)</b> For what
+                                <i class="fa fa-check"></i> <b>1.3.</b> For what
                             </a>
                             
                         </li>
@@ -117,7 +154,7 @@
                         <li  data-level="1.4" data-path="intro/03-for_whom.html">
                             
                             <a href="../intro/03-for_whom.html">
-                                <i class="fa fa-check"></i> <b>1.4)</b> For whom
+                                <i class="fa fa-check"></i> <b>1.4.</b> For whom
                             </a>
                             
                         </li>
@@ -129,7 +166,7 @@
             <li  data-level="2" data-path="prepare/README.html">
                 
                 <a href="../prepare/README.html">
-                    <i class="fa fa-check"></i> <b>2)</b> Prepare
+                    <i class="fa fa-check"></i> <b>2.</b> Prepare
                 </a>
                 
                 
@@ -138,7 +175,7 @@
                         <li  data-level="2.1" data-path="prepare/10-create_project.html">
                             
                             <a href="../prepare/10-create_project.html">
-                                <i class="fa fa-check"></i> <b>2.1)</b> Create project
+                                <i class="fa fa-check"></i> <b>2.1.</b> Create project
                             </a>
                             
                         </li>
@@ -146,7 +183,7 @@
                         <li  data-level="2.2" data-path="prepare/11-about_modules.html">
                             
                             <a href="../prepare/11-about_modules.html">
-                                <i class="fa fa-check"></i> <b>2.2)</b> About modules, minimum
+                                <i class="fa fa-check"></i> <b>2.2.</b> About modules, minimum
                             </a>
                             
                         </li>
@@ -154,7 +191,7 @@
                         <li  data-level="2.3" data-path="prepare/12-about_hackage.html">
                             
                             <a href="../prepare/12-about_hackage.html">
-                                <i class="fa fa-check"></i> <b>2.3)</b> About Hackage
+                                <i class="fa fa-check"></i> <b>2.3.</b> About Hackage
                             </a>
                             
                         </li>
@@ -166,7 +203,7 @@
             <li  data-level="3" data-path="about Haskell/README.html">
                 
                 <a href="../about Haskell/README.html">
-                    <i class="fa fa-check"></i> <b>3)</b> About Haskell
+                    <i class="fa fa-check"></i> <b>3.</b> About Haskell
                 </a>
                 
                 
@@ -175,7 +212,7 @@
                         <li  data-level="3.1" data-path="about Haskell/20-pure_functionality.html">
                             
                             <a href="../about Haskell/20-pure_functionality.html">
-                                <i class="fa fa-check"></i> <b>3.1)</b> Pure functionality
+                                <i class="fa fa-check"></i> <b>3.1.</b> Pure functionality
                             </a>
                             
                         </li>
@@ -183,7 +220,7 @@
                         <li  data-level="3.2" data-path="about Haskell/21-three_foundations.html">
                             
                             <a href="../about Haskell/21-three_foundations.html">
-                                <i class="fa fa-check"></i> <b>3.2)</b> Types, three foundations
+                                <i class="fa fa-check"></i> <b>3.2.</b> Types, three foundations
                             </a>
                             
                         </li>
@@ -191,7 +228,7 @@
                         <li  data-level="3.3" data-path="about Haskell/22-immutability.html">
                             
                             <a href="../about Haskell/22-immutability.html">
-                                <i class="fa fa-check"></i> <b>3.3)</b> Immutability
+                                <i class="fa fa-check"></i> <b>3.3.</b> Immutability
                             </a>
                             
                         </li>
@@ -199,7 +236,7 @@
                         <li  data-level="3.4" data-path="about Haskell/23-laziness.html">
                             
                             <a href="../about Haskell/23-laziness.html">
-                                <i class="fa fa-check"></i> <b>3.4)</b> Laziness
+                                <i class="fa fa-check"></i> <b>3.4.</b> Laziness
                             </a>
                             
                         </li>
@@ -211,7 +248,7 @@
             <li  data-level="4" data-path="about functions/README.html">
                 
                 <a href="../about functions/README.html">
-                    <i class="fa fa-check"></i> <b>4)</b> About functions
+                    <i class="fa fa-check"></i> <b>4.</b> About functions
                 </a>
                 
                 
@@ -220,7 +257,7 @@
                         <li  data-level="4.1" data-path="about functions/30-pure_functions.html">
                             
                             <a href="../about functions/30-pure_functions.html">
-                                <i class="fa fa-check"></i> <b>4.1)</b> Pure functions
+                                <i class="fa fa-check"></i> <b>4.1.</b> Pure functions
                             </a>
                             
                         </li>
@@ -228,7 +265,7 @@
                         <li  data-level="4.2" data-path="about functions/31-lambda_functions.html">
                             
                             <a href="../about functions/31-lambda_functions.html">
-                                <i class="fa fa-check"></i> <b>4.2)</b> Lambda-functions
+                                <i class="fa fa-check"></i> <b>4.2.</b> Lambda-functions
                             </a>
                             
                         </li>
@@ -236,7 +273,7 @@
                         <li  data-level="4.3" data-path="about functions/32-higher_order_functions.html">
                             
                             <a href="../about functions/32-higher_order_functions.html">
-                                <i class="fa fa-check"></i> <b>4.3)</b> Higher order functions
+                                <i class="fa fa-check"></i> <b>4.3.</b> Higher order functions
                             </a>
                             
                         </li>
@@ -244,7 +281,7 @@
                         <li  data-level="4.4" data-path="about functions/33-functional_chains.html">
                             
                             <a href="../about functions/33-functional_chains.html">
-                                <i class="fa fa-check"></i> <b>4.4)</b> Functional chains
+                                <i class="fa fa-check"></i> <b>4.4.</b> Functional chains
                             </a>
                             
                         </li>
@@ -256,7 +293,7 @@
             <li  data-level="5" data-path="about lists/README.html">
                 
                 <a href="../about lists/README.html">
-                    <i class="fa fa-check"></i> <b>5)</b> About lists
+                    <i class="fa fa-check"></i> <b>5.</b> About lists
                 </a>
                 
                 
@@ -265,7 +302,7 @@
                         <li  data-level="5.1" data-path="about lists/40-lists_at_a_glance.html">
                             
                             <a href="../about lists/40-lists_at_a_glance.html">
-                                <i class="fa fa-check"></i> <b>5.1)</b> Lists at a glance
+                                <i class="fa fa-check"></i> <b>5.1.</b> Lists at a glance
                             </a>
                             
                         </li>
@@ -273,7 +310,7 @@
                         <li  data-level="5.2" data-path="about lists/41-ranges.html">
                             
                             <a href="../about lists/41-ranges.html">
-                                <i class="fa fa-check"></i> <b>5.2)</b> Lambda-functions
+                                <i class="fa fa-check"></i> <b>5.2.</b> Lambda-functions
                             </a>
                             
                         </li>
@@ -285,9 +322,9 @@
     </ul>
 </div>
 
-    <div class="book-body" tabindex="-1">
+    <div class="book-body">
         <div class="body-inner">
-            <div class="page-wrapper">
+            <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
         <div class="inner" style="width: 31.818181818181817%;min-width: 27.272727272727273%;"></div>
@@ -359,10 +396,12 @@
 gonna use Haskell in real world and therefore all your projects would be compiled.
 Moreover, the direct usage of <code>ghc</code> compiler will hardly be necessary for you.
 Of course, <code>ghci</code> interpreter may be useful sometimes, but you can do without it.</p>
-<p>In real world you ain&#39;t no need creating file <a href=".hs%20--%20standard%20file%20%0Aextension%20for%20source-code%20written%20in%20Haskell"><code>Main.hs</code></a> on your desktop and then
+<p>In real world you ain&#39;t no need creating file <a href=".hs -- standard file 
+extension for source-code written in Haskell"><code>Main.hs</code></a> on your desktop and then
 feeding it to compiler. Instead, you will create a normal working project with
 logical inner structure. So let&#39;s start with it. A convenient
-utility from Haskell Platform with unusual name <a href="Acronym%20formed%20from%0A**c**ommon%20**a**rchitecture%20for%20**b**uilding%20**a**pplications%20and%20**l**ibraries."><code>cabal</code></a>
+utility from Haskell Platform with unusual name <a href="Acronym formed from
+**c**ommon **a**rchitecture for **b**uilding **a**pplications and **l**ibraries."><code>cabal</code></a>
 will be our assistant.</p>
 <p><code>Cabal</code> utility is intended for compiling projects. Sure, you heard about things
 like <code>cmake</code> or <code>qmake</code>, take <code>cabal</code> as &quot;cmake specially for Haskell&quot;. </p>
@@ -371,15 +410,15 @@ with a command line. I will demonstrate Unix commands, if you are using
 Windows -- adapt these examples for yourself.</p>
 <h4 id="preparing-the-structure">Preparing the structure</h4>
 <p>Open the terminal and start creating:</p>
-<pre><code><span class="hljs-variable">$ </span>mkdir -p <span class="hljs-constant">Real</span>/src/<span class="hljs-constant">Utils</span>
-<span class="hljs-variable">$ </span>touch <span class="hljs-constant">Real</span>/src/<span class="hljs-constant">Main</span>.hs
-<span class="hljs-variable">$ </span>touch <span class="hljs-constant">Real</span>/src/<span class="hljs-constant">Utils</span>/<span class="hljs-constant">Helpers</span>.hs
+<pre><code>$ mkdir -p Real/src/Utils
+$ touch Real/src/Main.hs
+$ touch Real/src/Utils/Helpers.hs
 </code></pre><p>Now we have a directory <code>Real</code> with a regular structure:</p>
 <pre><code>Real/
 └── src
-    ├── Main<span class="hljs-preprocessor">.hs</span>
+    ├── Main.hs
     └── Utils
-        └── Helpers<span class="hljs-preprocessor">.hs</span>
+        └── Helpers.hs
 </code></pre><p>The root directory <code>src</code>, contains all our sources logically grouped.</p>
 <p>Concerning names, you probably wondering why names of files and directories
 inside directory <code>src</code> are uppercased? I will explain the reason a while after.
@@ -389,82 +428,84 @@ Now, let&#39;s open file <code>Main.hs</code> and write in there:</p>
 <p>Now close it and get back to the root of the project.</p>
 <h4 id="configuring">Configuring</h4>
 <p>Execute a command:</p>
-<pre><code><span class="hljs-variable">$ </span>cabal init
+<pre><code>$ cabal init
 </code></pre><p>You will get into an interactive dialog in which you will be offered to answer
 a few questions about your project. At the end of the dialog project files are
 created automatically and the content of our directory is structured as
 follows:</p>
 <pre><code>.
-├── Real<span class="hljs-preprocessor">.cabal</span>
-├── Setup<span class="hljs-preprocessor">.hs</span>
+├── Real.cabal
+├── Setup.hs
 └── src
-    ├── Main<span class="hljs-preprocessor">.hs</span>
+    ├── Main.hs
     └── Utils
-        └── Helpers<span class="hljs-preprocessor">.hs</span>
+        └── Helpers.hs
 </code></pre><p>By the way, in case if you see such warning:</p>
 <pre><code>Generating LICENSE...
-Warning: unknown license type, you must <span class="hljs-built_in">put</span> <span class="hljs-operator">a</span> copy <span class="hljs-operator">in</span> LICENSE yourself.
+Warning: unknown license type, you must put a copy in LICENSE yourself.
 </code></pre><p>don&#39;t worry. Just add <code>LICENSE</code> file by hand in order to keep the classical
 project structure.</p>
 <p>As was said before, the root directory of our project got two more files,
-<code>Real.cabal</code> and <code>Setup.hs</code>. We are not really <a href="Official%20documentation%0Asays%20that%20you%20will%20lately%20need%20to%20touch%20the%20%60Setup.hs%60%20file.">interested</a> in the second, but
+<code>Real.cabal</code> and <code>Setup.hs</code>. We are not really <a href="Official documentation
+says that you will lately need to touch the `Setup.hs` file.">interested</a> in the second, but
 the first is the actual makefile of our project. Let&#39;s open it.</p>
-<pre><code>-<span class="ruby">- <span class="hljs-constant">Initial</span> <span class="hljs-constant">Real</span>.cabal generated by cabal init.
-</span>For further documentation,
--<span class="ruby">- see <span class="hljs-symbol">http:</span>/<span class="hljs-regexp">/haskell.org/cabal</span><span class="hljs-regexp">/users-guide/</span>
-</span>name:               Real
+<pre><code>-- Initial Real.cabal generated by cabal init.
+For further documentation,
+-- see http://haskell.org/cabal/users-guide/
+name:               Real
 version:            0.1.0.0
 synopsis:           Real project in Haskell
--<span class="ruby">- <span class="hljs-symbol">description:</span>
-</span>-<span class="ruby">- <span class="hljs-symbol">license:</span>
-</span>license-file:       LICENSE
+-- description:
+-- license:
+license-file:       LICENSE
 author:             Denis Shevchenko
 maintainer:         me@dshevchenko.biz
--<span class="ruby">- <span class="hljs-symbol">copyright:</span>
-</span>-<span class="ruby">- <span class="hljs-symbol">category:</span>
-</span>build-type:         Simple
+-- copyright:
+-- category:
+build-type:         Simple
 cabal-version:      &gt;=1.8
 executable Real
-  -<span class="ruby">- main-<span class="hljs-symbol">is:</span>
-</span>  -<span class="ruby">- other-<span class="hljs-class">modules:</span>
-</span>  build-depends:      base ==4.6.*
+  -- main-is:
+  -- other-modules:
+  build-depends:      base ==4.6.*
   hs-source-dirs:     src
 </code></pre><p>The values which we input in dialog mentioned above are already saved here.
 However we can&#39;t actually build the project at the moment as the line:</p>
-<pre><code>-- main-<span class="hljs-keyword">is</span>:
+<pre><code>-- main-is:
 </code></pre><p>is commented. The syntax used in this file is similar to one of Haskell, that&#39;s
 why one-line comments here, as well as in the source code, begin with two
 minuses in the row. Multi-line comment which you also need, are enclosed between
 the symbols <code>{-</code> and `-}.</p>
 <p>What we should do is to uncomment that line and put there a name of the <code>Main.hs</code>
-file which contains function <a href="Function%20%60main%60%20--%20the%20main%20function%20of%0Aapplication,%20similar%20to%20%60int%20main\(\"><code>main</code></a>` in the C language.).</p>
-<pre><code>$ main-<span class="hljs-keyword">is</span>: Main.hs
+file which contains function <a href="Function `main` -- the main function of
+application, similar to `int main\(\"><code>main</code></a>` in the C language.).</p>
+<pre><code>$ main-is: Main.hs
 </code></pre><h4 id="configuring">Configuring</h4>
 <p>Execute:</p>
-<pre><code><span class="hljs-variable">$ </span>cabal configure
+<pre><code>$ cabal configure
 </code></pre><p>In result, the project would be prepared to building. But before we move to
 it, I draw your attention to the last part of the file <code>Real.cabal</code>.</p>
 <pre><code>executable Real
-  main<span class="hljs-attribute">-is</span>:
-  <span class="hljs-subst">--</span> other<span class="hljs-attribute">-modules</span>:
-  build<span class="hljs-attribute">-depends</span>:      base <span class="hljs-subst">==</span><span class="hljs-number">4.6</span><span class="hljs-built_in">.</span><span class="hljs-subst">*</span>
-  hs<span class="hljs-attribute">-source</span><span class="hljs-attribute">-dirs</span>:     src
+  main-is:
+  -- other-modules:
+  build-depends:      base ==4.6.*
+  hs-source-dirs:     src
 </code></pre><p>Can you see the two-space indentation of the last four lines? It turns out that
 such indent is essential and the project wouldn&#39;t build without it. Furthermore,
 this indent should be at least two spaces. I recommend to use four spaces for beauty.</p>
 <p>One more detail. It is not necessary but wouldn&#39;t be superfluous. Append
 section <code>executable Real</code> with this line:</p>
-<pre><code><span class="hljs-attribute">ghc-options</span>: <span class="hljs-string">       -W</span>
+<pre><code>ghc-options:        -W
 </code></pre><p><code>ghc-options</code> parameter allows to set options for <code>ghc</code>. Particularly, option
 <code>-W</code> politely asks <code>ghc</code> to show basic compilation warnings. Do not miss such an
 opportunity.</p>
 <h4 id="building">Building</h4>
 <p>Execute:</p>
 <pre><code>$ cabal build
-Building Real-<span class="hljs-number">0.1</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-keyword">...</span>
-Preprocessing executable <span class="hljs-string">'Real'</span> <span class="hljs-keyword">for</span> Real-<span class="hljs-number">0.1</span><span class="hljs-number">.0</span><span class="hljs-number">.0</span><span class="hljs-keyword">...</span>
-[<span class="hljs-number">1</span> of <span class="hljs-number">1</span>] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
-Linking dist/build/Real/Real <span class="hljs-keyword">...</span>
+Building Real-0.1.0.0...
+Preprocessing executable &#39;Real&#39; for Real-0.1.0.0...
+[1 of 1] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
+Linking dist/build/Real/Real ...
 </code></pre><p>Done. We got something new in our directory.</p>
 <pre><code>.
 ├── LICENSE
@@ -474,11 +515,11 @@ Linking dist/build/Real/Real <span class="hljs-keyword">...</span>
 │   ├── build
 │   │   ├── Real
 │   │   │   ├── Real  &lt;&lt;&lt;--- Here is our executable.
-<span class="hljs-keyword">...</span>
+...
 </code></pre><p>At that point, we are not interested in the rest of the <code>dist</code> directory.</p>
 <h4 id="running">Running</h4>
 <p>It&#39;s time to run our application. Being in the root directory of project, run:</p>
-<pre><code>$ ./dist/build/<span class="hljs-keyword">Real</span>/<span class="hljs-keyword">Real</span>
+<pre><code>$ ./dist/build/Real/Real
 Hi haskeller!
 </code></pre><p>That&#39;s it. Now you know how to create, configure and build a Haskell project.
 Probably you are wondering why did we create file <code>Helpers.hs</code> in the subdirectory
@@ -502,10 +543,31 @@ the following chapter.</p>
 </div>
 
         
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
         <script src="../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
         <script src="../gitbook/app.js"></script>
         
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mixpanel/plugin.js"></script>
+    
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
     </body>
 </html>
