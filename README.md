@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/denisshevchenko/ohaskell.png?label=ready&title=Ready)](https://waffle.io/denisshevchenko/ohaskell)
 О Haskell по-человечески
 ========================
 
