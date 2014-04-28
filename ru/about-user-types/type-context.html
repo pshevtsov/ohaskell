@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="6.3" data-basepath=".." data-revision="1398365234752">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="6.3" data-basepath=".." data-revision="1398713139669">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -826,7 +826,11 @@
 <span class="hljs-title">nothing</span> value1 value2 = show value1 ++ show value2
 </code></pre>
 <p>Тип первого аргумента должен входит в контекст класса <code>Show</code>, в то время как тип второго должен входить в контексты сразу двух классов, <code>Show</code> и <code>Eq</code>.</p>
-<p>Готово. Теперь вы знаете о контексте типов. Однако чуть позже вы узнаете о нём кое-что ещё.</p>
+<h3 id="-">В сухом остатке</h3>
+<ul>
+<li>Контекст типа - это ограничение, накладываемое на полиморфный тип. Это ограничение определяет, какой конкретный тип сможет занять место полиморфного, а какой - нет.</li>
+<li>Тип может входить как в один контекст, так и в несколько контекстов.</li>
+</ul>
 
                     
                     </section>

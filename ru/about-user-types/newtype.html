@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="6.7" data-basepath=".." data-revision="1398365234752">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="6.7" data-basepath=".." data-revision="1398713139669">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -815,7 +815,12 @@
 <pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">newtype</span> <span class="hljs-type">IPAddress</span> = <span class="hljs-type">IP</span> <span class="hljs-type">String</span></span>
 </code></pre>
 <p>мы сказали компилятору: &quot;<code>IPAddress</code> - это всего лишь именная обёртка вокруг строки. Именно так её и воспринимай, и никаких лишних телодвижений не делай&quot;. Поэтому работа с таким типом будет чуток более эффективной.</p>
-<p>Вот и всё. Теперь вы знаете о <code>newtype</code>.</p>
+<h3 id="-">В сухом остатке</h3>
+<ul>
+<li>Ключевое слово <code>newtype</code> создаёт тип-обёртку вокруг некоторого уже существующего типа.</li>
+<li>Эта тип-обёртка должна иметь только одно поле и только один конструктор значения.</li>
+<li>Работа с типом, созданным с помощью <code>newtype</code>, эффективнее, нежели с созданным с помощью <code>data</code>.</li>
+</ul>
 
                     
                     </section>

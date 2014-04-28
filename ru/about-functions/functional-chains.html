@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="4.4" data-basepath=".." data-revision="1398365234752">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="4.4" data-basepath=".." data-revision="1398713139669">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -775,7 +775,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_33">
+                    <section class="normal" id="section-gitbook_32">
                     
                         <h2 id="-">Функциональные цепочки</h2>
 <p>В отношении функций часто можно сказать: &quot;Один в поле не воин&quot;. В этой главе мы рассмотрим два удобных способа организации взаимодействия функций.</p>
@@ -862,7 +862,12 @@
 <pre><code class="lang-haskell"><span class="hljs-title">addPrefix</span> . encodeAllSpaces . makeItLowerCase $ url
 </code></pre>
 <p>Точка объединяет функции, а доллар привязывает их к аргументу. Кстати, в реальных Haskell-проектах чаще всего используется именно такая &quot;бесскобочная&quot; форма вызова.</p>
-<p>Всё, теперь вы знаете о функциональных цепочках.</p>
+<h3 id="-">В сухом остатке</h3>
+<ul>
+<li>Функция композиции компонует функции в цепочку.</li>
+<li>Функция применения также компонует функции в цепочку, а также позволяет компоновать функцию с её аргументом.</li>
+<li>Совместное использование функций применения и композиции упрощает код, избавляя нас от лишних круглых скобок.</li>
+</ul>
 
                     
                     </section>

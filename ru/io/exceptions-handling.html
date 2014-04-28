@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="7.4" data-basepath=".." data-revision="1398365234752">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="7.4" data-basepath=".." data-revision="1398713139669">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -895,6 +895,14 @@
 <pre><code class="lang-haskell"><span class="hljs-title">evaluate</span> :: a -&gt; <span class="hljs-type">IO</span> a
 </code></pre>
 <p>Эта функция играет роль адаптера: она как бы превращает результат в <code>IO</code>-действие, возвращающее этот результат. И после того, как функция <code>div</code> вернула нам обыкновенное число, функция <code>evaluate</code> обернула это число в действие, ожидаемое функцией <code>try</code>.</p>
+<h3 id="-">В сухом остатке</h3>
+<ul>
+<li>Исключение может быть брошено из любой функции, но обработать его мы сможем только в IO-функции.</li>
+<li>Функция <code>catch</code> ловит исключение и передаёт его обработчику.</li>
+<li>Функция <code>handle</code> - зеркальная сестра функции <code>catch</code>.</li>
+<li>Функция <code>try</code> работает в сотрудничестве с конструктором типа <code>Either</code>. Анализируя порождённое этим типом значение, мы поймём, возникла ли проблема в интересующей нас функции, или всё прошло гладко.</li>
+<li>Для работы с <code>try</code> чистую функцию следует поместить в <code>evaluate</code>-обёртку.</li>
+</ul>
 <p>Почти готово. Но наше рассмотрение исключений не было бы полным без изучения наших собственных исключений.</p>
 
                     

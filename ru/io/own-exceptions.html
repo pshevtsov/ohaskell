@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="7.5" data-basepath=".." data-revision="1398365234752">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="7.5" data-basepath=".." data-revision="1398713139669">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -819,7 +819,12 @@
 <pre><code class="lang-bash">Fault: InvalidRepository <span class="hljs-string">"ss://ul@sch/proj.git"</span>
 </code></pre>
 <p>Мы пытаемся извлечь протокол из полного пути к репозиторию, и если там не то, что нам нужно, мы кидаем исключение, перехватываемое функцией <code>try</code>.</p>
-<p>Всё. Теперь мы можете создавать собственные типы исключений и кидаться ими на здоровье.</p>
+<h3 id="-">В сухом остатке</h3>
+<ul>
+<li>Тип собственного исключения обязан иметь отношение к классу <code>Exception</code>.</li>
+<li>Бросаем исключение функцией <code>throw</code>.</li>
+<li>Ловим исключение как обычно, функцией <code>try</code>.</li>
+</ul>
 
                     
                     </section>

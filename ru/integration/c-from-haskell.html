@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="10.1" data-basepath=".." data-revision="1398365234752">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="10.1" data-basepath=".." data-revision="1398713139669">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -1117,8 +1117,17 @@ ld: symbol(s) not found <span class="hljs-keyword">for</span> architecture x86_6
 ==<span class="hljs-number">25356</span>==    definitely lost: <span class="hljs-number">0</span> bytes <span class="hljs-keyword">in</span> <span class="hljs-number">0</span> blocks
 </code></pre>
 <p>Память освобождается.</p>
-<h3 id="-">Выводы</h3>
-<p>Haskell водит крепкую дружбу с языком C, и во многих реальных приложениях эта дружба часто используется.</p>
+<h3 id="-">В сухом остатке</h3>
+<ul>
+<li>Haskell легко подружить с языком C.</li>
+<li>Чтобы вызывать C-функцию из Haskell, необходимо объявить Haskell-прототип этой функции.</li>
+<li>Все стандартные C-типы имеют соответствующие Haskell-обёртки.</li>
+<li>Если C-функция принимает <code>void</code>, её Haskell-прототип не имеет аргументов. Если C-функция возвращает <code>void</code>, её Haskell-прототип возвращает <code>IO ()</code>.</li>
+<li>Для взятия адреса локальной переменной используется функция <code>alloca</code>.</li>
+<li>Для работы с C-структурой следует создать посреднический Haskell-тип.</li>
+<li>Экземпляр класса <code>Storable</code> для посреднического типа пишется на препроцессорном коде в <code>.hsc</code>-файле.</li>
+<li>При ручном выделении памяти её необходимо вручную и удалить.</li>
+</ul>
 
                     
                     </section>
