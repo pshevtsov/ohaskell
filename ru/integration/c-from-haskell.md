@@ -9,9 +9,11 @@ C из Haskell
 
 ### Hello foreign world!
 
-Для начала откроем `Real.cabal` и, найдя поле `extensions`, добавим в него через запятую параметр `ForeignFunctionInterface`. А в `Main.h`s напишем следующее:
+Открываем `Main.hs` и пишем следующее:
 
 ```haskell
+{-# LANGUAGE ForeignFunctionInterface #-}
+
 module Main where
 
 import Prelude hiding (sin)  -- Во избежание конфликта имён.
@@ -43,7 +45,13 @@ This is sinus: 0.8414709848078965
 import Foreign.C
 ```
 
-Этот стандартный модуль является нашим проводником в мир языка C. А теперь рассмотрим следующую строку:
+Этот стандартный модуль является нашим проводником в мир языка C. Кроме того, мы активизировали необходимое расширение Haskell:
+
+```haskell
+{-# LANGUAGE ForeignFunctionInterface #-}
+```
+
+А теперь рассмотрим следующую строку:
 
 ```haskell
 foreign import ccall sin :: CDouble -> CDouble
