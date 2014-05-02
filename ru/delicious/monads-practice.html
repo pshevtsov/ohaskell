@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="8.3" data-basepath=".." data-revision="1398713139669">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="8.3" data-basepath=".." data-revision="1399013717502">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -787,7 +787,7 @@
 
 <span class="hljs-title">toLowerCase</span> = return . toLower
 
-<span class="hljs-title">underlineSpaces</span> char = return (<span class="hljs-keyword">if</span> char == ' ' <span class="hljs-keyword">then</span> '_' <span class="hljs-keyword">else</span> char)
+<span class="hljs-title">underlineSpaces</span> char = return $ <span class="hljs-keyword">if</span> char == ' ' <span class="hljs-keyword">then</span> '_' <span class="hljs-keyword">else</span> char
 
 <span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
 <span class="hljs-title">main</span> =
@@ -813,17 +813,24 @@
 <pre><code class="lang-haskell"><span class="hljs-title">toLowerCase</span> = return . toLower
 </code></pre>
 <p>Функция говорит нам: &quot;Да, я работаю с аргументом типа <code>Char</code>, но в конце своей работы я, с помощью функции <code>return</code>, возвращаю итоговое значение типа <code>Char</code> обратно в какую-то монаду&quot;. А вот в какую именно - это уже неважно. Поэтому мы можем написать, например, так:</p>
-<pre><code class="lang-haskell"><span class="hljs-import"><span class="hljs-keyword">import</span> Data.Char</span>
+<pre><code class="lang-haskell"><span class="hljs-pragma">{-# LANGUAGE NoMonomorphismRestriction #-}</span>
+
+<span class="hljs-import"><span class="hljs-keyword">import</span> Data.Char</span>
+
+<span class="hljs-title">toLowerCase</span> = return . toLower
 
 <span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
 <span class="hljs-title">main</span> =
     print $ name &gt;&gt;= toLowerCase
     <span class="hljs-keyword">where</span> name = <span class="hljs-type">Just</span> '<span class="hljs-type">A'</span>
 </code></pre>
-<p>Кстати, чтобы это заработало, откройте файл <code>Real.cabal</code>, найдите в нём секцию <code>executable Real</code> и допишите в ней новый параметр:</p>
-<pre><code class="lang-haskell">    extensions:          <span class="hljs-type">NoMonomorphismRestriction</span>
+<p>Обратите внимание на новую для нас строку:</p>
+<pre><code class="lang-haskell"><span class="hljs-pragma">{-# LANGUAGE NoMonomorphismRestriction #-}</span>
 </code></pre>
-<p>Функция <code>toLowerCase</code> остаётся в счастливом неведении о том, что теперь она работает уже не со списком символов, а с монадой Maybe, содержащей в себе символ. И поэтому функция <code>return</code> в теле функции <code>toLowerCase</code> завернёт итоговый символ уже не списочную монаду, а в монаду <code>Maybe</code>. Таким образом, функцию, задуманную для работы с одной монадой, можно использовать для работы с другими.</p>
+<p>Перед нами - препроцессорный прагма-тег <code>LANGUAGE</code>, предназначенный для активизирования того или иного расширения языка Haskell. Расширения используются для добавления в ваш код определённых вкусностей. В данном случае мы активизировали расширение <code>NoMonomorphismRestriction</code>. Кстати, если вдруг вы ошибётесь в написании того или иного расширения, на стадии сборки компилятор выскажет своё негодование. А список всех поддерживаемых расширений мы сможем лицезреть, выполнив команду:</p>
+<pre><code class="lang-bash">$ ghc --supported-extensions
+</code></pre>
+<p>Вернёмся к функции <code>toLowerCase</code>. Она остаётся в счастливом неведении о том, что работает уже не со списком символов, а с монадой Maybe, содержащей в себе символ. И поэтому функция <code>return</code> в теле функции <code>toLowerCase</code> завернёт итоговый символ уже не списочную монаду, а в монаду <code>Maybe</code>. Таким образом, функцию, задуманную для работы с одной монадой, можно использовать для работы с другими.</p>
 <h3 id="-">Меняем тип</h3>
 <p>Ещё один пример:</p>
 <pre><code class="lang-haskell"><span class="hljs-import"><span class="hljs-keyword">import</span> Data.Char</span>

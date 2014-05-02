@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="10.1" data-basepath=".." data-revision="1398713139669">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="10.1" data-basepath=".." data-revision="1399013717502">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -782,8 +782,10 @@
 <p>Возможен и второй сценарий. Есть Haskell-приложение, и присутствует в нём одна секция, очень уж критичная к скорости выполнения. К счастью, имеется готовое решение, написанное на языке C. Опять-таки, без интеграции не обойтись.</p>
 <p>Вы спросите, почему мы начинаем именно с языка C? Причина проста: стандарт гласит, что Haskell проще всего подружить со старым добрым C, что обусловлено, прежде всего, историческими причинами. Приступим.</p>
 <h3 id="hello-foreign-world-">Hello foreign world!</h3>
-<p>Для начала откроем <code>Real.cabal</code> и, найдя поле <code>extensions</code>, добавим в него через запятую параметр <code>ForeignFunctionInterface</code>. А в <code>Main.h</code>s напишем следующее:</p>
-<pre><code class="lang-haskell"><span class="hljs-module"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span></span>
+<p>Открываем <code>Main.hs</code> и пишем следующее:</p>
+<pre><code class="lang-haskell"><span class="hljs-pragma">{-# LANGUAGE ForeignFunctionInterface #-}</span>
+
+<span class="hljs-module"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span></span>
 
 <span class="hljs-import"><span class="hljs-keyword">import</span> Prelude <span class="hljs-keyword">hiding</span> <span class="hljs-container">(<span class="hljs-title">sin</span>)</span>  <span class="hljs-comment">-- Во избежание конфликта имён.</span></span>
 <span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.C             <span class="hljs-comment">-- Наш проводник в мир языка C.</span></span>
@@ -806,7 +808,10 @@ This is sinus: <span class="hljs-number">0.8414709848078965</span>
 <p>Прежде всего мы импортировали важный модуль:</p>
 <pre><code class="lang-haskell"><span class="hljs-import"><span class="hljs-keyword">import</span> Foreign.C</span>
 </code></pre>
-<p>Этот стандартный модуль является нашим проводником в мир языка C. А теперь рассмотрим следующую строку:</p>
+<p>Этот стандартный модуль является нашим проводником в мир языка C. Кроме того, мы активизировали необходимое расширение Haskell:</p>
+<pre><code class="lang-haskell"><span class="hljs-pragma">{-# LANGUAGE ForeignFunctionInterface #-}</span>
+</code></pre>
+<p>А теперь рассмотрим следующую строку:</p>
 <pre><code class="lang-haskell"><span class="hljs-foreign"><span class="hljs-keyword">foreign</span> <span class="hljs-keyword">import</span> <span class="hljs-keyword">ccall</span> sin :: <span class="hljs-type">CDouble</span> -&gt; <span class="hljs-type">CDouble</span></span>
 </code></pre>
 <p>Эта строка представляет для нас наибольший интерес, ведь главное чудо произошло именно здесь. С помощью ключевого слова <code>foreign</code> мы приглашаем чужака в наше Haskell-приложение. Далее следует слово import, потому что чужак импортный, ибо пришёл к нам извне. После него следует специальный стандартный идентификатор, показывающий тип чужака: <code>ccall</code> означает &quot;вызов функции языка C&quot;. После идёт имя функции и её аргументы. Всё это можно прочесть так:</p>
