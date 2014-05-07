@@ -45,6 +45,7 @@
   * [Может быть](delicious/maybe.md)
   * [Функторы](delicious/functors.md)
   * [Аппликативные функторы](delicious/applicative-functors.md)
+  * [Трансформеры: первая встреча](delicious/transformers-first-meeting.md)
 * [Остальное](miscellaneous/README.md)
   * [О модулях](miscellaneous/about-modules.md)
   * [Рекурсивные функции](miscellaneous/recursive-functions.md)
