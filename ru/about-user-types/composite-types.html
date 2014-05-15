@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="6.4" data-basepath=".." data-revision="1399471827979">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="6.4" data-basepath=".." data-revision="1400182839877">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -785,7 +785,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_20">
+                    <section class="normal" id="section-gitbook_43">
                     
                         <h2 id="-">Составные типы</h2>
 <p>вспомним наш демонстрационный тип <code>IPAddress</code>, который мы использовали до сих пор:</p>
@@ -830,20 +830,19 @@
 <pre><code class="lang-haskell"><span class="hljs-title">changeEmail</span> :: <span class="hljs-type">User</span> -&gt; <span class="hljs-type">String</span> -&gt; <span class="hljs-type">User</span>
 </code></pre>
 <p>Мы возвращаем значение типа <code>User</code>, но это уже не то значение, которое идёт первым аргументом. Здесь мы говорим: &quot;Возьми аргумент <code>user</code> и создай на его основе такое же значение, но лишь с тем исключением, что значение поля <code>email</code> в этом новом значении будет равным <code>newEmail</code>&quot;. И теперь мы можем написать так:</p>
-<p>main =
-    let userWithNewEmail = changeEmail user &quot;shev.denis@gmail.com&quot;
-    in
+<pre><code class="lang-haskell"><span class="hljs-title">main</span> =
+    <span class="hljs-keyword">let</span> userWithNewEmail = changeEmail user <span class="hljs-string">"shev.denis@gmail.com"</span>
+    <span class="hljs-keyword">in</span>
     print $ email userWithNewEmail
-    where user = User { firstName = &quot;Denis&quot;
-                      , lastName = &quot;Shevchenko&quot;
-                      , email = &quot;me@dshevchenko.biz&quot;
-                      }</p>
-<pre><code>
-Вывод будет таким:
-
-```haskell
-&quot;shev.denis@gmail.com&quot;
-</code></pre><h3 id="-">Укороченная запись типов полей</h3>
+    <span class="hljs-keyword">where</span> user = <span class="hljs-type">User</span> { firstName = <span class="hljs-string">"Denis"</span>
+                      , lastName = <span class="hljs-string">"Shevchenko"</span>
+                      , email = <span class="hljs-string">"me@dshevchenko.biz"</span>
+                      }
+</code></pre>
+<p>Вывод будет таким:</p>
+<pre><code class="lang-haskell"><span class="hljs-string">"shev.denis@gmail.com"</span>
+</code></pre>
+<h3 id="-">Укороченная запись типов полей</h3>
 <p>Мы должны явно указывать типы всех наших полей. Однако если эти типы одинаковы, можно использовать сокращённую запись.</p>
 <p>Вспомним наш тип:</p>
 <pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">User</span> = <span class="hljs-type">User</span> <span class="hljs-container">{ <span class="hljs-title">firstName</span> :: <span class="hljs-type">String</span>
@@ -869,18 +868,18 @@
 <h3 id="-">Конструктор типа</h3>
 <p>Помните, мы уже говорили о конструкторах? Но там речь шла о конструкторах значений, а теперь поговорим о конструкторах типов. Различаются они так: конструктор значения используется при создании значений, а конструктор типа - при создании типов.</p>
 <p>Добавим в тип <code>User</code> чуток гибкости:</p>
-<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">User</span> year = <span class="hljs-type">User</span> <span class="hljs-container">{ <span class="hljs-title">firstName</span>             <span class="hljs-comment">-- строка</span>
-                      , <span class="hljs-title">lastName</span>              <span class="hljs-comment">-- опять строка</span>
-                      , <span class="hljs-title">email</span> :: <span class="hljs-type">String</span>       <span class="hljs-comment">-- ещё одна строка</span>
-                      , <span class="hljs-title">yearOfBirth</span> :: <span class="hljs-title">year</span>   <span class="hljs-comment">-- а это что??</span>
-                      , <span class="hljs-title">account</span>               <span class="hljs-comment">-- целое число</span>
-                      , <span class="hljs-title">uid</span> :: <span class="hljs-type">Integer</span>        <span class="hljs-comment">-- тоже целое число</span>
-                      }</span></span>
+<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">User</span> y = <span class="hljs-type">User</span> <span class="hljs-container">{ <span class="hljs-title">firstName</span>          <span class="hljs-comment">-- строка</span>
+                   , <span class="hljs-title">lastName</span>           <span class="hljs-comment">-- опять строка</span>
+                   , <span class="hljs-title">email</span> :: <span class="hljs-type">String</span>    <span class="hljs-comment">-- ещё одна строка</span>
+                   , <span class="hljs-title">yearOfBirth</span> :: <span class="hljs-title">y</span>   <span class="hljs-comment">-- а это что??</span>
+                   , <span class="hljs-title">account</span>            <span class="hljs-comment">-- целое число</span>
+                   , <span class="hljs-title">uid</span> :: <span class="hljs-type">Integer</span>     <span class="hljs-comment">-- тоже целое число</span>
+                   }</span></span>
 </code></pre>
 <p>Вот эта строка:</p>
-<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">User</span> year = ...</span>
+<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">User</span> y = ...</span>
 </code></pre>
-<p>говорит нам о том, что перед нами конструктор типа (type constructor). Тип поля <code>yearOfBirth</code> задан полиморфным типом <code>year</code>. Это позволит нам инициализировать это поле как числом <code>1981</code>, так и, например, строкой <code>&quot;1981&quot;</code>.</p>
+<p>говорит нам о том, что перед нами конструктор типа (type constructor). Тип поля <code>yearOfBirth</code> задан полиморфным типом <code>y</code>. Это позволит нам инициализировать это поле как числом <code>1981</code>, так и, например, строкой <code>&quot;1981&quot;</code>.</p>
 <p>Однако нас поджидает один неприятный сюрприз, ведь функция <code>changeEmail</code> наотрез откажется работать с типом <code>User</code>. Но не ругайтесь на неё, она поступает абсолютно правильно. Вспомним её объявление:</p>
 <pre><code class="lang-haskell"><span class="hljs-title">changeEmail</span> :: <span class="hljs-type">User</span> -&gt; <span class="hljs-type">String</span> -&gt; <span class="hljs-type">User</span>
 </code></pre>
@@ -896,7 +895,7 @@
                  , <span class="hljs-title">uid</span> :: <span class="hljs-type">Integer</span>
                  }</span></span>
 </code></pre>
-<p>Больше нет никакого полиморфного типа <code>year</code>, потому что тип поля <code>yearOfBirth</code> теперь равен типу <code>String</code>.</p>
+<p>Больше нет никакого полиморфного типа <code>y</code>, потому что тип поля <code>yearOfBirth</code> теперь равен типу <code>String</code>.</p>
 <p>Следовательно, чтобы наша функция <code>changeEmail</code> смогла работать с типами, сконструированными конструктором <code>User</code>, это нужно явно указать в её объявлении:</p>
 <pre><code class="lang-haskell"><span class="hljs-title">changeEmail</span> :: <span class="hljs-type">User</span> <span class="hljs-type">String</span> -&gt; <span class="hljs-type">String</span> -&gt; <span class="hljs-type">User</span> <span class="hljs-type">String</span>
 </code></pre>

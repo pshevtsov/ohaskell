@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="6.6" data-basepath=".." data-revision="1399471827979">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="6.6" data-basepath=".." data-revision="1400182839877">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -785,7 +785,7 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_23">
+                    <section class="normal" id="section-gitbook_46">
                     
                         <h2 id="-">Собственные классы типов</h2>
 <p>До этого мы рассматривали лишь стандартные классы типов. А теперь поговорим о собственных классах типов.</p>
@@ -793,9 +793,9 @@
 <p>Объявим класс типов <code>Pepper</code> (перец):</p>
 <pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">SHU</span> = <span class="hljs-type">Integer</span>  <span class="hljs-comment">-- SHU (Scoville Heat Units), единица жгучести перца</span></span>
 <span class="hljs-class">
-<span class="hljs-keyword">class</span> <span class="hljs-type">Pepper</span> pepper <span class="hljs-keyword">where</span></span>
-    color :: pepper -&gt; <span class="hljs-type">String</span>
-    pungency :: pepper -&gt; <span class="hljs-type">SHU</span>
+<span class="hljs-keyword">class</span> <span class="hljs-type">Pepper</span> p <span class="hljs-keyword">where</span></span>
+    color :: p -&gt; <span class="hljs-type">String</span>
+    pungency :: p -&gt; <span class="hljs-type">SHU</span>
 </code></pre>
 <p>У этого класса два метода, <code>color</code> (цвет) и <code>pungency</code> (жгучесть). Создадим два разных перца:</p>
 <pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">Poblano</span> = <span class="hljs-type">Poblano</span>  <span class="hljs-comment">-- Распространён в национальных блюдах Мексики.</span></span>
@@ -817,27 +817,27 @@
 </code></pre>
 <h3 id="-">Зачем они нужны</h3>
 <p>В самом деле, разве мы не можем использовать каждый из типов перца самостоятельно? Конечно можем. Главная цель определения собственного класса типов - указание контекста типов. Определим функцию, выводящую информацию о конкретном перце:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">pepperInfo</span> :: <span class="hljs-type">Pepper</span> pepper =&gt; pepper -&gt; <span class="hljs-type">String</span>
+<pre><code class="lang-haskell"><span class="hljs-title">pepperInfo</span> :: <span class="hljs-type">Pepper</span> p =&gt; p -&gt; <span class="hljs-type">String</span>
 <span class="hljs-title">pepperInfo</span> pepper = show (pungency pepper) ++ <span class="hljs-string">", "</span> ++ color pepper
 </code></pre>
-<p>Контекст полиморфного типа pepper говорит нам о том, что эта функция предназначена только для работы с перцами. Более того, сам класс тоже может иметь контекст типа:</p>
-<pre><code class="lang-haskell"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-type">Pepper</span> pepper =&gt; <span class="hljs-type">Chili</span> pepper <span class="hljs-keyword">where</span></span>
-    kind :: pepper -&gt; <span class="hljs-type">String</span>
+<p>Контекст полиморфного типа <code>p</code> говорит нам о том, что эта функция предназначена только для работы с перцами. Более того, сам класс тоже может иметь контекст типа:</p>
+<pre><code class="lang-haskell"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-type">Pepper</span> p =&gt; <span class="hljs-type">Chili</span> p <span class="hljs-keyword">where</span></span>
+    kind :: p -&gt; <span class="hljs-type">String</span>
 </code></pre>
-<p>Класс типов <code>Chili</code> объявлен с контекстом <code>Pepper</code>. Следовательно, занять место полиморфного типа <code>pepper</code> смогут лишь те типы, которые относятся к классу <code>Pepper</code>, и никакие другие. Это позволяет ограничить набор типов, которые смогут иметь отношение к классу <code>Chili</code>.</p>
+<p>Класс типов <code>Chili</code> объявлен с контекстом <code>Pepper</code>. Следовательно, занять место полиморфного типа <code>p</code> смогут лишь те типы, которые относятся к классу <code>Pepper</code>, и никакие другие. Это позволяет ограничить набор типов, которые смогут иметь отношение к классу <code>Chili</code>.</p>
 <p>Разумеется, контекст может состоять и из нескольких классов. В этом случае они, как обычно, перечисляются в виде кортежа:</p>
-<pre><code class="lang-haskell"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-container">(<span class="hljs-type">Pepper</span> <span class="hljs-title">pepper</span>, <span class="hljs-type">Capsicum</span> <span class="hljs-title">pepper</span>)</span> =&gt; <span class="hljs-type">Chili</span> pepper <span class="hljs-keyword">where</span></span>
-    kind :: pepper -&gt; <span class="hljs-type">String</span>
+<pre><code class="lang-haskell"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-container">(<span class="hljs-type">Pepper</span> <span class="hljs-title">p</span>, <span class="hljs-type">Capsicum</span> <span class="hljs-title">p</span>)</span> =&gt; <span class="hljs-type">Chili</span> p <span class="hljs-keyword">where</span></span>
+    kind :: p -&gt; <span class="hljs-type">String</span>
 </code></pre>
 <h3 id="-">Константы</h3>
 <p>Добавим в наш класс константу:</p>
 <pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">SHU</span> = <span class="hljs-type">Integer</span></span>
 <span class="hljs-class">
-<span class="hljs-keyword">class</span> <span class="hljs-type">Pepper</span> pepper <span class="hljs-keyword">where</span></span>
-    simple :: pepper  <span class="hljs-comment">-- Это константное значение, а не функция.</span>
-    color :: pepper -&gt; <span class="hljs-type">String</span>
-    pungency :: pepper -&gt; <span class="hljs-type">SHU</span>
-    name :: pepper -&gt; <span class="hljs-type">String</span>
+<span class="hljs-keyword">class</span> <span class="hljs-type">Pepper</span> p <span class="hljs-keyword">where</span></span>
+    simple :: p  <span class="hljs-comment">-- Это константное значение, а не функция.</span>
+    color :: p -&gt; <span class="hljs-type">String</span>
+    pungency :: p -&gt; <span class="hljs-type">SHU</span>
+    name :: p -&gt; <span class="hljs-type">String</span>
 
 <span class="hljs-typedef"><span class="hljs-keyword">data</span> <span class="hljs-type">Poblano</span> = <span class="hljs-type">Poblano</span> <span class="hljs-type">String</span>  <span class="hljs-comment">-- Унарный конструктор вместо нульарного.</span></span>
 <span class="hljs-class">
