@@ -10,9 +10,9 @@
 ```haskell
 type SHU = Integer  -- SHU (Scoville Heat Units), единица жгучести перца
 
-class Pepper pepper where
-    color :: pepper -> String
-    pungency :: pepper -> SHU
+class Pepper p where
+    color :: p -> String
+    pungency :: p -> SHU
 ```
 
 У этого класса два метода, `color` (цвет) и `pungency` (жгучесть). Создадим два разных перца:
@@ -44,24 +44,24 @@ main =
 В самом деле, разве мы не можем использовать каждый из типов перца самостоятельно? Конечно можем. Главная цель определения собственного класса типов - указание контекста типов. Определим функцию, выводящую информацию о конкретном перце:
 
 ```haskell
-pepperInfo :: Pepper pepper => pepper -> String
+pepperInfo :: Pepper p => p -> String
 pepperInfo pepper = show (pungency pepper) ++ ", " ++ color pepper
 ```
 
-Контекст полиморфного типа pepper говорит нам о том, что эта функция предназначена только для работы с перцами. Более того, сам класс тоже может иметь контекст типа:
+Контекст полиморфного типа `p` говорит нам о том, что эта функция предназначена только для работы с перцами. Более того, сам класс тоже может иметь контекст типа:
 
 ```haskell
-class Pepper pepper => Chili pepper where
-    kind :: pepper -> String
+class Pepper p => Chili p where
+    kind :: p -> String
 ```
 
-Класс типов `Chili` объявлен с контекстом `Pepper`. Следовательно, занять место полиморфного типа `pepper` смогут лишь те типы, которые относятся к классу `Pepper`, и никакие другие. Это позволяет ограничить набор типов, которые смогут иметь отношение к классу `Chili`.
+Класс типов `Chili` объявлен с контекстом `Pepper`. Следовательно, занять место полиморфного типа `p` смогут лишь те типы, которые относятся к классу `Pepper`, и никакие другие. Это позволяет ограничить набор типов, которые смогут иметь отношение к классу `Chili`.
 
 Разумеется, контекст может состоять и из нескольких классов. В этом случае они, как обычно, перечисляются в виде кортежа:
 
 ```haskell
-class (Pepper pepper, Capsicum pepper) => Chili pepper where
-    kind :: pepper -> String
+class (Pepper p, Capsicum p) => Chili p where
+    kind :: p -> String
 ```
 
 ### Константы
@@ -71,11 +71,11 @@ class (Pepper pepper, Capsicum pepper) => Chili pepper where
 ```haskell
 type SHU = Integer
 
-class Pepper pepper where
-    simple :: pepper  -- Это константное значение, а не функция.
-    color :: pepper -> String
-    pungency :: pepper -> SHU
-    name :: pepper -> String
+class Pepper p where
+    simple :: p  -- Это константное значение, а не функция.
+    color :: p -> String
+    pungency :: p -> SHU
+    name :: p -> String
 
 data Poblano = Poblano String  -- Унарный конструктор вместо нульарного.
 
