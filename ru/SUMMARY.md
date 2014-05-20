@@ -47,6 +47,7 @@
   * [Аппликативные функторы](delicious/applicative-functors.md)
   * [Трансформеры: первая встреча](delicious/transformers-first-meeting.md)
   * [Трансформеры: читатель](delicious/transformers-reader.md)
+  * [Трансформеры: писатель](delicious/transformers-writer.md)
 * [Остальное](miscellaneous/README.md)
   * [О модулях](miscellaneous/about-modules.md)
   * [Рекурсивные функции](miscellaneous/recursive-functions.md)
