@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Аппликативные функторы | О Haskell по-человечески</title>
+        <title>Трансформеры: писатель | О Haskell по-человечески</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -16,13 +16,13 @@
         <link href='http://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
 
         
-        <link rel="next" href="../delicious/transformers-first-meeting.html" />
+        <link rel="next" href="../miscellaneous/README.html" />
         
         
-        <link rel="prev" href="../delicious/functors.html" />
+        <link rel="prev" href="../delicious/transformers-reader.html" />
         
 
-        <meta property="og:title" content="Аппликативные функторы | О Haskell по-человечески">
+        <meta property="og:title" content="Трансформеры: писатель | О Haskell по-человечески">
         <meta property="og:site_name" content="О Haskell по-человечески">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -45,7 +45,7 @@
 
 
         
-    <div class="book" data-github="denisshevchenko/ohaskell" data-level="8.6" data-basepath=".." data-revision="1400589613771">
+    <div class="book" data-github="denisshevchenko/ohaskell" data-level="8.9" data-basepath=".." data-revision="1400589613771">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -108,7 +108,7 @@
             <a href="https://github.com/denisshevchenko/ohaskell/issues" target="blank">Questions and Issues</a>
         </li>
         <li>
-            <a href="https://github.com/denisshevchenko/ohaskell/edit/master/delicious/applicative-functors.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/denisshevchenko/ohaskell/edit/master/delicious/transformers-writer.md" target="blank">Edit and Contribute</a>
         </li>
         <li class="divider"></li>
         
@@ -672,7 +672,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 85.24590163934427%;min-width: 83.60655737704919%;"></div>
+        <div class="inner" style="width: 90.1639344262295%;min-width: 88.52459016393442%;"></div>
     </div>
     <div class="chapters">
     
@@ -782,11 +782,11 @@
     
         <a href="../delicious/applicative-functors.html" title="Аппликативные функторы" class="chapter done " data-progress="8.6" style="left: 85.24590163934427%;"></a>
     
-        <a href="../delicious/transformers-first-meeting.html" title="Трансформеры: первая встреча" class="chapter  " data-progress="8.7" style="left: 86.88524590163935%;"></a>
+        <a href="../delicious/transformers-first-meeting.html" title="Трансформеры: первая встреча" class="chapter done " data-progress="8.7" style="left: 86.88524590163935%;"></a>
     
-        <a href="../delicious/transformers-reader.html" title="Трансформеры: читатель" class="chapter  " data-progress="8.8" style="left: 88.52459016393442%;"></a>
+        <a href="../delicious/transformers-reader.html" title="Трансформеры: читатель" class="chapter done " data-progress="8.8" style="left: 88.52459016393442%;"></a>
     
-        <a href="../delicious/transformers-writer.html" title="Трансформеры: писатель" class="chapter  " data-progress="8.9" style="left: 90.1639344262295%;"></a>
+        <a href="../delicious/transformers-writer.html" title="Трансформеры: писатель" class="chapter done " data-progress="8.9" style="left: 90.1639344262295%;"></a>
     
         <a href="../miscellaneous/README.html" title="Остальное" class="chapter  new-chapter" data-progress="9" style="left: 91.80327868852459%;"></a>
     
@@ -805,229 +805,166 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_51">
+                    <section class="normal" id="section-gitbook_59">
                     
-                        <h2 id="-">Аппликативные функторы</h2>
-<p>Поговорим об аппликативных функторах (applicative functors). Знаю, название немного пугает, но поверьте, ничего страшного в них нет. Более того, аппликативный функтор, как вы вскоре убедитесь, очень полезный инструмент.</p>
-<p>Суть проста. Если тип <code>X</code> является обыкновенным функтором, мы можем применить некую функцию к одному значению типа <code>X</code>. Если же тип <code>X</code> является аппликативным функтором, мы можем применить некую функцию к <em>нескольким</em> значениям типа <code>X</code>. Начнём.</p>
-<h3 id="-">Смотрим в код</h3>
-<p>Аппликативные функторы (далее - АФ) отражены классом <code>Applicative</code>, проживающим в стандартном модуле <code>Control.Applicative</code>. Взглянем:</p>
-<pre><code class="lang-haskell"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-type">Functor</span> f =&gt; <span class="hljs-type">Applicative</span> f <span class="hljs-keyword">where</span></span>
-    pure  :: a -&gt; f a
-    (&lt;*&gt;) :: f (a -&gt; b) -&gt; f a -&gt; f b  <span class="hljs-comment">-- Наш главный герой.</span>
-    (*&gt;)  :: f a -&gt; f b -&gt; f b
-    (&lt;*)  :: f a -&gt; f b -&gt; f a
-</code></pre>
-<p>Перед нами класс типов, каждый из которых обязан входить в контекст класса <code>Functor</code>. Среди четырёх методов центральное место занимает оператор последовательного применения (sequential application). Взглянем на него ещё раз:</p>
-<pre><code class="lang-haskell">(&lt;*&gt;) :: f (a -&gt; b) -&gt; f a -&gt; f b
-</code></pre>
-<p>Пока не очень понятно, с чем это едят, но давайте поставим рядом с ним объявление нашей волшебницы <code>fmap</code>:</p>
-<pre><code class="lang-haskell">(&lt;*&gt;) :: f (a -&gt; b) -&gt; f a -&gt; f b
-<span class="hljs-title">fmap</span>  ::   (a -&gt; b) -&gt; f a -&gt; f b
-</code></pre>
-<p>Сразу повеяло обычным функтором, не так ли? Почти полное сходство, за исключением одной важной детали. Если <code>fmap</code> работает с функцией и функтором, то оператор <code>&lt;*&gt;</code> работает с двумя функторами. Причём наибольший интерес вызывает первый по счёту функтор, потому что он содержит в себе не значение, а функцию. Именна эта функция играет роль уже известной нам волшебной палочки: оператор <code>&lt;*&gt;</code> извлекает её из первого функтора и применяет ко второму (правому) функтору.</p>
-<p>Вы спросите, зачем такие трудности? Рассмотрим пример.</p>
-<h3 id="-">Играемся с функтором</h3>
-<p>Определим тип <code>Distance</code>, очень похожий на <code>Year</code> из предыдущей главы:</p>
-<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">newtype</span> <span class="hljs-type">Distance</span> value = <span class="hljs-type">Distance</span> value</span>
-                         <span class="hljs-keyword">deriving</span> <span class="hljs-type">Show</span>
-</code></pre>
-<p>Значение типа <code>Distance</code> можно инициализировать значениями разного типа, и это хорошо. Но в реальном проекте мы едва ли ограничимся выводом значений типа <code>Distance</code> на экран. Мы обязательно захотим делать с этими значениями какие-нибудь интересные вещи.</p>
-<p>Например, сложение. Определим соответствующую функцию:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">add</span> (<span class="hljs-type">Distance</span> a) (<span class="hljs-type">Distance</span> b) = <span class="hljs-type">Distance</span> (a + b)
-</code></pre>
-<p>Теперь мы можем складывать наши дистанции: </p>
-<pre><code class="lang-haskell"><span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> = print $ <span class="hljs-type">Distance</span> <span class="hljs-number">19.78</span> `add` <span class="hljs-type">Distance</span> <span class="hljs-number">1.6</span>
-</code></pre>
-<p>Результат:</p>
-<pre><code class="lang-bash">Distance <span class="hljs-number">21.380000000000003</span>
-</code></pre>
-<p>Симпатично. Однако для дистанций одного сложения, вероятно, будет маловато. Определим функцию для вычитания:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">minus</span> (<span class="hljs-type">Distance</span> a) (<span class="hljs-type">Distance</span> b) = <span class="hljs-type">Distance</span> (a - b)
-</code></pre>
-<p>Теперь можно вычитать:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> = print $ <span class="hljs-type">Distance</span> <span class="hljs-number">19.78</span> `minus` <span class="hljs-type">Distance</span> <span class="hljs-number">1.6</span>
-</code></pre>
-<p>Хм... Всё это, конечно, хорошо, но ведь можно ещё и умножать, и делить. Нам что, для каждой такой операции определять свою функцию? Нет, умный в гору не пойдёт. Мы ведь хотим упрощения нашей программистской жизни, а не усложнения. Тут-то и спешит нам на помощь АФ.</p>
-<h3 id="-">Превращаем</h3>
-<p>Превратим тип <code>Distance</code> в АФ. Впрочем, я поторопился: сначала нам нужно сделать его обыкновенным функтором, а уже потом аппликативным. Пишем:</p>
-<pre><code class="lang-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Functor</span> <span class="hljs-type">Distance</span> <span class="hljs-keyword">where</span></span>
-    fmap magicWand (<span class="hljs-type">Distance</span> value) = <span class="hljs-type">Distance</span> (magicWand value)
-<span class="hljs-class">
-<span class="hljs-keyword">instance</span> <span class="hljs-type">Applicative</span> <span class="hljs-type">Distance</span> <span class="hljs-keyword">where</span></span>
-    <span class="hljs-type">Distance</span> magicWand &lt;*&gt; functor = fmap magicWand functor
-</code></pre>
-<p>Для нашей первой демонстрации нам понадобится лишь один из четырёх методов класса Applicative, поэтому остальные мы определять не будем.</p>
-<p>Также обращаю ваше внимание на несколько необычную форму определения этого оператора:</p>
-<pre><code class="lang-haskell"><span class="hljs-type">Distance</span> magicWand &lt;*&gt; functor = fmap magicWand functor
-</code></pre>
-<p>Более привычной для нас формой является такая:</p>
-<pre><code class="lang-haskell">(&lt;*&gt;) (<span class="hljs-type">Distance</span> magicWand) functor = fmap magicWand functor
-</code></pre>
-<p>Ведь мы всегда так писали: сначала идёт имя функции, а потом её аргументы. Однако если мы определяем оператор, который заточен под инфиксную форму, то и определять его можно в такой же, инфиксной форме:</p>
-<pre><code>Distance magicWand &lt;*&gt; functor = ...
-|                      |
-первый аргумент        второй аргумент
-</code></pre><p>Ну а теперь пора разобраться, зачем же мы сделали всё это?</p>
-<p>Данный механизм освобождает нас от обязанности самостоятельно определять бинарные функции для работы со значениями типа  <code>Distance</code>. Поэтому теперь, когда нам понадобится получить сумму двух дистанций, мы напишем вот так:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> = print $ (+) &lt;$&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">19.78</span> &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">1.6</span>
-</code></pre>
-<p>Результат:</p>
-<pre><code class="lang-bash">Distance <span class="hljs-number">21.380000000000003</span>
-</code></pre>
-<p>Если же нужно вычесть, пишем так:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> = print $ (-) &lt;$&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">19.78</span> &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">1.6</span>
-</code></pre>
-<p>Вполне ожидаемый результат:</p>
-<pre><code class="lang-bash">Distance <span class="hljs-number">18.18</span>
-</code></pre>
-<h3 id="-">Как это работает</h3>
-<p>Скелет этой конструкции можно изобразить следующим образом:</p>
-<pre><code>(+)       &lt;$&gt;      APPL_FTOR     &lt;*&gt;                APPL_FTOR
-|         |        |             |                  |
-функция   аналог   первый аппл.  оператор           второй аппл.
-сложения  fmap     функтор       последовательного  функтор
-                                 применения
-</code></pre><p>Сделав тип <code>Distance</code> аппликативным функтором, мы тем самым научили простые функции работать с двумя значениями типа <code>Distance</code> одновременно. Например, функцию сложения, возглавляющую эту строку. Эта функция и тип <code>Distance</code> не знакомы друг с другом, однако прекрасно работают вместе. Проследуем по шагам.</p>
-<pre><code>(+) &lt;$&gt; APPL_FTOR 
-</code></pre><p>На первом шаге оператор <code>&lt;$&gt;</code>, являющийся, как вы помните, инфиксной копией функции <code>fmap</code>, применил стоящую слева от него функцию сложения к функтору, стоящему справа. Чтобы понять произошедшее на этом шаге, вспомним объявление функции <code>fmap</code> для нашего типа:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">fmap</span> magicWand (<span class="hljs-type">Distance</span> value) = <span class="hljs-type">Distance</span> (magicWand value)
-</code></pre>
-<p>Заменим волшебную палочку на функцию сложения и <code>value</code> на реальное значение:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">fmap</span> (+) (<span class="hljs-type">Distance</span> <span class="hljs-number">19.78</span>) = <span class="hljs-type">Distance</span> ((+) <span class="hljs-number">19.78</span>)
-</code></pre>
-<p>Ба, знакомые все лица! Функция <code>fmap</code> возвращает значение типа <code>Distance</code>, но оно содержит в себе уже не число, а нашу старую подругу, частично применённую функцию. Эта функция появилась на свет благодаря применению функции сложения к единственному аргументу <code>19.78</code>.</p>
-<p>Что же произошло на втором шаге? Взглянем:</p>
-<pre><code>APPL_FTOR &lt;*&gt; APPL_FTOR
-</code></pre><p>Здесь вступает в игру оператор последовательного применения. Вспомним его определение для нашего типа:</p>
-<pre><code class="lang-haskell"><span class="hljs-type">Distance</span> magicWand &lt;*&gt; functor = fmap magicWand functor
-</code></pre>
-<p>Подставим реальные значения для ясности:</p>
-<pre><code class="lang-haskell"><span class="hljs-type">Distance</span> ((+) <span class="hljs-number">19.78</span>) &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">1.6</span> = fmap ((+) <span class="hljs-number">19.78</span>)  <span class="hljs-type">Distance</span> <span class="hljs-number">1.6</span>
-</code></pre>
-<p>Теперь все карты раскрыты. В результате работы оператора <code>&lt;*&gt;</code> внутренняя функция <code>fmap</code> применила нашу частично применённую функцию сложения к значению, содержащемуся во втором функторе. И на выходе мы получили результат сложения в виде <code>Distance 21.380000000000003</code>.</p>
-<h3 id="-">Не только два</h3>
-<p>Раз мы смогли применить бинарную функцию к двум АФ одновременно, значит, можно и расшириться. Количество аргументов функции, поступающей на вход функторной очереди, должна соответствовать количеству функторов в этой очереди. Поэтому если нам нужно узнать общую длину трёх дистанций, мы пишем так:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> =
-    print $ totalSum &lt;$&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">19.78</span> &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">1.6</span> &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">289.0</span>
-    <span class="hljs-keyword">where</span> totalSum arg1 arg2 arg3 = arg1 + arg2 + arg3
-</code></pre>
-<p>Три аргумента - три функтора. Функция <code>totalSum</code> бежит по ним и потихоньку собирает их внутренние значения в общую сумму, на выходе выдавая нам:</p>
-<pre><code class="lang-bash">Distance <span class="hljs-number">310.38</span>
-</code></pre>
-<h3 id="pure">pure</h3>
-<p>Перейдём к следующему методу класса <code>Applicative</code>, а именно <code>pure</code>. Вспомним его объявление:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">pure</span> :: a -&gt; f a
-</code></pre>
-<p>Назначение этого метода предельно простое: он берёт значение (которое на самом деле является функцией) и оборачивает его в АФ-обёртку. Определим его для нашей дистанции:</p>
-<pre><code class="lang-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Applicative</span> <span class="hljs-type">Distance</span> <span class="hljs-keyword">where</span></span>
-    <span class="hljs-type">Distance</span> magicWand &lt;*&gt; functor = fmap magicWand functor
-    pure magicWand = <span class="hljs-type">Distance</span> magicWand
-</code></pre>
-<p>Мы указали, что метод <code>pure</code> теперь равен нашему конструктору типа <code>Distance</code>. Мы могли бы использовать и сокращённую форму:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">pure</span> = <span class="hljs-type">Distance</span>
-</code></pre>
-<p>Это позволит нам переписать наш пример так:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> =
-    print $ pure totalSum &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">19.78</span>
-                          &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">1.6</span>
-                          &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">289.0</span>
-    <span class="hljs-keyword">where</span> totalSum arg1 arg2 arg3 = arg1 + arg2 + arg3
-</code></pre>
-<p>Здесь уже нет оператора <code>&lt;$&gt;</code>, его обязанности на себя взяла функция <code>pure</code>, которая взяла функцию <code>totalSum</code> и, скажем так, подготовила её к работе с нашими аппликативными функторами. В англоязычной документации пишут, что функция <code>pure</code> подняла (lift) функцию <code>totalSum</code>. Это можно воспринимать как подъём на более высокий уровень абстрации: была просто функция, а стала... непросто функция.</p>
-<h3 id="-">Последовательность действий</h3>
-<p>Оставшиеся два метода класса <code>Applicative</code> называют операторами последовательности действий. Вспомним их:</p>
-<pre><code class="lang-haskell">(*&gt;) :: f a -&gt; f b -&gt; f b
-(&lt;*) :: f a -&gt; f b -&gt; f a
-</code></pre>
-<p>Это - младшие братья оператора последовательного применения. Первый из них выбрасывает значение своего первого аргумента. Второй - выбрасывает значение второго:</p>
-<pre><code>(*&gt;) ::   f a  -&gt;  f b -&gt; f b
-          ---      ===    ===
-       игнорирую
-        первый
+                        <h2 id="-">Трансформеры: писатель</h2>
+<p>От читателя перейдём к писателю. И если вы освоили <code>ReaderT</code>, то с <code>WriterT</code> у вас не возникнет никаких трудностей. Этот трансформер столь же элегантен и столь же полезен.</p>
+<h3 id="-">Суть</h3>
+<p><code>WriterT</code> - это писатель. Он, подобно <code>ReaderT</code>, предоставляет неким функциям общее значение, но если читатель предоставляет его для чтения, то писатель, как вы уже догадались, предоставляет его для записи. Одно из канонических применений такого механизма - логирование. Функции работают, записывая некую служебную информацию в &quot;облачный лог&quot;. Помните, в предыдущей главе я провёл аналогию между <code>ReaderT</code> и облачными технологиями? Писатель тоже создаёт &quot;облако&quot;. Рассмотрим пример.</p>
+<h3 id="-url-">Пример с URL: добавляем логирование</h3>
+<p>Помните, в <a href="http://ohaskell.dshevchenko.biz/ru/about-functions/functional-chains.html" target="_blank">главе о функциональных цепочках</a> мы создали три функции, корректирующие некрасивый URL? Давайте добавим туда лог:</p>
+<pre><code class="lang-haskell"><span class="hljs-module"><span class="hljs-keyword">module</span> Main <span class="hljs-keyword">where</span></span>
 
-(&lt;*) :: f a -&gt;   f b   -&gt; f a
-        ===      ---      ===
-              игнорирую
-                второй
-</code></pre><p>Чтобы стало понятнее, определим первый из этих операторов для нашего типа:</p>
-<pre><code class="lang-haskell"><span class="hljs-class"><span class="hljs-keyword">instance</span> <span class="hljs-type">Applicative</span> <span class="hljs-type">Distance</span> <span class="hljs-keyword">where</span></span>
-    <span class="hljs-type">Distance</span> magicWand &lt;*&gt; functor = fmap magicWand functor
-    pure magicWand = <span class="hljs-type">Distance</span> magicWand
-    <span class="hljs-type">Distance</span> a *&gt; <span class="hljs-type">Distance</span> b = <span class="hljs-type">Distance</span> b  <span class="hljs-comment">-- Просто возвращаем второй.</span>
-</code></pre>
-<p>Предельно просто: оператор <code>*&gt;</code> разрывает цепочку передачи значения между функторами. Например, если мы напишем так:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> =  
-    print $ pure totalSum &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">19.78</span>
-                          &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">1.6</span>
-                          &lt;*&gt; <span class="hljs-type">Distance</span> <span class="hljs-number">289.0</span>
-                          *&gt;  <span class="hljs-type">Distance</span> <span class="hljs-number">2.0</span>  <span class="hljs-comment">-- Цепочка уже разорвалась!</span>
-    <span class="hljs-keyword">where</span> totalSum arg1 arg2 arg3 = arg1 + arg2 + arg3
-</code></pre>
-<p>ответом будет:</p>
-<pre><code class="lang-bash">Distance <span class="hljs-number">2.0</span>
-</code></pre>
-<p>Так получилось потому, что значение типа <code>Distance</code>, возвращённое третьим по счёту оператором <code>&lt;*&gt;</code>, поступило на вход оператору <code>*&gt;</code> и было благополучно забыто. Ведь мы помним, что оператор <code>*&gt;</code> всего лишь возвращает свой второй операнд, в нашем случае функтор <code>Distance 2.0</code>.</p>
-<p>Вы спросите, в чём же смысл такого оператора, если он ничего не извлекает из своего левого операнда? Смысл есть тогда, когда извлекать нечего. И чтобы продемонстрировать это, открою вам тайну: тип <code>IO</code> - это не только монада, но и аппликативный функтор. А если быть совсем честным, все стандартные монады являются АФ.</p>
-<h3 id="-">Играемся с монадами</h3>
-<p>Вспомним пример с получением двух строк от пользователя:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">obtainTwoTextsFromUser</span> :: <span class="hljs-type">IO</span> <span class="hljs-type">String</span>
-<span class="hljs-title">obtainTwoTextsFromUser</span> = <span class="hljs-keyword">do</span>
-    putStrLn <span class="hljs-string">"Enter your text, please: "</span>
-    firstText &lt;- getLine
-    putStrLn <span class="hljs-string">"One more, please: "</span>
-    secondText &lt;- getLine
-    return $ firstText ++ secondText 
+<span class="hljs-import"><span class="hljs-keyword">import</span> Control.Monad.Writer.Lazy</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Data.Char</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> Data.String.Utils</span>
+
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">Environment</span> = <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">LoggingCloud</span> = <span class="hljs-type">WriterT</span> <span class="hljs-type">Environment</span> <span class="hljs-type">IO</span> <span class="hljs-type">String</span></span>
+
+<span class="hljs-title">addPrefix</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">LoggingCloud</span>
+<span class="hljs-title">addPrefix</span> url = <span class="hljs-keyword">do</span>
+    tell <span class="hljs-string">"addPrefix... "</span>
+    return $ <span class="hljs-keyword">if</span> url `startsWith` prefix <span class="hljs-keyword">then</span> url <span class="hljs-keyword">else</span> prefix ++ url
+    <span class="hljs-keyword">where</span> prefix = <span class="hljs-string">"http://"</span>
+          startsWith url prefix = startswith prefix url
+
+<span class="hljs-title">encodeAllSpaces</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">LoggingCloud</span>
+<span class="hljs-title">encodeAllSpaces</span> url = <span class="hljs-keyword">do</span>
+    tell <span class="hljs-string">"encodeAllSpaces... "</span>
+    return $ replace <span class="hljs-string">" "</span> <span class="hljs-string">"%20"</span> url
+
+<span class="hljs-title">makeItLowerCase</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">LoggingCloud</span>
+<span class="hljs-title">makeItLowerCase</span> url = <span class="hljs-keyword">do</span>
+    tell <span class="hljs-string">"makeItLowerCase... "</span>
+    return $ map toLower url
 
 <span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
 <span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
-    twoTexts &lt;- obtainTwoTextsFromUser
-    putStrLn $ <span class="hljs-string">"You said "</span> ++ twoTexts
+    <span class="hljs-keyword">let</span> url = <span class="hljs-string">"www.SITE.com/test me/Start page"</span>
+    result &lt;- runWriterT $ addPrefix url 
+                           &gt;&gt;= encodeAllSpaces 
+                           &gt;&gt;= makeItLowerCase
+    <span class="hljs-keyword">let</span> correctedUrl = fst result
+        log = snd result
+    putStrLn $ <span class="hljs-string">"Corrected URL: "</span> ++ correctedUrl ++ <span class="hljs-string">"\n"</span> ++
+               <span class="hljs-string">"Log: "</span> ++ log
 </code></pre>
-<p>Обратите внимание: в теле функции <code>obtainTwoTextsFromUser</code> мы явно &quot;извлекаем&quot; ассоциированные с <code>IO</code>-монадами строки, <code>firstText</code> и <code>secondText</code>. Перепишем эту функцию, помня о том, что <code>IO</code> - это АФ:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">obtainTwoTextsFromUser</span> :: <span class="hljs-type">IO</span> <span class="hljs-type">String</span>
-<span class="hljs-title">obtainTwoTextsFromUser</span> =
-    (++) &lt;$&gt; getFirstText &lt;*&gt; getSecondText  <span class="hljs-comment">-- Складываем строки.  </span>
-    <span class="hljs-keyword">where</span> getFirstText = putStrLn <span class="hljs-string">"Enter your text, please: "</span> *&gt; getLine
-          getSecondText = putStrLn <span class="hljs-string">"One more, please: "</span> *&gt; getLine
+<p>Результат будет таким:</p>
+<pre><code class="lang-bash">Corrected URL: http://www.site.com/test%<span class="hljs-number">20</span>me/start%<span class="hljs-number">20</span>page
+Log: addPrefix... encodeAllSpaces... makeItLowerCase...
 </code></pre>
-<p>Теперь разберёмся. Начнём с <code>getFirstText</code>:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">getFirstText</span> = putStrLn <span class="hljs-string">"Enter your text, please: "</span> *&gt; getLine
+<p>Как видите, никаких радикальных перемен не произошло. Нам потребовалось лишь заменить возвращаемые функциями-корректировщиками значения на наше &quot;монадическое облако&quot;. И теперь внутри каждой из этих функций мы можем записывать что-нибудь интересное в это &quot;облако&quot;. Для этого используется стандартная функция <code>tell</code>:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">makeItLowerCase</span> :: <span class="hljs-type">String</span> -&gt; <span class="hljs-type">LoggingCloud</span>
+<span class="hljs-title">makeItLowerCase</span> url = <span class="hljs-keyword">do</span>
+    tell <span class="hljs-string">"makeItLowerCase... "</span>  <span class="hljs-comment">-- Сохраняем в логирующее облако...</span>
+    return $ map toLower url    <span class="hljs-comment">-- ... и туда же кладём наш изменённый URL...</span>
 </code></pre>
-<p>Как мы помним, функция <code>putStrLn</code> возвращает значение типа <code>IO ()</code>, следовательно, после её завершения этот код станет таким:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">getFirstText</span> = <span class="hljs-type">IO</span> () *&gt; getLine
-</code></pre>
-<p>Теперь вы понимаете, почему здесь используется оператор <code>*&gt;</code>. Поскольку из значения типа <code>IO ()</code> ничего нельзя извлечь, оно игнорируется, и мы просто переходим к функции <code>getLine</code>. Она, получив от пользователя текст, возвращает значение типа <code>IO String</code>, и теперь этот код можно изобразить так:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">getFirstText</span> = <span class="hljs-type">IO</span> () *&gt; <span class="hljs-type">IO</span> <span class="hljs-type">String</span>
-</code></pre>
-<p>Значение типа <code>IO String</code> связывается с идентификатором <code>getFirstText</code>. И то же самое происходит с <code>getSecondText</code>. Следовательно, после получения двух текстов от пользователя, код приобретёт вот такой вид:</p>
-<pre><code class="lang-haskell"><span class="hljs-title">obtainTwoTextsFromUser</span> :: <span class="hljs-type">IO</span> <span class="hljs-type">String</span>  
-<span class="hljs-title">obtainTwoTextsFromUser</span> =
-    (++) &lt;$&gt; <span class="hljs-type">IO</span> <span class="hljs-type">String</span> &lt;*&gt; <span class="hljs-type">IO</span> <span class="hljs-type">String</span>
-</code></pre>
-<p>Ну а тут уже всё как обычно: функция <code>++</code> пробегается по двум АФ, забирает их строки, складывает их, и в итоге функция <code>obtainTwoTextsFromUser</code> возвращает значение <code>IO String</code>, уже содержащее в себе оба пользовательских текста.</p>
-<p>Теперь мы узнали, что <code>&lt;*&gt;</code> может протаскивать функцию в том числе и через результаты работы функций с побочными эффектами.</p>
-<h3 id="-">Родственники</h3>
-<p>Кстати, у вас не возникло чувство дежавю? Мы взяли функцию, обернули её в некую обёртку, прогнали через цепочку неких сущностей, попутно извлекая из них какие-то значения, а в итоге общий результат вернули в той же обёртке. Всё это мы уже видели в монадическом механизме! Взгляните хотя бы на метод <code>pure</code>: это же клон метода <code>return</code>.</p>
-<p>АФ и монады действительно близкие родственники. Во-первых, и первые и вторые формализуют &quot;цепочечный механизм&quot;, а во-вторых, как уже было сказано ранее, все стандартные монады являются АФ.</p>
-<p>Однако следует помнить, что связь между монадами и АФ односторонняя: монады являются АФ, но не наоборот. Поэтому не рекомендуется использовать монады там, где достаточно возможностей функторов. Так что если вам нужно, например, произвести некое действие с элементами списка, вы <em>можете</em> вспомнить о его монадической природе и написать так:</p>
+<p>Как и в случае с читателем, лог не потребовалось явно передавать от функции к функции в виде аргумента. Работать с &quot;облаком&quot; значительно удобнее.</p>
+<p>Как видите, в функции <code>main</code> изменения тоже небольшие:</p>
 <pre><code class="lang-haskell"><span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> = print $ [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] &gt;&gt;= \number -&gt; return $ number * <span class="hljs-number">2</span>
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">let</span> url = <span class="hljs-string">"www.SITE.com/test me/Start page"</span>
+    result &lt;- runWriterT $ addPrefix url 
+                           &gt;&gt;= encodeAllSpaces 
+                           &gt;&gt;= makeItLowerCase
+    <span class="hljs-keyword">let</span> correctedUrl = fst result
+        log = snd result
+    putStrLn $ <span class="hljs-string">"Corrected URL: "</span> ++ correctedUrl ++ <span class="hljs-string">"\n"</span> ++
+               <span class="hljs-string">"Log: "</span> ++ log
 </code></pre>
-<p>но лучше вспомнить о функторной природе списка и написать проще:</p>
-<pre><code class="lang-haskell"><span class="hljs-import"><span class="hljs-keyword">import</span> Control.Applicative </span>
+<p>Функция <code>runWriterT</code> запускает наше &quot;облачное&quot; логирование. Значение типа <code>LoggingCloud</code> незримо передаётся от корректировщика к корректировщику, за это отвечает наш старый друг, оператор последовательной связки <code>(&gt;&gt;=)</code>. А в итоге, на выходе из функции <code>runWriterT</code> мы получаем пару, завёрнутую в используемую нами <code>IO</code>-обёртку. Вытащив пару в <code>result</code>, мы применили к ней функции <code>fst</code> и <code>snd</code> и получили первый элемент (скорректированный URL) и второй (наш лог). </p>
+<h3 id="-writer-">А монада Writer?</h3>
+<p>Как вы уже могли догадаться, монада <code>Writer</code> есть простейший вариант трансформера <code>WriterT</code>, также как и монада <code>Reader</code> есть простейший вариант <code>ReaderT</code>. Вот её определение:</p>
+<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">Writer</span> w = <span class="hljs-type">WriterT</span> w <span class="hljs-type">Identity</span></span>
+</code></pre>
+<p>Всё то же самое. Следовательно, мы можем упростить наш пример, отказавшись от внутренней <code>IO</code>:</p>
+<pre><code class="lang-haskell"><span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">Environment</span> = <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">LoggingCloud</span> = <span class="hljs-type">Writer</span> <span class="hljs-type">Environment</span> <span class="hljs-type">String</span></span>
+
+<span class="hljs-comment">-- Остальные функции остаются без изменений...</span>
 
 <span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
-<span class="hljs-title">main</span> = print $ (*<span class="hljs-number">2</span>) &lt;$&gt; [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">let</span> url = <span class="hljs-string">"www.SITE.com/test me/Start page"</span>
+        result = runWriter $ addPrefix url 
+                             &gt;&gt;= encodeAllSpaces 
+                             &gt;&gt;= makeItLowerCase
+        correctedUrl = fst result
+        log = snd result
+    putStrLn $ <span class="hljs-string">"Corrected URL: "</span> ++ correctedUrl ++ <span class="hljs-string">"\n"</span> ++
+               <span class="hljs-string">"Log: "</span> ++ log
 </code></pre>
-<p>Вот, собственно, и всё. Теперь вы знаете, что такое аппликативные функторы.</p>
+<p>Опять-таки, всё то же самое. Функция <code>runWriter</code> возвращает результат уже без <code>IO</code>-обёртки, так что код чуток упрощается.</p>
+<p>С логированием разобрались, а теперь рассмотрим не менее интересный пример.</p>
+<h3 id="-">Анализ файла</h3>
+<p>Представим, что наше приложение собирает информацию о файлах исходного кода. Скажем, есть файл, и нужно узнать используемый в нём язык программирования, дату его последней модификации и его размер.</p>
+<p>Для начала определим наш &quot;облачный&quot; тип:</p>
+<pre><code class="lang-haskell"><span class="hljs-import"><span class="hljs-keyword">import</span> Control.Monad.Writer.Lazy</span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> System.Directory <span class="hljs-container">(<span class="hljs-title">getModificationTime</span>)</span></span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> System.FilePath <span class="hljs-container">(<span class="hljs-title">takeExtension</span>)</span></span>
+<span class="hljs-import"><span class="hljs-keyword">import</span> System.Posix <span class="hljs-container">(<span class="hljs-title">getFileStatus</span>, <span class="hljs-title">fileSize</span>)</span></span>
+
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">Environment</span> = <span class="hljs-type">String</span></span>
+<span class="hljs-typedef"><span class="hljs-keyword">type</span> <span class="hljs-type">FileInfoCloud</span> = <span class="hljs-type">WriterT</span> <span class="hljs-type">Environment</span> <span class="hljs-type">IO</span> <span class="hljs-type">String</span></span>
+</code></pre>
+<p>Теперь определим три функции-анализатора, каждая из которых получает свою порцию статистической информации и кладёт её в нашем монадическом &quot;облаке&quot;. Этим функциям требуется единственный аргумент - путь к файлу. И самое интересное в том, что единственная полезная работа, производимая каждой из этих функций - это запись информации о файле в &quot;облако&quot;. То есть если в предыдущем примере функции передавали друг другу постепенно изменяемый URL, а логирование в &quot;облако&quot; было лишь &quot;побочным действием&quot;, то здесь запись информации в &quot;облако&quot; и есть главная работа.</p>
+<p>Вот и наша первая функция, определяющая используемый в файле язык программирования. Для простоты будем опираться на расширение:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">obtainLanguage</span> :: <span class="hljs-type">FilePath</span> -&gt; <span class="hljs-type">FileInfoCloud</span>
+<span class="hljs-title">obtainLanguage</span> path = <span class="hljs-keyword">do</span>
+    tell $ <span class="hljs-keyword">case</span> takeExtension path <span class="hljs-keyword">of</span>
+                <span class="hljs-string">".c"</span>   -&gt; <span class="hljs-string">"C, "</span>
+                <span class="hljs-string">".cpp"</span> -&gt; <span class="hljs-string">"C++, "</span>
+                <span class="hljs-string">".hs"</span>  -&gt; <span class="hljs-string">"Haskell, "</span>
+                <span class="hljs-string">".m"</span>   -&gt; <span class="hljs-string">"Objective-C, "</span>
+                _      -&gt; <span class="hljs-string">"Unknown, "</span>
+    return path
+</code></pre>
+<p>Обратите внимание, что <code>path</code>, поступаемый на вход, анализируется и затем просто возвращается обратно в монаду. Вся полезная работа заключается только в записи в &quot;облако&quot;, с помощью нашей подруги <code>tell</code>. Вы спросите, зачем же нам возвращать путь, раз мы всё равно ничего с ним не делаем? А это нужно для формирования нашей любимой монадической цепочки, в функции <code>main</code>.</p>
+<p>Определим ещё два анализатора:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">obtainModificationDate</span> :: <span class="hljs-type">FilePath</span> -&gt; <span class="hljs-type">FileInfoCloud</span>
+<span class="hljs-title">obtainModificationDate</span> path = <span class="hljs-keyword">do</span>
+    date &lt;- liftIO $ getModificationTime path
+    tell $ show date ++ <span class="hljs-string">", "</span>
+    return path
+
+<span class="hljs-title">obtainSize</span> :: <span class="hljs-type">FilePath</span> -&gt; <span class="hljs-type">FileInfoCloud</span>
+<span class="hljs-title">obtainSize</span> path = <span class="hljs-keyword">do</span>
+    status &lt;- liftIO $ getFileStatus path
+    tell $ (show $ fileSize status) ++ <span class="hljs-string">" bytes"</span>
+    return path
+</code></pre>
+<p>А теперь пишем <code>main</code>:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">main</span> :: <span class="hljs-type">IO</span> ()
+<span class="hljs-title">main</span> = <span class="hljs-keyword">do</span>
+    <span class="hljs-keyword">let</span> path = <span class="hljs-string">"/Users/dshevchenko/main.cpp"</span>
+    info &lt;- execWriterT $ obtainLanguage path 
+                          &gt;&gt;= obtainModificationDate 
+                          &gt;&gt;= obtainSize
+    putStrLn $ <span class="hljs-string">"Info about "</span> ++ path ++ <span class="hljs-string">":\n"</span>
+               ++ info
+</code></pre>
+<p>Вы заметили? Нет никакой пары, и нам больше не нужны функции <code>fst</code> и <code>snd</code>. И самое главное, исчезла функция <code>runWriterT</code>, а её место заняла новая функция <code>execWriterT</code>. В ней-то всё и дело. Если <code>runWriterT</code> возвращает пару с &quot;облачной&quot; записью и с конечным значением, то <code>execWriterT</code> возвращает только &quot;облачную&quot; запись. И это как раз наш случай! Если бы мы использовали функцию <code>runWriterT</code>, то опять имели бы дело с парой, первым элементом которой был бы путь к анализируемому файлу. Но зачем запихивать его в финальную пару, если он всё равно никак не изменился? Реальную ценность для нас представляет только &quot;облачная&quot; запись, содержащая собранные данные о файле, поэтому в <code>info</code> она и лежит. И вот он результат:</p>
+<pre><code class="lang-bash">Info about /Users/dshevchenko/main.cpp:
+C++, <span class="hljs-number">2014</span>-<span class="hljs-number">03</span>-<span class="hljs-number">29</span> <span class="hljs-number">20</span>:<span class="hljs-number">59</span>:<span class="hljs-number">29</span> UTC, <span class="hljs-number">1835</span> bytes
+</code></pre>
+<h3 id="-">И снова про лифт</h3>
+<p>Кстати, вы заметили кое-что новенькое в наших анализаторах? Вспомним:</p>
+<pre><code class="lang-haskell"><span class="hljs-title">obtainModificationDate</span> :: <span class="hljs-type">FilePath</span> -&gt; <span class="hljs-type">FileInfoCloud</span>
+<span class="hljs-title">obtainModificationDate</span> path = <span class="hljs-keyword">do</span>
+    date &lt;- liftIO $ getModificationTime path  <span class="hljs-comment">-- Что это за liftIO?</span>
+    tell $ show date ++ <span class="hljs-string">", "</span>
+    return path
+</code></pre>
+<p>Функция <code>getModificationTime</code> возвращает значение типа <code>IO UTCTime</code>, однако сам анализатор <code>obtainModificationDate</code> имеет дело с более высокоуровневой монадой. Нам на помощь приходит функция <code>liftIO</code>, похожая на уже известную нам функцию <code>lift</code>. Она берёт значение типа <code>IO UTCTime</code> и поднимает его на следующий уровень, то есть на уровень нашего <code>WriterT</code>. Затем мы извлекаем из этого поднятого значения дату модификации и записываем её в &quot;облачный журнал&quot;.</p>
+<h3 id="-">В сухом остатке</h3>
+<ul>
+<li>Трансформер <code>WriterT</code> полезен тогда, когда группе функций нужен некий общий журнал для записей.</li>
+<li>Функция <code>runWriterT</code> возвращает как результат работы функций, имеющих доступ к журналу, так и сам журнал.</li>
+<li>Каждая из функций оставляет запись в общем журнале с помощью функции <code>tell</code>.</li>
+<li>Монада <code>Writer</code> - это простейший вариант трансформера <code>WriterT</code>.</li>
+<li>Функция <code>execWriterT</code> возвращает только журнал, что полезно в тех случаях, когда именно журнал и представляет для нас ценность.</li>
+</ul>
 
                     
                     </section>
@@ -1037,10 +974,10 @@
         </div>
 
         
-        <a href="../delicious/functors.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        <a href="../delicious/transformers-reader.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../delicious/transformers-first-meeting.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        <a href="../miscellaneous/README.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
