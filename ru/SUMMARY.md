@@ -14,6 +14,7 @@
   * [Три кита типизации](about-haskell/types-three-foundations.md)
   * [Неизменность данных](about-haskell/immutability.md)
   * [Лень](about-haskell/laziness.md)
+  * [Где его можно использовать](about-haskell/where.md)
 * [О функциях](about-functions/README.md)
   * [Чистые функции](about-functions/pure-functions.md)
   * [λ-функции](about-functions/lambda-functions.md)
