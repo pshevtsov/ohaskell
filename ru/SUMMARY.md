@@ -20,6 +20,7 @@
   * [λ-функции](about-functions/lambda-functions.md)
   * [Функции высшего порядка](about-functions/higher-order-functions.md)
   * [Функциональные цепочки](about-functions/functional-chains.md)
+  * [Функции и операторы](about-functions/functions-and-operators.md)
 * [О списках](about-lists/README.md)
   * [Списки - одним взглядом](about-lists/lists-at-a-glance.md)
   * [Диапазоны](about-lists/ranges.md)
