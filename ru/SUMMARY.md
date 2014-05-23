@@ -51,6 +51,7 @@
   * [Трансформеры: читатель](delicious/transformers-reader.md)
   * [Трансформеры: писатель](delicious/transformers-writer.md)
   * [Трансформеры: состояние](delicious/transformers-state.md)
+  * [Трансформеры: ошибка](delicious/transformers-error.md)
 * [Остальное](miscellaneous/README.md)
   * [О модулях](miscellaneous/about-modules.md)
   * [Рекурсивные функции](miscellaneous/recursive-functions.md)
