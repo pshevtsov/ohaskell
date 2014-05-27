@@ -12,8 +12,6 @@
 Помните, в [главе о функциональных цепочках](http://ohaskell.dshevchenko.biz/ru/about-functions/functional-chains.html) мы создали три функции, корректирующие некрасивый URL? Давайте добавим туда лог:
 
 ```haskell
-module Main where
-
 import Control.Monad.Writer.Lazy
 import Data.Char
 import Data.String.Utils
@@ -125,9 +123,9 @@ main = do
 
 ```haskell
 import Control.Monad.Writer.Lazy
-import System.Directory (getModificationTime)
-import System.FilePath (takeExtension)
-import System.Posix (getFileStatus, fileSize)
+import System.Directory 
+import System.FilePath 
+import System.Posix 
 
 type Environment = String
 type FileInfoCloud = WriterT Environment IO String

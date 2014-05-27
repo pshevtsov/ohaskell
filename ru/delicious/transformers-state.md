@@ -12,12 +12,10 @@
 Возьмём пример со сбором информации о файле и украсим его:
 
 ```haskell
-module Main where
-
 import Control.Monad.State.Lazy
-import System.Directory (getModificationTime)
-import System.FilePath (takeExtension)
-import System.Posix (getFileStatus, fileSize) 
+import System.Directory 
+import System.FilePath 
+import System.Posix 
 
 type Environment = String
 type FileInfoCloud = StateT Environment IO String
