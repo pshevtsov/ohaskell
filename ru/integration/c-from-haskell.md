@@ -544,7 +544,5 @@ $ valgrind --leak-check=full ./dist/build/Real/Real
 
 Код из этой главы доступен онлайн.
 
-<span><a href="https://www.fpcomplete.com/ide?title=c-from-haskell&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/integration/c-from-haskell/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
-<span class="buttons_space"></span>
-<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/integration/c-from-haskell/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/Integration/c-from-Haskell/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
 

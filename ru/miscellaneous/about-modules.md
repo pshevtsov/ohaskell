@@ -169,7 +169,7 @@ main = ...
 
 Код из этой главы доступен онлайн.
 
-<span><a href="https://www.fpcomplete.com/ide?title=about-modules&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/miscellaneous/about-modules/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span><a href="https://www.fpcomplete.com/ide?title=about-modules&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/Miscellaneous/about-modules/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
 <span class="buttons_space"></span>
-<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/miscellaneous/about-modules/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/Miscellaneous/about-modules/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
 

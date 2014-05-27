@@ -99,7 +99,7 @@ main =
 
 Код из этой главы доступен онлайн.
 
-<span><a href="https://www.fpcomplete.com/ide?title=functors&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/delicious/functors/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span><a href="https://www.fpcomplete.com/ide?title=functors&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/Delicious/Functors/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
 <span class="buttons_space"></span>
-<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/delicious/functors/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/Delicious/Functors/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
 
