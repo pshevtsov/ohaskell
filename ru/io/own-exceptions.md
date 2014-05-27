@@ -67,3 +67,11 @@ Fault: InvalidRepository "ss://ul@sch/proj.git"
 * Бросаем исключение функцией `throw`.
 * Ловим исключение как обычно, функцией `try`.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=own-exceptions&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/io/own-exceptions/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/io/own-exceptions/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

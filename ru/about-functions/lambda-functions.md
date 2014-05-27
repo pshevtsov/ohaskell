@@ -125,3 +125,11 @@ main = print ((f 5) + (f 6))
 * λ-функция (далее ЛФ) - это анонимное отражение зависимости чего-то от чего-то.
 * Чаще всего ЛФ создаётся локально и сразу же применяется к неким значениям.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=lambda-functions&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-functions/lambda-functions/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-functions/lambda-functions/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

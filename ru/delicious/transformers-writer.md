@@ -209,3 +209,11 @@ obtainModificationDate path = do
 * Монада `Writer` - это простейший вариант трансформера `WriterT`.
 * Функция `execWriterT` возвращает только журнал, что полезно в тех случаях, когда именно журнал и представляет для нас ценность.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=transformers-writer&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/delicious/transformers-writer/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/delicious/transformers-writer/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

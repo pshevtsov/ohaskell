@@ -120,3 +120,11 @@ main = do
 * Функция `left` есть аналог `throwError`, а `right` - то же самое что `return`.
 * Функции, использующие "ошибочное облако", удобно использовать для пошагового анализа.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=transformers-error&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/delicious/transformers-error/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/delicious/transformers-error/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

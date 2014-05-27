@@ -123,4 +123,12 @@ obtainTextFromUser = do
 
 Вот и всё. Теперь вы знаете простую суть монад. В принципе, монадический механизм - это всего лишь паттерн проектирования, унифицирующий процесс связывания вычислений.
 
-Перейдём к практическим примерам.
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=monads-IO&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/delicious/monads-IO/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/delicious/monads-IO/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+
+

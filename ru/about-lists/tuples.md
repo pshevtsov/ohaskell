@@ -160,3 +160,11 @@ src/Main.hs:23:12:
 * Тип кортежа определяется количеством и типом хранящихся в нём значений.
 * Единственное, что мы можем сделать с кортежем - извлечь из него значения, если таковые имеются.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=tuples&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-lists/tuples/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-lists/tuples/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

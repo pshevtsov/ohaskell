@@ -104,3 +104,11 @@ main = print $ take 5 [2,4..]
 * Диапазон служит для автоматического создания списка по заданным критериям.
 * Учитывая ленивую природу Haskell, мы можем оперировать диапазонами, создающими бесконечные списки.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=ranges&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-lists/ranges/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-lists/ranges/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

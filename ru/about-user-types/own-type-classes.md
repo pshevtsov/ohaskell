@@ -101,3 +101,12 @@ simple = Poblano "ancho"
 * Главная цель определения собственного класса типов - указание контекста типов.
 * Класс типов может включать в себя как функции, так и константы.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=own-type-classes&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-user-types/own-type-classes/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-user-types/own-type-classes/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+
+

@@ -69,4 +69,13 @@ lineFromUser <- getLine
 
 Это - ассоциация. Мы говорим действию, порождённому функцией `getLine`: "Пойди, получи введённую пользователем строку, принеси её нам и привяжи (bind) её к идентификатору `lineFromUser`, чтобы мы cмогли прочесть эту строку".
 
-Во-вторых, мы увидели новое ключевое слово `do`. И о нём стоит поговорить отдельно.
+Во-вторых, мы увидели новое ключевое слово `do`. И о нём стоит поговорить отдельно, что мы и сделаем в следующей главе.
+
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=IO-a&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/io/IO-a/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/io/IO-a/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

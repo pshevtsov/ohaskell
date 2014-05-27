@@ -196,3 +196,12 @@ evaluate :: a -> IO a
 * Для работы с `try` чистую функцию следует поместить в `evaluate`-обёртку.
 
 Почти готово. Но наше рассмотрение исключений не было бы полным без изучения наших собственных исключений.
+
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=exceptions-handling&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/io/exceptions-handling/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/io/exceptions-handling/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

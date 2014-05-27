@@ -158,3 +158,11 @@ addPrefix . encodeAllSpaces . makeItLowerCase $ url
 * Функция применения также компонует функции в цепочку, а также позволяет компоновать функцию с её аргументом.
 * Совместное использование функций применения и композиции упрощает код, избавляя нас от лишних круглых скобок.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=functional-chains&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-functions/functional-chains/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-functions/functional-chains/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

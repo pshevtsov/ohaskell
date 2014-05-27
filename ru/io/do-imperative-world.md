@@ -103,3 +103,12 @@ obtainTwoTextsFromUser = do
 * Функция `return` оборачивает значение в IO-действие. Не путайте эту функцию с ключевым словом `return` в C-подобных языках.
 
 Готово. Теперь вы знаете о ключевом слове `do`. Впрочем, пока вы не знаете о нём самого интересного, но это чуть позже.
+
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=do-imperative-world&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/io/do-imperative-world/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/io/do-imperative-world/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

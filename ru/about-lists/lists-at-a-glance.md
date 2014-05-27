@@ -116,3 +116,11 @@ main =
 * С элементами списка можно совершать различные манипуляции.
 * Мы не можем изменить уже созданный список, мы можем лишь создать на его основе другой список.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=lists-at-a-glance&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-lists/lists-at-a-glance/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-lists/lists-at-a-glance/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

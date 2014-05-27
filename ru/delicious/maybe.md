@@ -73,3 +73,12 @@ main =
 Обмотали почтовый адрес в `Maybe`, прогнали его через проверочный конвейер и сделали вывод о корректности адреса. Если адрес некорректен - нам неважно, на какой стадии будет обнаружена ошибка, в любом случае конечный вывод будет однозначен.
 
 Ну вот, теперь вы знаете о `Maybe`.
+
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=maybe&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/delicious/maybe/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/delicious/maybe/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

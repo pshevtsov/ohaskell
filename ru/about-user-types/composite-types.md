@@ -206,3 +206,11 @@ changeEmail :: User a -> String -> User a
 * Тип поля может быть указан как индивидуально, так и в составе группы полей.
 * Тип поля может быть полиморфным. В этом случае составной тип превращается в конструктор типа - в конструкцию, способную порождать бесчисленное множество конкретных типов.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=composite-types&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-user-types/composite-types/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-user-types/composite-types/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

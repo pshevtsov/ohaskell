@@ -177,3 +177,12 @@ makeListFrom 2 3
 * Рекурсивная функция вызывает саму себя, обеспечивая цикличность.
 * Тело рекурсивной функции обязано содержать точку выхода из рекурсивного цикла.
 * Рекурсия немного выворачивает мозг программисту, привыкшему к `for`, но, как заметил один из корифеев программирования Laurence Peter Deutsch, "итерация свойственна человеку, а рекурсия божественна".
+
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=recursive-functions&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/miscellaneous/recursive-functions/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/miscellaneous/recursive-functions/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

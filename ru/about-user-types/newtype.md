@@ -76,3 +76,12 @@ newtype IPAddress = IP String
 * Эта тип-обёртка должна иметь только одно поле и только один конструктор значения.
 * Работа с типом, созданным с помощью `newtype`, эффективнее, нежели с созданным с помощью `data`.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=newtype&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-user-types/newtype/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-user-types/newtype/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+
+

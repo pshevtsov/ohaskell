@@ -235,3 +235,11 @@ type FileInfoCloud = StateT Environment IO ()
 * Функции `runStateT`, `evalStateT` и `execStateT` используются в зависимости от того, что нас интересует: только результат работы наших функций, только "облачное" значение или же и то и другое.
 * В "облаке", созданном `StateT`, можно расположить составной объект, что позволяет упростить сигнатуры функций, использующих "облачное" значение.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=transformers-state&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/delicious/transformers-state/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/delicious/transformers-state/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

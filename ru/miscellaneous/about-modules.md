@@ -164,3 +164,12 @@ main = ...
 Вы спросите, почему же мы не делали этого раньше? Дело в том, что компилятор `ghc` сам может понять, который из всего множества модулей есть модуль `Main`. Однако, в соответствии со стандартом Haskell 2010, правильнее будет указывать имя модуля `Main` явно. Я думаю, это логично, а то получается, что все модули названные, а самый главный модуль - безымянный.
 
 Ну вот, теперь вы знаете о модулях всё.
+
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=about-modules&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/miscellaneous/about-modules/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/miscellaneous/about-modules/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

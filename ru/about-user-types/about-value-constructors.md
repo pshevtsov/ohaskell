@@ -124,3 +124,11 @@ main = print $ descriptionOf TCP
 * Имя КЗ может отличаться от имени самого типа.
 * КЗ может быть сколько угодно, от нуля и больше.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=about-value-constructors&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-user-types/about-value-constructors/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-user-types/about-value-constructors/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+

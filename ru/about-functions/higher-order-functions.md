@@ -308,3 +308,12 @@ My login: denis
 * ФВП неразрывно связаны с механизмом каррирования, когда функция от нескольких аргументов превращается в набор функций от одного аргумента каждая. Поэтому любая функция, принимающая более одного аргумента, является ФВП.
 * Каррирование базируется на частичном применении функции, когда функция принимает не все ожидаемые ею аргументы.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=higher-order-functions&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-functions/higher-order-functions/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-functions/higher-order-functions/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+
+

@@ -214,3 +214,11 @@ takeWhile (/= '@') fullEmail
 * List comprehension - это конструкция, порождающая новый список из одного или нескольких имеющихся списов.
 * Новый список порождается в результате применения различных функций к элементам имеющегося списка/списков.
 
+### Пробуем
+
+Код из этой главы доступен онлайн.
+
+<span><a href="https://www.fpcomplete.com/ide?title=list-comprehension&paste=https://raw.githubusercontent.com/denisshevchenko/ohaskell-code/master/code/about-lists/list-comprehension/Main.hs" class="fpcomplete_code" target="_blank">Открыть в FP IDE</a></span>
+<span class="buttons_space"></span>
+<span><a href="https://github.com/denisshevchenko/ohaskell-code/blob/master/code/about-lists/list-comprehension/Main.hs" class="github_code" target="_blank">Открыть на GitHub</a></span>
+
