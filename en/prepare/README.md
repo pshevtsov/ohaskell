@@ -1,4 +1,4 @@
-Prepare to real work
-====================
+Prepare
+=======
 
-#### Let's create a real project.
+<p align="center">Let's create a real project. Right now.</p>

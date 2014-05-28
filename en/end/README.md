@@ -1,4 +1,4 @@
-Prepare to real work
-====================
+End
+===
 
-#### Let's create a real project.
+<p align="center">A couple of words at parting.</p>

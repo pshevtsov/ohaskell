@@ -1,15 +1,12 @@
-About humanly Haskell
-=====================
+## Hi!
 
-A book about Haskell, written in plain language for ordinary programmers.
-Designed for those new to the world of functional programming,
-eager to finally comprehend it.
+This is a book about Haskell, amazing, beautiful and powerful programming language. I wrote it specifically for those developers who don't imagine what a functional programming is, but who wants to finally understand it.
 
-* [The official website of the book](http://ohaskell.ru).
-* [Web version of github.io](http://ohaskell.ru/fst).
+### Why is this book was written?
 
-### Translation
+Because I'm fed up! Almost all the books about Haskell starts with quick sort algorithm and something about factorial. This book is quite different. I'll talk about Haskell by human language, with minimum of academism and with clean examples. And I promise: examples will be clean not only for me...  ;-)
 
-This book was translated into English thanks to effort by the GitHub community.
-[Translation repository] (https://github.com/jhenahan/ohaskell-translations).
+### What for?
+
+Functional programming is a kind of ghetto in the big megapolis of the software development. Portion of functional languages on the market is very small. And who are Haskell-programmers in the eyes of mainstream's programmers? Either an unattainable elite or an antisocial idiots. This book will destroy that idea.
 

@@ -1,0 +1,5 @@
+Own exceptions
+--------------
+
+Coming soon.
+

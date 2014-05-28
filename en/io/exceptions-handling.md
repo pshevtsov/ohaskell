@@ -1,0 +1,5 @@
+Exceptions handling
+-------------------
+
+Coming soon.
+

@@ -1,4 +1,4 @@
-Prepare to real work
-====================
+Miscellaneous
+=============
 
-#### Let's create a real project.
+<p align="center">Something interesting is awaiting us.</p>
