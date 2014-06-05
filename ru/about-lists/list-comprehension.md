@@ -166,15 +166,14 @@ main = print [toUpper c | c <- "http",
 Разберём более практичный пример:
 
 ```haskell
-import Data.String.Utils
+import Data.List
 
 checkGooglerBy :: String -> String
 checkGooglerBy email =
-    if email `endsWith` "gmail.com"
+    if "gmail.com" `isSuffixOf` email
     then nameFrom email ++ " is a Googler!"
     else email
-    where endsWith str suffix = endswith suffix str
-          nameFrom fullEmail = takeWhile (/= '@') fullEmail
+    where nameFrom fullEmail = takeWhile (/= '@') fullEmail
 
 main = print [checkGooglerBy email | email <- ["adam@gmail.com",
                                                "bob@yahoo.com",
@@ -189,15 +188,9 @@ main = print [checkGooglerBy email | email <- ["adam@gmail.com",
 ["adam is a Googler!","bob@yahoo.com","richard is a Googler!","elena@yandex.ru","denis is a Googler!"]
 ```
 
-Мы проанализировали список email-адресов, и заменили все gmail-адреса фразой, начинающейся с имени пользователя. А теперь по шагам.
+Мы проанализировали список email-адресов, и заменили все gmail-адреса фразой, начинающейся с имени пользователя.
 
-Из уже знакомого нам модуля `Data.String.Utils` мы возьмём функцию `endswith`, проверяющую, завершается ли одна строка другой строкой. Для красивого инфиксного использования мы обернули её собственной функцией `endsWith`, в результате чего код приобретает литературно точный вид:
-
-```haskell
-if "adam@gmail.com" `endsWith` "gmail.com"
-```
-
-Теперь рассмотрим эту строку:
+Рассмотрим эту строку:
 
 ```haskell
 takeWhile (/= '@') fullEmail

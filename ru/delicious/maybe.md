@@ -54,7 +54,7 @@ isNothing aCoefficient
 Как уже было сказано в предыдущей главе, тип `Maybe` - это не просто опциональная обёртка, это ещё и монада. Поэтому мы можем делать вот такие вещи:
 
 ```haskell
-import Data.String.Utils
+import Data.List
 import Data.Maybe
 
 result :: Maybe String -> String
@@ -66,8 +66,7 @@ main =
     where checkFormat email =
               if '@' `elem` email then return email else Nothing
           checkDomain email =
-              if email `endsWith` ".com" then return email else Nothing
-          endsWith str suffix = endswith suffix str
+              if ".com" `isSuffixOf` email then return email else Nothing
 ```
 
 Обмотали почтовый адрес в `Maybe`, прогнали его через проверочный конвейер и сделали вывод о корректности адреса. Если адрес некорректен - нам неважно, на какой стадии будет обнаружена ошибка, в любом случае конечный вывод будет однозначен.

@@ -1,4 +1,5 @@
-### About a Hackage ###
+About a Hackage
+---------------
 
 If you worked with Linux, you should be familiar with а concept of a "repository":
 a sort of centralized place from which you can get a lot of goodies. Hackage is the
@@ -18,7 +19,7 @@ In order to use a package you need to complete four steps:
 3. add it to your project,
 4. import the required modules from it.
 
-#### Finding ####
+### Finding
 
 I recommend you to search for packages here:
 
@@ -31,14 +32,16 @@ box and you get a lot of interesting results.
 For example, let's install package `text`, an advanced package to work with...
 text. Surprise, surprise.
 
-#### Installing ####
+### Installing
 
 There is an instrument for a convenient installation of package from Hackage,
 its name is `cabal`. Oh yeah, the same, already known to us utility!
 
 Change directory to the root of our project and run a command:
 
-	$ cabal update
+```bash
+$ cabal update
+```
 
 With this command we updated the list of available packages. It is recommended
 to run this command from time to time, in order to stay on the "cutting-edge"
@@ -46,21 +49,25 @@ of the Hackage development.
 
 After package list is updated we can install the required package:
 
-	$ cabal install text
+```bash
+$ cabal install text
+```
 
 A bit of patience and the package is installed.
 
-#### Adding to the project ####
+### Adding to the project
 
 Open build file `Real.cabal` and add the name of the installed package to it.
 In order to do that, find parameter `build-depends` and append the name
 of the package after the comma:
 
+```haskell
 	build-depends:    base == 4.6.*, text
+```
 
 And the last step.
 
-#### Importing modules ####
+### Importing modules
 
 Package consists of modules (and modules, as you already know, are files with
 source code). There are quite many modules in the `text` package, we will take
@@ -73,7 +80,7 @@ import Data.Text
 Ready. Now we can use different goodies from that module. In the nearest future
 you will find out which of them we are going to use.
 
-#### About Prelude ####
+### About Prelude
 
 There is a standard module which is imported into all your modules by default.
 Its name is `Prelude`. It contains the most basic Haskell instruments, you will

@@ -1,37 +1,37 @@
 Where we can use it
 -------------------
 
-Почти везде. Haskell, будучи универсальным языком, прекрасно подходит для самых разных сегментов ПО. Это и клиент-серверное программирование, и консольные утилиты, и десктопные приложения с GUI, и мобильные приложения, и даже веб-разработка. Причём Haskell не просто *может* использоваться в этих областях, но использоваться *эффективно*.
+Almost anywhere. Haskell is a general purpose language, so it's applicable to different segments of software. Client-server development, command-line utilities, desktop apps with GUI, mobile apps and even web-development. Moreover, Haskell not just *can* be used for such a development, but used *efficiently*.
 
-### Почему
+### Why
 
-#### Высокоуровневый синтаксис
+#### High-level syntax
 
-Haskell-код сопоставим с кодом на скриптовых языках. Поэтому его весьма легко читать, а следовательно, и сопровождать. Скоро вы и сами в этом убедитесь. Разумеется, на Haskell можно написать и совершенно нечитабельный хлам, однако это справедливо для любого языка программирования.
+Code written in Haskell can be compared with code written in script languages. So we have a code that simple to read and, as a result, simple to maintain. Of course, we *can* write an awful trash in Haskell, but trash can be written in any programming language.
 
-#### Автоматическое управление памятью
+#### Automatic memory management
 
-На дворе 2014 год, и при всём моём уважении к старому доброму C, думать о том, как, где и когда выделить N байтов памяти - это каменный век. Haskell избавляет разработчика от жонглирования байтиками, беря на себя выделение и освобождение памяти.
+Now is 2014, so, with all due respect to the good old C, it's a stone age if we have to think about how/where/when to allocate N bytes of memory. Haskell freeing the developer from the stone age and takes the memory allocation/deallocation upon itself.
 
-#### Строгая статическая типизация
+#### Strict static typing 
 
-В силу того, что ошибки с типами отлавливаются на этапе компиляции, мы получаем более надёжный код. Впрочем, не рассматривайте это как камень в огород динамических языков (межъязыковые войны выходят за рамки этой книги).
+Due fact that type errors will be catched at the compile time, we'll get a more reliable code. Compile error is always better then runtime error, isn't it?
 
-#### Компилируемость
+#### Compilable
 
-Код, написанный на Haskell, компилируется в обыкновенный, канонический исполняемый файл. Мы получаем быстрое приложение, не зависящее ни от интерпретаторов, ни от дополнительных runtime environments.
+Haskell code compiles into simple, canonical executable file. So we get a fast software which runs without interpreters or additional runtime environments.
 
-#### Готовые решения
+#### Ready solutions
 
-Для Haskell существует множество готовых свободных библиотек. Нет, не все они идеальны, но есть и множество таких, которые давно и успешно испытаны в реальных проектах. Так что изобретать велосипед не придётся.
+We have many, many packages for a Haskell. No, not all of them are perfect, but Hackage contains a big number of well-tested, reliable and useful packages, so we won't to reinvent the wheel.
 
-#### Параллельный мир
+#### Parallel world
 
-На страницах этой книги мы не будем рассматривать параллельное и многопоточное программирование, поскольку это обширная тема, которой посвящена [отдельная книга](http://chimera.labs.oreilly.com/books/1230000000929). Скажу лишь, что, в силу чисто-функциональной природы Haskell, распараллеливать код на нём [значительно проще](https://www.fpcomplete.com/blog/2012/04/the-downfall-of-imperative-programming), чем на императивных языках. 
+We won't to study parallel and concurrent programing in this book, because there's one [excellent book](http://chimera.labs.oreilly.com/books/1230000000929) about this. Just say that due pure functional nature of a Haskell we can write parallel code [much easier](https://www.fpcomplete.com/blog/2012/04/the-downfall-of-imperative-programming) than in languages like C++ or Java. 
 
-### Главное ограничение
+### Main restriction
 
-Да, есть одна область не для Haskell. Речь идёт о низкоуровневой разрабтке, приближенной к железу. Там, где критически важна скорость выполнения кода, там, где требуется ручное управление памятью по причине малого её объёма, там, где размер исполняемого файла ограничен десятками килобайт - там Haskell не подходит. Поэтому если вам нужно написать какой-нибудь высокопроизводительный драйвер или часть ядра операционной системы - посмотрите в сторону других языков.
+Yes, there's one area not for a Haskell. It's about a low-level development that close to a hardware. Where the speed of code execution is crucial, where you want to manage memory manually because of its small volume, where the size of the executable file is limited to tens of kilobytes - Haskell doesn't fit there. So if you need to write some high-performance driver or part of the operating system kernel - I think you need to look at other languages.
 
-Ну а теперь - начнём наше изучение.
+And now let's begin our studying.
 

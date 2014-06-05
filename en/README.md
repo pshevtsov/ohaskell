@@ -8,5 +8,9 @@ Because I'm fed up! Almost all the books about Haskell starts with quick sort al
 
 ### What for?
 
-Functional programming is a kind of ghetto in the big megapolis of the software development. Portion of functional languages on the market is very small. And who are Haskell-programmers in the eyes of mainstream's programmers? Either an unattainable elite or an antisocial idiots. This book will destroy that idea.
+Functional programming is a kind of ghetto in the big megapolis of the software development. Portion of functional languages on the market is very small. And who are Haskell-programmers in the eyes of mainstream's programmers? Either an unattainable elite or an antisocial idiots. This book will destroy such a view.
+
+### About English translation
+
+This is an English translation of the Russian book "О Haskell по-человечески". If you want to contribute to this translation - please visit [translation repository](https://github.com/jhenahan/ohaskell-translations).
 

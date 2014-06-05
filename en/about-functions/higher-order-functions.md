@@ -5,11 +5,11 @@ Higher-order functions are very important in Haskell. From previous chapters you
 
 A higher-order function is a function, which takes another function as an argument and/or returns another function.
 
-#### Exposing functions ####
+### Exposing functions 
 
 As you remember, in the chapter about pure functions I've mentioned, that they can take one or more arguments. It's time to say that I deceived you, as the truth is:
 
->**Pure functions in Haskell always take one argument**
+> **Pure functions in Haskell always take one argument**
 
 But how could we declare functions taking two or event three arguments?
 
@@ -30,8 +30,8 @@ main = print (divide 10.03 2.1)
 
 then we'll know, that this call occurs in two steps:
 
-* Function `divide` is applied to the first argument `10.03` and - attention! - returns the function of the type `Double -> Double`.
-* This returned function, in turn, is applied to the second argument `2.1` and returns the final value `4.77`.
+1. Function `divide` is applied to the first argument `10.03` and - attention! - returns the function of the type `Double -> Double`.
+2. This returned function, in turn, is applied to the second argument `2.1` and returns the final value `4.77`.
 
 We can explicitly state this two steps by rewriting the function call:
 
@@ -84,7 +84,7 @@ and its call as:
 
 And, to clarify things completely, let's study one important thing.
 
-#### Partial function application ####
+### Partial application 
 
 In spite of the two-step nature of `divide` function call, its body will be executed only once. A single call, just divided into two steps. And to understand the nature of these steps, let's study ***partial application*** of functions.
 
@@ -94,9 +94,9 @@ Let's apply the function `divide` to just a single argument:
 
 ```haskell
 main =
-    let temporaryFunction = divide 10.03  -- remember first value
+    let temporaryFunction = divide 10.03  -- Remember first value
     in
-    print (temporaryFunction 2.1)         -- now we can complete the job
+    print (temporaryFunction 2.1)         -- Now we can complete the job
 ```
 
 Now everything is in its place. We can clearly see, what does this expression mean:
@@ -118,7 +118,7 @@ print (secondFunction 3.0)              -- Now perform the addition
 
 During the call we got two temporary λ-functions, each of which was applied to the next argument and remembered it. Only when the second temporary function λ-function was applied to the third argument, we got the sum.
 
-#### Why do we need it ####
+### Why do we need it 
 
 In most cases you don't need this information about currying and partial application. The main advantage of the approach, when one function of multiple arguments is decomposed into a chain of functions of one argument, lies in the academical plane: it is easier to do mathematical proofs, if you agree that every function takes strictly one argument and returns strictly one value.
 

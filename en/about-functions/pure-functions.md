@@ -17,7 +17,7 @@ Hence follows an important feature of pure functions, precisely the lack of
 its output value. Therefore if we pass same value as input million times, we are
 guaranteed that on the output we'll get the same result million times.
 
-#### Declaring ####
+### Declaring
 
 Same as in other programming languages, function should first be declared. Let 
 us do that.
@@ -65,7 +65,7 @@ type of the output.
 	Int -> Int -> Int -> Int
 	arguments' types |  | output's type
 
-#### Defining ####
+### Defining
 
 Now the function needs to be defined. By the way, the function *must* be defined.
 For example in the `C` or `C++` language we may declare the function, but not
@@ -90,7 +90,7 @@ not types), and `BODY\_EXPRESSION` is the body of function. In that case we have
 the only argument namely `value`, we also have a simple body where we just sum
 argument with itself.
 
-#### Calling ####
+### Calling 
 
 Now our function may be called. Let us do that with argument 4, or as we say
 in world of `FP`, apply the function to the argument 4:
@@ -101,13 +101,15 @@ main = putStrLn (show (simpleSum 4))
 
 Result:
 
-	8
+```bash
+8
+```
 
 Done. Now I should clarify some important details.
 
-#### Exit from function ####
+### Exit from function
 
-In the `C` language, if you have a function with returnable type, we must
+In the C language, if you have a function with returnable type, we must
 specify the exit points using `return` instruction. Moreover, there may be
 several exit points.
 
@@ -179,7 +181,7 @@ That is an important property of pure functions: we always can safely substitute
 calls to them with returned results, and the application will work as it did 
 before. That's why it's easy to work with pure function.
 
-#### Guards ####
+### Guards 
 
 There is one more method to perform the selection inside the function with no
 use of `if-then-else`. It is called guard. Let's refactor our function one more
@@ -218,11 +220,13 @@ indicate adress
 and then apply the function to a non-empty string, which is not "`127.0.0.1`",
 you'll get a runtime error:
 
-	Real: src/Main.hs:(23,1)-(25,36): Non-exhaustive patterns in function
+```bash
+Real: src/Main.hs:(23,1)-(25,36): Non-exhaustive patterns in function
+```
 
 Be careful.
 
-#### Local expressions ####
+### Local expressions
 
 Local expression inside the function's body is a very useful thing, which can
 save us from magic numbers and repetitions.
@@ -276,7 +280,7 @@ prepareLength line =
 
 The common structure is as follows:
 
-> let `bindings` in `expression`,
+    let `bindings` in `expression`,
 
 where `bindings` are the local expressions and `expression` is the place where
 we are going to use these local expressions.
@@ -303,7 +307,7 @@ Here we set "super-local" expression with the name `s` which exists only inside
 the round parenthesis. That's why that code wouldn't pass the compilation, cause
 the second expression `s` is is outside the parenthesis.
 
-#### Without declaration ####
+### Without declaration
 
 As you remember, we can't declare the function without defining it.
 But what about to define the function without declaring it? The answer is: we can.

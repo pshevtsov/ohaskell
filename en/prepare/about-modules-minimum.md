@@ -1,4 +1,5 @@
-### A minimum about modules ###
+A minimum about modules
+-----------------------
 
 Real projects never consist of a single file. It's time to learn about modules.
 
@@ -16,7 +17,7 @@ hello user = "Hi, " ++ user
 
 The first string declares the name of the module - `Helpers`. Then, after `where` keyword, we fill our module with contents. The content we have is really simple, but don't ask me yet, what `hello` is. We will soon find out.
 
-#### Importing ####
+### Importing
 
 Now we open `Main.hs` file and change it a little bit:
 
@@ -28,40 +29,48 @@ main = putStrLn (hello "denis")
 
 We included the `Helpers` module using `import` statement. Now we can use the contents of the module, namely that thing by the name `hello`.
 
-#### Mentioning ####
+### Mentioning 
 
 Now we need to tell the build file `Real.cabal` about the `Helpers` module. Let's open it and write:
 
+```haskell
     executable Real
         main-is:        Main.hs
         other-modules:  Helpers
         build-depends:  base ==4.6.*
         hs-source-dirs: src
+```
 
 We have uncommented the string with `other-modules` and mentioned the name of our module there. Pay attention: you need to specify the name of the module, not the filename.
 
 But since we specified the name of the module, we need to specify the place where to look for it. After all, it is not in the `src` folder, but in the `src/Utils` subfolder. So we need to add something to `hs-source-dirs` parameter:
 
+```haskell
     hs-source-dirs: src
                     src/Utils
+```
 
 Now save and build.
 
-    $ cabal build
-    Building Real-0.1.0.0...
-    Preprocessing executable 'Real' for Real-0.1.0.0...
-    [1 of 2] Compiling Helpers          ( src/Utils/Helpers.hs, dist/build/Real/Real-tmp/Helpers.o )
-    [2 of 2] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
-    Linking dist/build/Real/Real ...
+```bash
+$ cabal build
+Building Real-0.1.0.0...
+Preprocessing executable 'Real' for Real-0.1.0.0...
+[1 of 2] Compiling Helpers          ( src/Utils/Helpers.hs, dist/build/Real/Real-tmp/Helpers.o )
+[2 of 2] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
+Linking dist/build/Real/Real ...
+```
 
 It worked - not one, but two modules were compiled. Now launch.
 
-    $ ./dist/build/Real/Real
-    Hi, denis
+```bash
+$ ./dist/build/Real/Real
+Hi, denis
+```
 
 And it works.
 
-#### About names ####
+### About names 
 
 There are two rules.
 

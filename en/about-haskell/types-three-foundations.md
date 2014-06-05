@@ -7,13 +7,13 @@ Haskell has a serious relationship with types. His type system is based on three
 2. strictness
 3. automatic inference
 
-#### Foundation one ####
+### Foundation one
 
 Static type checking is a checking of each expression, which is performed during compilation stage. If the compiler doesn't like something in some expression's type, the compilation will fail.
 
 Respectively, if the compilation of Haskell code succeeded, we can say that everything is fine with types, because we have a second foundation.
 
-#### Foundation two ####
+### Foundation two 
 
 Type strictness is a requirement of a correspondence between something we expect and something we get.
 
@@ -41,7 +41,7 @@ We took a value of type `char` and remade it into a value of type `int`. The com
 
 In Haskell we can explicitly name the type of some value, but only if the type is associated with the value. Like if it is the number `1`, we can only explicitly name a "numerical" type (like `Integer` or `Double`). Tricks with converting a symbol to an integer, like the one shown above, are not possible in Haskell.
 
-#### Foundation three ####
+### Foundation three 
 
 Automatic type inference is a compiler's ability to understand an expression's type by the expression itself.
 

@@ -3,7 +3,7 @@ Functional chains
 
 Often you can say about functions that one is not a warrior. In this chapter we'll look at two convenient ways to organize function cooperation.
 
-#### URL example ####
+### URL example 
 
 It is known, that URL must satisfy specific rules. But in real life it is not always true, so we need a way to transform URL to a correct format. This is how it can look like:
 
@@ -28,15 +28,21 @@ main =
 
 The output will be:
 
-    http://www.site.com/test%20me/start%20page
+```bash
+http://www.site.com/test%20me/start%20page
+```
 
 We have imported a new module `Data.String.Utils`. This module is a part of `MissingH` package, which contains a lot of useful utilities. Let's install it:
 
-    $ cabal install MissingH
+```bash
+$ cabal install MissingH
+```
 
 Don't forget to mention it in `Real.cabal`
 
+```haskell
     build-depends: base ==4.6.*, MissingH
+```
 
 `Data.String.Utils` module has a lot of great things to work with strings, but we needed only one function `startswith`, which checks if one string is the beginning of another.
 
@@ -72,7 +78,7 @@ At first `makeItLowerCase` is called, then `encodeAllSpaces`, and then `addPrefi
 
 Everything could be fine, but there is a drawback in this chain - there are too many parentheses. And if we add more correction functions, we'll have even more. There are two ways to make these chains prettier.
 
-#### Function composition ####
+### Function composition 
 
 Function composition looks like a dot. Its purpose is to join functions into a chain. Like this:
 
@@ -88,9 +94,9 @@ addPrefix (encodeAllSpaces (makeItLowerCase url))
 
 You can say that function composition made a stack of three functions: they are written from left to right, but they will be executed from right to left. So `url` string moves through a conveyor from right to left.
 
-#### Application function ####
+#### Function application
 
-And there is also an application function or an application operator. It looks like a dollar sign. Its purpose is also to join functions into a chain. Like this:
+And there is also function application or an application operator. It looks like a dollar sign. Its purpose is also to join functions into a chain. Like this:
 
 ```haskell
 addPrefix $ encodeAllSpaces $ makeItLowerCase url
@@ -126,7 +132,7 @@ main = print ("Hi master '" ++ name ++ "', have a nice day")
 main = print $ "Hi master '" ++ name ++ "', have a nice day"
 ```
 
-We got rid of parentheses by joining the function and its argument into a chain. Because of this, function composition and application function are often used together:
+We got rid of parentheses by joining the function and its argument into a chain. Because of this, function composition and function application are often used together:
 
 ```haskell
 addPrefix . encodeAllSpaces . makeItLowerCase $ url

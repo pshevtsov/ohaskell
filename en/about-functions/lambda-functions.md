@@ -5,7 +5,7 @@ Now we need to get acquainted with a curious and important concept, namely λ-fu
 
 Let's recall the definition of the mathematical function from the previous chapter:
 
->**Function is a description of a dependency of something from something**
+> **Function is a description of a dependency of something from something**
 
 However in C (or similar languages) the function was never associated with such definition. Instead, the function there is nothing else than a subprogram, and the name of the function is a pointer to its first instruction.
 
@@ -13,7 +13,7 @@ Besides, function in C is global in the current translation unit. So a function 
 
 λ-function is another kind of monster.
 
-#### What is it? ####
+### What is it? 
 
 The basis of λ-functions is λ-calculus, which is named after a beautiful greek letter. λ-calculus has a long academic history, but we are interested in a practical side, so I'll give an example.
 
@@ -35,7 +35,7 @@ The dot is a separator here. The expression to the left is a list of arguments (
 
 A simple and elegant description, nothing unnecessary. Not even a name. The feature of a λ-function is the absence of a name, because it doesn't need one. That's the main difference from the "general" function.
 
-#### How does it look like in code ####
+### How does it look like in code 
 
 λ-functions exist in many languages, but in Haskell their appearance is the closest to mathematical. Compare
 
@@ -60,7 +60,7 @@ This is how it looks in Haskell:
 
 λ-expression in parenteses gives a λ-function, which is immediately applied to an argument `5`.
 
-#### Multiple arguments ####
+### Multiple arguments 
 
 λ-function can be applied to multiple arguments. Assume we have a function, which returns the result of a multiplication of the first value to the second:
 
@@ -72,7 +72,7 @@ main =
 
 The argument list is between the backslash and the arrow.
 
-#### What's the use ####
+### What's the use 
 
 In C we have a standart sequence of three steps when working with a function:
 
@@ -121,5 +121,5 @@ main = print ((f 5) + (f 6))
 
 The expression `f` is equal to our λ-function, and now we can apply it multiple times to different arguments.
 
-Done. Now you now what λ-functions are. But their most interesting application is connected with higher-order functions, about which we'll talk right now.
+Done. Now you know what λ-functions are. But their most interesting application is connected with higher-order functions, and we'll talk about it right now.
 
