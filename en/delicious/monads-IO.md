@@ -1,6 +1,0 @@
-Monads: IO
-----------
-
-Coming soon.
-
-

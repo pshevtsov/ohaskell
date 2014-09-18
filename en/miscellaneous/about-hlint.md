@@ -1,6 +1,0 @@
-About hlint
------------
-
-Coming soon.
-
-

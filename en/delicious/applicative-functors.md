@@ -1,6 +1,0 @@
-Applicative functors 
---------------------
-
-Coming soon.
-
-

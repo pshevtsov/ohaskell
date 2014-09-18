@@ -1,5 +1,0 @@
-Monads: practice
-----------------
-
-Coming soon.
-

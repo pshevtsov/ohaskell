@@ -1,5 +1,0 @@
-Deriving types
---------------
-
-Coming soon.
-

@@ -1,5 +1,0 @@
-Composite types
----------------
-
-Coming soon.
-

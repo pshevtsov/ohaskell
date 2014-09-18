@@ -1,5 +1,0 @@
-About formatting
-----------------
-
-Coming soon.
-

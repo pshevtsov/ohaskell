@@ -1,6 +1,0 @@
-Monads: essence
----------------
-
-Coming soon.
-
-
