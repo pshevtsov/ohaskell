@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Lists at a glance | О Haskell по-человечески</title>
+        
+        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div class="ribbon">
+                <a href="https://github.com/denisshevchenko/ohaskell">Live on GitHub</a>
+            </div>
+
+            <div id="wrapper_2">
+            <div id="header">
+                <div id="logo">
+                    <a href="../../en/index.html" title="Домой">About Haskell humanly</a><span class="logo-note">for ordinary developers</span>
+                </div>
+                <div id="navigation">
+                    <a href="../../en/chapters.html">CONTENTS</a>
+                </div>
+            </div>
+
+            <div id="content">
+                <h1>Lists at a glance</h1>
+
+                <div style="padding-top: 10px;"></div>
+
+<div id="prev_arrow">
+    <a href="../../en/about-lists/index.html">❮</a>
+</div>
+
+<div id="next_arrow">
+    <a href="../../en/about-lists/ranges.html">❯</a>
+</div>
+
+<p>In Haskell lists are collections of same-type elements. Let’s proceed to study them.</p>
+<p>The first thing you should learn: if you see square brackets the list is nearby. Here is a list of three integer elements:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</code></pre>
+<p>and that’s the empty list:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">[]</code></pre>
+<p>Elements of the list can be of any type, including other lists. We can create even a list of functions, though that fact shouldn’t be a great surprise after previous chapters.</p>
+<h2 id="the-simplest-actions">The simplest actions</h2>
+<p>If a list can be created it may be useful for someone. Here is a function that returns a list of three lines:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">listOfNames ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+listOfNames prefix <span class="fu">=</span>
+	[prefix <span class="fu">++</span> <span class="st">&quot;John&quot;</span>, prefix <span class="fu">++</span> <span class="st">&quot;Anna&quot;</span>, prefix <span class="fu">++</span> <span class="st">&quot;Andrew&quot;</span>]
+
+main <span class="fu">=</span> print <span class="fu">$</span> listOfNames <span class="st">&quot;Dear &quot;</span></code></pre>
+<p>Result:</p>
+<blockquote>
+<p>[“Dear John”,“Dear Anna”,“Dear Andrew”]</p>
+</blockquote>
+<p>Note the declaration of that function</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">listOfNames ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>]</code></pre>
+<p>Type <code>[String]</code> is a type of list of strings. And for example, list of characters is declared as <code>[Char]</code>. By the way, string is a list of characters itself, hence type <code>String</code> is equivalent to type <code>[Char]</code>. That’s why we may declare it this way:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">listOfNames ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [[<span class="dt">Char</span>]]</code></pre>
+<p>The size of the list may be found this way:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+    print <span class="fu">$</span> length listOfAnimals
+	<span class="kw">where</span> listOfAnimals <span class="fu">=</span> [<span class="st">&quot;Bear&quot;</span>, <span class="st">&quot;Tiger&quot;</span>, <span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Wolf&quot;</span>]</code></pre>
+<p>Also we may check if a given value appears in the list:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">thisIsAWildAnimal ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+thisIsAWildAnimal name <span class="fu">=</span>
+    name <span class="ot">`elem`</span> wildAnimals
+    <span class="kw">where</span> wildAnimals <span class="fu">=</span> [<span class="st">&quot;Bear&quot;</span>, <span class="st">&quot;Tiger&quot;</span>, <span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Wolf&quot;</span>]
+
+main <span class="fu">=</span> print <span class="fu">$</span> <span class="kw">if</span> thisIsAWildAnimal <span class="st">&quot;Cat&quot;</span> <span class="kw">then</span> <span class="st">&quot;Yes!&quot;</span> <span class="kw">else</span> <span class="st">&quot;No!&quot;</span></code></pre>
+<p>The function <code>elem</code>, written with <a href="The%20function%20is%20placed%20between%20two%20arguments%20similar%20to%20when%20the%20binary%20operator%20is%20placed%20between%20its%20operands.">infix</a> notation, checks the presence of a string <code>Cat</code> in the list of wild animals.</p>
+<p>The standard Haskell library let us do various things on the list, such as extracting the smallest value, computing the sum of elements, extracting the sublist, check on the emptiness and equality, etc.</p>
+<h2 id="immutability-of-the-list">Immutability of the list</h2>
+<p>As you already know, in Haskell all values are immutable as Egyptian pyramids. Lists are not an exclusion: we can’t change the list, we only can create new list based on the old one. For example:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addNewHostToFront ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+addNewHostToFront newHost listOfHosts <span class="fu">=</span> newHost <span class="fu">:</span> listOfHosts
+
+main <span class="fu">=</span>
+	print <span class="fu">$</span> addNewHostToFront <span class="st">&quot;124.67.54.90&quot;</span> listOfHosts
+	<span class="kw">where</span> listOfHosts <span class="fu">=</span> [<span class="st">&quot;45.67.78.89&quot;</span>, <span class="st">&quot;123.45.65.54&quot;</span>, <span class="st">&quot;127.0.0.1&quot;</span>]</code></pre>
+<p>Output:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;124.67.54.90&quot;</span>,<span class="st">&quot;45.67.78.89&quot;</span>,<span class="st">&quot;123.45.65.54&quot;</span>,<span class="st">&quot;127.0.0.1&quot;</span>]</code></pre>
+<p>Conceptually, function <code>addNewHostToFront</code> added a new address to the beginning of the given list. Actually, there was no addition: function just took the element <code>newHost</code> and list <code>listOfHosts</code> and based on them created a new list, which already contains of four elements instead of three.</p>
+<h2 id="actions-on-elements">Actions on elements</h2>
+<p>We create a list in order to do something with its elements. Consider such function:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">removeAllEmptyNamesFrom ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+removeAllEmptyNamesFrom listOfNames <span class="fu">=</span>
+	filter notEmptyName listOfNames
+	<span class="kw">where</span> notEmptyName <span class="fu">=</span> not <span class="fu">.</span> null
+
+main <span class="fu">=</span>
+	print <span class="fu">$</span> removeAllEmptyNamesFrom listOfNames
+	<span class="kw">where</span> listOfNames <span class="fu">=</span> [<span class="st">&quot;John&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;Ann&quot;</span>]</code></pre>
+<p>Standard function <code>filter</code> successively applies predicate <code>notEmptyName</code> to each line of the list and constructs a new list only from those lines which match to this predicate. As a predicate we have a function which is applied to one argument and returns <code>True</code> only if it is not <code>null</code>. Note that we used pointfree notation again.</p>
+<p>That’s it. Besides the functions <code>map</code> and <code>filter</code>, standard Haskell library has lot’s of other goodies to work with elements (assertions, substitutions, sorts, permutations and other things).</p>
+<h2 id="so">So</h2>
+<ul>
+<li>List is a collection of values of the same type.</li>
+<li>We can do different actions over an elements.</li>
+<li>We can’t change the list, we can just create a new list based on existing list.</li>
+</ul>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+
+            </div>
+            
+            <div id="footer">
+                <div id="social">
+                    © Denis Shevchenko 2013-2014
+                </div>
+                <div id="hakyll_mark">
+                    Created by <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+                </div>
+            </div>
+
+            <div id="search_form">
+                <script>
+                  (function() {
+                    var cx = '007697214108744450483:py6mcdzwavw';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                        '//www.google.com/cse/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+                <gcse:search></gcse:search>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>

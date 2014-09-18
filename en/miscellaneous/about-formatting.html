@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>О форматировании | О Haskell по-человечески</title>
+        
+        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div class="ribbon">
+                <a href="https://github.com/denisshevchenko/ohaskell">Live on GitHub</a>
+            </div>
+
+            <div id="wrapper_2">
+            <div id="header">
+                <div id="logo">
+                    <a href="../../en/index.html" title="Домой">About Haskell humanly</a><span class="logo-note">for ordinary developers</span>
+                </div>
+                <div id="navigation">
+                    <a href="../../en/chapters.html">CONTENTS</a>
+                </div>
+            </div>
+
+            <div id="content">
+                <h1>О форматировании</h1>
+
+                <div style="padding-top: 10px;"></div>
+
+<div id="prev_arrow">
+    <a href="../../en/miscellaneous/about-apostrophe.html">❮</a>
+</div>
+
+<div id="next_arrow">
+    <a href="../../en/miscellaneous/about-hlint.html">❯</a>
+</div>
+
+<p>Нет, речь пойдёт не об эстетике. Код на Haskell является форматно-зависимым, поэтому мы не можем расставлять пробелы и отступы там, где нам заблагорассудится. Необходимо придерживаться определённых правил.</p>
+<h2 id="функция">Функция</h2>
+<p>Если мы напишем так:</p>
+<p><code>haskell main :: IO () main = putStrLn &quot;Hi Haskeller!&quot;</code> </p>
+<p>компилятор выскажет своё несогласие:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error (possibly incorrect indentation or mismatched brackets)</code></pre>
+<p>Следующий пример:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"> <span class="ot">main ::</span> <span class="dt">IO</span> ()
+ main <span class="fu">=</span>
+ putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span></code></pre>
+<p>Здесь мы поставили один пробел перед каждой из трёх строк, однако и в этом случае компилятор закапризничает:</p>
+<p><code>bash parse error on input `main'</code> </p>
+<p>Или вот так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+ main <span class="fu">=</span>
+ putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span></code></pre>
+<p>В этом случае мы получим ещё более странную ошибку:  </p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Illegal</span> type signature: <span class="kw">`</span><span class="fu">IO ()</span> <span class="kw">main</span><span class="st">'</span></code></pre>
+<p>Из-за пробела перед именем функции компилятор принял это имя за часть сигнатуры.</p>
+<p>Когда в теле функции несколько строк, появляются дополнительные ограничения. Если напишем так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span>
+     putStrLn <span class="st">&quot;Hi again!&quot;</span></code></pre>
+<p>получим вот это:  </p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Couldn</span><span class="st">'t match expected type `(String -&gt; IO ()) -&gt; [Char] -&gt; IO ()'</span>
+                <span class="kw">with</span> actual type <span class="kw">`</span><span class="fu">IO ()</span><span class="st">'</span>
+<span class="st">    The function `putStrLn'</span> <span class="kw">is</span> applied to three arguments,
+    <span class="kw">but</span> its type <span class="kw">`</span>String -<span class="kw">&gt;</span> IO ()<span class="st">' has only one</span></code></pre>
+<p>Из-за сдвига второй функции по отношению к первой компилятор подумал, что первая по счёту <code>putStrLn</code> применяется к трём аргументам. Если же напишем так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+     putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span>
+    putStrLn <span class="st">&quot;Hi again!&quot;</span></code></pre>
+<p>получим уже знакомую нам ошибку:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`putStrLn</span><span class="st">'</span></code></pre>
+<p>Здесь компилятор ругнулся уже на вторую по счёту <code>putStrLn</code>.</p>
+<p>В общем, экспериментальным путём я выяснил, что форматирование кода функции должно соответствовать следующим правилам:</p>
+<ol style="list-style-type: decimal">
+<li>Объявление и определение функции, должны начинаться с первого (самого левого) символа строки.</li>
+<li>Если тело функции начинается со следующей строки после имени, перед этим телом должен присутствовать отступ от первого символа строки, хотя бы в один пробел.</li>
+<li>Если тело функции состоит из нескольких выражений, стоящих на отдельной строке каждая, эти выражения должны быть вертикально выровнены по левому краю.</li>
+</ol>
+<p>Поэтому придерживайтесь приблизительно такого шаблона:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span>
+    putStrLn <span class="st">&quot;Hi again!&quot;</span></code></pre>
+<p>и компилятор будет просто счастлив.</p>
+<h2 id="тип">Тип</h2>
+<p>На код, связанный с типами, также наложены некоторые форматные ограничения.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"> data <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span></code></pre>
+<p>Перед словом <code>data</code> стоит лишний пробел, и компилятор вновь вспоминает нас недобрым словом:</p>
+<p><code>haskell parse error on input `data'</code> </p>
+<p>Вот такой код тоже не пройдёт компиляцию:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span>
+<span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span></code></pre>
+<p>равно как и такой:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span>
+<span class="dt">IP</span> <span class="dt">String</span></code></pre>
+<p>и даже такой:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span>
+<span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span></code></pre>
+<p>В ходе экспериментов было выяснено, что правила для кода определения типа схожи с вышеупомянутыми правилами для кода функции:</p>
+<ol style="list-style-type: decimal">
+<li>Ключевое слово <code>data</code> начинается с самого левого символа строки.</li>
+<li>Если объявление переходит на следующую строку, то перед ним должен быть хотя бы один пробел.</li>
+</ol>
+<p>Поэтому пишите приблизительно так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span>
+                 deriving <span class="dt">Show</span></code></pre>
+<p>и компилятор будет вам благодарен.</p>
+<h2 id="класс-типов">Класс типов</h2>
+<p>С классами типов - та же история. Если напишем так:</p>
+<p><code>haskell class Note n where write :: n -&gt; Bool</code> </p>
+<p>получим экзотическую ошибку:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">The</span> type signature for <span class="kw">`write</span><span class="st">' lacks an accompanying binding</span></code></pre>
+<p>Если вздумаем написать так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Note</span> n <span class="kw">where</span>
+  <span class="ot">write ::</span> n <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+ <span class="ot">read ::</span> n <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<p>снова получим по башке:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`read</span><span class="st">'</span></code></pre>
+<p>И если так напишем:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Note</span> n <span class="kw">where</span>
+    <span class="ot">write ::</span> n <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+    read
+    <span class="ot">::</span> n <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<p>и даже если так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">  class <span class="dt">Note</span> n <span class="kw">where</span>
+    <span class="ot">write ::</span> n <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+    <span class="ot">read ::</span> n <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<p>компилятор будет принципиален до крайности и не пропустит такой код.</p>
+<p>В общем, тут правила точно такие же:</p>
+<ol style="list-style-type: decimal">
+<li>Начинаем с самого левого символа строки.</li>
+<li>Перед методами - хотя бы однопробельный отступ.</li>
+<li>Методы должны быть вертикально выровнены по левому краю.</li>
+</ol>
+<p>Следовательно, ублажаем компилятор и пишем примерно так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Note</span> n <span class="kw">where</span>
+    <span class="ot">write ::</span> n <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+    <span class="ot">read ::</span> n <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<h2 id="константа">Константа</h2>
+<p>Для отдельной константы правила точно такие же, как и для функции. Поэтому пишем:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">coefficient ::</span> <span class="dt">Double</span>
+coefficient <span class="fu">=</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">0036</span></code></pre>
+<p>и всё будет хорошо.</p>
+<h2 id="условие">Условие</h2>
+<p>Тут я выявил лишь одно ограничение - край ключевого слова <code>if</code> должен быть самым левым по отношению ко всем остальным частям выражения. То есть можно написать так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    if <span class="dv">2</span> <span class="fu">/=</span> <span class="dv">2</span>
+      then
+        putStrLn <span class="st">&quot;Impossible&quot;</span>
+      else
+        putStrLn <span class="st">&quot;I believe&quot;</span></code></pre>
+<p>и так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    if <span class="dv">2</span> <span class="fu">/=</span> <span class="dv">2</span>
+        then
+      putStrLn <span class="st">&quot;Impossible&quot;</span>
+        else
+      putStrLn <span class="st">&quot;I believe&quot;</span></code></pre>
+<p>и даже так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    if <span class="dv">2</span> <span class="fu">/=</span> <span class="dv">2</span>
+
+     then
+     putStrLn <span class="st">&quot;Impossible&quot;</span>
+     else
+          putStrLn <span class="st">&quot;I believe&quot;</span></code></pre>
+<p>Но вот такого компилятор не потерпит:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    if <span class="dv">2</span> <span class="fu">/=</span> <span class="dv">2</span>   
+   then
+      putStrLn <span class="st">&quot;Impossible&quot;</span>
+   else
+      putStrLn <span class="st">&quot;I believe&quot;</span></code></pre>
+<p>равно как и такого:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    if <span class="dv">2</span> <span class="fu">/=</span> <span class="dv">2</span>   
+    then
+    putStrLn <span class="st">&quot;Impossible&quot;</span>
+    else
+    putStrLn <span class="st">&quot;I believe&quot;</span></code></pre>
+<h2 id="локальные-выражения">Локальные выражения</h2>
+<p>Эти друзья менее прихотливы. В отношении выражения <code>where</code> я нашёл только одно ограничение:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepare ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+prepare str <span class="fu">=</span>
+    str <span class="fu">++</span> helper
+<span class="kw">where</span>
+    helper <span class="fu">=</span> <span class="st">&quot;dear. &quot;</span></code></pre>
+<p>В этом случае получим ошибку:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`where</span><span class="st">'</span></code></pre>
+<p>Такого же рода ограничение действует и на <code>let</code>:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepare ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+prepare str <span class="fu">=</span>
+<span class="kw">let</span> helper <span class="fu">=</span> <span class="st">&quot;dear. &quot;</span>
+    in
+    str <span class="fu">++</span> helper</code></pre>
+<p>Однако ошибка будет другой:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error (possibly incorrect indentation or mismatched brackets)</code></pre>
+<p>Суть вы уловили: пусть <code>where</code> и <code>let</code> гармонируют с остальным кодом тела функции.</p>
+<h2 id="вывод">Вывод</h2>
+<p>Пишите аккуратно, без лишних изысков и в едином стиле. Да, многие разработчики не любят, когда синтаксис языка форматно-зависимый, но, как говорится, что есть, то есть. Кстати, упомянутые выше ограничения в некотором смысле дисциплинируют программиста, так что в них тоже можно усмотреть большой плюс.</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+
+            </div>
+            
+            <div id="footer">
+                <div id="social">
+                    © Denis Shevchenko 2013-2014
+                </div>
+                <div id="hakyll_mark">
+                    Created by <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+                </div>
+            </div>
+
+            <div id="search_form">
+                <script>
+                  (function() {
+                    var cx = '007697214108744450483:py6mcdzwavw';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                        '//www.google.com/cse/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+                <gcse:search></gcse:search>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>

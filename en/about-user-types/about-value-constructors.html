@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>О конструкторах значений | О Haskell по-человечески</title>
+        
+        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div class="ribbon">
+                <a href="https://github.com/denisshevchenko/ohaskell">Live on GitHub</a>
+            </div>
+
+            <div id="wrapper_2">
+            <div id="header">
+                <div id="logo">
+                    <a href="../../en/index.html" title="Домой">About Haskell humanly</a><span class="logo-note">for ordinary developers</span>
+                </div>
+                <div id="navigation">
+                    <a href="../../en/chapters.html">CONTENTS</a>
+                </div>
+            </div>
+
+            <div id="content">
+                <h1>О конструкторах значений</h1>
+
+                <div style="padding-top: 10px;"></div>
+
+<div id="prev_arrow">
+    <a href="../../en/about-user-types/types-at-a-glance.html">❮</a>
+</div>
+
+<div id="next_arrow">
+    <a href="../../en/about-user-types/type-context.html">❯</a>
+</div>
+
+<p>Конструктор значения (value constructor) - штука полезная. Как мы увидели в предыдущей главе, конструктор позволяет идентифицировать значения наших собственных типов.</p>
+<h2 id="иные-имена">Иные имена</h2>
+<p>Конструктор значения может отличаться от имени самого типа. Взгляните:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span>  <span class="co">-- Имя типа осталось неизменным.</span>
+
+<span class="kw">instance</span> <span class="dt">Show</span> <span class="dt">IPAddress</span> <span class="kw">where</span>
+    show (<span class="dt">IP</span> address) <span class="fu">=</span>
+        if address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre>
+<p>Теперь мы будем создавать значения нашего типа так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IP</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
+<p>Такой подход позволяет писать более краткий, но при этом ничуть не менее понятный код. Обратите внимание: конструктор <code>IP</code> используется лишь в местах конструирования объекта, в то время как в описании экземпляра класса <code>Show</code> мы по-прежнему использовали имя типа <code>IPAddress</code>.</p>
+<h2 id="множество-конструкторов">Множество конструкторов</h2>
+<p>Конструкторов может быть более одного, и эта возможность используется очень часто. Например:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span> <span class="fu">|</span> <span class="dt">Host</span> <span class="dt">String</span></code></pre>
+<p>Мы ввели два конструктора, <code>IP</code> и <code>Host</code>. Здесь используется оператор <code>|</code>, знакомый программистам C как оператор бинарного “ИЛИ”. Выглядит довольно логично, и поэтому мы можем прочесть эту строку так:</p>
+<pre><code>data IPAddress  =  IP String  |  Host String
+тип  IPAddress это IP String или Host String</code></pre>
+<p>Определим метод <code>show</code> для каждого из этих конструкторов:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Show</span> <span class="dt">IPAddress</span> <span class="kw">where</span>
+    show (<span class="dt">IP</span> address) <span class="fu">=</span>
+        address
+
+    show (<span class="dt">Host</span> address) <span class="fu">=</span>
+        if address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre>
+<p>Теперь, если мы напишем так:</p>
+<p><code>haskell main = putStrLn $ show $ IP &quot;127.0.0.1&quot;</code> </p>
+<p>вывод будет таким:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">127.0.0.1</span></code></pre>
+<p>Если же мы используем второй конструктор:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">Host</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
+<p>вывод будет другим:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">localhost</code></pre>
+<h2 id="о-нульарных-конструкторах">О нульарных конструкторах</h2>
+<p>Нульарный конструктор (nullary constructor) используется в Haskell-коде довольно часто. Суть его проста.</p>
+<p>Вспомним наш демонстрационный тип:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span></code></pre>
+<p>За конструктором <code>IP</code> следует одно значение, поэтому такой конструктор называют одинарным. А нульарным называют такой конструктор, за которым никакого значения нет.</p>
+<p>Допустим, нам нужен тип, ассоциированный с протоколами транспортного слоя (Transport layer) модели OSI. Вот как это будет выглядеть:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">TransportLayer</span> <span class="fu">=</span> <span class="dt">TCP</span> <span class="fu">|</span> <span class="dt">UDP</span> <span class="fu">|</span> <span class="dt">SCTP</span> <span class="fu">|</span> <span class="dt">DCCP</span> <span class="fu">|</span> <span class="dt">SPX</span></code></pre>
+<p>Символ <code>|</code> вы уже знаете, но значений, как видите, здесь нет. Тип <code>TransportLayer</code> имеет пять нульарных конструкторов. И чтобы продемонстрировать практическую пользу такого типа, определим функцию, описывающую конкретный протокол:</p>
+<p><code>haskell descriptionOf :: TransportLayer -&gt; String descriptionOf protocol =     case protocol of         TCP  -&gt; &quot;Transmission Control Protocol&quot;         UDP  -&gt; &quot;User Datagram Protocol&quot;         SCTP -&gt; &quot;Stream Control Transmission Protocol&quot;         DCCP -&gt; &quot;Datagram Congestion Control Protocol&quot;         SPX  -&gt; &quot;Sequenced Packet Exchange&quot;</code> </p>
+<p>Мы принимаем значение типа <code>TransportLayer</code> и возвращаем соответствующее ему строковое описание. Обратите внимание на конструкцию с ключевым словом <code>case</code>. Это - родственница конструкции <code>switch-case</code> из языка C.</p>
+<p>Теперь проверяем:</p>
+<p><code>haskell main = print $ descriptionOf TCP</code> </p>
+<p>Для создания значения типа TransportLayer, к которому будет применена функция <code>descriptionOf</code>, мы использовали один из нульарных конструкторов. Никакого дополнительного значения здесь нет, потому что сам нульарный конструктор и представляет собой значение. Результат такой:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;Transmission Control Protocol&quot;</span></code></pre>
+<p>Если вам нужен тип, подразумевающий фиксированное множество именованных значений - нульарные конструкторы вам помогут.</p>
+<h2 id="в-сухом-остатке">В сухом остатке</h2>
+<ul>
+<li>Конструктор значения (далее КЗ) используется при конструировании значении. Кто бы мог подумать…</li>
+<li>Имя КЗ может отличаться от имени самого типа.</li>
+<li>КЗ может быть сколько угодно, от нуля и больше.</li>
+</ul>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+
+            </div>
+            
+            <div id="footer">
+                <div id="social">
+                    © Denis Shevchenko 2013-2014
+                </div>
+                <div id="hakyll_mark">
+                    Created by <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+                </div>
+            </div>
+
+            <div id="search_form">
+                <script>
+                  (function() {
+                    var cx = '007697214108744450483:py6mcdzwavw';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                        '//www.google.com/cse/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+                <gcse:search></gcse:search>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>

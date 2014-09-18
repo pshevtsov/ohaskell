@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Функторы | О Haskell по-человечески</title>
+        
+        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div class="ribbon">
+                <a href="https://github.com/denisshevchenko/ohaskell">Live on GitHub</a>
+            </div>
+
+            <div id="wrapper_2">
+            <div id="header">
+                <div id="logo">
+                    <a href="../../en/index.html" title="Домой">About Haskell humanly</a><span class="logo-note">for ordinary developers</span>
+                </div>
+                <div id="navigation">
+                    <a href="../../en/chapters.html">CONTENTS</a>
+                </div>
+            </div>
+
+            <div id="content">
+                <h1>Функторы</h1>
+
+                <div style="padding-top: 10px;"></div>
+
+<div id="prev_arrow">
+    <a href="../../en/delicious/maybe.html">❮</a>
+</div>
+
+<div id="next_arrow">
+    <a href="../../en/delicious/applicative-functors.html">❯</a>
+</div>
+
+<p>Поговорим о функторах, одной из важных концепций языка Haskell. На самом деле мы их уже использовали, осталось лишь разобраться в сути.</p>
+<h2 id="разбираемся">Разбираемся</h2>
+<p>Функторами называют такие типы, значения которых могут быть маппированы (mapped over). Помните стандартную функцию <code>map</code>, позволяющую последовательно применить функцию к каждому элементу списка? Вот это тот самый случай.</p>
+<p>Все функторы представлены стандартным классом <code>Functor</code>:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Functor</span> f <span class="kw">where</span>
+    <span class="ot">fmap ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> f a <span class="ot">-&gt;</span> f b</code></pre>
+<p>Перед нами один-единственный метод <code>fmap</code>, который говорит: “Дайте мне функцию, принимающую значение <code>a</code> и возвращающую значение <code>b</code>, а ещё дайте значение <code>a</code> в функторной обёртке, а я верну вам значение <code>b</code> в такой же функторной обёртке”. Многие стандартные типы являются функторами.</p>
+<h2 id="зачем-это-нам">Зачем это нам</h2>
+<p>Функция <code>fmap</code> - это волшебница. Она говорит: “Дайте мне <del>волшебную палочку</del> функцию и <em>нечто</em>, а я прикоснусь функцией к этому <em>нечто</em> и изменю его”. Это нечто и есть функтор.</p>
+<p>Разумеется, говоря об изменении, я выражаюсь концептуально. Если мы видим строку:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap toLower [<span class="ch">'A'</span><span class="fu">..</span><span class="ch">'Z'</span>]</code></pre>
+<p>мы можем выразиться технически точно: “Функция <code>fmap</code> последовательно применит функцию <code>toLower</code> к каждому элементу списка, в результате чего будет сконструирован новый список со значениями, являющимися результатом применения функции <code>toLower</code> к элементам изначального списка”.</p>
+<p>Но так слишком длинно. Поэтому мы можем выразиться концептуально: “Функция <code>fmap</code> прикоснулась функцией <code>toLower</code> к списку и изменила его”. В этом и заключается фундаментальный смысл функторов: посредством функции <code>fmap</code> мы прикасаемся к ним некой другой функцией и изменяем их.</p>
+<p>Более того, такое изменение может касаться не только содержимого функтора, но и его типа. Например, если взять функтор типа <code>[Char]</code> и прикоснуться к нему такой функцией:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap toLower [<span class="ch">'A'</span><span class="fu">..</span><span class="ch">'Z'</span>]</code></pre>
+<p>на выходе у нас тоже получится функтор того же типа <code>[Char]</code>. Однако если прикоснуться такой функцией:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap digitToInt [<span class="ch">'1'</span><span class="fu">..</span><span class="ch">'9'</span>]</code></pre>
+<p>на выходе у нас получится функтор типа <code>[Int]</code>.</p>
+<h2 id="создаём-свой">Создаём свой</h2>
+<p>Путь это будет год:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Year</span> value <span class="fu">=</span> <span class="dt">Year</span> value
+                  deriving <span class="dt">Show</span></code></pre>
+<p>Тип <code>Year</code> содержит в себе год. Параметризация в данном случае весьма полезна: значение года может быть задано как числом, так и строкой. И поскольку значение года может (с концептуальной точки зрения) меняться, сделаем тип <code>Year</code> функторным:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Functor</span> <span class="dt">Year</span> <span class="kw">where</span>
+    fmap magicWand (<span class="dt">Year</span> value) <span class="fu">=</span> <span class="dt">Year</span> (magicWand value)</code></pre>
+<p>Функция <code>magicWand</code> будет прикасаться не к году, а к его реальному содержимому. Например так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">increase ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+increase year <span class="fu">=</span> year <span class="fu">+</span> <span class="dv">1</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span>
+    print <span class="fu">$</span> fmap increase year
+    where year <span class="fu">=</span> <span class="dt">Year</span> <span class="dv">1981</span></code></pre>
+<p>Мы определили функцию <code>increase</code>, увеличивающую значение года на один. Казалось бы, зачем делать тип <code>Year</code> функторным? Ведь мы могли бы определить функцию, работающую с этим типом напрямую. Однако в этом случае мы жёстко привяжемся к типу <code>Year</code>. А фундаментальное преимущество функтора как раз в том и заключается, что функция, изменяющая его содержимое, ничего не знает о самом функторе.</p>
+<p>Следовательно, в качестве волшебной палочки, прикасающейся к нашему году, могут выступать совершенно посторонние функции. Это и открывает перед нами огромный творческий простор.</p>
+<h2 id="инфиксная-форма">Инфиксная форма</h2>
+<p>В стандартном модуле <code>Data.Functor</code> определён оператор необычного вида <code>(&lt;$&gt;)</code>, являющийся инфиксным аналогом функции <code>fmap</code>. Чуток перепишем наш пример с годом:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Functor</span>
+
+<span class="fu">...</span> 
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span>
+    print <span class="fu">$</span> increase <span class="fu">&lt;$&gt;</span> year
+    where year <span class="fu">=</span> <span class="dt">Year</span> <span class="dv">1981</span></code></pre>
+<p>Результат тот же самый, но инфиксная форма способна сделать код более читабельным.</p>
+<p>Вот, теперь вы знаете о функторах. Рассматривайте их тоже как своего рода проектный паттерн, унифицирующий применение разных функций к разным значениям.</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+
+            </div>
+            
+            <div id="footer">
+                <div id="social">
+                    © Denis Shevchenko 2013-2014
+                </div>
+                <div id="hakyll_mark">
+                    Created by <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+                </div>
+            </div>
+
+            <div id="search_form">
+                <script>
+                  (function() {
+                    var cx = '007697214108744450483:py6mcdzwavw';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                        '//www.google.com/cse/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+                <gcse:search></gcse:search>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>

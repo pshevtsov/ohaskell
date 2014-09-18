@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>About a Hackage | О Haskell по-человечески</title>
+        
+        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div class="ribbon">
+                <a href="https://github.com/denisshevchenko/ohaskell">Live on GitHub</a>
+            </div>
+
+            <div id="wrapper_2">
+            <div id="header">
+                <div id="logo">
+                    <a href="../../en/index.html" title="Домой">About Haskell humanly</a><span class="logo-note">for ordinary developers</span>
+                </div>
+                <div id="navigation">
+                    <a href="../../en/chapters.html">CONTENTS</a>
+                </div>
+            </div>
+
+            <div id="content">
+                <h1>About a Hackage</h1>
+
+                <div style="padding-top: 10px;"></div>
+
+<div id="prev_arrow">
+    <a href="../../en/prepare/about-modules-minimum.html">❮</a>
+</div>
+
+<div id="next_arrow">
+    <a href="../../en/about-haskell/index.html">❯</a>
+</div>
+
+<p>If you worked with Linux, you should be familiar with а concept of a “repository”: a sort of centralized place from which you can get a lot of goodies. Hackage is the main repository in the world of Haskell.</p>
+<p>The name comes from the merging words <strong>H</strong>askell and p<strong>ackage</strong>. It exists since year 2008 and it is actually a huge heap of packages. You may read “package” as “library”, but in the world of Haskell the common concept is “package”.</p>
+<p>Inside that heap you will find a lot of ready-made solutions, both for the common or highly specialized problems.</p>
+<p>In order to use a package you need to complete four steps:</p>
+<ol style="list-style-type: decimal">
+<li>find this package,</li>
+<li>install it,</li>
+<li>add it to your project,</li>
+<li>import the required modules from it.</li>
+</ol>
+<h2 id="finding">Finding</h2>
+<p>I recommend you to search for packages here:</p>
+<ol style="list-style-type: decimal">
+<li><a href="http://www.haskell.org/hoogle">Hoogle</a></li>
+<li><a href="http://holumbus.fh-wedel.de/hayoo/hayoo.html">Hayoo!</a></li>
+</ol>
+<p>Just type the required name, or category, or some associative word in the search box and you get a lot of interesting results.</p>
+<p>For example, let’s install package <code>text</code>, an advanced package to work with… text. Surprise, surprise.</p>
+<h2 id="installing">Installing</h2>
+<p>There is an instrument for a convenient installation of package from Hackage, its name is <code>cabal</code>. Oh yeah, the same, already known to us utility!</p>
+<p>Change directory to the root of our project and run a command:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> update</code></pre>
+<p>With this command we updated the list of available packages. It is recommended to run this command from time to time, in order to stay on the “cutting-edge” of the Hackage development.</p>
+<p>After package list is updated we can install the required package:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> install text</code></pre>
+<p>A bit of patience and the package is installed.</p>
+<h2 id="adding-to-the-project">Adding to the project</h2>
+<p>Open build file <code>Real.cabal</code> and add the name of the installed package to it. In order to do that, find parameter <code>build-depends</code> and append the name of the package after the comma:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">	build<span class="fu">-</span>depends<span class="fu">:</span>    base <span class="fu">==</span> <span class="dv">4</span><span class="fu">.</span><span class="dv">6</span><span class="fu">.*</span>, text</code></pre>
+<p>And the last step.</p>
+<h2 id="importing-modules">Importing modules</h2>
+<p>Package consists of modules (and modules, as you already know, are files with source code). There are quite many modules in the <code>text</code> package, we will take the first one, <code>Data.Text</code>. Open <code>Main.hs</code> and write in the beginning:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Text</span></code></pre>
+<p>Ready. Now we can use different goodies from that module. In the nearest future you will find out which of them we are going to use.</p>
+<h2 id="about-prelude">About Prelude</h2>
+<p>There is a standard module which is imported into all your modules by default. Its name is <code>Prelude</code>. It contains the most basic Haskell instruments, you will use many of them all the time.</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+
+            </div>
+            
+            <div id="footer">
+                <div id="social">
+                    © Denis Shevchenko 2013-2014
+                </div>
+                <div id="hakyll_mark">
+                    Created by <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+                </div>
+            </div>
+
+            <div id="search_form">
+                <script>
+                  (function() {
+                    var cx = '007697214108744450483:py6mcdzwavw';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                        '//www.google.com/cse/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+                <gcse:search></gcse:search>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Functional chains | О Haskell по-человечески</title>
+        
+        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+    </head>
+    <body>
+        <div id="wrapper">
+
+            <div class="ribbon">
+                <a href="https://github.com/denisshevchenko/ohaskell">Live on GitHub</a>
+            </div>
+
+            <div id="wrapper_2">
+            <div id="header">
+                <div id="logo">
+                    <a href="../../en/index.html" title="Домой">About Haskell humanly</a><span class="logo-note">for ordinary developers</span>
+                </div>
+                <div id="navigation">
+                    <a href="../../en/chapters.html">CONTENTS</a>
+                </div>
+            </div>
+
+            <div id="content">
+                <h1>Functional chains</h1>
+
+                <div style="padding-top: 10px;"></div>
+
+<div id="prev_arrow">
+    <a href="../../en/about-functions/higher-order-functions.html">❮</a>
+</div>
+
+<div id="next_arrow">
+    <a href="../../en/about-functions/functions-and-operators.html">❯</a>
+</div>
+
+<p>Often you can say about functions that one is not a warrior. In this chapter we’ll look at two convenient ways to organize function cooperation.</p>
+<h2 id="url-example">URL example</h2>
+<p>It is known, that URL must satisfy specific rules. But in real life it is not always true, so we need a way to transform URL to a correct format. This is how it can look like:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
+<span class="kw">import </span><span class="dt">Data.String.Utils</span>
+
+<span class="ot">addPrefix ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+addPrefix url <span class="fu">=</span>
+    <span class="kw">if</span> url <span class="ot">`startsWith`</span> prefix <span class="kw">then</span> url <span class="kw">else</span> prefix <span class="fu">++</span> url
+    <span class="kw">where</span> prefix <span class="fu">=</span> <span class="st">&quot;http://&quot;</span>
+        startsWith url prefix <span class="fu">=</span> startswith prefix url
+
+encodeAllSpaces <span class="fu">=</span> replace <span class="st">&quot; &quot;</span> <span class="st">&quot;%20&quot;</span>   <span class="co">-- Changes all spaces to %20</span>
+
+makeItLowerCase <span class="fu">=</span> map toLower         <span class="co">-- Transform letters to lower case</span>
+
+main <span class="fu">=</span>
+    putStrLn (addPrefix (encodeAllSpaces (makeItLowerCase url)))
+    <span class="kw">where</span> url <span class="fu">=</span> <span class="st">&quot;www.SITE.com/test me/Start page&quot;</span></code></pre>
+<p>The output will be:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">http</span>://www.site.com/test%20me/start%20page</code></pre>
+<p>We have imported a new module <code>Data.String.Utils</code>. This module is a part of <code>MissingH</code> package, which contains a lot of useful utilities. Let’s install it:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> install MissingH</code></pre>
+<p>Don’t forget to mention it in <code>Real.cabal</code></p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">    build<span class="fu">-</span>depends<span class="fu">:</span> base <span class="fu">==</span><span class="dv">4</span><span class="fu">.</span><span class="dv">6</span><span class="fu">.*</span>, <span class="dt">MissingH</span></code></pre>
+<p><code>Data.String.Utils</code> module has a lot of great things to work with strings, but we needed only one function <code>startswith</code>, which checks if one string is the beginning of another.</p>
+<p>You might have noticed two unusual strings:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">encodeAllSpaces <span class="fu">=</span> replace <span class="st">&quot; &quot;</span> <span class="st">&quot;%20&quot;</span>
+
+makeItLowerCase <span class="fu">=</span> map toLower</code></pre>
+<p>What is it? It looks like function without a declaration, but where is an argument? We don’t need one. To clarify, let’s write this with an argument:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">makeItLowerCase url <span class="fu">=</span> map toLower url</code></pre>
+<p>This is the complete form. But we can shorten it if we remove the argument. Why? Because this form:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">makeItLowerCase <span class="fu">=</span> map toLower</code></pre>
+<p>says that <code>makeItLowerCase</code> is an alias for a functional notation <code>map toLower</code>. So from now on, when we write <code>makeItLowerCase arg</code>, we assume <code>map toLower arg</code>.</p>
+<p>Now we have three functions, each of which makes a relatively simple operation with the URL: <code>makeItLowerCase</code> converts all symbols to lower case, <code>encodeAllSpaces</code> changes spaces to <code>%20</code> string, <code>addPrefix</code> adds the prefix if it is absent. So in the end we have a chain of three functions: the input is the incorrect URL and the output is the fixed URL. Let’s take a closer look on this chain:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">addPrefix (encodeAllSpaces (makeItLowerCase url))</code></pre>
+<p>At first <code>makeItLowerCase</code> is called, then <code>encodeAllSpaces</code>, and then <code>addPrefix</code>. Each function receives URL as input and outputs a refined URL, which is the input of the next function.</p>
+<p>Everything could be fine, but there is a drawback in this chain - there are too many parentheses. And if we add more correction functions, we’ll have even more. There are two ways to make these chains prettier.</p>
+<h2 id="function-composition">Function composition</h2>
+<p>Function composition looks like a dot. Its purpose is to join functions into a chain. Like this:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">(addPrefix <span class="fu">.</span> encodeAllSpaces <span class="fu">.</span> makeItLowerCase) url</code></pre>
+<p>Function composition makes one function out of three, which is then applied to <code>url</code>, and the result is the same as if we wrote</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">addPrefix (encodeAllSpaces (makeItLowerCase url))</code></pre>
+<p>You can say that function composition made a stack of three functions: they are written from left to right, but they will be executed from right to left. So <code>url</code> string moves through a conveyor from right to left.</p>
+<h2 id="function-application">Function application</h2>
+<p>And there is also function application or an application operator. It looks like a dollar sign. Its purpose is also to join functions into a chain. Like this:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">addPrefix <span class="fu">$</span> encodeAllSpaces <span class="fu">$</span> makeItLowerCase url</code></pre>
+<p>Here we don’t have parentheses at all. And this notation is the same as:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">addPrefix (encodeAllSpaces (makeItLowerCase url))</code></pre>
+<p>Here we also get a stack of functions: they are written from left to right and are called from right to left. This order is called right-associative.</p>
+<p>You’re probably interested, what’s the difference between these two approaches? Both of them are designed to make chains of functions.</p>
+<p>The main difference is that application function allows us to chain not just functions, but a function and its argument:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> <span class="st">&quot;Hi master!&quot;</span></code></pre>
+<p>The dollar operator joined the value and the function applied to it. And function composition won’t allow you to do that.</p>
+<p>Why do we need it, you may ask. I’ll answer:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print (<span class="st">&quot;Hi master '&quot;</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">&quot;', have a nice day&quot;</span>)</code></pre>
+<p><code>print</code> function expects just one argument, so we need to put parentheses around three strings which are concatenated. It is more convenient to write:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> <span class="st">&quot;Hi master '&quot;</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">&quot;', have a nice day&quot;</span></code></pre>
+<p>We got rid of parentheses by joining the function and its argument into a chain. Because of this, function composition and function application are often used together:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">addPrefix <span class="fu">.</span> encodeAllSpaces <span class="fu">.</span> makeItLowerCase <span class="fu">$</span> url</code></pre>
+<p>The dot joins functions and the dollar sign joins them with the argument.</p>
+<p>Now you know about functional chains.</p>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+
+            </div>
+            
+            <div id="footer">
+                <div id="social">
+                    © Denis Shevchenko 2013-2014
+                </div>
+                <div id="hakyll_mark">
+                    Created by <a href="http://jaspervdj.be/hakyll">Hakyll</a>
+                </div>
+            </div>
+
+            <div id="search_form">
+                <script>
+                  (function() {
+                    var cx = '007697214108744450483:py6mcdzwavw';
+                    var gcse = document.createElement('script');
+                    gcse.type = 'text/javascript';
+                    gcse.async = true;
+                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+                        '//www.google.com/cse/cse.js?cx=' + cx;
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(gcse, s);
+                  })();
+                </script>
+                <gcse:search></gcse:search>
+            </div>
+            </div>
+        </div>
+    </body>
+</html>
