@@ -1,11 +1,10 @@
-@import url(http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700&subset=cyrillic-ext,latin);
 @import url(http://fonts.googleapis.com/css?family=Neucha&subset=latin,cyrillic);
-/* @import url(http://fonts.googleapis.com/css?family=Fira+Mono:400,700&subset=latin,latin-ext); */
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic);
 
 body {
     color: black;
-    font-size: 19px;
-    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 17px;
+    font-family: 'PT Sans', sans-serif;
     background: #f5f3ee;
     text-align: justify;
     padding: 0;
@@ -48,7 +47,7 @@ div#wrapper_2 {
 div#logo a {
     color: black;
     float: left;
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     text-decoration: none;
     border: none;
@@ -70,12 +69,12 @@ div#logo a:hover {
 
 div#header #navigation {
     text-align: right;
-    padding-top: 3px;
+    padding-top: 5px;
 }
 
 div#header #navigation a {
     color: black;
-    font-size: 16px;
+    font-size: 15px;
     margin-left: 20px;
     border: none;
     /* text-transform: uppercase; */
@@ -96,13 +95,13 @@ div#footer {
 
 div#social {
     float: left;
-    font-size: 16px;
+    font-size: 14px;
     padding-top: 4px;
 }
 
 div#hakyll_mark {
     text-align: right; 
-    font-size: 16px;
+    font-size: 14px;
     padding-top: 4px;
 }
 
@@ -147,13 +146,13 @@ span#root_link {
 }
 
 h1 {
-    font-size: 32px;
+    font-size: 28px;
     text-align: center;
     font-weight: 500 !important;
 }
 
 h2 {
-    font-size: 24px !important;
+    font-size: 22px !important;
     text-align: center !important;
     font-weight: 500 !important;
     padding-top: 10px;
@@ -287,7 +286,7 @@ pre.sourceCode span.er { color: red; font-weight: bold; }
 
 pre.sourceCode {
     font-family: 'Menlo', 'Monaco', monospace !important;
-    font-size: 75% !important;
+    font-size: 80% !important;
     border: 1px solid #CBE32D; /* Параметры границы */
     border-radius: 3px;
     background: #F3FAB6; /* Цвет фона */
@@ -321,7 +320,7 @@ pre.sourceCode {
   border: 1px solid #faa;
   color: #fff;
   display: block;
-  font: bold 90.0% 'PT Sans Narrow', Helvetica, Arial, sans-serif;
+  font: bold 90.0% 'PT Sans', Helvetica, Arial, sans-serif;
   margin: 1px 0;
   padding: 7px 50px;
   text-align: center;
