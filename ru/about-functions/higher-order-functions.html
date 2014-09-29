@@ -74,7 +74,7 @@ totalSum arg1 arg2 arg3 <span class="fu">=</span> arg1 <span class="fu">+</span>
 <p>проходил бы в три этапа, и чтобы явно отразить этот факт, мы можем переписать объявление данной функции так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">totalSum ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> (<span class="dt">Double</span> <span class="ot">-&gt;</span> (<span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>))</code></pre>
 <p>а её вызов - так:  </p>
-<pre><code>((totalSum 10.03) 2.1) 45.7</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">((totalSum <span class="dv">10</span><span class="fu">.</span><span class="dv">03</span>) <span class="dv">2</span><span class="fu">.</span><span class="dv">1</span>) <span class="dv">45</span><span class="fu">.</span><span class="dv">7</span></code></pre>
 <p>  И чтобы всё окончательно прояснилось, изучим одну важную деталь.</p>
 <h2 id="частичное-применение-функции">Частичное применение функции</h2>
 <p>Несмотря на “двухэтапность” вызова функции <code>divide</code>, её тело будет выполнено один раз. Вызов один, просто он разделён на два последовательных шага. А чтобы понять суть этих шагов, изучим частичное применение функции (partial application).</p>
