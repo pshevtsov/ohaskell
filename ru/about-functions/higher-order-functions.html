@@ -53,7 +53,7 @@
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">divide ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 divide arg1 arg2 <span class="fu">=</span> arg1 <span class="fu">/</span> arg2</code></pre>
 <p>Функция принимает два значения стандартного типа <code>Double</code> и возвращает результат деления первого значения на второе. Всё предельно просто. Но если мы заглянем “под капот” вызова этой функции:</p>
-<p><code>haskell main = print (divide 10.03 2.1)</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print (divide <span class="dv">10</span><span class="fu">.</span><span class="dv">03</span> <span class="dv">2</span><span class="fu">.</span><span class="dv">1</span>)</code></pre>
 <p>то узнаем, что этот вызов происходит в два этапа:</p>
 <ol style="list-style-type: decimal">
 <li>Функция <code>divide</code> применяется к первому аргументу <code>10.03</code> и - внимание! - возвращает функцию типа <code>Double -&gt; Double</code>.</li>
