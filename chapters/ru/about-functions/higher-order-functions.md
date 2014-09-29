@@ -77,7 +77,7 @@ totalSum :: Double -> (Double -> (Double -> Double))
 
 а её вызов - так:
  
-```
+```haskell
 ((totalSum 10.03) 2.1) 45.7
 ```
  
