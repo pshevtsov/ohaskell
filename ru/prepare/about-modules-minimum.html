@@ -53,9 +53,15 @@ hello user <span class="fu">=</span> <span class="st">&quot;Hi, &quot;</span> <s
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Helpers</span>
 
 main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot;</span>)</code></pre>
-<p>Мы включили наш модуль <code>Helpers</code> с помощью директивы <code>import</code>. Теперь  можно воспользоваться содержимым этого модуля, а именно той самой штуковиной по имени <code>hello</code>.</p>
+<p>Мы включили наш модуль <code>Helpers</code> с помощью директивы <code>import</code>. Теперь  можно воспользоваться содержимым этого модуля: той самой штуковиной по имени <code>hello</code>.</p>
 <h2 id="упоминаем">Упоминаем</h2>
-<p>Теперь упомянем модуль <code>Helpers</code> в сборочном файле <code>Real.cabal</code>. Открываем его и прописываем наш модуль: <code>haskell executable Real     main-is:             Main.hs                  other-modules:       Helpers     build-depends:       base ==4.6.\*     hs-source-dirs:      src</code>  Мы раскомментировали строку other-modules и указали имя нашего модуля. Обращаю ваше внимание: указать нужно не имя файла, а имя модуля.</p>
+<p>Теперь упомянем модуль <code>Helpers</code> в сборочном файле <code>Real.cabal</code>. Открываем его и прописываем наш модуль:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">executable <span class="dt">Real</span>
+    main<span class="fu">-</span>is<span class="fu">:</span>             Main.hs             
+    other<span class="fu">-</span>modules<span class="fu">:</span>       <span class="dt">Helpers</span>
+    build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">==</span><span class="dv">4</span><span class="fu">.</span><span class="dv">6</span><span class="fu">.</span>\<span class="fu">*</span>
+    hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src</code></pre>
+<p>Мы раскомментировали строку other-modules и указали имя нашего модуля. Обращаю ваше внимание: указать нужно не имя файла, а имя модуля.</p>
 <p>Но раз уж мы указали имя нашего модуля, необходимо указать и место, где его искать. Ведь он лежит не в каталоге src, а в подкаталоге src/Utils. Поэтому в сборочном файле ищем параметр hs-source-dirs и дописываем:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">    hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src
                          src<span class="fu">/</span><span class="dt">Utils</span></code></pre>
