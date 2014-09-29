@@ -29,7 +29,7 @@ divide arg1 arg2 = arg1 / arg2
 
 ```haskell
 main = print (divide 10.03 2.1)
-``` 
+```
 
 то узнаем, что этот вызов происходит в два этапа:
 
