@@ -1,14 +1,14 @@
 ----
-title: Собственные исключения
+title: Own exceptions
 prevChapter: /en/io/exceptions-handling.html
 nextChapter: /en/delicious/index.html
 ----
 
-До сих пор мы лишь ловили исключения. Теперь поговорим о том, как их бросать, а также о том, как создать свои собственные типы исключений.
+Previously we were only catching exceptions. Now, let's discuss how to throw them and how to create our own exception types.
 
-## Создаём
+## Creating
 
-Определяем тип исключения:
+Define the type of exception:
 
 ```haskell
 import Control.Exception
@@ -23,21 +23,21 @@ data InvalidRepository = InvalidRepository Repo
 instance Exception InvalidRepository
 ```
 
-Подразумевается, что мы анализируем некий репозиторий, и если он некорректен, в дело вступает исключение `InvalidRepository`. Мы наследовались от двух классов, `Show` и `Typeable`. Сделать это необходимо, потому что наш тип обязан предоставить свой экземпляр класса типов `Exception`, а этот класс устанавливает контекст из этих двух классов.
+Some repository is analyzed, if it is incorrect it's time for exception `InvalidRepository`. This exception is inherited from two type-classes, `Show` and `Typeable`. That's necessary as our type must provide an instance of type-class `Exception` and that type class deduces context from these two type-classes.
 
-Вы спросите, что это за необычная строка:
+You'll ask, what is that unusual string for:
 
 ```haskell
 instance Exception InvalidRepository
 ```
 
-Перед нами - экземпляр класса типов `Exception`, но в этом экземпляре нет ни ключевого слова `where`, ни последующих реализаций соответствующих методов. Класс `Exception` содержит в себе два метода, но мы говорим: "Вот наш экземпляр класса типов `Exception`, но предоставлять реализации его методов мы не хотим".
+We face an instance of type-class `Exception` but that instance has neither keyword `where`, nor subsequent implementations of corresponding methods. Type-class `Exception` contains two different methods, but we say, "Here is our instance of type-class `Exception`, but we are not going to provide implementations of its methods".
 
-## Бросаем
+## Throw
 
-Чтобы бросить исключение, используем стандартную функцию `throw`. Не забывайте, что даже в том случае, если исключение было брошено из чистой функции, поймать его мы сможем только в `IO`-функции.
+In order to throw the exception we use standard function `throw`. Remember that even in case if exception was thrown from pure function, we can catch it only in `IO`-function.
 
-Напишем:
+Write:
 
 ```haskell
 extractProtocol :: String -> String
@@ -56,17 +56,17 @@ main = do
         Right protocol -> putStrLn protocol
 ```
 
-Вывод будет таким:
+Here is an output:
 
 ```bash
 Fault: InvalidRepository "ss://ul@sch/proj.git"
 ```
 
-Мы пытаемся извлечь протокол из полного пути к репозиторию, и если там не то, что нам нужно, мы кидаем исключение, перехватываемое функцией `try`.
+We are trying to extract protocol from the full path to repository and if its wrong we throw an exception which is caught by the function `try`.
 
-## В сухом остатке
+## So
 
-* Тип собственного исключения обязан иметь отношение к классу `Exception`.
-* Бросаем исключение функцией `throw`.
-* Ловим исключение как обычно, функцией `try`.
+* Type of own exception must be an instance of type-class `Exception`.
+* We throw exceptions with `throw`.
+* As usually, we catch exceptions with `try`.
 

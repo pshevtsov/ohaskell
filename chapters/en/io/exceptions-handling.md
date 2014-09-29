@@ -1,41 +1,41 @@
 ----
-title: Обработка исключений
+title: Handling exception
 prevChapter: /en/io/do-imperative-world.html
 nextChapter: /en/io/own-exceptions.html
 ----
 
-Мы все стремимся создавать программные системы, свободные от ошибок. И всё же иногда они появляются, а значит, нам приходится иметь с ними дело. Поговорим об исключениях, тем более что знать о них необходимо: многие пакеты из Hackage содержат код, кидающийся этими самыми исключениями.
+We all aim at creating error-free software. Nevertheless, they sometimes emerge, and therefore, we have to deal with them. Let's discuss exceptions, that topic is especially necessary to know as many packages from Hackage contain code which throws exceptions.
 
-Прежде всего, нам понадобится модуль `Control.Exception`:
+First of all, we need module `Control.Exception`:
 
 ```haskell
 import Control.Exception
 ```
 
-Этот стандартный модуль предназначен для кидания и ловли исключений, причём как стандартных, так и наших собственных. Важно отметить: мы можем бросить исключение как из чистых функций, так и из функций с побочными эффектами, однако поймать его в чистой функции мы не сможем.
+That standard module is made for throwing and catching exceptions, either standard ones or our own. It's significant that we can throw exception from either a pure function or from a function with side effect, but we can't catch it in pure function.
 
-## Проблема с файлом
+## Problem with file
 
-Чаще всего мы будем сталкиваться с исключениями, брошенными из функций, взаимодействующих с внешним миром. Канонический пример: мы хотим прочесть содержимое файла, который отсутствует:
+Usually we'll be meeting exceptions which are thrown from functions which interact with the outside world. Canonical example: we want to read the content of the non-existent file:
 
-```haskell 
+```haskell
 main :: IO ()
 main = do
-    fileContent <- readFile "Users/shevchenko/test.c"  -- Неверный путь...
+    fileContent <- readFile "Users/shevchenko/test.c"  -- Incorrect path...
     putStrLn fileContent
 ```
 
-Вывод будет таким:
+That gives us output:
 
 ```bash
 Real: Users/shevchenko/test.c: openFile: does not exist (No such file or directory)
 ```
 
-Функция `readFile` бросила исключение, ведь сообщить о проблеме с файлом она может только так. Исключение, не найдя преград на своём пути, было поймано уже на самом верхнем уровне приложения, после чего сообщение об ошибке было выведено нам, а само приложение скоропостижно скончалось.
+Function `readFile` had thrown an exception, as it's the only way it could report about a problem with file. Exception haven't found any barriers on its way and was caught, on application's top level, after that a message about error was printed out and the application died on its feet.
 
-## Ловим
+## Catching
 
-Итак:
+So:
 
 ```haskell
 import Control.Exception 
@@ -53,55 +53,55 @@ main = do
     putStrLn fileContent
 ```
 
-Теперь у нас есть функция `tryToOpenFile`, которая открывает файл по заданному пути, но делает это осторожно, используя функцию `catch`. Как вы уже поняли, функция catch, определённая в модуле `Control.Exception`, умеет ловить исключения. Вот её объявление:
+Now we have a function `tryToOpenFile`, which opens file at given path, but does it carefully, utilizing function `catch`. As you already understood, function `catch` (defined in module `Control.Exception`) knows how to catch an exception. Consider its type:
 
 ```haskell
 catch :: Exception e => IO a -> (e -> IO a) -> IO a
 ```
 
-Функция принимает два аргумента: первым идёт `IO`-действие, вторым идёт функция-обработчик. Если действие бросило исключение, отражённое полиморфным типом `e`, это исключение будет передано обработчику.
+Function takes two arguments: first is an `IO`-action, second is a handling-function. If action thrown an exception (represented with polymorphic type `e`) that exception is passed to the handler.
 
-Обратите внимание: тип исключения входит в контекст класса Exception, определённого в том же модуле `Control.Exception`. Любое исключение в вашем приложении обязано входить в контекст этого класса.
+Watch out: the type of exception is in the context of `Exception` class, which is defined in the same module `Control.Exception`. Any exception in our application must implement that class.
 
-Для большей читабельности мы используем инфиксную запись функции `catch`, с которой гармонирует имя нашего обработчика:
+In order to improve readability we use function `catch` in infix notation, which keeps up with the name of our handler:
 
 ```haskell
 readFile path `catch` possibleErrors
 ```
 
-Если при чтении файла возникла проблема, соответствующее исключение поступает на вход нашего обработчика:
+If we get an error while reading a file the corresponding exception is passed to our handler:
 
 ```haskell
 possibleErrors :: IOException -> IO String
 possibleErrors error = return $ show error
 ```
 
-Обработчик принимает значение типа `IOException`. В теле обработчика мы стрингифицируем полученное исключение, а затем готовую строку, содержащую описание произошедшей ошибки, заворачиваем в действие `IO String`. Если же нас не устраивает уже имеющееся сообщение об ошибке - предоставим своё:
+Handler takes value of type `IOException`. In the handler's body we stringify the resultant exception, then we take the resultant string containing a description of an error and wrap it into an action `IO String`. In case if you are not happy with existing error message provide your own:
 
 ```haskell
 possibleErrors error = return "Unable to open this file. Please check it."
 ```
 
-Это сообщение и будет выведено на экран в случае возникновения проблемы.
+That message would be printed if the problem occurs.
 
-## Ловим наоборот
+## Catch the other way
 
-Перепишем нашу функцию:
+Let's rewrite our function:
 
 ```haskell
 tryToOpenFile :: FilePath -> IO String
 tryToOpenFile path =
-    handle possibleErrors (readFile path)  -- То же самое, но наоборот.
+    handle possibleErrors (readFile path)  -- Same thing but the other way.
     where
         possibleErrors :: IOException -> IO String
         possibleErrors error = return "Aaaaa!!! Please check file."
 ```
 
-Мы заменили функцию `catch` на функцию `handle`. Никакой разницы между этими функциями нет, за исключением порядка следования аргументов: `catch` принимает обработчик вторым по счёту, а `handle` - первым. Таким образом, `catch` читабельнее в инфиксной форме, а `handle` - в простой. Так что выбирайте на вкус.
+We replaced function `catch` with `handle`. There is absolutely no difference, except the order of arguments `catch` takes handler as a second argument, whereas `handle` takes it as first. Thus, `catch` is more readable in infix form and `handle` is more readable in simple form. So, take your choice.
 
-## Пытаемся
+## Trying
 
-Стандартная функция `try` использует иной подход. Вот пример:
+Standard function `try` takes different approach. For example:
 
 ```haskell
 import Control.Exception
@@ -115,23 +115,23 @@ main = do
     where path = "Users/dshevchenko/test.c"
 ```
 
-Разберём по полочкам.
+Let's line it out.
 
-Объявление функции `try` выглядит так:
+Here is a type of function `try`:
 
 ```haskell
 try :: Exception e => IO a -> IO (Either e a)
 ```
 
-Эта функция принимает наше `IO`-действие, а возвращает другое `IO`-действие, которое в свою очередь возвращает значение стандартного типа `Either e a`. `Either` - это конструктор типа, предназначенный для хранения одного из двух значений, каждое из которых соответствует хорошему результату и плохому. Обратите внимание, мы явно указали тип значения, возвращённого функцией `try`:
+That function takes our `IO`-action and returns another `IO`-action, which returns value of standard type `Either e a`. `Either` is a type constructor designed to store either value which represents good result or value which represents bad result. Note, we explicitly specified type of value which function `try` returns.
 
 ```haskell
 try $ readFile path :: IO (Either IOException String)
 ```
 
-Мы сказали: "Пусть действие, возвращённое функцией `try`, вернёт нам значение типа `Either IOException String`, в котором будет лежать либо значение типа `IOException` (в случае, если при чтении файла что-то случилось), либо значение типа `String` с содержимым файла".
+We said, "Let function try return us a value of type `Either IOException String`, which contains either value of type `IOException` (when something happened while reading a file) or a value of type `String` with the contents of file.
 
-Далее смотрим, получилось ли у нас:
+Next, check was it successful:
 
 ```haskell
 case result of
@@ -139,17 +139,17 @@ case result of
     Right content -> putStrLn content
 ```
 
-Тип `Either` имеет два конструктора, `Left` и `Right`. В нашем случае это можно изобразить так:
+Type `Either` has two constructors, `Left` and `Right`. In our case it can be displayed it this way:
 
     Either IOException String
-           |           |
-           Left        Right
+           |           |
+           Left        Right
 
-Используя эти два конструктора, мы можем понять, что же произошло. Конструкция `case-of` поможет нам. Мы говорим: "Если `result` соответствует левому значению - это значение типа `IOException`. Что-то пошло не так, выводим исключение на экран! Ну а если `result` соответствует правому значению - перед нами `String`. Всё прошло успешно, выводим на экран содержимое прочитанного файла".
+Using these constructors we can comprehend what happened. Structure `case-of` will help us. We say, "If `result` conforms to left value it's a value of type `IOException`. Something went wrong, print an exception! And if `result` conforms to right value -- we've got `String`. Great success, print the contents of the file.
 
-## В чистом мире
+## In the Pure World
 
-Иногда нам нужно поймать исключение, брошенное из чистой функции. Например:
+Sometimes we need to catch an exception which was thrown from pure function. For example:
 
 ```haskell
 import Control.Exception
@@ -162,7 +162,7 @@ main = do
         Right value -> print value
 ```
 
-Здесь мы попытались проверить результат деления числа 2 на ноль. К сожалению, этот код не пройдёт компиляцию. Ведь функция `try` ожидает на вход `IO`-действие, однако стандартная функция `div` чиста и возвращает обыкновенное число. Следовательно, нам нужен маленький трюк:
+Here we tried to check the result of dividing 2 by zero. However, that wouldn't pass the compilation. Function `try` expects to get `IO`-action on input, however standard function `div` is pure and returns normal number. Therefore, we need a small trick:
 
 ```haskell
 import Control.Exception
@@ -176,27 +176,26 @@ main = do
         Right value -> print value
 ```
 
-Мы обернули вызов функции `div` в стандартную функцию `evaluate`. Теперь всё скомпилируется, и при запуске мы получим ожидаемое нами гневное сообщение:
+We wrapped the call to function `div` into a standard function `evaluate`. Now everything compiles, and on execution we get an expected angry message:
 
 ```bash
 Fault: divide by zero
 ```
 
-Функция `evaluate` объявлена так:
+The type of function `evaluate`:
 
 ```haskell
 evaluate :: a -> IO a
 ```
 
-Эта функция играет роль адаптера: она как бы превращает результат в `IO`-действие, возвращающее этот результат. И после того, как функция `div` вернула нам обыкновенное число, функция `evaluate` обернула это число в действие, ожидаемое функцией `try`.
+That function plays the role of adapter: it kind of turns the result into an `IO`-action which returns that result. After function `div` returned us a normal number function `evaluate` wrapped that number into an action expected by function `try`.
 
-## В сухом остатке
+## So
 
-* Исключение может быть брошено из любой функции, но обработать его мы сможем только в IO-функции.
-* Функция `catch` ловит исключение и передаёт его обработчику.
-* Функция `handle` - зеркальная сестра функции `catch`.
-* Функция `try` работает в сотрудничестве с конструктором типа `Either`. Анализируя порождённое этим типом значение, мы поймём, возникла ли проблема в интересующей нас функции, или всё прошло гладко.
-* Для работы с `try` чистую функцию следует поместить в `evaluate`-обёртку.
+* Exception can be thrown from any function, but we can catch it only inside IO-function.
+* Function `catch` catches exception and passes it to the handler.
+* Function `handle` - is a mirroring of `catch`.
+* Function `try` co-operates with constructor of type `Either`. Analysing the value created by that type we can understand if there was a problem in the particular function or it went smooth.
+* In order to work with `try` we should put pure function into `evaluate`-wrapper
 
-Почти готово. Но наше рассмотрение исключений не было бы полным без изучения наших собственных исключений.
-
+Almost done. However, we definitely should take a look on how to create our own exceptions.
