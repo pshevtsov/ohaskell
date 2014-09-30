@@ -129,7 +129,7 @@ That function takes our `IO`-action and returns another `IO`-action, which retur
 try $ readFile path :: IO (Either IOException String)
 ```
 
-We said, "Let function try return us a value of type `Either IOException String`, which contains either value of type `IOException` (when something happened while reading a file) or a value of type `String` with the contents of file.
+We said, "Let function `try` return us a value of type `Either IOException String`, which contains either value of type `IOException` (when something happened while reading a file) or a value of type `String` with the contents of file".
 
 Next, check was it successful:
 
@@ -145,7 +145,7 @@ Type `Either` has two constructors, `Left` and `Right`. In our case it can be di
            |           |
            Left        Right
 
-Using these constructors we can comprehend what happened. Structure `case-of` will help us. We say, "If `result` conforms to left value it's a value of type `IOException`. Something went wrong, print an exception! And if `result` conforms to right value -- we've got `String`. Great success, print the contents of the file.
+Using these constructors we can comprehend what happened. Structure `case-of` will help us. We say, "If `result` conforms to left value it's a value of type `IOException`. Something went wrong, print an exception! And if `result` conforms to right value -- we've got `String`. Great success, print the contents of the file."
 
 ## In the Pure World
 

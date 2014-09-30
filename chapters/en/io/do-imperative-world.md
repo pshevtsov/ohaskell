@@ -45,7 +45,7 @@ main = do
     putStrLn $ "You said '" ++ firstText ++ "' and '" ++ secondText ++ "'"
 ```
 
-Function `obtainUserText` includes two consecutive steps, that's why the keyword `do` is used. We expect that the certain prompt would be printed firstand only then the action created by function `getLine` would be send to the outside world and would bring back the string which is typed by user.
+Function `obtainUserText` includes two consecutive steps, that's why the keyword `do` is used. We expect that the certain prompt would be printed first and only then the action created by function `getLine` would be send to the outside world and would bring back the string which is typed by user.
 
 ## About function "return"
 
@@ -103,7 +103,7 @@ That might confuse programmers who are experienced with imperative programming, 
 
 ## So
 
-* `do` binds action into a consecutive chain.
+* Keyword `do` binds action into a consecutive chain.
 * Function `return` wraps value into an IO-action. Do not confuse it with a keyword `return` in C-like languages.
 
 Done. Now you know about the keyword `do`. However, you still do not know the most interesting part, Soon I'll show it to you.

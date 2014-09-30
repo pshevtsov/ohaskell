@@ -23,7 +23,7 @@ data InvalidRepository = InvalidRepository Repo
 instance Exception InvalidRepository
 ```
 
-Some repository is analyzed, if it is incorrect it's time for exception `InvalidRepository`. This exception is inherited from two type-classes, `Show` and `Typeable`. That's necessary as our type must provide an instance of type-class `Exception` and that type class deduces context from these two type-classes.
+Some repository is analysed, if it is incorrect it's time for exception `InvalidRepository`. This exception is inherited from two type-classes, `Show` and `Typeable`. That's necessary as our type must provide an instance of type-class `Exception` and that type class deduces context from these two type-classes.
 
 You'll ask, what is that unusual string for:
 

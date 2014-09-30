@@ -11,7 +11,7 @@ From the logical point of view, action is our ambassador, when we ask he goes to
 ## Standard Input and Output
 
 Let us start with standard channels stdout and stdin. Let's output a string to the screen:
- 
+
 ```haskell
 main = putStrLn "Hi Haskeller!"
 ```
