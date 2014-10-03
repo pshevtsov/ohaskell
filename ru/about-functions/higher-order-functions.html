@@ -197,11 +197,11 @@ obtainLogin userId <span class="fu">=</span>
     loginStorage <span class="st">&quot;denis&quot;</span>
     where loginStorage login prefix <span class="fu">=</span> prefix <span class="fu">++</span> <span class="st">&quot;: &quot;</span> <span class="fu">++</span> login</code></pre>
 <p>Здесь мы, на основании полученного извне идентификатора пользователя, откуда-то извлекаем логин и сразу же прячем его в λ-функцию, тут же нами и созданную. В результате функция <code>obtainLogin</code> возвращает частично применённую функцию, которую мы вторично применяем к строке-префиксу - и в результате на выходе мы получаем готовый результат:</p>
-<p><code>bash My login: denis</code> </p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">My</span> login: denis</code></pre>
 <p>Вас, вероятно, интересует, почему я сказал о λ-функции? Вроде бы здесь нет нашего знакомого <code>\</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">    <span class="kw">where</span> loginStorage login prefix <span class="fu">=</span> prefix <span class="fu">++</span> <span class="st">&quot;: &quot;</span> <span class="fu">++</span> login</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">where</span> loginStorage login prefix <span class="fu">=</span> prefix <span class="fu">++</span> <span class="st">&quot;: &quot;</span> <span class="fu">++</span> login</code></pre>
 <p>Однако это не важно, ведь такая запись идентична λ-форме:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">    <span class="kw">where</span> loginStorage <span class="fu">=</span> \login prefix <span class="ot">-&gt;</span> prefix <span class="fu">++</span> <span class="st">&quot;: &quot;</span> <span class="fu">++</span> login</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">where</span> loginStorage <span class="fu">=</span> \login prefix <span class="ot">-&gt;</span> prefix <span class="fu">++</span> <span class="st">&quot;: &quot;</span> <span class="fu">++</span> login</code></pre>
 <p>Помните, выше я говорил, что тривиальную функцию лучше определять без объявления? Вот это тот самый случай.</p>
 <h2 id="в-сухом-остатке">В сухом остатке</h2>
 <ul>
