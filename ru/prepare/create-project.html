@@ -81,13 +81,13 @@ $ <span class="kw">touch</span> Real/src/Utils/Helpers.hs</code></pre>
 <p>Итак, наша песочница создана. Подробнее о том, что это такое и с чего это едят, я рассказываю в главе <a href="http://ohaskell.dshevchenko.biz/ru/prepare/about-sandbox.html">О песочнице</a>. А пока выполним следующую команду:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> init</code></pre>
 <p>Мы попадём в интерактивный диалог, в ходе которого нам будет предложено ответить на несколько вопросов о нашем проекте. В конце этого диалога будут автоматически созданы файлы проекта, и наш каталог приобретёт следующее содержимое:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Real</span><span class="fu">.</span>cabal
-Setup.hs
-cabal<span class="fu">.</span>sandbox<span class="fu">.</span>config
-src<span class="fu">/</span>
-    Main.hs
-    <span class="dt">Utils</span><span class="fu">/</span>
-        Helpers.hs</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real.cabal</span>
+<span class="kw">Setup.hs</span>
+<span class="kw">cabal.sandbox.config</span>
+<span class="kw">src/</span>
+    <span class="kw">Main.hs</span>
+    <span class="kw">Utils/</span>
+        <span class="kw">Helpers.hs</span></code></pre>
 <p>Кстати, если вдруг вы увидите вот такое предупреждение:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Generating</span> LICENSE...
 <span class="kw">Warning</span>: unknown license type, you must put a copy in LICENSE yourself.</code></pre>
