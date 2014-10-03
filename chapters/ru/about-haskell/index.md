@@ -1,6 +1,6 @@
 ----
 title: Несколько слов о Haskell
-prevChapter: /ru/prepare/about-hackage.html
+prevChapter: /ru/prepare/about-sandbox.html
 nextChapter: /ru/about-haskell/pure-functionality.html
 ----
 

@@ -337,6 +337,14 @@ pre.sourceCode {
     padding: 2px; /* Поля вокруг текста */
 }
 
+#content li>code {
+    font-family: 'Menlo', 'Monaco', monospace !important;
+    font-size: 80% !important;
+    border-radius: 3px;
+    background: #F3FAB6; /* Цвет фона */
+    padding: 2px; /* Поля вокруг текста */
+}
+
 div#chaptersGroup {
     padding-top: 20px;
     font-size: 100%;

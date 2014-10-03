@@ -289,18 +289,18 @@ obtainLogin userId =
 
 ```bash
 My login: denis
-``` 
+```
 
 Вас, вероятно, интересует, почему я сказал о λ-функции? Вроде бы здесь нет нашего знакомого `\`:
 
 ```haskell
-    where loginStorage login prefix = prefix ++ ": " ++ login
+where loginStorage login prefix = prefix ++ ": " ++ login
 ```
 
 Однако это не важно, ведь такая запись идентична λ-форме:
 
 ```haskell
-    where loginStorage = \login prefix -> prefix ++ ": " ++ login
+where loginStorage = \login prefix -> prefix ++ ": " ++ login
 ```
 
 Помните, выше я говорил, что тривиальную функцию лучше определять без объявления? Вот это тот самый случай.

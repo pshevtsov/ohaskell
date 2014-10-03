@@ -12,6 +12,7 @@ title: Оглавление
   <div id="chapter"> [Создаём проект](/ru/prepare/create-project.html)</div>
   <div id="chapter"> [О модулях, минимум](/ru/prepare/about-modules-minimum.html)</div>
   <div id="chapter"> [О Hackage](/ru/prepare/about-hackage.html)</div>
+  <div id="chapter"> [О песочнице](/ru/prepare/about-sandbox.html)</div>
 
 <div id="chaptersGroup"> [Несколько слов о Haskell](/ru/about-haskell/index.html)</div>
   <div id="chapter"> [Чистая функциональность](/ru/about-haskell/pure-functionality.html)</div>
