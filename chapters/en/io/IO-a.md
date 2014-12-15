@@ -4,55 +4,55 @@ prevChapter: /en/io/functions-with-side-effects.html
 nextChapter: /en/io/do-imperative-world.html
 ----
 
-Итак, для работы с внешним миром нам нужны действия. А действие представляет собой значение типа `IO a`, где `IO` - это стандартный тип действия, а `a` - это полиморфный тип значения, возвращённого этим действием. Как вы уже поняли, `IO` - это конструктор типа. Поэтому тип действия, возвращающего строку, будет `IO String`.
+In order to work with outside world we need actions. And an action is a value of type `IO a`, where `IO` is a standard action type and `a` is a polymorphic type of value which the action returns. As you can see, `IO` is a type constructor. That's why the type of action which returns a string is `IO String`.
 
-С логической точки зрения, действие - это наш посол, который по нашей просьбе уходит во внешний мир, делает там какую-то работу, а потом приносит нам из внешнего мира что-нибудь интересное. Впрочем, иногда он может вернуться из внешнего мира и с пустыми руками.
+From the logical point of view, action is our ambassador, when we ask he goes to the outside world, does some work and brings us something interesting from the outside world. However, he might come back empty-handed.
 
-## Стандартные ввод и вывод
+## Standard Input and Output
 
-Начнём со стандартных каналов stdout и stdin. Выведем строку на экран:
- 
+Let us start with standard channels stdout and stdin. Let's output a string to the screen:
+
 ```haskell
 main = putStrLn "Hi Haskeller!"
 ```
 
-Взглянем на объявление функции `putStrLn`:
+Take a look at the type of function `putStrLn`:
 
 ```haskell
 putStrLn :: String -> IO ()
 ```
 
-Перед нами `IO`, а значит, данная функция имеет побочное действие. На входе у нас строка, а на выходе - действие. Рассмотрим его поближе:
+We face `IO`, and therefore, that function has a side effect. We have a string on input and an action on output. Let's take a closer look:
 
 ```haskell
 IO ()
 ```
 
-Одинокие круглые скобки говорят нам о пустом кортеже. Следовательно, перед нами действие, которое, сделав во внешнем мире свою работу, ничего нам не принесёт. Мы, посылая это действие во внешний мир, говорим ему: "Пойди и просто напечатай на экране компьютера переданную тебе строку". Но раз уж создатели Haskell договорились о том, что действие обязано что-то вернуть - пусть оно возвращает пустой кортеж. Это как `void`-функция в языке C: можно сказать, что она не возвращает ничего, а можно сказать, что она возвращает `void`.
+Lonely parentheses are telling us about an empty tuple. Therefore, we have an action, which does its job in the outside world and brings us nothing. When we send this action to the outside world, we tell it, "Just go and print that string on the computer's screen". But as the designers of Haskell agreed that action must return something -- let it return an empty tuple. It's like a `void`-function in the C language: you might say that it returns nothing, but you also might say that it returns `void`.
 
-Теперь взглянем на объявление функции `getLine`, получающей строку со стандартного ввода:
+Now let's take a look at the type of function `getLine`, which gets the string from the standard input:
 
 ```haskell
 getLine :: IO String
 ```
 
-Тут противоположная ситуация. Эта функция ничего не принимает от нас, потому что нам нечего ей дать, и порождённое этой функцией действие идёт во внешний мир с пустыми руками. Мы говорим ему: "Пойди, получи со стандартного ввода строку и принеси её нам".
+Here we have an opposite situation. That function takes nothing from us as there is nothing we could give it, so the action is created but that function goes to the outside world empty-handed. We tell it, "Go, get us the string from the standard input".
 
-## Объявляем main
+## Defining main
 
-Теперь мы наконец-то можем взглянуть на объявление главной функции приложения:
+Finally, we can take a look at the type of the main function of the application:
 
 ```haskell
 main :: IO ()
 ```
 
-Функция `main` тоже совершает действие - работу всего нашего приложения. Она ничего не возвращает в приложение, ведь при её завершении заканчивается всё. Разумеется, все действия в нашем приложении спят крепким сном и ничего не делают до тех пор, пока не будет запущено действие функции `main`.
+Function `main` also performs an action -- the whole work of our application. It returns nothing to the application, after all when its execution is finished everything ends. Of course, all actions in our application are doing nothing, having sweet dreams until the action of function `main` is fired.
 
-Мы до сих пор не писали объявление этой функции, потому что только сейчас узнали об `IO`. Но, строго говоря, мы должны это делать. Хотя бы для порядка.
+We haven't yet defined that function because we just found out about `IO`. However, if we want to keep things in order, we have to do it now.
 
-## Совместная работа
+## Teamwork
 
-Вот она:
+Here it is:
 
 ```haskell
 main :: IO ()
@@ -62,15 +62,15 @@ main = do
     putStrLn $ "Not bad: " ++ lineFromUser
 ```
 
-Тут всё предельно понятно, за исключением двух новых вещей.
+It's perfectly clear, except two new things.
 
-Во-первых, обратная стрелочка `<-`. Взглянем на неё:
+Firstly, the back-arrow `<-`. Take a look:
 
 ```haskell
 lineFromUser <- getLine
 ```
 
-Это - ассоциация. Мы говорим действию, порождённому функцией `getLine`: "Пойди, получи введённую пользователем строку, принеси её нам и привяжи (bind) её к идентификатору `lineFromUser`, чтобы мы cмогли прочесть эту строку".
+That's a bind. We tell to action which was created by function `getLine`: "Go, get us the line from the user and bind it to its identifier `lineFromUser`, so that we can read that line".
 
-Во-вторых, мы увидели новое ключевое слово `do`. И о нём стоит поговорить отдельно, что мы и сделаем в следующей главе.
+Secondly, we met a new keyword `do`. That deserves a special discussion which you'll find in the next chapter.
 

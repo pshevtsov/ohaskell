@@ -1,42 +1,42 @@
 ----
-title: do: императивный мир
+title: do: imperative world
 prevChapter: /en/io/IO-a.html
 nextChapter: /en/io/exceptions-handling.html
 ----
 
-Вы прочли правильно: императивный мир. Несмотря на то, что Haskell является чисто функциональным языком, в случае необходимости мы можем написать императивный код. А при работе с внешним миром такая необходимость возникает постоянно.
+You got it right: imperative world. Despite that Haskell is a purely functional language, we can write imperative code when we need. Such necessity constantly arises when we work with the outside world.
 
-Как вы знаете, императивный подход подразумевает выполнение программных инструкций в чётко указанном порядке. В чистых функциях такой подход излишен, потому что в них неважен порядок вычисления выражений. Однако в функциях, взаимодействующих с внешним миром, ситуация кардинально меняется.
+As you know, imperative approach implies that the execution of instructions goes strictly in the specified order. With pure functions such approach is excessive, that's why in the case of pure function the order in which expressions are evaluated doesn't matter.
 
-Вспомним наш пример работы со стандартными вводом и выводом:
+Recall our example of working with stdin and stdout:
 
 ```haskell
 main :: IO ()
 main = do
-    putStrLn "Input your text, please:"
-    lineFromUser <- getLine               
-    putStrLn $ "Not bad: " ++ lineFromUser   
-``` 
+    putStrLn "Input your text, please:"
+    lineFromUser <- getLine               
+    putStrLn $ "Not bad: " ++ lineFromUser   
+```
 
-Здесь мы делаем три шага:
+Three steps are done.
 
-1.  выводим на экран приветственную строку;
-2.  дожидаемся, пока пользователь введёт свой текст;
-3.  выводим на экран итоговую строку.
+1.  print a greeting string;
+2.  wait for the user input;
+3.  print the final line.
 
-Разумеется, мы ожидаем, что эти три шага будут выполнены именно в _таком_ порядке. Согласитесь, было бы странно выводить на экран итоговую строку, не дождавшись введённого пользователем текста. При работе с внешним миром мы всегда подразумеваем определённый порядок наших шагов. Например, сервер, получив запрос от клиента, должен сначала его обработать, потом сформировать ответ, и только потом отправить его клиенту.
+Obviously, we expect that these steps would be done exactly in _that_ order. That would be odd if the final string was printed before we got the string from the user. While working with the outside world a particular order of steps is always implied. For example, when server gets request from client it first must process it, then generate the response, and only then send it to the client.
 
-Именно для этой цели и введено ключевое слово `do`: оно связывает наши действия в последовательную цепочку. Говоря об этом ключевом слове, обычно используют термин "do-нотация".
+That's what the keyword `do` exists for: it binds our actions into a consecutive chain. When discussing that keyword, term "do-notation" is usually used.
 
-## Не только main
+## Not only the main
 
-Мы можем использовать do-нотацию в любой функции с побочными эффектами. Например:
+We can use do-notation in any function with side-effects. For example:
 
 ```haskell
 obtainUserText :: String -> IO String
 obtainUserText prompt = do
-    putStrLn prompt  -- Выведи приглашение ввести строку.
-    getLine          -- Получи от пользователя некую строку.
+    putStrLn prompt  -- Print prompt to input the string
+    getLine          -- Get some string from user
 
 main :: IO ()
 main = do
@@ -45,11 +45,11 @@ main = do
     putStrLn $ "You said '" ++ firstText ++ "' and '" ++ secondText ++ "'"
 ```
 
-Функция `obtainUserText` заключает в себе два последовательных шага, поэтому в ней тоже используется слово `do`. Мы ожидаем, что сначала будет выведено соответствующее приглашение на экран, и только после этого действие, порождённое функцией `getLine`, отправится во внешний мир и вернётся оттуда с введённой пользователем строкой.
+Function `obtainUserText` includes two consecutive steps, that's why the keyword `do` is used. We expect that the certain prompt would be printed first and only then the action created by function `getLine` would be send to the outside world and would bring back the string which is typed by user.
 
-## О функции return
+## About function "return"
 
-В языке C есть ключевое слово `return`, задающее точку возврата из функции. В Haskell нет такого ключевого слова, зато есть такая функция. И чтобы продемонстрировать её назначение, рассмотрим другой пример:
+C language has a keyword `return` it defines the point of function's return. Haskell doesn't have such keyword, but has such function. To demonstrate its usage we consider another example:
 
 ```haskell
 obtainTwoTextsFromUser :: IO String
@@ -58,7 +58,7 @@ obtainTwoTextsFromUser = do
     firstText <- getLine
     putStrLn "One more, please: "
     secondText <- getLine
-    "'" ++ firstText ++ "' and '" ++ secondText ++ "'" -- Простая строка??
+    "'" ++ firstText ++ "' and '" ++ secondText ++ "'" -- Normal string??
 
 main :: IO ()
 main = do
@@ -66,9 +66,9 @@ main = do
     putStrLn $ "You said " ++ twoTexts
 ```
 
-Функция `obtainTwoTextsFromUser` берёт на себя ответственность последовательно получить от пользователя два текста и вернуть составленную из них строку. Но, к сожалению, такой код не пройдёт компиляцию, ибо эта функция возвращает действие, однако последней по счёту инструкцией идёт вовсе не действие, а обыкновенная строка. Тут-то и приходит нам на помощь стандартная функция `return`.
+Function `obtainTwoTextsFromUser` takes the responsibility to consecutively get two texts from user and return their concatenation. Unfortunately such code wouldn't compile, as function should return an action, but last instruction is absolutely not an action, it's a normal string. Here the standard function `return` would assist us.
 
-Перепишем эту функцию:
+Rewrite that function:
 
 ```haskell
 obtainTwoTextsFromUser :: IO String
@@ -80,11 +80,12 @@ obtainTwoTextsFromUser = do
     return $ "'" ++ firstText ++ "' and '" ++ secondText ++ "'"
 ```
 
-Императивно выглядит, не правда ли? Только не забывайте, что с ключевым словом `return` в языке C такая запись не имеет ничего общего.
+Looks imperativish, isn't it? Do not forget that such notation has nothing to do with `return` from the C language.
 
-Функция `return` берёт значение и оборачивает его в действие, возвращающее это значение. В нашем случае мы передали ей строку, составленную из пользовательских текстов, а на выходе получили действие, возвращающее эту строку. Поэтому теперь наш код успешно скомпилируется.
+Function `return` takes a value and wraps it into the action which returns that value. In our case we passed it a string, concatenated from user's texts and got an action which returns that string. Now our code successfully compiles.
 
-Кстати, чтобы доказать вам, что функция `return` действительно не имеет никакого отношения к ключевому слову `return` в C-подобных языках, я позволю себе небольшое хулиганство:
+By the way, to prove you that function `return` has nothing to do with C-like keyword `return`, I'll show you a small trick.
+
 
 ```haskell
 obtainTwoTextsFromUser :: IO String
@@ -94,16 +95,16 @@ obtainTwoTextsFromUser = do
     putStrLn "One more, please: "
     secondText <- getLine
     return $ "'" ++ firstText ++ "' and '" ++ secondText ++ "'"
-    putStrLn "And third text, please: " -- Мы всё ещё продолжаем наш диалог!
+    putStrLn "And third text, please: " -- We still going!!!!
     getLine
 ```
 
-Это может сбить с толку программистов, имеющих опыт в императивном программировании, но, как уже и было сказано выше, функция `return` всего лишь оборачивает значение в действие, возвращающее это значение. Она не прерывает ход наших действий, и если за ней есть другие действия, они спокойно продолжат выполняться. Фактически, в этой хулиганской функции мы потеряем два первых пользовательских текста и вернём действие, которое принесёт нам только третий текст.
+That might confuse programmers who are experienced with imperative programming, but as said above, function `return` simply wraps a value into action, which returns that value. It doesn't stop the flow of actions and if any actions follow it they simply continue the execution. In fact, in this tricky function we'll lose first two user's texts and return an action which only brings the third text.
 
-## В сухом остатке
+## So
 
-* `do` связывает действия в последовательную цепочку.
-* Функция `return` оборачивает значение в IO-действие. Не путайте эту функцию с ключевым словом `return` в C-подобных языках.
+* Keyword `do` binds action into a consecutive chain.
+* Function `return` wraps value into an IO-action. Do not confuse it with a keyword `return` in C-like languages.
 
-Готово. Теперь вы знаете о ключевом слове `do`. Впрочем, пока вы не знаете о нём самого интересного, но это чуть позже.
+Done. Now you know about the keyword `do`. However, you still do not know the most interesting part, Soon I'll show it to you.
 
