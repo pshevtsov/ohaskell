@@ -167,7 +167,7 @@ makeListFrom 2 3  
 
 ```haskell
 makeListFrom 2 3
-``` 
+```
 
 мы получим наш итоговый список:
 

@@ -50,13 +50,13 @@ For example:
 import Data.Char
 
 main = print [toUpper c | c <- "http", c == 't']
-``` 
+```
 
 Result:
 
 ```bash
 "TT"
-``` 
+```
 
 Function `toUpper` was applied only to `t` char. By the way, we may have more than one predicate. For example:
 
@@ -76,7 +76,7 @@ Predicates `c /= 'h'` and `c /= 'p'` are merged via logical "AND", so we can wri
 
 ```haskell
 [toUpper c | c <- "http", c /= 'h' && c /= 'p']
-``` 
+```
 
 Result will be the same.
 

@@ -14,7 +14,7 @@ nextChapter: /ru/miscellaneous/about-hlint.html
 main :: IO ()
 main =
 putStrLn "Hi Haskeller!"
-``` 
+```
 
 компилятор выскажет своё несогласие:
 
@@ -34,7 +34,7 @@ parse error (possibly incorrect indentation or mismatched brackets)
 
 ```bash
 parse error on input `main'
-``` 
+```
 
 Или вот так:
 
@@ -116,7 +116,7 @@ main = do
 
 ```haskell
 parse error on input `data'
-``` 
+```
 
 Вот такой код тоже не пройдёт компиляцию:
 
@@ -160,7 +160,7 @@ data IPAddress = IP String
 ```haskell
 class Note n where
 write :: n -> Bool
-``` 
+```
 
 получим экзотическую ошибку:
 

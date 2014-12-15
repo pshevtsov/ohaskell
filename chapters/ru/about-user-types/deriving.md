@@ -13,7 +13,7 @@ nextChapter: /ru/about-user-types/own-type-classes.html
 ```haskell
 data IPAddress = IP String
                  deriving Show
-``` 
+```
 
 Всё. Мы можем сразу напечатать наше значение:
 
@@ -129,7 +129,7 @@ main = print [descriptionOf protocol | protocol <- [TCP, UDP]]
 ```haskell
 data TransportLayer = TCP | UDP | SCTP | DCCP | SPX
                       deriving Enum
-``` 
+```
 
 и теперь мы можем использовать его так:
 
