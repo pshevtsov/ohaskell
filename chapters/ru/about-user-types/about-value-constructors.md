@@ -54,7 +54,7 @@ instance Show IPAddress where
 
 ```haskell
 main = putStrLn $ show $ IP "127.0.0.1"
-``` 
+```
 
 вывод будет таким:
 
@@ -103,7 +103,7 @@ descriptionOf protocol =
         SCTP -> "Stream Control Transmission Protocol"
         DCCP -> "Datagram Congestion Control Protocol"
         SPX  -> "Sequenced Packet Exchange"
-``` 
+```
 
 Мы принимаем значение типа `TransportLayer` и возвращаем соответствующее ему строковое описание. Обратите внимание на конструкцию с ключевым словом `case`. Это - родственница конструкции `switch-case` из языка C.
 
@@ -111,7 +111,7 @@ descriptionOf protocol =
 
 ```haskell
 main = print $ descriptionOf TCP
-``` 
+```
 
 Для создания значения типа TransportLayer, к которому будет применена функция `descriptionOf`, мы использовали один из нульарных конструкторов. Никакого дополнительного значения здесь нет, потому что сам нульарный конструктор и представляет собой значение. Результат такой:
 

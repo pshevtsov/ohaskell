@@ -16,7 +16,7 @@ Let's open empty file `Helpers.hs` and write
 module Helpers where
 	
 hello user = "Hi, " ++ user
-``` 
+```
 
 The first string declares the name of the module - `Helpers`. Then, after `where` keyword, we fill our module with contents. The content we have is really simple, but don't ask me yet, what `hello` is. We will soon find out.
 

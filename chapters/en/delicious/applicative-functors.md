@@ -178,7 +178,7 @@ fmap (+) (Distance 19.78) = Distance ((+) 19.78)
 
 ```haskell
 Distance magicWand <*> functor = fmap magicWand functor
-``` 
+```
 
 Подставим реальные значения для ясности:
 

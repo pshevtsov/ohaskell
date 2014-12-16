@@ -17,7 +17,7 @@ readMyFile :: String -> String
 readMyFile path =
     -- open the corresponding file
     -- read it and return the string with content...
-````
+```
 
 But such function can't be pure. Can we guarantee that the output stays the same if we apply it twice to the string with the path to the same file? Apparently no, between the first and second application the file could be changed triply. In that case the mathematical nature of such a function would fall in pieces: was applied to the same argument twice, the results on the output are different. That's why interaction with the outside world is the land of the functions with side-effects.
 
