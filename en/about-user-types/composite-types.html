@@ -43,7 +43,10 @@
 <p>Даже столь простой тип может быть весьма полезен в реальных проектах. И всё же очень часто нам нужны более сложные типы. О них и поговорим в этой главе.</p>
 <h2 id="поля">Поля</h2>
 <p>Определим тип User:</p>
-<p><code>haskell data User = User { firstName :: String                  , lastName :: String                  , email :: String                  }</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">User</span> <span class="fu">=</span> <span class="dt">User</span> {<span class="ot"> firstName ::</span> <span class="dt">String</span>
+                 ,<span class="ot"> lastName ::</span> <span class="dt">String</span>
+                 ,<span class="ot"> email ::</span> <span class="dt">String</span>
+                 }</code></pre>
 <p>Это уже значительно интереснее. Перед нами - классический составной тип. Он очень похож на структуру в языке C, однако это впечатление обманчиво. Рассмотрим вот эту конструкцию:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">firstName ::</span> <span class="dt">String</span></code></pre>
 <p>Перед нами - поле. Впрочем, при кажущейся простоте, оно как шляпа фокусника, с двойным дном. С одной стороны, это значение типа <code>String</code>. С другой стороны - это (автоматически создаваемая компилятором) функция, позволяющая получить доступ к этому значению. Поэтому при создании значения типа <code>User</code> мы сначала инициализируем все три его поля, а потом сможем получить доступ к значениям этих полей. Вот так:</p>
@@ -110,7 +113,7 @@ changeEmail user newEmail <span class="fu">=</span> user { email <span class="fu
                    ,<span class="ot"> uid ::</span> <span class="dt">Integer</span>     <span class="co">-- тоже целое число</span>
                    }</code></pre>
 <p>Вот эта строка:</p>
-<p><code>haskell data User y = ...</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">User</span> y <span class="fu">=</span> <span class="fu">...</span></code></pre>
 <p>говорит нам о том, что перед нами конструктор типа (type constructor). Тип поля <code>yearOfBirth</code> задан полиморфным типом <code>y</code>. Это позволит нам инициализировать это поле как числом <code>1981</code>, так и, например, строкой <code>&quot;1981&quot;</code>.</p>
 <p>Однако нас поджидает один неприятный сюрприз, ведь функция <code>changeEmail</code> наотрез откажется работать с типом <code>User</code>. Но не ругайтесь на неё, она поступает абсолютно правильно. Вспомним её объявление:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">changeEmail ::</span> <span class="dt">User</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">User</span></code></pre>
@@ -128,7 +131,7 @@ changeEmail user newEmail <span class="fu">=</span> user { email <span class="fu
 <p>Следовательно, чтобы наша функция <code>changeEmail</code> смогла работать с типами, сконструированными конструктором <code>User</code>, это нужно явно указать в её объявлении:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">changeEmail ::</span> <span class="dt">User</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">User</span> <span class="dt">String</span></code></pre>
 <p>Можно написать и так:</p>
-<p><code>haskell changeEmail :: (User String) -&gt; String -&gt; (User String)</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">changeEmail ::</span> (<span class="dt">User</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> (<span class="dt">User</span> <span class="dt">String</span>)</code></pre>
 <p>Мы говорим нашей функции: “Первым аргументом ты теперь принимаешь значение типа, сконструированного путём применения конструктора <code>User</code> к типу <code>String</code>. Возвращаешь то же самое”.</p>
 <p>Разумеется, мы можем воспользоваться полиморфным типом и здесь:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">changeEmail ::</span> <span class="dt">User</span> a <span class="ot">-&gt;</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">User</span> a</code></pre>

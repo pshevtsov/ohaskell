@@ -41,7 +41,7 @@
 </div>
 
 <p>Не удивляйтесь, что название этой главы не переведено на русский. Корректный перевод понятия “list comprehension” я так и не смог подобрать, долго размышлял - и в итоге решил оставить как есть. В русскоязычной литературе иногда предлагается вариант “преобразование списков”, но мне такой перевод кажется не вполне корректным.</p>
-<p>Речь пойдёт об одной хитрой конструкции, предназначенной для прохода по элементам списка(ов) и применения к ним некоторых действий. Да-да, это похоже на уже известные нам функции <code>map</code> и <code>filter</code>, но есть некоторые дополнительные вкусности.</p>
+<p>Речь пойдёт об одной хитрой конструкции, предназначенной для прохода по элементам списка(ов) и применения к ним некоторых действий. Да-да, это похоже на уже известные нам функции <code>map</code> и <code>filter</code>, однако есть некоторые дополнительные вкусности.</p>
 <h2 id="хитрый-список">Хитрый список</h2>
 <p>Вот как это выглядит:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span> 
@@ -60,10 +60,11 @@ main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <spa
 <pre><code>[OPERATION ELEM | ELEM &lt;- LIST, PREDICATE]</code></pre>
 <p>В этом случае мы говорим: “Возьми список <code>LIST</code>, последовательно пройдись по всем его элементам и примени функцию <code>OPERATION</code> только к тем элементам, которые удовлетворят предикату <code>PREDICATE</code>”.</p>
 <p>Например:</p>
-<p>```haskell import Data.Char</p>
-<p>main = print [toUpper c | c &lt;- “http”, c == ‘t’] ``` </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
+
+main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">==</span> <span class="ch">'t'</span>]</code></pre>
 <p>На выходе будет:</p>
-<p><code>bash &quot;TT&quot;</code> </p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;TT&quot;</span></code></pre>
 <p>Мы прошлись по всем четырём символам строки <code>http</code>, но функция <code>toUpper</code> была применена только к тем символам, которые удовлетворили предикату <code>c == 't'</code>. Именно поэтому на выходе мы получили строку лишь из этих двух символов.</p>
 <p>Предикатов, кстати, может быть несколько. Например, так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
@@ -72,7 +73,7 @@ main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <spa
 <p>Вывод в этом случае будет таким же:  </p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;TT&quot;</span></code></pre>
 <p>Здесь два предиката, <code>c /= 'h'</code> и <code>c /= 'p'</code>. Они соединяются в единый предикат через логическое “И”, поэтому мы можем написать и так:</p>
-<p><code>haskell [toUpper c | c &lt;- &quot;http&quot;, c /= 'h' &amp;&amp; c /= 'p']</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">[toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">/=</span> <span class="ch">'h'</span> <span class="fu">&amp;&amp;</span> c <span class="fu">/=</span> <span class="ch">'p'</span>]</code></pre>
 <p>Результат будет таким же.</p>
 <p>Обратите внимание на комбинацию символов <code>/=</code>. Это функция проверки на неравенство, аналог оператора <code>!=</code> в языке C. Кстати, он тоже носит математический окрас. Сравните:</p>
 <pre><code>/=   -- Haskell-форма

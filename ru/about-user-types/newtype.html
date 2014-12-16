@@ -64,7 +64,7 @@
 <p>Вы спросите, зачем же нужно слово <code>newtype</code>, если с ним связаны такие ограничения? И чем вообще обусловлены эти ограничения?</p>
 <p>Фундаментальное назначение <code>newtype</code>, строго говоря, не в том, чтобы создавать новый тип, а в том, чтобы оборачивать один, уже существующий тип. Именно поэтому оно требует унарного конструктора значения и никакого иного. Грубо говоря, слово <code>newtype</code> может рассматриваться как нечто среднее между словами <code>data</code> и <code>type</code>. И это даёт нам одно преимущество, а именно эффективность времени выполнения.</p>
 <p>Если мы определили вот такой тип:</p>
-<p><code>haskell data IPAddress = IP String</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span></code></pre>
 <p>то с точки зрения программиста мы всего лишь обернули строковое значение в именную обёртку. Однако с точки зрения компилятора мы создали совершенно новый тип, хранящий в себе значение стандартного типа <code>String</code>. Поэтому работа с такой именной обёрткой связана с дополнительными накладными расходами на стадии выполнения (обусловленными “оборачиванием” и “разворачиванием” той самой внутренней строки). Да, эти расходы крошечны, но всё же…</p>
 <p>Если же мы написали так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span></code></pre>

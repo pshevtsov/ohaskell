@@ -119,7 +119,7 @@ main <span class="fu">=</span> print <span class="fu">$</span> makeListFrom <spa
     <span class="dv">2</span> <span class="fu">:</span> [<span class="dv">2</span>,<span class="dv">2</span>]  <span class="co">-- Первый рекурсивный вызов.</span></code></pre>
 <p>На первом рекурсивном вызове мы получаем уже список, состоящий из двух значений, и опять добавляем в его начало значение <code>2</code>.</p>
 <p>Таким образом, завершив наше всплытие с “рекурсивного дна”, в месте вызова нашей функции</p>
-<p><code>haskell makeListFrom 2 3</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">makeListFrom <span class="dv">2</span> <span class="dv">3</span></code></pre>
 <p>мы получим наш итоговый список:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">[<span class="kw">2</span>,2,2]</code></pre>
 <h2 id="в-сухом-остатке">В сухом остатке</h2>

@@ -57,10 +57,11 @@ main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <spa
 <pre><code>[OPERATION ELEM | ELEM &lt;- LIST, PREDICATE]</code></pre>
 <p>In this case we say: “Take a list <code>LIST</code> and sequentially apply function <code>OPERATION</code> to elements that satisfy to a predicate <code>PREDICATE</code>”.</p>
 <p>For example:</p>
-<p>```haskell import Data.Char</p>
-<p>main = print [toUpper c | c &lt;- “http”, c == ‘t’] ``` </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
+
+main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">==</span> <span class="ch">'t'</span>]</code></pre>
 <p>Result:</p>
-<p><code>bash &quot;TT&quot;</code> </p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;TT&quot;</span></code></pre>
 <p>Function <code>toUpper</code> was applied only to <code>t</code> char. By the way, we may have more than one predicate. For example:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
 
@@ -68,7 +69,7 @@ main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <spa
 <p>Result is:  </p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;TT&quot;</span></code></pre>
 <p>Predicates <code>c /= 'h'</code> and <code>c /= 'p'</code> are merged via logical “AND”, so we can write like this:</p>
-<p><code>haskell [toUpper c | c &lt;- &quot;http&quot;, c /= 'h' &amp;&amp; c /= 'p']</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">[toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">/=</span> <span class="ch">'h'</span> <span class="fu">&amp;&amp;</span> c <span class="fu">/=</span> <span class="ch">'p'</span>]</code></pre>
 <p>Result will be the same.</p>
 <p>Take a look at <code>/=</code>. It’s an operator for non-equality checking, like an operator <code>!=</code> in C langauge. By the way, compare these forms:</p>
 <pre><code>/=   -- Haskell-form

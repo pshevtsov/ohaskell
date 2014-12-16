@@ -43,7 +43,11 @@
 <p>Вы прочли правильно: императивный мир. Несмотря на то, что Haskell является чисто функциональным языком, в случае необходимости мы можем написать императивный код. А при работе с внешним миром такая необходимость возникает постоянно.</p>
 <p>Как вы знаете, императивный подход подразумевает выполнение программных инструкций в чётко указанном порядке. В чистых функциях такой подход излишен, потому что в них неважен порядок вычисления выражений. Однако в функциях, взаимодействующих с внешним миром, ситуация кардинально меняется.</p>
 <p>Вспомним наш пример работы со стандартными вводом и выводом:</p>
-<p><code>haskell main :: IO () main = do     putStrLn &quot;Input your text, please:&quot;     lineFromUser &lt;- getLine                    putStrLn $ &quot;Not bad: &quot; ++ lineFromUser   </code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Input your text, please:&quot;</span>
+    lineFromUser <span class="ot">&lt;-</span> getLine               
+    putStrLn <span class="fu">$</span> <span class="st">&quot;Not bad: &quot;</span> <span class="fu">++</span> lineFromUser   </code></pre>
 <p>Здесь мы делаем три шага:</p>
 <ol style="list-style-type: decimal">
 <li>выводим на экран приветственную строку;</li>

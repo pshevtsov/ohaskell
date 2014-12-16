@@ -63,7 +63,7 @@
     show (<span class="dt">Host</span> address) <span class="fu">=</span>
         if address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre>
 <p>Теперь, если мы напишем так:</p>
-<p><code>haskell main = putStrLn $ show $ IP &quot;127.0.0.1&quot;</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IP</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
 <p>вывод будет таким:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">127.0.0.1</span></code></pre>
 <p>Если же мы используем второй конструктор:</p>
@@ -78,10 +78,17 @@
 <p>Допустим, нам нужен тип, ассоциированный с протоколами транспортного слоя (Transport layer) модели OSI. Вот как это будет выглядеть:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">TransportLayer</span> <span class="fu">=</span> <span class="dt">TCP</span> <span class="fu">|</span> <span class="dt">UDP</span> <span class="fu">|</span> <span class="dt">SCTP</span> <span class="fu">|</span> <span class="dt">DCCP</span> <span class="fu">|</span> <span class="dt">SPX</span></code></pre>
 <p>Символ <code>|</code> вы уже знаете, но значений, как видите, здесь нет. Тип <code>TransportLayer</code> имеет пять нульарных конструкторов. И чтобы продемонстрировать практическую пользу такого типа, определим функцию, описывающую конкретный протокол:</p>
-<p><code>haskell descriptionOf :: TransportLayer -&gt; String descriptionOf protocol =     case protocol of         TCP  -&gt; &quot;Transmission Control Protocol&quot;         UDP  -&gt; &quot;User Datagram Protocol&quot;         SCTP -&gt; &quot;Stream Control Transmission Protocol&quot;         DCCP -&gt; &quot;Datagram Congestion Control Protocol&quot;         SPX  -&gt; &quot;Sequenced Packet Exchange&quot;</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">descriptionOf ::</span> <span class="dt">TransportLayer</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+descriptionOf protocol <span class="fu">=</span>
+    case protocol <span class="kw">of</span>
+        <span class="dt">TCP</span>  <span class="ot">-&gt;</span> <span class="st">&quot;Transmission Control Protocol&quot;</span>
+        <span class="dt">UDP</span>  <span class="ot">-&gt;</span> <span class="st">&quot;User Datagram Protocol&quot;</span>
+        <span class="dt">SCTP</span> <span class="ot">-&gt;</span> <span class="st">&quot;Stream Control Transmission Protocol&quot;</span>
+        <span class="dt">DCCP</span> <span class="ot">-&gt;</span> <span class="st">&quot;Datagram Congestion Control Protocol&quot;</span>
+        <span class="dt">SPX</span>  <span class="ot">-&gt;</span> <span class="st">&quot;Sequenced Packet Exchange&quot;</span></code></pre>
 <p>Мы принимаем значение типа <code>TransportLayer</code> и возвращаем соответствующее ему строковое описание. Обратите внимание на конструкцию с ключевым словом <code>case</code>. Это - родственница конструкции <code>switch-case</code> из языка C.</p>
 <p>Теперь проверяем:</p>
-<p><code>haskell main = print $ descriptionOf TCP</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> descriptionOf <span class="dt">TCP</span></code></pre>
 <p>Для создания значения типа TransportLayer, к которому будет применена функция <code>descriptionOf</code>, мы использовали один из нульарных конструкторов. Никакого дополнительного значения здесь нет, потому что сам нульарный конструктор и представляет собой значение. Результат такой:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;Transmission Control Protocol&quot;</span></code></pre>
 <p>Если вам нужен тип, подразумевающий фиксированное множество именованных значений - нульарные конструкторы вам помогут.</p>

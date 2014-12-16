@@ -43,7 +43,9 @@
 <p>Нет, речь пойдёт не об эстетике. Код на Haskell является форматно-зависимым, поэтому мы не можем расставлять пробелы и отступы там, где нам заблагорассудится. Необходимо придерживаться определённых правил.</p>
 <h2 id="функция">Функция</h2>
 <p>Если мы напишем так:</p>
-<p><code>haskell main :: IO () main = putStrLn &quot;Hi Haskeller!&quot;</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span>
+putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span></code></pre>
 <p>компилятор выскажет своё несогласие:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error (possibly incorrect indentation or mismatched brackets)</code></pre>
 <p>Следующий пример:</p>
@@ -51,7 +53,7 @@
  main <span class="fu">=</span>
  putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span></code></pre>
 <p>Здесь мы поставили один пробел перед каждой из трёх строк, однако и в этом случае компилятор закапризничает:</p>
-<p><code>bash parse error on input `main'</code> </p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`main</span><span class="st">'</span></code></pre>
 <p>Или вот так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
  main <span class="fu">=</span>
@@ -93,7 +95,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>На код, связанный с типами, также наложены некоторые форматные ограничения.</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"> data <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span></code></pre>
 <p>Перед словом <code>data</code> стоит лишний пробел, и компилятор вновь вспоминает нас недобрым словом:</p>
-<p><code>haskell parse error on input `data'</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">parse error on input <span class="ot">`data'</span></code></pre>
 <p>Вот такой код тоже не пройдёт компиляцию:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span>
 <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span></code></pre>
@@ -114,7 +116,8 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>и компилятор будет вам благодарен.</p>
 <h2 id="класс-типов">Класс типов</h2>
 <p>С классами типов - та же история. Если напишем так:</p>
-<p><code>haskell class Note n where write :: n -&gt; Bool</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Note</span> n <span class="kw">where</span>
+<span class="ot">write ::</span> n <span class="ot">-&gt;</span> <span class="dt">Bool</span></code></pre>
 <p>получим экзотическую ошибку:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">The</span> type signature for <span class="kw">`write</span><span class="st">' lacks an accompanying binding</span></code></pre>
 <p>Если вздумаем написать так:</p>

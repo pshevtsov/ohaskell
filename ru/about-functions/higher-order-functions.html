@@ -157,7 +157,7 @@ main <span class="fu">=</span>
 <span class="kw">type</span> <span class="dt">AndWithAvatarURL</span> <span class="fu">=</span>                            <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
 <p>Каждый из них вводит упрощающее имя для функционального типа, образованного “урезанием” от типа функции <code>userInfo</code>. Обратите внимание: каждый последующий тип ожидает на один аргумент меньше, чем предыдущий тип. Эти псевдонимы задают типы для очередной промежуточной λ-функции, которые нужны, как вы уже догадались, для частичного применения функции <code>userInfo</code>.</p>
 <p>Рассмотрим первый вызов:</p>
-<p><code>haskell infoWithLogin = storeLoginIn userInfo userId</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">infoWithLogin <span class="fu">=</span> storeLoginIn userInfo userId</code></pre>
 <p>Здесь мы передаём функцию <code>userInfo</code> в качестве первого аргумента функции <code>storeLoginIn</code>, внутри которой мы применяем переданную функцию <code>userInfo</code> к единственному аргументу, а именно к логину. Соответственно, на выходе из функции <code>storeLoginIn</code> мы получаем первую промежуточную λ-функцию, в которой мы сохранили значение логина (именно поэтому тип этой λ-функции ассоциирован со словом <code>WithLogin</code>).</p>
 <p>Далее следует вызов:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">infoWithPassword <span class="fu">=</span> storePasswordIn infoWithLogin userId</code></pre>

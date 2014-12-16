@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Функции с побочными эффектами | О Haskell по-человечески</title>
+        <title>Functions With Side Effects | О Haskell по-человечески</title>
         
         <link rel="stylesheet" type="text/css" href="../../css/default.css" />
         <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
@@ -26,7 +26,7 @@
             </div>
 
             <div id="content">
-                <h1>Функции с побочными эффектами</h1>
+                <h1>Functions With Side Effects</h1>
 
                 <div style="padding-top: 10px;"></div>
 
@@ -38,18 +38,18 @@
     <a href="../../en/io/IO-a.html">❯</a>
 </div>
 
-<p>О чистых функциях вы уже знаете. Пришла пора поговорить о функциях, имеющих побочные эффекты.</p>
-<h2 id="чистота-vs-нечистота">Чистота vs нечистота</h2>
-<p>Как вы помните, чистые функции не имеют побочных эффектов, что делает их отражением математического понятия “функция”: полученное на входе однозначно определяет то, что будет на выходе. И всё бы замечательно, но наше приложение обязано взаимодействовать с внешним миром, а чистые функции никак не подходят на роль послов во внешний мир.</p>
-<p>Допустим, у нас есть функция чтения текста из файла: она принимает строку с путём к этому файлу, а возвращает строку с содержимым файла:</p>
+<p>You are already familiar with pure functions. Time to talk about functions which have side effects.</p>
+<h2 id="pure-vs-impure">Pure vs Impure</h2>
+<p>As you remember, pure functions have no side effects, that makes them a reflection of the mathematical concept “function”: the input unambiguously defines the output. That’s really great, but our application must interact with the outside world and pure functions do not look like good ambassadors to the outside world.</p>
+<p>Consider a function that reads text from a file: it takes a string with a path to that file and returns a string with the contents of the file:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">readMyFile ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 readMyFile path <span class="fu">=</span>
-    <span class="co">-- открываем соответствующий файл,</span>
-    <span class="co">-- читаем его и возвращаем строку с его содержимым...</span></code></pre>
-<p>Но такая функция не может быть чистой. Если мы два раза применим её к строке с путём к одному и тому же файлу, можем ли мы гарантировать, что возвращённое содержимое будет одним и тем же? Конечно же нет, ведь между первым и вторым применениями этот файл мог быть трижды изменён. В этом случае математичность такой функции лопнет как мыльный пузырь: дважды применили к одному и тому же аргументу, а результат на выходе получили разный. Именно поэтому взаимодействие с внешним миром - это царство функций с побочными эффектами.</p>
-<h2 id="действие-vs-бездействие">Действие vs бездействие</h2>
-<p>Чистая функция - это мир бездействия. Мир спокойствия и тишины. Как вы уже знаете, такая функция состоит из совокупности выражений, которые вычисляются в некотором порядке и в конце концов оставляют некое последнее, итоговое значение, которым компилятор просто заменяет место вызова этой функции.</p>
-<p>А вот функции с побочными эффектами - это мир действия. Мир, в котором всё меняется. Именно поэтому при работе с вводом и выводом нам понадобятся действия (actions). Действие - это то, что соприкасается с внешним миром, а зачастую ещё и оказывает на него влияние. Нужно прочитать файл? Добро пожаловать во внешний мир. Нужно отправить UDP-дейтаграмму? Вам во внешний мир. Нужно прочесть строку, введённую пользователем с клавиатуры? Внешний мир ждёт вас.</p>
+    <span class="co">-- open the corresponding file</span>
+    <span class="co">-- read it and return the string with content...</span></code></pre>
+<p>But such function can’t be pure. Can we guarantee that the output stays the same if we apply it twice to the string with the path to the same file? Apparently no, between the first and second application the file could be changed triply. In that case the mathematical nature of such a function would fall in pieces: was applied to the same argument twice, the results on the output are different. That’s why interaction with the outside world is the land of the functions with side-effects.</p>
+<h2 id="action-vs-inaction">Action vs Inaction</h2>
+<p>Pure function is the world of inactivity. The world of calmness and silence. As you already know, such a function is a set of expressions which are evaluated in particular order and result into some last, final value. Then the compiler substitutes the function call with that value.</p>
+<p>In contrast, functions with side effects are the world of action. The world in which everything changes. That’s why we need actions when we work with input and output. Action is that thing which touches the outside world and often affects it. Want to read a file? Welcome to the outside world. Want to send UDP-datagram? Go to the outside world. Need to read a string typed by a user from the keyboard. The outside world is waiting for you.</p>
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">

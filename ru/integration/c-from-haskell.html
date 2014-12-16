@@ -76,7 +76,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 
 импортируем чужака: C-функция  sin    с сигнатурой как в Haskell</code></pre>
 <p>Обратите внимание на тип <code>CDouble</code>. Это - тип-обёртка. Объявление стандартной функции <code>sin</code> выглядит так:</p>
-<p><code>c double sin(double x);</code> </p>
+<pre class="sourceCode c"><code class="sourceCode c"><span class="dt">double</span> sin(<span class="dt">double</span> x);</code></pre>
 <p>Однако компилятор Haskell не имеет ни малейшего представления о том, что такое <code>double</code>. Именно поэтому мы оборачиваем чужеродный тип <code>double</code> в специальный Haskell-тип <code>CDouble</code>, определённый в модуле Foreign.C.Types. После этого мы можем вызывать функцию <code>sin</code> так же, как если бы она была родной Haskell-функцией.</p>
 <h2 id="псевдоним">Псевдоним</h2>
 <p>Поскольку в модуле <code>Prelude</code> тоже присутствует функция по имени <code>sin</code>, мы скрыли её, во избежание конфликта имён:</p>
@@ -84,9 +84,9 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>Однако можно пойти другим путём, а именно добавить псевдоним для чужака. В этом случае объявление изменится вот так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>ccall &quot;sin&quot; c_sin :: <span class="dt">CDouble</span> -&gt; <span class="dt">CDouble</span></code></pre>
 <p>В кавычках - реальное имя чужака. После кавычек идёт псевдоним. Теперь вызов функции будет записан так:</p>
-<p><code>haskell print $ c_sin $ read number</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">print <span class="fu">$</span> c_sin <span class="fu">$</span> read number</code></pre>
 <p>Кстати, если вдруг вы ошибётесь в написании реального имени чужой функции и напишете, например, так:</p>
-<p><code>haskell foreign import ccall &quot;sinu&quot; c_sin :: CDouble -&gt; CDouble</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>ccall &quot;sinu&quot; c_sin :: <span class="dt">CDouble</span> -&gt; <span class="dt">CDouble</span></code></pre>
 <p>на стадии компоновки вы получите грозное сообщение:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Linking</span> dist/build/Real/Real ...
 <span class="kw">Undefined</span> symbols for architecture x86_64:
@@ -113,7 +113,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>В результате мы увидим старое доброе Unix-время:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">1395350583</span></code></pre>
 <p>Теперь разберёмся. Во-первых, мы добавили дополнительный модуль <code>Foreign.Ptr</code>, необходимый для работы с C-указателями. Во-вторых, вспомним объявление стандартной функции time:</p>
-<p><code>c time_t time(time_t* timer);</code> </p>
+<pre class="sourceCode c"><code class="sourceCode c">time_t time(time_t* timer);</code></pre>
 <p>Чужак объявлен как принимающий значение типа <code>Ptr CTime</code>, то есть указатель на значение типа <code>CTime</code>, и возвращающий монаду <code>IO</code>, содержащую в себе значение типа <code>CTime</code> (ведь мы знаем, что получить реальное время можно лишь из внешнего мира). В итоге, передавая в качестве аргумента нулевой указатель, мы и получаем текущее время.</p>
 <h2 id="а-если-void">А если void?</h2>
 <p>В функциях C часто используется тип <code>void</code>, однако в Haskell такого типа нет. Но поскольку <code>void</code> означает пустоту, создатели Haskell решили пойти самым простым путём: если функция принимает <code>void</code> (то есть не принимает ничего), в своей Haskell-сигнатуре она объявляется без аргумента.</p>
@@ -301,7 +301,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
                                  , modificationTime <span class="fu">=</span> <span class="dv">1333050979</span>
                                  }</code></pre>
 <p>Не важно, откуда мы получили эти posixtime-значения, важно, что когда мы запустим этот код, получим ожидаемый результат:</p>
-<p><code>bash It's done</code> </p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">It</span><span class="st">'s done</span></code></pre>
 <p>Поверьте мне на слово - это работает, и время модификации файла действительно изменяется.</p>
 <h2 id="а-убираться-кто-будет">А убираться кто будет?!</h2>
 <p>Ай-яй-яй, мы чуть не забыли… Вот наш код:</p>

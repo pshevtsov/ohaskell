@@ -43,7 +43,8 @@
 <p>Как вы помните, вывести на экран значение нашего типа <code>IPAddress</code> мы смогли лишь после того, как определили собственный экземпляр класса типов <code>Show</code>. Однако существует ещё один способ обеспечить “печатаемость” нашего <code>IPAddress</code>.</p>
 <h2 id="наследуем">Наследуем</h2>
 <p>На сцену выходит ключевое слово <code>deriving</code>. Перепишем определение нашего типа:</p>
-<p><code>haskell data IPAddress = IP String                  deriving Show</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span>
+                 deriving <span class="dt">Show</span></code></pre>
 <p>Всё. Мы можем сразу напечатать наше значение:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> <span class="dt">IP</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
 <p>Вывод:  </p>
@@ -108,7 +109,8 @@ descriptionOf protocol <span class="fu">=</span>
 <p>Здесь мы воспользовались услугами нашего старого друга, list comprehension, чтобы пройтись по всем элементам списка протоколов и вернуть список с соответствующими описаниями.</p>
 <p>Но что мы будем делать, если захотим получить описание всех протоколов транспортного уровня? Нам придётся вручную указывать все пять. Ничего страшного в этом нет, однако если бы это были протоколы физического уровня, то их было бы уже порядка двадцати. Писать их вручную - скучно. Но есть у нас один инструмент, позволяющий создать список малыми усилиями. Речь идёт о диапазонах. Вот тут-то и выходит на сцену класс <code>Enum</code>.</p>
 <p>Наследуем от него наш тип:</p>
-<p><code>haskell data TransportLayer = TCP | UDP | SCTP | DCCP | SPX                       deriving Enum</code> </p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">TransportLayer</span> <span class="fu">=</span> <span class="dt">TCP</span> <span class="fu">|</span> <span class="dt">UDP</span> <span class="fu">|</span> <span class="dt">SCTP</span> <span class="fu">|</span> <span class="dt">DCCP</span> <span class="fu">|</span> <span class="dt">SPX</span>
+                      deriving <span class="dt">Enum</span></code></pre>
 <p>и теперь мы можем использовать его так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [descriptionOf protocol <span class="fu">|</span> protocol <span class="ot">&lt;-</span> [<span class="dt">TCP</span> <span class="fu">..</span>]]</code></pre>
 <p>Здесь мы использовали бесконечный диапазон, указав лишь первый из протоколов. В результате наш список включит в себя все имеющиеся значения типа <code>TransportLayer</code>, и вывод будет таким:</p>

@@ -38,36 +38,36 @@
     <a href="../../en/io/do-imperative-world.html">❯</a>
 </div>
 
-<p>Итак, для работы с внешним миром нам нужны действия. А действие представляет собой значение типа <code>IO a</code>, где <code>IO</code> - это стандартный тип действия, а <code>a</code> - это полиморфный тип значения, возвращённого этим действием. Как вы уже поняли, <code>IO</code> - это конструктор типа. Поэтому тип действия, возвращающего строку, будет <code>IO String</code>.</p>
-<p>С логической точки зрения, действие - это наш посол, который по нашей просьбе уходит во внешний мир, делает там какую-то работу, а потом приносит нам из внешнего мира что-нибудь интересное. Впрочем, иногда он может вернуться из внешнего мира и с пустыми руками.</p>
-<h2 id="стандартные-ввод-и-вывод">Стандартные ввод и вывод</h2>
-<p>Начнём со стандартных каналов stdout и stdin. Выведем строку на экран:  </p>
+<p>In order to work with outside world we need actions. And an action is a value of type <code>IO a</code>, where <code>IO</code> is a standard action type and <code>a</code> is a polymorphic type of value which the action returns. As you can see, <code>IO</code> is a type constructor. That’s why the type of action which returns a string is <code>IO String</code>.</p>
+<p>From the logical point of view, action is our ambassador, when we ask he goes to the outside world, does some work and brings us something interesting from the outside world. However, he might come back empty-handed.</p>
+<h2 id="standard-input-and-output">Standard Input and Output</h2>
+<p>Let us start with standard channels stdout and stdin. Let’s output a string to the screen:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span></code></pre>
-<p>Взглянем на объявление функции <code>putStrLn</code>:</p>
+<p>Take a look at the type of function <code>putStrLn</code>:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">putStrLn<span class="ot"> ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</code></pre>
-<p>Перед нами <code>IO</code>, а значит, данная функция имеет побочное действие. На входе у нас строка, а на выходе - действие. Рассмотрим его поближе:</p>
+<p>We face <code>IO</code>, and therefore, that function has a side effect. We have a string on input and an action on output. Let’s take a closer look:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">IO</span> ()</code></pre>
-<p>Одинокие круглые скобки говорят нам о пустом кортеже. Следовательно, перед нами действие, которое, сделав во внешнем мире свою работу, ничего нам не принесёт. Мы, посылая это действие во внешний мир, говорим ему: “Пойди и просто напечатай на экране компьютера переданную тебе строку”. Но раз уж создатели Haskell договорились о том, что действие обязано что-то вернуть - пусть оно возвращает пустой кортеж. Это как <code>void</code>-функция в языке C: можно сказать, что она не возвращает ничего, а можно сказать, что она возвращает <code>void</code>.</p>
-<p>Теперь взглянем на объявление функции <code>getLine</code>, получающей строку со стандартного ввода:</p>
+<p>Lonely parentheses are telling us about an empty tuple. Therefore, we have an action, which does its job in the outside world and brings us nothing. When we send this action to the outside world, we tell it, “Just go and print that string on the computer’s screen”. But as the designers of Haskell agreed that action must return something – let it return an empty tuple. It’s like a <code>void</code>-function in the C language: you might say that it returns nothing, but you also might say that it returns <code>void</code>.</p>
+<p>Now let’s take a look at the type of function <code>getLine</code>, which gets the string from the standard input:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">getLine<span class="ot"> ::</span> <span class="dt">IO</span> <span class="dt">String</span></code></pre>
-<p>Тут противоположная ситуация. Эта функция ничего не принимает от нас, потому что нам нечего ей дать, и порождённое этой функцией действие идёт во внешний мир с пустыми руками. Мы говорим ему: “Пойди, получи со стандартного ввода строку и принеси её нам”.</p>
-<h2 id="объявляем-main">Объявляем main</h2>
-<p>Теперь мы наконец-то можем взглянуть на объявление главной функции приложения:</p>
+<p>Here we have an opposite situation. That function takes nothing from us as there is nothing we could give it, so the action is created but that function goes to the outside world empty-handed. We tell it, “Go, get us the string from the standard input”.</p>
+<h2 id="defining-main">Defining main</h2>
+<p>Finally, we can take a look at the type of the main function of the application:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()</code></pre>
-<p>Функция <code>main</code> тоже совершает действие - работу всего нашего приложения. Она ничего не возвращает в приложение, ведь при её завершении заканчивается всё. Разумеется, все действия в нашем приложении спят крепким сном и ничего не делают до тех пор, пока не будет запущено действие функции <code>main</code>.</p>
-<p>Мы до сих пор не писали объявление этой функции, потому что только сейчас узнали об <code>IO</code>. Но, строго говоря, мы должны это делать. Хотя бы для порядка.</p>
-<h2 id="совместная-работа">Совместная работа</h2>
-<p>Вот она:</p>
+<p>Function <code>main</code> also performs an action – the whole work of our application. It returns nothing to the application, after all when its execution is finished everything ends. Of course, all actions in our application are doing nothing, having sweet dreams until the action of function <code>main</code> is fired.</p>
+<p>We haven’t yet defined that function because we just found out about <code>IO</code>. However, if we want to keep things in order, we have to do it now.</p>
+<h2 id="teamwork">Teamwork</h2>
+<p>Here it is:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     putStrLn <span class="st">&quot;Input your text, please:&quot;</span>
     lineFromUser <span class="ot">&lt;-</span> getLine
     putStrLn <span class="fu">$</span> <span class="st">&quot;Not bad: &quot;</span> <span class="fu">++</span> lineFromUser</code></pre>
-<p>Тут всё предельно понятно, за исключением двух новых вещей.</p>
-<p>Во-первых, обратная стрелочка <code>&lt;-</code>. Взглянем на неё:</p>
+<p>It’s perfectly clear, except two new things.</p>
+<p>Firstly, the back-arrow <code>&lt;-</code>. Take a look:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">lineFromUser <span class="ot">&lt;-</span> getLine</code></pre>
-<p>Это - ассоциация. Мы говорим действию, порождённому функцией <code>getLine</code>: “Пойди, получи введённую пользователем строку, принеси её нам и привяжи (bind) её к идентификатору <code>lineFromUser</code>, чтобы мы cмогли прочесть эту строку”.</p>
-<p>Во-вторых, мы увидели новое ключевое слово <code>do</code>. И о нём стоит поговорить отдельно, что мы и сделаем в следующей главе.</p>
+<p>That’s a bind. We tell to action which was created by function <code>getLine</code>: “Go, get us the line from the user and bind it to its identifier <code>lineFromUser</code>, so that we can read that line”.</p>
+<p>Secondly, we met a new keyword <code>do</code>. That deserves a special discussion which you’ll find in the next chapter.</p>
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
