@@ -60,26 +60,7 @@
         <div id="content">
             <h1>Трансформеры: читатель</h1>
 
-            <!--<div class="row">-->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-left">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/en/delicious/transformers-first-meeting.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-right">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/en/delicious/transformers-writer.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div class="padding-top: 40px;"><div>-->
-
-<p>В этой главе мы познакомимся с монадным трансформером <code>ReaderT</code>. Это весьма любопытный инструмент, часто используемый в реальных проектах. Суть этого трансформера очень проста и элегантна.</p>
+            <p>В этой главе мы познакомимся с монадным трансформером <code>ReaderT</code>. Это весьма любопытный инструмент, часто используемый в реальных проектах. Суть этого трансформера очень проста и элегантна.</p>
 <h2 id="суть">Суть</h2>
 <p><code>ReaderT</code> - это читатель. Он предоставляет неким функциям общее значение, которое можно прочесть. Такого рода задача возникает достаточно часто. Например, есть некое значение <code>A</code>, полученное откуда-то извне (скажем, из конфигурационного файла), и есть набор функций, каждой из которых позарез нужно это значение <code>A</code>. Вот <code>ReaderT</code> и предоставляет всем этим функциям общий доступ к значению <code>A</code>. И чтобы стало понятнее, рассмотрим пример.</p>
 <h2 id="разбираем-git-репозиторий">Разбираем git-репозиторий</h2>

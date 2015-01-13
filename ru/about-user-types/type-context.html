@@ -60,32 +60,13 @@
         <div id="content">
             <h1>Контекст типа</h1>
 
-            <!--<div class="row">-->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-left">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/about-user-types/about-value-constructors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-right">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/about-user-types/composite-types.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div style="padding-top: 40px;"><div>-->
-
-<p>Как вы уже знаете, тип аргумента функции может быть полиморфным, что позволит нам применить такую функцию к значению любого типа. Но на практике нам редко нужна столь радикальная гибкость, ведь в большинстве случаев, говоря об аргументе любого типа, мы подразумеваем вовсе не любой тип, а тип из некоторой группы. Об этом и поговорим.</p>
+<!--            <p>Как вы уже знаете, тип аргумента функции может быть полиморфным, что позволит нам применить такую функцию к значению любого типа. Но на практике нам редко нужна столь радикальная гибкость, ведь в большинстве случаев, говоря об аргументе любого типа, мы подразумеваем вовсе не любой тип, а тип из некоторой группы. Об этом и поговорим.</p>
 <h2 id="любой-да-не-совсем">Любой, да не совсем</h2>
 <p>Возьмём стандартную функцию <code>elem</code>. Как вы помните, это простой предикат, возвращающий <code>True</code> в том случае, если заданное значение является элементом списка. Например:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
     print <span class="fu">$</span> <span class="kw">if</span> <span class="st">&quot;yellow&quot;</span> <span class="ot">`elem`</span> colors
             then <span class="st">&quot;Yellow is here!&quot;</span>
-            else <span class="st">&quot;There's no yellow...&quot;</span>
+            else <span class="st">&quot;There&#39;s no yellow...&quot;</span>
     where colors <span class="fu">=</span> [<span class="st">&quot;red&quot;</span>,
                     <span class="st">&quot;black&quot;</span>,
                     <span class="st">&quot;yellow&quot;</span>,
@@ -124,7 +105,7 @@ nothing value1 value2 <span class="fu">=</span> show value1 <span class="fu">++<
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="../../ru/about-user-types/about-value-constructors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="/ru/about-user-types/about-value-constructors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -132,174 +113,7 @@ nothing value1 value2 <span class="fu">=</span> show value1 <span class="fu">++<
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="../../ru/about-user-types/composite-types.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
- 
-
-        </div> 
-
-        <footer class="footer">
-            Книга создана с помощью <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
-            <div class="copyright-note">
-                Исходный код сайта и содержимое книги распространяются на условиях <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
-            </div>
-        </footer>
-    </div>
-  </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"-->
-<!--"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">-->
-<!--    <head>-->
-<!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
-<!--        <title>Контекст типа | О Haskell по-человечески</title>-->
-<!--        -->
-<!--        <link rel="stylesheet" type="text/css" href="/css/default.css" />-->
-<!--        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />-->
-<!--    </head>-->
-<!--    <body>-->
-<!--        <div id="wrapper">-->
-
-<!--            <div class="ribbon">-->
-<!--                <a href="https://github.com/denisshevchenko/ohaskell">Живу на GitHub</a>-->
-<!--            </div>-->
-
-<!--            <div id="wrapper_2">-->
-<!--            <div id="header">-->
-<!--                <div id="logo">-->
-<!--                    <a href="/ru/index.html" title="Домой">О Haskell по-человечески</a><span class="logo-note">для обыкновенных программистов</span>-->
-<!--                </div>-->
-<!--                <div id="navigation">-->
-<!--                    <a href="/ru/chapters.html">ОГЛАВЛЕНИЕ</a>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            -->
-
-<!--            <div id="content">-->
-<!--                <h1>Контекст типа</h1>-->
-
-<!--                <!--<div class="row">-->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-left">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/about-user-types/about-value-constructors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-right">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/about-user-types/composite-types.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div style="padding-top: 40px;"><div>-->
-
-<p>Как вы уже знаете, тип аргумента функции может быть полиморфным, что позволит нам применить такую функцию к значению любого типа. Но на практике нам редко нужна столь радикальная гибкость, ведь в большинстве случаев, говоря об аргументе любого типа, мы подразумеваем вовсе не любой тип, а тип из некоторой группы. Об этом и поговорим.</p>
-<h2 id="любой-да-не-совсем">Любой, да не совсем</h2>
-<p>Возьмём стандартную функцию <code>elem</code>. Как вы помните, это простой предикат, возвращающий <code>True</code> в том случае, если заданное значение является элементом списка. Например:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
-    print <span class="fu">$</span> <span class="kw">if</span> <span class="st">&quot;yellow&quot;</span> <span class="ot">`elem`</span> colors
-            then <span class="st">&quot;Yellow is here!&quot;</span>
-            else <span class="st">&quot;There's no yellow...&quot;</span>
-    where colors <span class="fu">=</span> [<span class="st">&quot;red&quot;</span>,
-                    <span class="st">&quot;black&quot;</span>,
-                    <span class="st">&quot;yellow&quot;</span>,
-                    <span class="st">&quot;green&quot;</span>]</code></pre>
-<p>Предельно простая функция. Взглянем на её объявление:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">elem<span class="ot"> ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Bool</span></code></pre>
-<p>Тут вроде бы всё понятно: принимаем значение некоторого типа <code>a</code>, а также список из значений этого же типа, и возвращаем логический признак. И всё-таки кое-что новенькое тут присутствует, а именно символ <code>=&gt;</code>. Этот символ и говорит нам о наличии контекста типа:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Eq</span> a <span class="ot">=&gt;</span> a</code></pre>
-<p>Слева от символа <code>=&gt;</code> находится ограничение, наложенное на полиморфный тип <code>a</code>. Мы говорим: “Да, мы готовы принять аргумент любого типа, но при условии, что этот тип относится к классу типов <code>Eq</code>”.</p>
-<p>Стандартный класс типов <code>Eq</code> (от английского equal, “равный”) предоставляет два метода:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">(==) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span>
-<span class="ot">(/=) ::</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span></code></pre>
-<p>Именно поэтому функция <code>elem</code> может быть применена лишь к значению  такого типа, который предоставляет свои реализации методов “равно” <code>==</code> и “не равно” <code>/=</code>. Оно и понятно: далеко не для всех типов операция проверки на равенство имеет смысл.</p>
-<p>Проверим это на нашем типе <code>IPAddress</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">nothing ::</span> a <span class="ot">-&gt;</span> a
-nothing val <span class="fu">=</span> val
-
-main <span class="fu">=</span> print <span class="fu">$</span> nothing <span class="fu">$</span> <span class="dt">IP</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
-<p>У нас есть функция <code>nothing</code>, ничего не делающая и лишь возвращающая свой аргумент. Поскольку она объявлена с полиморфным типом без каких-либо ограничений, мы можем применить эту функцию к значению нашего типа <code>IPAddress</code>.</p>
-<p>Но как только мы добавим в объявление этой функции ограничение:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">nothing ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> a
-nothing value <span class="fu">=</span> value</code></pre>
-<p>функция <code>nothing</code> уже не согласится работать с нашим типом, и правильно сделает: наш тип не имеет никакого отношения к классу <code>Eq</code>. В этом случае говорят, что тип <code>IPAddress</code> не подходит под ограничение класса <code>Eq</code>, или не входит в контекст класса <code>Eq</code>.</p>
-<p>Механизм ограничения класса типа - полезный механизм, к тому же делающий наш код самодокументируемым, ведь видя ограничение типа в объявлении функции, мы сразу же понимаем, каким характеристикам должен соответствовать тип аргумента.</p>
-<h2 id="множественность">Множественность</h2>
-<p>Контекстов может быть и несколько. В этом случае мы перечисляем требуемые классы типов в виде кортежа:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">nothing ::</span> (<span class="dt">Show</span> a, <span class="dt">Eq</span> a) <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> a
-nothing value <span class="fu">=</span> value</code></pre>
-<p>Здесь мы требуем, чтобы тип аргумента входил как в контекст класса <code>Show</code>, так и в контекст класса <code>Eq</code>.</p>
-<p>Более того, мы можем указать разные ограничения для разных полиморфных типов. Если бы наша функция <code>nothing</code> принимала два аргумента, её объявление могло быть таким:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">nothing ::</span> (<span class="dt">Show</span> a, <span class="dt">Show</span> b, <span class="dt">Eq</span> b) <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> <span class="dt">String</span>
-nothing value1 value2 <span class="fu">=</span> show value1 <span class="fu">++</span> show value2</code></pre>
-<p>Тип первого аргумента должен входить в контекст класса <code>Show</code>, в то время как тип второго должен входить в контексты сразу двух классов, <code>Show</code> и <code>Eq</code>.</p>
-
-<div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/about-user-types/about-value-constructors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/about-user-types/composite-types.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="/ru/about-user-types/composite-types.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -322,33 +136,16 @@ nothing value1 value2 <span class="fu">=</span> show value1 <span class="fu">++<
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
 -->
-<!--            </div>-->
-<!--            -->
-<!--            <div id="footer">-->
-<!--                <div id="social">-->
-<!--                    &copy; Денис Шевченко 2013-2014-->
-<!--                </div>-->
-<!--                <div id="hakyll_mark">-->
-<!--                    Книга создана с помощью <a href="http://jaspervdj.be/hakyll">Hakyll</a>-->
-<!--                </div>-->
-<!--            </div>-->
+        </div> 
 
-<!--            <div id="search_form">-->
-<!--                <script>-->
-<!--                  (function() {-->
-<!--                    var cx = '007697214108744450483:au850gpbupm';-->
-<!--                    var gcse = document.createElement('script');-->
-<!--                    gcse.type = 'text/javascript';-->
-<!--                    gcse.async = true;-->
-<!--                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +-->
-<!--                        '//www.google.com/cse/cse.js?cx=' + cx;-->
-<!--                    var s = document.getElementsByTagName('script')[0];-->
-<!--                    s.parentNode.insertBefore(gcse, s);-->
-<!--                  })();-->
-<!--                </script>-->
-<!--                <gcse:search></gcse:search>-->
-<!--            </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </body>-->
-<!--</html>-->
+        <footer class="footer">
+            Книга создана с помощью <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Исходный код сайта и содержимое книги распространяются на условиях <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
+            </div>
+        </footer>
+    </div>
+  </body>
+</html>
+
+

@@ -60,26 +60,7 @@
         <div id="content">
             <h1>О модулях, минимум</h1>
 
-            <!--<div class="row">-->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-left">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-right">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div style="padding-top: 40px;"><div>-->
-
-<p>Настоящие проекты никогда не состоят из одного-единственного файла. Пришла пора узнать о модулях.</p>
+<!--            <p>Настоящие проекты никогда не состоят из одного-единственного файла. Пришла пора узнать о модулях.</p>
 <p>Исходные файлы в Haskell-проекте - это и есть модули. Один файл - один модуль. Таким образом, в нашем проекте сейчас есть два модуля: <code>Main.hs</code> и <code>Helpers.hs</code>.</p>
 <p>В Haskell нет заголовочных файлов. Каждый из модулей рассматривается как самостоятельная единица проекта, содержащая в себе разные интересные вещи. И чтобы воспользоваться этими интересными вещами, нужно один модуль импортировать в другой.</p>
 <p>Откроем наш пустой файл <code>Helpers.hs</code> и напишем в нём:</p>
@@ -107,7 +88,7 @@ main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot
 <p>Сохраняем, собираем:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> build
 <span class="kw">Building</span> Real-0.1.0.0...
-<span class="kw">Preprocessing</span> executable <span class="st">'Real'</span> for Real-0.1.0.0...
+<span class="kw">Preprocessing</span> executable <span class="st">&#39;Real&#39;</span> for Real-0.1.0.0...
 [<span class="kw">1</span> of 2] Compiling Helpers          ( src/Utils/Helpers.hs, dist/build/Real/Real-tmp/Helpers.o )
 [<span class="kw">2</span> of 2] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
 <span class="kw">Linking</span> dist/build/Real/Real ...</code></pre>
@@ -125,7 +106,7 @@ main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="../../ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="/ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -133,175 +114,7 @@ main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="../../ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
- 
-
-        </div> 
-
-        <footer class="footer">
-            Книга создана с помощью <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
-            <div class="copyright-note">
-                Исходный код сайта и содержимое книги распространяются на условиях <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
-            </div>
-        </footer>
-    </div>
-  </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"-->
-<!--"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">-->
-<!--    <head>-->
-<!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
-<!--        <title>О модулях, минимум | О Haskell по-человечески</title>-->
-<!--        -->
-<!--        <link rel="stylesheet" type="text/css" href="/css/default.css" />-->
-<!--        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />-->
-<!--    </head>-->
-<!--    <body>-->
-<!--        <div id="wrapper">-->
-
-<!--            <div class="ribbon">-->
-<!--                <a href="https://github.com/denisshevchenko/ohaskell">Живу на GitHub</a>-->
-<!--            </div>-->
-
-<!--            <div id="wrapper_2">-->
-<!--            <div id="header">-->
-<!--                <div id="logo">-->
-<!--                    <a href="/ru/index.html" title="Домой">О Haskell по-человечески</a><span class="logo-note">для обыкновенных программистов</span>-->
-<!--                </div>-->
-<!--                <div id="navigation">-->
-<!--                    <a href="/ru/chapters.html">ОГЛАВЛЕНИЕ</a>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            -->
-
-<!--            <div id="content">-->
-<!--                <h1>О модулях, минимум</h1>-->
-
-<!--                <!--<div class="row">-->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-left">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-right">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div style="padding-top: 40px;"><div>-->
-
-<p>Настоящие проекты никогда не состоят из одного-единственного файла. Пришла пора узнать о модулях.</p>
-<p>Исходные файлы в Haskell-проекте - это и есть модули. Один файл - один модуль. Таким образом, в нашем проекте сейчас есть два модуля: <code>Main.hs</code> и <code>Helpers.hs</code>.</p>
-<p>В Haskell нет заголовочных файлов. Каждый из модулей рассматривается как самостоятельная единица проекта, содержащая в себе разные интересные вещи. И чтобы воспользоваться этими интересными вещами, нужно один модуль импортировать в другой.</p>
-<p>Откроем наш пустой файл <code>Helpers.hs</code> и напишем в нём:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Helpers</span> <span class="kw">where</span>
-
-hello user <span class="fu">=</span> <span class="st">&quot;Hi, &quot;</span> <span class="fu">++</span> user</code></pre>
-<p>Первой строкой мы объявили, что имя этого модуля - <code>Helpers</code>. Далее, после ключевого слова <code>where</code>, мы наполнили модуль содержимым. Содержимое у нас предельно простое, но пока не спрашивайте меня, что такое <code>hello</code>. Очень скоро мы выясним это.</p>
-<h2 id="импортируем">Импортируем</h2>
-<p>Откроем файл <code>Main.hs</code> (наш главный модуль) и чуток изменим его:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Helpers</span>
-
-main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot;</span>)</code></pre>
-<p>Мы импортировали модуль <code>Helpers</code> с помощью директивы <code>import</code>, и теперь в главном модуле доступно всё содержимое модуля <code>Helpers</code>. Следовательно, мы можем воспользоваться той самой штуковиной по имени <code>hello</code>.</p>
-<h2 id="упоминаем">Упоминаем</h2>
-<p>Упомянем модуль <code>Helpers</code> в сборочном файле <code>Real.cabal</code>. Открываем его и прописываем его имя:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">executable <span class="dt">Real</span>
-    main<span class="fu">-</span>is<span class="fu">:</span>             Main.hs             
-    other<span class="fu">-</span>modules<span class="fu">:</span>       <span class="dt">Helpers</span>
-    build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">==</span><span class="fl">4.6</span><span class="fu">.</span>\<span class="fu">*</span>
-    hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src</code></pre>
-<p>Мы раскомментировали строку <code>other-modules</code> и указали имя нашего модуля. Обращаю ваше внимание: указать нужно не имя файла, а имя модуля.</p>
-<p>Но раз уж мы указали имя нового модуля, необходимо указать и место, где его искать. Ведь он лежит не в каталоге <code>src</code>, а в подкаталоге <code>src/Utils</code>. Поэтому в сборочном файле ищем параметр <code>hs-source-dirs</code> и дописываем:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">    hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src
-                         src<span class="fu">/</span><span class="dt">Utils</span></code></pre>
-<p>Сохраняем, собираем:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> build
-<span class="kw">Building</span> Real-0.1.0.0...
-<span class="kw">Preprocessing</span> executable <span class="st">'Real'</span> for Real-0.1.0.0...
-[<span class="kw">1</span> of 2] Compiling Helpers          ( src/Utils/Helpers.hs, dist/build/Real/Real-tmp/Helpers.o )
-[<span class="kw">2</span> of 2] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
-<span class="kw">Linking</span> dist/build/Real/Real ...</code></pre>
-<p>Получилось! Как видите, уже не один, а два модуля были скомпилированы. Теперь запускаем:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./dist/build/Real/Real</span>
-<span class="kw">Hi</span>, denis</code></pre>
-<p>Работает.</p>
-<h2 id="об-именах">Об именах</h2>
-<p>Здесь есть два правила.</p>
-<p>Во-первых, имя модуля должно начинаться с большой буквы. В отношении имён подпапок внутри <code>src</code> принята та же практика.</p>
-<p>Во-вторых, имя модуля должно совпадать с именем соответствующего ему файла. Именно поэтому файл, содержащий модуль <code>Helpers</code>, назван <code>Helpers.hs</code>. Это, кстати, удобно, во избежание путаницы.</p>
-<p>Вот и всё. Теперь вы знаете, как организовать настоящий Haskell-проект. Позже я расскажу о модулях кое-что ещё, но на данный момент вам необходимо знать лишь это.</p>
-
-<div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="/ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -324,33 +137,16 @@ main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
 -->
-<!--            </div>-->
-<!--            -->
-<!--            <div id="footer">-->
-<!--                <div id="social">-->
-<!--                    &copy; Денис Шевченко 2013-2014-->
-<!--                </div>-->
-<!--                <div id="hakyll_mark">-->
-<!--                    Книга создана с помощью <a href="http://jaspervdj.be/hakyll">Hakyll</a>-->
-<!--                </div>-->
-<!--            </div>-->
+        </div> 
 
-<!--            <div id="search_form">-->
-<!--                <script>-->
-<!--                  (function() {-->
-<!--                    var cx = '007697214108744450483:au850gpbupm';-->
-<!--                    var gcse = document.createElement('script');-->
-<!--                    gcse.type = 'text/javascript';-->
-<!--                    gcse.async = true;-->
-<!--                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +-->
-<!--                        '//www.google.com/cse/cse.js?cx=' + cx;-->
-<!--                    var s = document.getElementsByTagName('script')[0];-->
-<!--                    s.parentNode.insertBefore(gcse, s);-->
-<!--                  })();-->
-<!--                </script>-->
-<!--                <gcse:search></gcse:search>-->
-<!--            </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </body>-->
-<!--</html>-->
+        <footer class="footer">
+            Книга создана с помощью <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Исходный код сайта и содержимое книги распространяются на условиях <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
+            </div>
+        </footer>
+    </div>
+  </body>
+</html>
+
+

@@ -60,26 +60,7 @@
         <div id="content">
             <h1>Контейнеры: словарь</h1>
 
-            <!--<div class="row">-->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-left">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/miscellaneous/about-modules.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-right">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/miscellaneous/set.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div style="padding-top: 40px;"><div>-->
-
-<p>Ассоциативный контейнер, часто называемый словарём (dictionary), давно стал классикой среди гомогенных контейнеров. Естественно, в Haskell-проектах он используется весьма часто. Впрочем, если вдруг вы запамятовали, о чём идёт речь, напомню, что словарём называется контейнер, хранящий в себе пары “ключ-значение”, и позволяющий нам удобно работать с этими самыми ключами и значениями.</p>
+<!--            <p>Ассоциативный контейнер, часто называемый словарём (dictionary), давно стал классикой среди гомогенных контейнеров. Естественно, в Haskell-проектах он используется весьма часто. Впрочем, если вдруг вы запамятовали, о чём идёт речь, напомню, что словарём называется контейнер, хранящий в себе пары “ключ-значение”, и позволяющий нам удобно работать с этими самыми ключами и значениями.</p>
 <p>Нам понадобится стандартный пакет <code>containers</code>, однако ставить его вам не придётся, поскольку он давно подтянулся в зависимостях других пакетов.</p>
 <h2 id="проба-пера">Проба пера</h2>
 <p>Итак, пишем:</p>
@@ -90,7 +71,7 @@
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> 
     putStrLn <span class="fu">$</span> <span class="kw">case</span> M.lookup <span class="st">&quot;Toyota&quot;</span> cars <span class="kw">of</span>
-        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="st">&quot;There's no cars from Toyota, sorry...&quot;</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="st">&quot;There&#39;s no cars from Toyota, sorry...&quot;</span>
         <span class="dt">Just</span> aCars <span class="ot">-&gt;</span> show aCars
     <span class="kw">where</span> cars <span class="fu">=</span> M.fromList [
                               (<span class="st">&quot;Toyota&quot;</span>, [<span class="st">&quot;Camry&quot;</span>, <span class="st">&quot;Corolla&quot;</span>, <span class="st">&quot;Prius&quot;</span>]),
@@ -205,7 +186,7 @@ main <span class="fu">=</span>
         carsWithoutHonda <span class="fu">=</span> M.delete <span class="st">&quot;Honda&quot;</span> cars
     <span class="kw">in</span>
     putStrLn <span class="fu">$</span> <span class="kw">case</span> M.lookup <span class="st">&quot;Honda&quot;</span> carsWithoutHonda <span class="kw">of</span>
-        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="st">&quot;There's no cars from Honda, sorry...&quot;</span>
+        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="st">&quot;There&#39;s no cars from Honda, sorry...&quot;</span>
         <span class="dt">Just</span> aCars <span class="ot">-&gt;</span> show aCars</code></pre>
 <p>Передаём функции <code>delete</code> ключ и словарь - готово.</p>
 <h2 id="пробегаемся">Пробегаемся</h2>
@@ -251,7 +232,7 @@ main <span class="fu">=</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="../../ru/miscellaneous/about-modules.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="/ru/miscellaneous/about-modules.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -259,301 +240,7 @@ main <span class="fu">=</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="../../ru/miscellaneous/set.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
- 
-
-        </div> 
-
-        <footer class="footer">
-            Книга создана с помощью <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
-            <div class="copyright-note">
-                Исходный код сайта и содержимое книги распространяются на условиях <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
-            </div>
-        </footer>
-    </div>
-  </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"-->
-<!--"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">-->
-<!--    <head>-->
-<!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
-<!--        <title>Контейнеры: словарь | О Haskell по-человечески</title>-->
-<!--        -->
-<!--        <link rel="stylesheet" type="text/css" href="/css/default.css" />-->
-<!--        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />-->
-<!--    </head>-->
-<!--    <body>-->
-<!--        <div id="wrapper">-->
-
-<!--            <div class="ribbon">-->
-<!--                <a href="https://github.com/denisshevchenko/ohaskell">Живу на GitHub</a>-->
-<!--            </div>-->
-
-<!--            <div id="wrapper_2">-->
-<!--            <div id="header">-->
-<!--                <div id="logo">-->
-<!--                    <a href="/ru/index.html" title="Домой">О Haskell по-человечески</a><span class="logo-note">для обыкновенных программистов</span>-->
-<!--                </div>-->
-<!--                <div id="navigation">-->
-<!--                    <a href="/ru/chapters.html">ОГЛАВЛЕНИЕ</a>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            -->
-
-<!--            <div id="content">-->
-<!--                <h1>Контейнеры: словарь</h1>-->
-
-<!--                <!--<div class="row">-->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-left">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/miscellaneous/about-modules.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-right">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/miscellaneous/set.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div style="padding-top: 40px;"><div>-->
-
-<p>Ассоциативный контейнер, часто называемый словарём (dictionary), давно стал классикой среди гомогенных контейнеров. Естественно, в Haskell-проектах он используется весьма часто. Впрочем, если вдруг вы запамятовали, о чём идёт речь, напомню, что словарём называется контейнер, хранящий в себе пары “ключ-значение”, и позволяющий нам удобно работать с этими самыми ключами и значениями.</p>
-<p>Нам понадобится стандартный пакет <code>containers</code>, однако ставить его вам не придётся, поскольку он давно подтянулся в зависимостях других пакетов.</p>
-<h2 id="проба-пера">Проба пера</h2>
-<p>Итак, пишем:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
-
-<span class="kw">import qualified</span> <span class="dt">Data.Map.Lazy</span> <span class="kw">as</span> <span class="dt">M</span>
-
-<span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
-    putStrLn <span class="fu">$</span> <span class="kw">case</span> M.lookup <span class="st">&quot;Toyota&quot;</span> cars <span class="kw">of</span>
-        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="st">&quot;There's no cars from Toyota, sorry...&quot;</span>
-        <span class="dt">Just</span> aCars <span class="ot">-&gt;</span> show aCars
-    <span class="kw">where</span> cars <span class="fu">=</span> M.fromList [
-                              (<span class="st">&quot;Toyota&quot;</span>, [<span class="st">&quot;Camry&quot;</span>, <span class="st">&quot;Corolla&quot;</span>, <span class="st">&quot;Prius&quot;</span>]),
-                              (<span class="st">&quot;Nissan&quot;</span>, [<span class="st">&quot;Juke&quot;</span>, <span class="st">&quot;Almera&quot;</span>]),
-                              (<span class="st">&quot;Honda&quot;</span>,  [<span class="st">&quot;Civic&quot;</span>, <span class="st">&quot;CR-V&quot;</span>, <span class="st">&quot;Accord&quot;</span>, <span class="st">&quot;CR-Z&quot;</span>])
-                            ]    </code></pre>
-<p>Результат:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Camry&quot;</span>,<span class="st">&quot;Corolla&quot;</span>,<span class="st">&quot;Prius&quot;</span>]</code></pre>
-<p>Вначале мы создаём словарь из списка пар, с помощью функции <code>fromList</code>. Кстати, обратите внимание, что модуль <code>Data.Map.Lazy</code> включён как <code>qualified</code>, что вынудит нас явно указывать принадлежность. Связано это с тем, что имена многих функций модуля <code>Data.Map.Lazy</code> конфликтуют с функциями из <code>Prelude</code>.</p>
-<p>Как вы уже поняли, функция <code>fromList</code> создала словарь с тремя ключами (марками автомобилей), каждому из которых соответствует список строк (моделей данной марки). А функция <code>lookup</code> позволила нам найти все марки от Toyota, по соответствующему ключу.</p>
-<h2 id="добавляем-новое">Добавляем новое</h2>
-<p>Словарь позволяет легко добавлять новые пары:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
-
-<span class="kw">import qualified</span> <span class="dt">Data.Map.Lazy</span> <span class="kw">as</span> <span class="dt">M</span>
-<span class="kw">import </span><span class="dt">Data.Maybe</span> (fromJust)
-
-<span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
-    <span class="kw">let</span> cars <span class="fu">=</span> M.empty
-        carsWithToyota <span class="fu">=</span> M.insert <span class="st">&quot;Toyota&quot;</span> [<span class="st">&quot;Corolla&quot;</span>, <span class="st">&quot;Prius&quot;</span>] cars
-    <span class="kw">in</span>
-    print <span class="fu">$</span> fromJust <span class="fu">$</span> M.lookup <span class="st">&quot;Toyota&quot;</span> carsWithToyota</code></pre>
-<p>Функция <code>empty</code> создаёт девственно чистый словарь <code>cars</code>, а затем мы вставляем в него список моделей Toyota, с помощью функции <code>insert</code>. Разумеется, если бы в словаре <em>уже</em> хранился список, соответствующий ключу <code>&quot;Toyota&quot;</code>, он был бы перезаписан новым списком.</p>
-<h2 id="добавляем-к-новому">Добавляем к новому</h2>
-<p>А что если мы захотим добавить ещё одну модель к уже имеющемуся списку моделей от Toyota? Никаких проблем:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
-
-<span class="kw">import qualified</span> <span class="dt">Data.Map.Lazy</span> <span class="kw">as</span> <span class="dt">M</span>
-<span class="kw">import </span><span class="dt">Data.Maybe</span> (fromJust) 
-
-<span class="kw">type</span> <span class="dt">Brand</span> <span class="fu">=</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">Model</span> <span class="fu">=</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">Cars</span> <span class="fu">=</span> <span class="dt">M.Map</span> <span class="dt">Brand</span> [<span class="dt">Model</span>]
-
-<span class="ot">addNewModel ::</span> <span class="dt">Brand</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> <span class="dt">Cars</span> <span class="ot">-&gt;</span> <span class="dt">Cars</span>
-addNewModel brand model cars <span class="fu">=</span> M.insertWith (<span class="fu">++</span>) brand [model] cars
-
-<span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
-    <span class="kw">let</span> cars <span class="fu">=</span> M.fromList [(<span class="st">&quot;Toyota&quot;</span>, [<span class="st">&quot;Corolla&quot;</span>, <span class="st">&quot;Prius&quot;</span>])]
-        carsWithBigGuy <span class="fu">=</span> addNewModel <span class="st">&quot;Toyota&quot;</span> <span class="st">&quot;Sequoia&quot;</span> cars
-    <span class="kw">in</span>
-    print <span class="fu">$</span> fromJust <span class="fu">$</span> M.lookup <span class="st">&quot;Toyota&quot;</span> carsWithBigGuy</code></pre>
-<p>Вывод:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Sequoia&quot;</span>,<span class="st">&quot;Corolla&quot;</span>,<span class="st">&quot;Prius&quot;</span>]</code></pre>
-<p>Чтобы предназначение функции <code>insertWith</code> было предельно понятным, мы обёрнули её в функцию <code>addNewModel</code>. Берём новую модель Toyota - и добавляем её к списку уже имеющихся моделей.</p>
-<p>Вот как это работает:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">M.insertWith (<span class="fu">++</span>) brand [model] cars</code></pre>
-<p>Здесь мы говорим: “Найди в словаре <code>cars</code> список моделей, соответствующих ключу <code>brand</code>, а потом прибавь к этому списку новую модель в виде <code>[model]</code>”. Оператор конкатенации списков применяется к новому значению и к старому значению (если таковое имеется), поэтому работа фунции <code>insertWith</code> сводится в конечном итоге к простому объединению:</p>
-<pre><code>[&quot;Sequoia&quot;]         ++        [&quot;Corolla&quot;, &quot;Prius&quot;]
-новое значение      бинарная  старое значение
-для ключа &quot;Toyota&quot;  функция   для ключа &quot;Toyota&quot;</code></pre>
-<p>Вот ещё один пример использования функции <code>insertWith</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
-
-<span class="kw">import qualified</span> <span class="dt">Data.Map.Lazy</span> <span class="kw">as</span> <span class="dt">M</span>
-<span class="kw">import </span><span class="dt">Data.Maybe</span> (fromJust) 
-<span class="kw">import </span><span class="dt">Text.Printf</span> (printf)
-
-<span class="kw">type</span> <span class="dt">Price</span> <span class="fu">=</span> <span class="dt">Double</span>
-<span class="kw">type</span> <span class="dt">Difference</span> <span class="fu">=</span> <span class="dt">Double</span>
-<span class="kw">type</span> <span class="dt">PriceName</span> <span class="fu">=</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">Prices</span> <span class="fu">=</span> <span class="dt">M.Map</span> <span class="dt">PriceName</span> <span class="dt">Price</span>
-
-<span class="ot">increase ::</span> <span class="dt">PriceName</span> <span class="ot">-&gt;</span> <span class="dt">Difference</span> <span class="ot">-&gt;</span> <span class="dt">Prices</span> <span class="ot">-&gt;</span> <span class="dt">Prices</span>
-increase name difference prices <span class="fu">=</span> M.insertWith (<span class="fu">+</span>) name difference prices
-
-<span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> 
-    <span class="kw">let</span> prices <span class="fu">=</span> M.fromList [   
-                              (<span class="st">&quot;Month price&quot;</span>, <span class="fl">12.3</span>),
-                              (<span class="st">&quot;Year price&quot;</span>, <span class="fl">120.0</span>)
-                            ]
-        newPrices <span class="fu">=</span> increase <span class="st">&quot;Month price&quot;</span> <span class="fl">2.0</span> prices
-    <span class="kw">in</span>
-    printf <span class="st">&quot;%f&quot;</span> <span class="fu">$</span> fromJust <span class="fu">$</span> M.lookup <span class="st">&quot;Month price&quot;</span> newPrices</code></pre>
-<p>Есть словарь различных цен, и мы, используя функцию <code>insertWith</code>, увеличиваем месячную цену путём применения оператора сложения к старому и новому значениям:</p>
-<pre><code>2.0             +         12.3 
-новое значение  бинарная  старое значение
-для ключа       функция   для ключа 
-&quot;Month price&quot;             &quot;Month price&quot;</code></pre>
-<p>Кстати, вы заметили? Привычная функция <code>print</code> заменена на не очень привычную <code>printf</code>. Сразу повеяло языком C, не правда ли? Эта функция живёт в стандартном модуле <code>Text.Printf</code> и предназначена для форматной печати значений. Да-да, это клон той самой C-шной <code>printf</code>. Без неё значение типа <code>Double</code> было бы выведено с большим количеством ненужных нулей. Подробнее о форматной печати читайте <a href="http://hackage.haskell.org/package/base/docs/Text-Printf.html">здесь</a>.</p>
-<h2 id="обновляем">Обновляем</h2>
-<p>Как уже было сказано выше, значение, ассоциированное с ключом, можно обновить с помощью функции <code>insert</code>. Однако есть и другие способы.</p>
-<p>Помните, как мы добавили новую модель к уже имеющимся моделям Toyota?</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addNewModel ::</span> <span class="dt">Brand</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> <span class="dt">Cars</span> <span class="ot">-&gt;</span> <span class="dt">Cars</span>
-addNewModel brand model cars <span class="fu">=</span> M.insertWith (<span class="fu">++</span>) brand [model] cars</code></pre>
-<p><code>&quot;Sequoia&quot;</code> добавилась в начало списка, но что если мы хотим добавить её в конец? Используем функцию <code>adjust</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addNewModel ::</span> <span class="dt">Brand</span> <span class="ot">-&gt;</span> <span class="dt">Model</span> <span class="ot">-&gt;</span> <span class="dt">Cars</span> <span class="ot">-&gt;</span> <span class="dt">Cars</span>
-addNewModel brand model cars <span class="fu">=</span> M.adjust (<span class="fu">++</span> [model]) brand cars</code></pre>
-<p>Вывод:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Corolla&quot;</span>,<span class="st">&quot;Prius&quot;</span>,<span class="st">&quot;Sequoia&quot;</span>] </code></pre>
-<p>Разберёмся, как это работает. Вот объявление функции <code>adjust</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">adjust ::</span> <span class="dt">Ord</span> k <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> k <span class="ot">-&gt;</span> <span class="dt">Map</span> k a <span class="ot">-&gt;</span> <span class="dt">Map</span> k a</code></pre>
-<p>Значение для ключа <code>k</code> будет заменено результатом применения унарной функции к старому значению, ассоциированному с ключом <code>k</code>. И чтобы стало совсем понятно, заменим реальными значениями:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">M.adjust (<span class="fu">++</span> [<span class="st">&quot;Sequoia&quot;</span>]) <span class="st">&quot;Toyota&quot;</span> cars</code></pre>
-<p>Теперь всё предельно понятно: взяли список моделей, уже ассоциированный с ключом <code>&quot;Toyota&quot;</code>, и применили к нему частично применённый оператор конкатенации (ставший унарной функцией), в результате чего <code>&quot;Sequoia&quot;</code> добавляется в конец списка имеющихся моделей.</p>
-<h2 id="удаляем">Удаляем</h2>
-<p>Если нам нужно удалить конкретный ключ и связанное с ним значение, воспользуемся функцией <code>delete</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
-
-<span class="kw">import qualified</span> <span class="dt">Data.Map.Lazy</span> <span class="kw">as</span> <span class="dt">M</span>
-
-<span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span>
-    <span class="kw">let</span> cars <span class="fu">=</span> M.fromList [
-                            (<span class="st">&quot;Toyota&quot;</span>, [<span class="st">&quot;Camry&quot;</span>, <span class="st">&quot;Corolla&quot;</span>, <span class="st">&quot;Prius&quot;</span>]),
-                            (<span class="st">&quot;Nissan&quot;</span>, [<span class="st">&quot;Juke&quot;</span>, <span class="st">&quot;Almera&quot;</span>]),
-                            (<span class="st">&quot;Honda&quot;</span>,  [<span class="st">&quot;Civic&quot;</span>, <span class="st">&quot;CR-V&quot;</span>, <span class="st">&quot;Accord&quot;</span>, <span class="st">&quot;CR-Z&quot;</span>])
-                          ]
-        carsWithoutHonda <span class="fu">=</span> M.delete <span class="st">&quot;Honda&quot;</span> cars
-    <span class="kw">in</span>
-    putStrLn <span class="fu">$</span> <span class="kw">case</span> M.lookup <span class="st">&quot;Honda&quot;</span> carsWithoutHonda <span class="kw">of</span>
-        <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="st">&quot;There's no cars from Honda, sorry...&quot;</span>
-        <span class="dt">Just</span> aCars <span class="ot">-&gt;</span> show aCars</code></pre>
-<p>Передаём функции <code>delete</code> ключ и словарь - готово.</p>
-<h2 id="пробегаемся">Пробегаемся</h2>
-<p>С помощью собственной функции <code>map</code> можно пробежаться по всем значениям в словаре и сделать с ними что-нибудь интересное. Например:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
-
-<span class="kw">import qualified</span> <span class="dt">Data.Map.Lazy</span> <span class="kw">as</span> <span class="dt">M</span>
-<span class="kw">import </span><span class="dt">Data.List</span> (isPrefixOf)
-
-<span class="kw">type</span> <span class="dt">Url</span> <span class="fu">=</span> <span class="dt">String</span>
-
-<span class="ot">correctAll ::</span> [<span class="dt">Url</span>] <span class="ot">-&gt;</span> [<span class="dt">Url</span>]
-correctAll urls <span class="fu">=</span> 
-    map correctOne urls
-    <span class="kw">where</span> correctOne url <span class="fu">|</span> <span class="st">&quot;http&quot;</span> <span class="ot">`isPrefixOf`</span> url <span class="fu">=</span> url
-                         <span class="fu">|</span> otherwise <span class="fu">=</span> <span class="st">&quot;http://&quot;</span> <span class="fu">++</span> url
-
-<span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span>
-    <span class="kw">let</span> urls <span class="fu">=</span> M.fromList [
-                (<span class="st">&quot;Maps&quot;</span>,      [<span class="st">&quot;maps.yandex.ru&quot;</span>, <span class="st">&quot;google.com/maps&quot;</span>]),
-                (<span class="st">&quot;Translate&quot;</span>, [<span class="st">&quot;http://slovari.yandex.ru&quot;</span>, <span class="st">&quot;translate.google.com&quot;</span>]),
-                (<span class="st">&quot;Cloud&quot;</span>,     [<span class="st">&quot;https://drive.google.com&quot;</span>, <span class="st">&quot;https://disk.yandex.ru&quot;</span>])
-                          ]
-        correctedUrls <span class="fu">=</span> M.map correctAll urls
-    <span class="kw">in</span>
-    print <span class="fu">$</span> M.elems correctedUrls</code></pre>
-<p>Вывод будет таким:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[[<span class="st">&quot;https://drive.google.com&quot;</span>,<span class="st">&quot;https://disk.yandex.ru&quot;</span>],[<span class="st">&quot;http://maps.yandex.ru&quot;</span>,<span class="st">&quot;http://google.com/maps&quot;</span>],[<span class="st">&quot;http://slovari.yandex.ru&quot;</span>,<span class="st">&quot;http://translate.google.com&quot;</span>]]</code></pre>
-<p>В словаре имеются группы ссылок, но некоторые из них без префикса. Мы прогоняем функцию <code>correctAll</code> через все значения в словаре (то есть через все списки ссылок), а внутренняя функция <code>correctOne</code> применяется к каждой из ссылок, добавляя префикс, если таковой отсутствует. В конце, используя функцию <code>elems</code>, мы выводим список из всех значений словаря, минуя ключи.</p>
-<h2 id="и-так-далее">И так далее</h2>
-<p>Да, там ещё <a href="http://hackage.haskell.org/package/containers/docs/Data-Map-Lazy.html">много вкусностей</a>, рассматривать их всех мы не станем. Главное, что стандартный ассоциативный контейнер, как мы убедились, штука весьма удобная и простая в использовании.</p>
-<h2 id="об-эффективности">Об эффективности</h2>
-<p>В целом <code>Data.Map</code> работает шустро. Однако существует специализированная версия по имени <code>Data.IntMap</code>. Как понятно из названия, данная версия может использоваться только в тех случаях, когда ключи имеют тип <code>Int</code>. Вы спросите, зачем же нужна эта версия, если в <code>Data.Map</code> тоже можно запихивать целочисленные ключи? Причина в эффективности: как утверждает автор пакета <code>containers</code>, <code>Data.IntMap</code> значительно шустрее, особенно когда речь идёт о вставке и удалении пар.</p>
-<p>Так что если вы имеете дело с целочисленными ключами и вам очень уж важна скорость работы со словарём - используйте <code>Data.IntMap</code>. Причём, что удобно, набор функций, работающих с <code>Data.IntMap</code>, практически такой же, как и для <code>Data.Map</code>. Поэтому при переходе на высокоэффективную версию вам не потребуется серьёзно изменять свой код.</p>
-<h2 id="в-сухом-остатке">В сухом остатке</h2>
-<ul>
-<li>Словарь хранит в себе пары “ключ-значение” и позволяет совершать различные полезные действия с этими ключами и значениями.</li>
-<li>Для высокоэффективной работы со словарями, в которых используются целочисленные ключи, рекомендуется использовать <code>Data.IntMap</code>.</li>
-</ul>
-
-<div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/miscellaneous/about-modules.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/miscellaneous/set.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="/ru/miscellaneous/set.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -576,33 +263,16 @@ main <span class="fu">=</span>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
 -->
-<!--            </div>-->
-<!--            -->
-<!--            <div id="footer">-->
-<!--                <div id="social">-->
-<!--                    &copy; Денис Шевченко 2013-2014-->
-<!--                </div>-->
-<!--                <div id="hakyll_mark">-->
-<!--                    Книга создана с помощью <a href="http://jaspervdj.be/hakyll">Hakyll</a>-->
-<!--                </div>-->
-<!--            </div>-->
+        </div> 
 
-<!--            <div id="search_form">-->
-<!--                <script>-->
-<!--                  (function() {-->
-<!--                    var cx = '007697214108744450483:au850gpbupm';-->
-<!--                    var gcse = document.createElement('script');-->
-<!--                    gcse.type = 'text/javascript';-->
-<!--                    gcse.async = true;-->
-<!--                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +-->
-<!--                        '//www.google.com/cse/cse.js?cx=' + cx;-->
-<!--                    var s = document.getElementsByTagName('script')[0];-->
-<!--                    s.parentNode.insertBefore(gcse, s);-->
-<!--                  })();-->
-<!--                </script>-->
-<!--                <gcse:search></gcse:search>-->
-<!--            </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </body>-->
-<!--</html>-->
+        <footer class="footer">
+            Книга создана с помощью <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Исходный код сайта и содержимое книги распространяются на условиях <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
+            </div>
+        </footer>
+    </div>
+  </body>
+</html>
+
+

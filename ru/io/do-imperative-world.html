@@ -60,26 +60,7 @@
         <div id="content">
             <h1>do: императивный мир</h1>
 
-            <!--<div class="row">-->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-left">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/io/IO-a.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-right">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/io/exceptions-handling.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div style="padding-top: 40px;"><div>-->
-
-<p>Вы прочли правильно: императивный мир. Несмотря на то, что Haskell является чисто функциональным языком, в случае необходимости мы можем написать императивный код. А при работе с внешним миром такая необходимость возникает постоянно.</p>
+<!--            <p>Вы прочли правильно: императивный мир. Несмотря на то, что Haskell является чисто функциональным языком, в случае необходимости мы можем написать императивный код. А при работе с внешним миром такая необходимость возникает постоянно.</p>
 <p>Как вы знаете, императивный подход подразумевает выполнение программных инструкций в чётко указанном порядке. В чистых функциях такой подход излишен, потому что в них неважен порядок вычисления выражений. Однако в функциях, взаимодействующих с внешним миром, ситуация кардинально меняется.</p>
 <p>Вспомним наш пример работы со стандартными вводом и выводом:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
@@ -106,7 +87,7 @@ obtainUserText prompt <span class="fu">=</span> <span class="kw">do</span>
 main <span class="fu">=</span> <span class="kw">do</span>
     firstText <span class="ot">&lt;-</span> obtainUserText <span class="st">&quot;Enter your text, please: &quot;</span>
     secondText <span class="ot">&lt;-</span> obtainUserText <span class="st">&quot;One more, please: &quot;</span>
-    putStrLn <span class="fu">$</span> <span class="st">&quot;You said '&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
+    putStrLn <span class="fu">$</span> <span class="st">&quot;You said &#39;&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;&#39; and &#39;&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span></code></pre>
 <p>Функция <code>obtainUserText</code> заключает в себе два последовательных шага, поэтому в ней тоже используется слово <code>do</code>. Мы ожидаем, что сначала будет выведено соответствующее приглашение на экран, и только после этого действие, порождённое функцией <code>getLine</code>, отправится во внешний мир и вернётся оттуда с введённой пользователем строкой.</p>
 <h2 id="о-функции-return">О функции return</h2>
 <p>В языке C есть ключевое слово <code>return</code>, задающее точку возврата из функции. В Haskell нет такого ключевого слова, зато есть такая функция. И чтобы продемонстрировать её назначение, рассмотрим другой пример:</p>
@@ -116,7 +97,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     firstText <span class="ot">&lt;-</span> getLine
     putStrLn <span class="st">&quot;One more, please: &quot;</span>
     secondText <span class="ot">&lt;-</span> getLine
-    <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span> <span class="co">-- Простая строка??</span>
+    <span class="st">&quot;&#39;&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;&#39; and &#39;&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span> <span class="co">-- Простая строка??</span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
@@ -130,7 +111,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     firstText <span class="ot">&lt;-</span> getLine
     putStrLn <span class="st">&quot;One more, please: &quot;</span>
     secondText <span class="ot">&lt;-</span> getLine
-    return <span class="fu">$</span> <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
+    return <span class="fu">$</span> <span class="st">&quot;&#39;&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;&#39; and &#39;&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span></code></pre>
 <p>Императивно выглядит, не правда ли? Только не забывайте, что с ключевым словом <code>return</code> в языке C такая запись не имеет ничего общего.</p>
 <p>Функция <code>return</code> берёт значение и оборачивает его в действие, возвращающее это значение. В нашем случае мы передали ей строку, составленную из пользовательских текстов, а на выходе получили действие, возвращающее эту строку. Поэтому теперь наш код успешно скомпилируется.</p>
 <p>Кстати, чтобы доказать вам, что функция <code>return</code> действительно не имеет никакого отношения к ключевому слову <code>return</code> в C-подобных языках, я позволю себе небольшое хулиганство:</p>
@@ -140,7 +121,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     firstText <span class="ot">&lt;-</span> getLine
     putStrLn <span class="st">&quot;One more, please: &quot;</span>
     secondText <span class="ot">&lt;-</span> getLine
-    return <span class="fu">$</span> <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span>
+    return <span class="fu">$</span> <span class="st">&quot;&#39;&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;&#39; and &#39;&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span>
     putStrLn <span class="st">&quot;And third text, please: &quot;</span> <span class="co">-- Мы всё ещё продолжаем наш диалог!</span>
     getLine</code></pre>
 <p>Это может сбить с толку программистов, имеющих опыт в императивном программировании, но, как уже и было сказано выше, функция <code>return</code> всего лишь оборачивает значение в действие, возвращающее это значение. Она не прерывает ход наших действий, и если за ней есть другие действия, они спокойно продолжат выполняться. Фактически, в этой хулиганской функции мы потеряем два первых пользовательских текста и вернём действие, которое принесёт нам только третий текст.</p>
@@ -155,7 +136,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="../../ru/io/IO-a.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="/ru/io/IO-a.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -163,205 +144,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="../../ru/io/exceptions-handling.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
-
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
- 
-
-        </div> 
-
-        <footer class="footer">
-            Книга создана с помощью <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
-            <div class="copyright-note">
-                Исходный код сайта и содержимое книги распространяются на условиях <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
-            </div>
-        </footer>
-    </div>
-  </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<?xml version="1.0" encoding="UTF-8"?>-->
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"-->
-<!--"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">-->
-<!--    <head>-->
-<!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
-<!--        <title>do: императивный мир | О Haskell по-человечески</title>-->
-<!--        -->
-<!--        <link rel="stylesheet" type="text/css" href="/css/default.css" />-->
-<!--        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />-->
-<!--    </head>-->
-<!--    <body>-->
-<!--        <div id="wrapper">-->
-
-<!--            <div class="ribbon">-->
-<!--                <a href="https://github.com/denisshevchenko/ohaskell">Живу на GitHub</a>-->
-<!--            </div>-->
-
-<!--            <div id="wrapper_2">-->
-<!--            <div id="header">-->
-<!--                <div id="logo">-->
-<!--                    <a href="/ru/index.html" title="Домой">О Haskell по-человечески</a><span class="logo-note">для обыкновенных программистов</span>-->
-<!--                </div>-->
-<!--                <div id="navigation">-->
-<!--                    <a href="/ru/chapters.html">ОГЛАВЛЕНИЕ</a>-->
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            -->
-
-<!--            <div id="content">-->
-<!--                <h1>do: императивный мир</h1>-->
-
-<!--                <!--<div class="row">-->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-left">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/io/IO-a.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-right">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/ru/io/exceptions-handling.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div style="padding-top: 40px;"><div>-->
-
-<p>Вы прочли правильно: императивный мир. Несмотря на то, что Haskell является чисто функциональным языком, в случае необходимости мы можем написать императивный код. А при работе с внешним миром такая необходимость возникает постоянно.</p>
-<p>Как вы знаете, императивный подход подразумевает выполнение программных инструкций в чётко указанном порядке. В чистых функциях такой подход излишен, потому что в них неважен порядок вычисления выражений. Однако в функциях, взаимодействующих с внешним миром, ситуация кардинально меняется.</p>
-<p>Вспомним наш пример работы со стандартными вводом и выводом:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> <span class="kw">do</span>
-    putStrLn <span class="st">&quot;Input your text, please:&quot;</span>
-    lineFromUser <span class="ot">&lt;-</span> getLine               
-    putStrLn <span class="fu">$</span> <span class="st">&quot;Not bad: &quot;</span> <span class="fu">++</span> lineFromUser   </code></pre>
-<p>Здесь мы делаем три шага:</p>
-<ol style="list-style-type: decimal">
-<li>выводим на экран приветственную строку;</li>
-<li>дожидаемся, пока пользователь введёт свой текст;</li>
-<li>выводим на экран итоговую строку.</li>
-</ol>
-<p>Разумеется, мы ожидаем, что эти три шага будут выполнены именно в <em>таком</em> порядке. Согласитесь, было бы странно выводить на экран итоговую строку, не дождавшись введённого пользователем текста. При работе с внешним миром мы всегда подразумеваем определённый порядок наших шагов. Например, сервер, получив запрос от клиента, должен сначала его обработать, потом сформировать ответ, и только потом отправить его клиенту.</p>
-<p>Именно для этой цели и введено ключевое слово <code>do</code>: оно связывает наши действия в последовательную цепочку. Говоря об этом ключевом слове, обычно используют термин “do-нотация”.</p>
-<h2 id="не-только-main">Не только main</h2>
-<p>Мы можем использовать do-нотацию в любой функции с побочными эффектами. Например:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainUserText ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
-obtainUserText prompt <span class="fu">=</span> <span class="kw">do</span>
-    putStrLn prompt  <span class="co">-- Выведи приглашение ввести строку.</span>
-    getLine          <span class="co">-- Получи от пользователя некую строку.</span>
-
-<span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> <span class="kw">do</span>
-    firstText <span class="ot">&lt;-</span> obtainUserText <span class="st">&quot;Enter your text, please: &quot;</span>
-    secondText <span class="ot">&lt;-</span> obtainUserText <span class="st">&quot;One more, please: &quot;</span>
-    putStrLn <span class="fu">$</span> <span class="st">&quot;You said '&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
-<p>Функция <code>obtainUserText</code> заключает в себе два последовательных шага, поэтому в ней тоже используется слово <code>do</code>. Мы ожидаем, что сначала будет выведено соответствующее приглашение на экран, и только после этого действие, порождённое функцией <code>getLine</code>, отправится во внешний мир и вернётся оттуда с введённой пользователем строкой.</p>
-<h2 id="о-функции-return">О функции return</h2>
-<p>В языке C есть ключевое слово <code>return</code>, задающее точку возврата из функции. В Haskell нет такого ключевого слова, зато есть такая функция. И чтобы продемонстрировать её назначение, рассмотрим другой пример:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainTwoTextsFromUser ::</span> <span class="dt">IO</span> <span class="dt">String</span>
-obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
-    putStrLn <span class="st">&quot;Enter your text, please: &quot;</span>
-    firstText <span class="ot">&lt;-</span> getLine
-    putStrLn <span class="st">&quot;One more, please: &quot;</span>
-    secondText <span class="ot">&lt;-</span> getLine
-    <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span> <span class="co">-- Простая строка??</span>
-
-<span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> <span class="kw">do</span>
-    twoTexts <span class="ot">&lt;-</span> obtainTwoTextsFromUser
-    putStrLn <span class="fu">$</span> <span class="st">&quot;You said &quot;</span> <span class="fu">++</span> twoTexts</code></pre>
-<p>Функция <code>obtainTwoTextsFromUser</code> берёт на себя ответственность последовательно получить от пользователя два текста и вернуть составленную из них строку. Но, к сожалению, такой код не пройдёт компиляцию, ибо эта функция возвращает действие, однако последней по счёту инструкцией идёт вовсе не действие, а обыкновенная строка. Тут-то и приходит нам на помощь стандартная функция <code>return</code>.</p>
-<p>Перепишем эту функцию:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainTwoTextsFromUser ::</span> <span class="dt">IO</span> <span class="dt">String</span>
-obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
-    putStrLn <span class="st">&quot;Enter your text, please: &quot;</span>
-    firstText <span class="ot">&lt;-</span> getLine
-    putStrLn <span class="st">&quot;One more, please: &quot;</span>
-    secondText <span class="ot">&lt;-</span> getLine
-    return <span class="fu">$</span> <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
-<p>Императивно выглядит, не правда ли? Только не забывайте, что с ключевым словом <code>return</code> в языке C такая запись не имеет ничего общего.</p>
-<p>Функция <code>return</code> берёт значение и оборачивает его в действие, возвращающее это значение. В нашем случае мы передали ей строку, составленную из пользовательских текстов, а на выходе получили действие, возвращающее эту строку. Поэтому теперь наш код успешно скомпилируется.</p>
-<p>Кстати, чтобы доказать вам, что функция <code>return</code> действительно не имеет никакого отношения к ключевому слову <code>return</code> в C-подобных языках, я позволю себе небольшое хулиганство:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainTwoTextsFromUser ::</span> <span class="dt">IO</span> <span class="dt">String</span>
-obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
-    putStrLn <span class="st">&quot;Enter your text, please: &quot;</span>
-    firstText <span class="ot">&lt;-</span> getLine
-    putStrLn <span class="st">&quot;One more, please: &quot;</span>
-    secondText <span class="ot">&lt;-</span> getLine
-    return <span class="fu">$</span> <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span>
-    putStrLn <span class="st">&quot;And third text, please: &quot;</span> <span class="co">-- Мы всё ещё продолжаем наш диалог!</span>
-    getLine</code></pre>
-<p>Это может сбить с толку программистов, имеющих опыт в императивном программировании, но, как уже и было сказано выше, функция <code>return</code> всего лишь оборачивает значение в действие, возвращающее это значение. Она не прерывает ход наших действий, и если за ней есть другие действия, они спокойно продолжат выполняться. Фактически, в этой хулиганской функции мы потеряем два первых пользовательских текста и вернём действие, которое принесёт нам только третий текст.</p>
-<h2 id="в-сухом-остатке">В сухом остатке</h2>
-<ul>
-<li><code>do</code> связывает действия в последовательную цепочку.</li>
-<li>Функция <code>return</code> оборачивает значение в IO-действие. Не путайте эту функцию с ключевым словом <code>return</code> в C-подобных языках.</li>
-</ul>
-<p>Готово. Теперь вы знаете о ключевом слове <code>do</code>. Впрочем, пока вы не знаете о нём самого интересного, но это чуть позже.</p>
-
-<div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/io/IO-a.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/io/exceptions-handling.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="/ru/io/exceptions-handling.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -384,33 +167,16 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
 -->
-<!--            </div>-->
-<!--            -->
-<!--            <div id="footer">-->
-<!--                <div id="social">-->
-<!--                    &copy; Денис Шевченко 2013-2014-->
-<!--                </div>-->
-<!--                <div id="hakyll_mark">-->
-<!--                    Книга создана с помощью <a href="http://jaspervdj.be/hakyll">Hakyll</a>-->
-<!--                </div>-->
-<!--            </div>-->
+        </div> 
 
-<!--            <div id="search_form">-->
-<!--                <script>-->
-<!--                  (function() {-->
-<!--                    var cx = '007697214108744450483:au850gpbupm';-->
-<!--                    var gcse = document.createElement('script');-->
-<!--                    gcse.type = 'text/javascript';-->
-<!--                    gcse.async = true;-->
-<!--                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +-->
-<!--                        '//www.google.com/cse/cse.js?cx=' + cx;-->
-<!--                    var s = document.getElementsByTagName('script')[0];-->
-<!--                    s.parentNode.insertBefore(gcse, s);-->
-<!--                  })();-->
-<!--                </script>-->
-<!--                <gcse:search></gcse:search>-->
-<!--            </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </body>-->
-<!--</html>-->
+        <footer class="footer">
+            Книга создана с помощью <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Исходный код сайта и содержимое книги распространяются на условиях <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
+            </div>
+        </footer>
+    </div>
+  </body>
+</html>
+
+

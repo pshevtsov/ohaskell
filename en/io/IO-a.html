@@ -60,26 +60,7 @@
         <div id="content">
             <h1>IO a</h1>
 
-            <!--<div class="row">-->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-left">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/en/io/functions-with-side-effects.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    -->
-<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
-<!--        <div class="clear-button text-right">-->
-<!--            <div class="chapters-selector">-->
-<!--                <a href="/en/io/do-imperative-world.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div class="padding-top: 40px;"><div>-->
-
-<p>In order to work with outside world we need actions. And an action is a value of type <code>IO a</code>, where <code>IO</code> is a standard action type and <code>a</code> is a polymorphic type of value which the action returns. As you can see, <code>IO</code> is a type constructor. That’s why the type of action which returns a string is <code>IO String</code>.</p>
+            <p>In order to work with outside world we need actions. And an action is a value of type <code>IO a</code>, where <code>IO</code> is a standard action type and <code>a</code> is a polymorphic type of value which the action returns. As you can see, <code>IO</code> is a type constructor. That’s why the type of action which returns a string is <code>IO String</code>.</p>
 <p>From the logical point of view, action is our ambassador, when we ask he goes to the outside world, does some work and brings us something interesting from the outside world. However, he might come back empty-handed.</p>
 <h2 id="standard-input-and-output">Standard Input and Output</h2>
 <p>Let us start with standard channels stdout and stdin. Let’s output a string to the screen:</p>
