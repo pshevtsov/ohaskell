@@ -60,24 +60,24 @@
         <div id="content">
             <h1>Функторы</h1>
 
-            <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/delicious/maybe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/delicious/applicative-functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+            <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/maybe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/applicative-functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Поговорим о функторах, одной из важных концепций языка Haskell. На самом деле мы их уже использовали, осталось лишь разобраться в сути.</p>
 <h2 id="разбираемся">Разбираемся</h2>
@@ -234,24 +234,24 @@ main <span class="fu">=</span>
 <!--            <div id="content">-->
 <!--                <h1>Функторы</h1>-->
 
-<!--                <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="/ru/delicious/maybe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="/ru/delicious/applicative-functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+<!--                <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/maybe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/applicative-functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Поговорим о функторах, одной из важных концепций языка Haskell. На самом деле мы их уже использовали, осталось лишь разобраться в сути.</p>
 <h2 id="разбираемся">Разбираемся</h2>
@@ -263,13 +263,13 @@ main <span class="fu">=</span>
 <h2 id="зачем-это-нам">Зачем это нам</h2>
 <p>Функция <code>fmap</code> - это волшебница. Она говорит: “Дайте мне <del>волшебную палочку</del> функцию и <em>нечто</em>, а я прикоснусь функцией к этому <em>нечто</em> и изменю его”. Это нечто и есть функтор.</p>
 <p>Разумеется, говоря об изменении, я выражаюсь концептуально. Если мы видим строку:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap toLower [<span class="ch">&#39;A&#39;</span><span class="fu">..</span><span class="ch">&#39;Z&#39;</span>]</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap toLower [<span class="ch">'A'</span><span class="fu">..</span><span class="ch">'Z'</span>]</code></pre>
 <p>мы можем выразиться технически точно: “Функция <code>fmap</code> последовательно применит функцию <code>toLower</code> к каждому элементу списка, в результате чего будет сконструирован новый список со значениями, являющимися результатом применения функции <code>toLower</code> к элементам изначального списка”.</p>
 <p>Но так слишком длинно. Поэтому мы можем выразиться концептуально: “Функция <code>fmap</code> прикоснулась функцией <code>toLower</code> к списку и изменила его”. В этом и заключается фундаментальный смысл функторов: посредством функции <code>fmap</code> мы прикасаемся к ним некой другой функцией и изменяем их.</p>
 <p>Более того, такое изменение может касаться не только содержимого функтора, но и его типа. Например, если взять функтор типа <code>[Char]</code> и прикоснуться к нему такой функцией:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap toLower [<span class="ch">&#39;A&#39;</span><span class="fu">..</span><span class="ch">&#39;Z&#39;</span>]</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap toLower [<span class="ch">'A'</span><span class="fu">..</span><span class="ch">'Z'</span>]</code></pre>
 <p>на выходе у нас тоже получится функтор того же типа <code>[Char]</code>. Однако если прикоснуться такой функцией:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap digitToInt [<span class="ch">&#39;1&#39;</span><span class="fu">..</span><span class="ch">&#39;9&#39;</span>]</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap digitToInt [<span class="ch">'1'</span><span class="fu">..</span><span class="ch">'9'</span>]</code></pre>
 <p>на выходе у нас получится функтор типа <code>[Int]</code>.</p>
 <h2 id="создаём-свой">Создаём свой</h2>
 <p>Путь это будет год:</p>
@@ -305,7 +305,7 @@ main <span class="fu">=</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/delicious/maybe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/delicious/maybe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -313,7 +313,7 @@ main <span class="fu">=</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/delicious/applicative-functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/delicious/applicative-functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>

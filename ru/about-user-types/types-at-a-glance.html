@@ -60,24 +60,24 @@
         <div id="content">
             <h1>Типы - одним взглядом</h1>
 
-            <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/about-user-types/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/about-user-types/about-value-constructors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+            <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/about-user-types/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/about-user-types/about-value-constructors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>В настоящих проектах нам обязательно понадобятся наши собственные типы. О них и поговорим.</p>
 <p>Прежде всего познакомимся с новыми ключевыми словами. Слово <code>data</code> служит для определения типа. Слово <code>class</code> используется для определения класса типов. А слово <code>instance</code> необходимо для определения экземпляра класса типов.</p>
@@ -230,24 +230,24 @@
 <!--            <div id="content">-->
 <!--                <h1>Типы - одним взглядом</h1>-->
 
-<!--                <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="/ru/about-user-types/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="/ru/about-user-types/about-value-constructors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+<!--                <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/about-user-types/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/about-user-types/about-value-constructors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>В настоящих проектах нам обязательно понадобятся наши собственные типы. О них и поговорим.</p>
 <p>Прежде всего познакомимся с новыми ключевыми словами. Слово <code>data</code> служит для определения типа. Слово <code>class</code> используется для определения класса типов. А слово <code>instance</code> необходимо для определения экземпляра класса типов.</p>
@@ -267,7 +267,7 @@
 <p>Проблема в том, что тип <code>IPAddress</code> в его нынешнем виде настолько примитивен, что не представляет для нас большого интереса. Мы, создав значение этого типа, даже не сможем вывести его на экран. И если мы прямо сейчас напишем так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
 <p>компилятор выдаст нам следующее:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">No</span> instance for (Show IPAddress) <span class="kw">arising</span> from a use of <span class="kw">`show</span><span class="st">&#39;</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">No</span> instance for (Show IPAddress) <span class="kw">arising</span> from a use of <span class="kw">`show</span><span class="st">'</span></code></pre>
 <p>И мы не имеем права обижаться на компилятор, он поступил совершенно правильно: стандартная функция <code>show</code>, преобразующая переданный ей аргумент в строковый вид, не имеет ни малейшего понятия о том, как представить объект типа <code>IPAddress</code> в виде строки. И она не узнает это до тех пор, пока мы явно не расскажем ей об этом. Вот тут-то и выходят на сцену классы типов.</p>
 <p>Класс типов - это логическая группа типов. Она несёт в себе черты, общие для всех этих типов. А чертами этими являются методы, объявленные в данном классе, и каждый тип, имеющий к этому классу отношение, должен предоставлять свою реализацию этих методов. Класс типов можно рассматривать как абстрактный интерфейс.</p>
 <p>Например, стандартный класс типов <code>Show</code>. Он обобщает все типы, объекты которых могут быть “показаны” (shown), то есть отображены в виде стандартной строки. Вот определение этого класса:</p>
@@ -297,7 +297,7 @@
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/about-user-types/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/about-user-types/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -305,7 +305,7 @@
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/about-user-types/about-value-constructors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/about-user-types/about-value-constructors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>

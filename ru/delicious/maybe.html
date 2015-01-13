@@ -60,24 +60,24 @@
         <div id="content">
             <h1>Может быть</h1>
 
-            <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/delicious/monads-practice.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/delicious/functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+            <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/monads-practice.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Есть в Haskell ещё один механизм обработки ошибок, не связанный ни с исключениями, ни с <code>IO</code>. Используется он весьма часто, поэтому знать о нём нужно. Речь идёт о стандартном типе <code>Maybe</code>.</p>
 <h2 id="что-за-зверь">Что за зверь</h2>
@@ -231,24 +231,24 @@ main <span class="fu">=</span>
 <!--            <div id="content">-->
 <!--                <h1>Может быть</h1>-->
 
-<!--                <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="/ru/delicious/monads-practice.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="/ru/delicious/functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+<!--                <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/monads-practice.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Есть в Haskell ещё один механизм обработки ошибок, не связанный ни с исключениями, ни с <code>IO</code>. Используется он весьма часто, поэтому знать о нём нужно. Речь идёт о стандартном типе <code>Maybe</code>.</p>
 <h2 id="что-за-зверь">Что за зверь</h2>
@@ -289,7 +289,7 @@ result email <span class="fu">=</span> <span class="kw">if</span> isNothing emai
 main <span class="fu">=</span>
     print <span class="fu">$</span> result <span class="fu">$</span> <span class="dt">Just</span> <span class="st">&quot;me@gmail.com&quot;</span> <span class="fu">&gt;&gt;=</span> checkFormat <span class="fu">&gt;&gt;=</span> checkDomain
     where checkFormat email <span class="fu">=</span>
-              if <span class="ch">&#39;@&#39;</span> <span class="ot">`elem`</span> email <span class="kw">then</span> return email <span class="kw">else</span> <span class="dt">Nothing</span>
+              if <span class="ch">'@'</span> <span class="ot">`elem`</span> email <span class="kw">then</span> return email <span class="kw">else</span> <span class="dt">Nothing</span>
           checkDomain email <span class="fu">=</span>
               if <span class="st">&quot;.com&quot;</span> <span class="ot">`isSuffixOf`</span> email <span class="kw">then</span> return email <span class="kw">else</span> <span class="dt">Nothing</span></code></pre>
 <p>Обмотали почтовый адрес в <code>Maybe</code>, прогнали его через проверочный конвейер и сделали вывод о корректности адреса. Если адрес некорректен - нам неважно, на какой стадии будет обнаружена ошибка, в любом случае конечный вывод будет однозначен.</p>
@@ -299,7 +299,7 @@ main <span class="fu">=</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/delicious/monads-practice.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/delicious/monads-practice.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -307,7 +307,7 @@ main <span class="fu">=</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/delicious/functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/delicious/functors.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>

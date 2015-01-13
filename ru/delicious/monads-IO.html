@@ -60,24 +60,24 @@
         <div id="content">
             <h1>Монады: на примере IO</h1>
 
-            <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/delicious/monads-essence.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/delicious/monads-practice.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+            <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/monads-essence.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/monads-practice.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Раз уж монады <code>IO</code> самые распространённые, и ни одно приложение не может без них обойтись, дальнейшие рассуждения о монадах продолжим на их примере.</p>
 <h2 id="класс-типов-monad">Класс типов Monad</h2>
@@ -249,24 +249,24 @@ obtainTextFromUser <span class="fu">=</span> <span class="kw">do</span>
 <!--            <div id="content">-->
 <!--                <h1>Монады: на примере IO</h1>-->
 
-<!--                <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="/ru/delicious/monads-essence.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="/ru/delicious/monads-practice.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+<!--                <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/monads-essence.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/monads-practice.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Раз уж монады <code>IO</code> самые распространённые, и ни одно приложение не может без них обойтись, дальнейшие рассуждения о монадах продолжим на их примере.</p>
 <h2 id="класс-типов-monad">Класс типов Monad</h2>
@@ -293,12 +293,12 @@ obtainTextFromUser <span class="fu">=</span> <span class="kw">do</span>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     text <span class="ot">&lt;-</span> getLine
-    putStrLn <span class="fu">$</span> <span class="st">&quot;You said &#39;&quot;</span> <span class="fu">++</span> text <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span></code></pre>
+    putStrLn <span class="fu">$</span> <span class="st">&quot;You said '&quot;</span> <span class="fu">++</span> text <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
 <p>А вот как этот код выглядит “по-настоящему”, без do-нотации:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> getLine <span class="fu">&gt;&gt;=</span> \text <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;You said &#39;&quot;</span> <span class="fu">++</span> text <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span></code></pre>
+main <span class="fu">=</span> getLine <span class="fu">&gt;&gt;=</span> \text <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;You said '&quot;</span> <span class="fu">++</span> text <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
 <p>Теперь всё встало на свои места:</p>
-<pre><code>getLine    &gt;&gt;=  \text   -&gt; putStrLn $ &quot;You said &#39;&quot; ++ text ++ &quot;&#39;&quot;
+<pre><code>getLine    &gt;&gt;=  \text   -&gt; putStrLn $ &quot;You said '&quot; ++ text ++ &quot;'&quot;
 
 IO String  &gt;&gt;=  (String -&gt; IO ()) </code></pre>
 <p>Когда “запускается” функция <code>getLine</code>, возвращающая <code>IO</code>-монаду, содержащую полученную от пользователя строку, оператор <code>&gt;&gt;=</code> вытаскивает эту строку из монады и сразу же передаёт её в качестве аргумента λ-функции, “запускающей” функцию <code>putStrLn</code>, которая в свою очередь вернёт другую <code>IO</code>-монаду.</p>
@@ -324,7 +324,7 @@ main <span class="fu">=</span> putStrLn <span class="st">&quot;Denis&quot;</span
 obtainTextFromUser <span class="fu">=</span> <span class="kw">do</span>
     putStrLn <span class="st">&quot;Enter your text, please: &quot;</span>
     firstText <span class="ot">&lt;-</span> getLine
-    return <span class="fu">$</span> <span class="st">&quot;&#39;&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span></code></pre>
+    return <span class="fu">$</span> <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
 <p>Функция <code>getLine</code> вернёт нам монаду, из которой оператор компоновки вытащит введённую пользователем строку. Эта строка поступит на вход λ-функции, которая в свою очередь создаст новую строку на основе строки, введённой пользователем, после чего - внимание! - функция <code>return</code> вернёт эту новоиспечённую строку обратно в <code>IO</code>-монаду. Вытащили значение из монады, что-то с ним сделали, а потом вернули в монаду.</p>
 <p>Вы спросите, в чём же разница между <code>return</code> и упомянутой в главе об исключениях функцией <code>evaluate</code>? Разница в том, что функция <code>evaluate</code> заворачивает значение исключительно в монаду <code>IO</code>, в то время как функция <code>return</code> - в любую монаду, в зависимости от контекста. Рассматривайте <code>evaluate</code> как частный случай <code>return</code> для <code>IO</code>.</p>
 <h2 id="fail">fail</h2>
@@ -335,7 +335,7 @@ obtainTextFromUser <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/delicious/monads-essence.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/delicious/monads-essence.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -343,7 +343,7 @@ obtainTextFromUser <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/delicious/monads-practice.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/delicious/monads-practice.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>

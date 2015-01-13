@@ -60,24 +60,24 @@
         <div id="content">
             <h1>Трансформеры: читатель</h1>
 
-            <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/delicious/transformers-first-meeting.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/delicious/transformers-writer.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+            <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/transformers-first-meeting.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/transformers-writer.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>В этой главе мы познакомимся с монадным трансформером <code>ReaderT</code>. Это весьма любопытный инструмент, часто используемый в реальных проектах. Суть этого трансформера очень проста и элегантна.</p>
 <h2 id="суть">Суть</h2>
@@ -362,24 +362,24 @@ handleRequest <span class="fu">=</span> <span class="kw">do</span>
 <!--            <div id="content">-->
 <!--                <h1>Трансформеры: читатель</h1>-->
 
-<!--                <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="/ru/delicious/transformers-first-meeting.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="/ru/delicious/transformers-writer.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+<!--                <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/transformers-first-meeting.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/transformers-writer.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>В этой главе мы познакомимся с монадным трансформером <code>ReaderT</code>. Это весьма любопытный инструмент, часто используемый в реальных проектах. Суть этого трансформера очень проста и элегантна.</p>
 <h2 id="суть">Суть</h2>
@@ -431,7 +431,7 @@ showRepoInternalDirectories pathToRepo <span class="fu">=</span>
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     pathToRepo <span class="ot">&lt;-</span> readFile <span class="st">&quot;/Users/dshevchenko/my.conf&quot;</span>
-    <span class="kw">let</span> pathWithoutTrailingNL <span class="fu">=</span> takeWhile (<span class="fu">/=</span> <span class="ch">&#39;\n&#39;</span>) pathToRepo
+    <span class="kw">let</span> pathWithoutTrailingNL <span class="fu">=</span> takeWhile (<span class="fu">/=</span> <span class="ch">'\n'</span>) pathToRepo
         finalInfo <span class="fu">=</span> showRepoInternalDirectories pathWithoutTrailingNL
     putStrLn finalInfo</code></pre>
 <p>Всё просто: забираем строку из файла <code>my.conf</code> и передаём её нескольким функциям, каждая из которых указывает путь к соответствующему внутреннему служебному каталогу. Для краткости все проверки файла <code>my.conf</code> опущены: такой файл существует, мы можем его прочитать и в нём действительно лежит путь к некоторому репозиторию. Вот результат работы такого кода:</p>
@@ -489,7 +489,7 @@ showRepoInternalDirectories <span class="fu">=</span> <span class="kw">do</span>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     pathToRepo <span class="ot">&lt;-</span> readFile <span class="st">&quot;/Users/dshevchenko/my.conf&quot;</span>
-    <span class="kw">let</span> pathWithoutTrailingNL <span class="fu">=</span> takeWhile (<span class="fu">/=</span> <span class="ch">&#39;\n&#39;</span>) pathToRepo
+    <span class="kw">let</span> pathWithoutTrailingNL <span class="fu">=</span> takeWhile (<span class="fu">/=</span> <span class="ch">'\n'</span>) pathToRepo
     finalInfo <span class="ot">&lt;-</span> runReaderT showRepoDirectories 
                             pathWithoutTrailingNL
     putStrLn finalInfo</code></pre>
@@ -525,7 +525,7 @@ runIdentity (<span class="dt">Identity</span> x) <span class="fu">=</span> x
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     pathToRepo <span class="ot">&lt;-</span> readFile <span class="st">&quot;/Users/dshevchenko/my.conf&quot;</span>
-    <span class="kw">let</span> pathWithoutTrailingNL <span class="fu">=</span> takeWhile (<span class="fu">/=</span> <span class="ch">&#39;\n&#39;</span>) pathToRepo
+    <span class="kw">let</span> pathWithoutTrailingNL <span class="fu">=</span> takeWhile (<span class="fu">/=</span> <span class="ch">'\n'</span>) pathToRepo
         <span class="co">-- runReader сразу вернёт String, а не IO String... </span>
         finalInfo <span class="fu">=</span> runReader showRepoInternalDirectories 
                               pathWithoutTrailingNL
@@ -561,7 +561,7 @@ handleRequest <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/delicious/transformers-first-meeting.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/delicious/transformers-first-meeting.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -569,7 +569,7 @@ handleRequest <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/delicious/transformers-writer.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/delicious/transformers-writer.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>

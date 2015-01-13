@@ -60,24 +60,24 @@
         <div id="content">
             <h1>О форматировании</h1>
 
-            <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/miscellaneous/about-apostrophe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/miscellaneous/about-hlint.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+            <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/miscellaneous/about-apostrophe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/miscellaneous/about-hlint.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Нет, речь пойдёт не об эстетике. Код на Haskell является форматно-зависимым, поэтому мы не можем расставлять пробелы и отступы там, где нам заблагорассудится. Необходимо придерживаться определённых правил.</p>
 <h2 id="функция">Функция</h2>
@@ -360,24 +360,24 @@ prepare str <span class="fu">=</span>
 <!--            <div id="content">-->
 <!--                <h1>О форматировании</h1>-->
 
-<!--                <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="/ru/miscellaneous/about-apostrophe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="/ru/miscellaneous/about-hlint.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+<!--                <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/miscellaneous/about-apostrophe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/miscellaneous/about-hlint.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Нет, речь пойдёт не об эстетике. Код на Haskell является форматно-зависимым, поэтому мы не можем расставлять пробелы и отступы там, где нам заблагорассудится. Необходимо придерживаться определённых правил.</p>
 <h2 id="функция">Функция</h2>
@@ -392,13 +392,13 @@ putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span></code></pre>
  main <span class="fu">=</span>
  putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span></code></pre>
 <p>Здесь мы поставили один пробел перед каждой из трёх строк, однако и в этом случае компилятор закапризничает:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`main</span><span class="st">&#39;</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`main</span><span class="st">'</span></code></pre>
 <p>Или вот так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
  main <span class="fu">=</span>
  putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span></code></pre>
 <p>В этом случае мы получим ещё более странную ошибку:  </p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Illegal</span> type signature: <span class="kw">`</span><span class="fu">IO ()</span> <span class="kw">main</span><span class="st">&#39;</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Illegal</span> type signature: <span class="kw">`</span><span class="fu">IO ()</span> <span class="kw">main</span><span class="st">'</span></code></pre>
 <p>Из-за пробела перед именем функции компилятор принял это имя за часть сигнатуры.</p>
 <p>Когда в теле функции несколько строк, появляются дополнительные ограничения. Если напишем так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
@@ -406,17 +406,17 @@ main <span class="fu">=</span> <span class="kw">do</span>
     putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span>
      putStrLn <span class="st">&quot;Hi again!&quot;</span></code></pre>
 <p>получим вот это:  </p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Couldn</span><span class="st">&#39;t match expected type `(String -&gt; IO ()) -&gt; [Char] -&gt; IO ()&#39;</span>
-                <span class="kw">with</span> actual type <span class="kw">`</span><span class="fu">IO ()</span><span class="st">&#39;</span>
-<span class="st">    The function `putStrLn&#39;</span> <span class="kw">is</span> applied to three arguments,
-    <span class="kw">but</span> its type <span class="kw">`</span>String -<span class="kw">&gt;</span> IO ()<span class="st">&#39; has only one</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Couldn</span><span class="st">'t match expected type `(String -&gt; IO ()) -&gt; [Char] -&gt; IO ()'</span>
+                <span class="kw">with</span> actual type <span class="kw">`</span><span class="fu">IO ()</span><span class="st">'</span>
+<span class="st">    The function `putStrLn'</span> <span class="kw">is</span> applied to three arguments,
+    <span class="kw">but</span> its type <span class="kw">`</span>String -<span class="kw">&gt;</span> IO ()<span class="st">' has only one</span></code></pre>
 <p>Из-за сдвига второй функции по отношению к первой компилятор подумал, что первая по счёту <code>putStrLn</code> применяется к трём аргументам. Если же напишем так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
      putStrLn <span class="st">&quot;Hi Haskeller!&quot;</span>
     putStrLn <span class="st">&quot;Hi again!&quot;</span></code></pre>
 <p>получим уже знакомую нам ошибку:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`putStrLn</span><span class="st">&#39;</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`putStrLn</span><span class="st">'</span></code></pre>
 <p>Здесь компилятор ругнулся уже на вторую по счёту <code>putStrLn</code>.</p>
 <p>В общем, экспериментальным путём я выяснил, что форматирование кода функции должно соответствовать следующим правилам:</p>
 <ol style="list-style-type: decimal">
@@ -434,7 +434,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>На код, связанный с типами, также наложены некоторые форматные ограничения.</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"> data <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span></code></pre>
 <p>Перед словом <code>data</code> стоит лишний пробел, и компилятор вновь вспоминает нас недобрым словом:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">parse error on input <span class="ot">`data&#39;</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">parse error on input <span class="ot">`data'</span></code></pre>
 <p>Вот такой код тоже не пройдёт компиляцию:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span>
 <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IP</span> <span class="dt">String</span></code></pre>
@@ -458,13 +458,13 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Note</span> n <span class="kw">where</span>
 <span class="ot">write ::</span> n <span class="ot">-&gt;</span> <span class="dt">Bool</span></code></pre>
 <p>получим экзотическую ошибку:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">The</span> type signature for <span class="kw">`write</span><span class="st">&#39; lacks an accompanying binding</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">The</span> type signature for <span class="kw">`write</span><span class="st">' lacks an accompanying binding</span></code></pre>
 <p>Если вздумаем написать так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Note</span> n <span class="kw">where</span>
   <span class="ot">write ::</span> n <span class="ot">-&gt;</span> <span class="dt">Bool</span>
  <span class="ot">read ::</span> n <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
 <p>снова получим по башке:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`read</span><span class="st">&#39;</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`read</span><span class="st">'</span></code></pre>
 <p>И если так напишем:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Note</span> n <span class="kw">where</span>
     <span class="ot">write ::</span> n <span class="ot">-&gt;</span> <span class="dt">Bool</span>
@@ -540,7 +540,7 @@ prepare str <span class="fu">=</span>
 <span class="kw">where</span>
     helper <span class="fu">=</span> <span class="st">&quot;dear. &quot;</span></code></pre>
 <p>В этом случае получим ошибку:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`where</span><span class="st">&#39;</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">parse</span> error on input <span class="kw">`where</span><span class="st">'</span></code></pre>
 <p>Такого же рода ограничение действует и на <code>let</code>:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepare ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 prepare str <span class="fu">=</span>
@@ -557,7 +557,7 @@ prepare str <span class="fu">=</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/miscellaneous/about-apostrophe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/miscellaneous/about-apostrophe.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -565,7 +565,7 @@ prepare str <span class="fu">=</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/miscellaneous/about-hlint.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/miscellaneous/about-hlint.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>

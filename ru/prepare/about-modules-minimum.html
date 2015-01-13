@@ -60,24 +60,24 @@
         <div id="content">
             <h1>О модулях, минимум</h1>
 
-            <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+            <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Настоящие проекты никогда не состоят из одного-единственного файла. Пришла пора узнать о модулях.</p>
 <p>Исходные файлы в Haskell-проекте - это и есть модули. Один файл - один модуль. Таким образом, в нашем проекте сейчас есть два модуля: <code>Main.hs</code> и <code>Helpers.hs</code>.</p>
@@ -228,24 +228,24 @@ main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot
 <!--            <div id="content">-->
 <!--                <h1>О модулях, минимум</h1>-->
 
-<!--                <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="/ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="/ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+<!--                <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Настоящие проекты никогда не состоят из одного-единственного файла. Пришла пора узнать о модулях.</p>
 <p>Исходные файлы в Haskell-проекте - это и есть модули. Один файл - один модуль. Таким образом, в нашем проекте сейчас есть два модуля: <code>Main.hs</code> и <code>Helpers.hs</code>.</p>
@@ -275,7 +275,7 @@ main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot
 <p>Сохраняем, собираем:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> build
 <span class="kw">Building</span> Real-0.1.0.0...
-<span class="kw">Preprocessing</span> executable <span class="st">&#39;Real&#39;</span> for Real-0.1.0.0...
+<span class="kw">Preprocessing</span> executable <span class="st">'Real'</span> for Real-0.1.0.0...
 [<span class="kw">1</span> of 2] Compiling Helpers          ( src/Utils/Helpers.hs, dist/build/Real/Real-tmp/Helpers.o )
 [<span class="kw">2</span> of 2] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
 <span class="kw">Linking</span> dist/build/Real/Real ...</code></pre>
@@ -293,7 +293,7 @@ main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/prepare/create-project.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -301,7 +301,7 @@ main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/prepare/about-hackage.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>

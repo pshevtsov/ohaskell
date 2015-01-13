@@ -60,24 +60,24 @@
         <div id="content">
             <h1>Три кита типизации</h1>
 
-            <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/about-haskell/pure-functionality.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/about-haskell/immutability.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+            <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/about-haskell/pure-functionality.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/about-haskell/immutability.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>К типам у Haskell отношение очень серьёзное. Его система типов зиждется на трёх китах:</p>
 <ol style="list-style-type: decimal">
@@ -217,24 +217,24 @@
 <!--            <div id="content">-->
 <!--                <h1>Три кита типизации</h1>-->
 
-<!--                <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="/ru/about-haskell/pure-functionality.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="/ru/about-haskell/immutability.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+<!--                <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/about-haskell/pure-functionality.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/about-haskell/immutability.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>К типам у Haskell отношение очень серьёзное. Его система типов зиждется на трёх китах:</p>
 <ol style="list-style-type: decimal">
@@ -255,7 +255,7 @@
 <p>В Haskell подобный код не имеет ни малейших шансов пройти компиляцию, потому что в этом языке не существует неявного приведения типов: если мы ожидаем целое число - будь добр предоставить именно целое число.</p>
 <p>Впрочем, явное приведение типов в Haskell тоже очень ограничено. В том же C++ мы можем написать так:</p>
 <pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main() {
-    std::cout &lt;&lt; (<span class="dt">int</span>)<span class="st">&#39;1&#39;</span> &lt;&lt; std::endl;
+    std::cout &lt;&lt; (<span class="dt">int</span>)<span class="st">'1'</span> &lt;&lt; std::endl;
 }</code></pre>
 <p>Взяли значение типа <code>char</code> - и грубо переделали его в значение типа <code>int</code>. Компилятор - молчок. Последствия такого рода ошибок уже стали притчею во языцех…</p>
 <p>В Haskell мы можем явно указать тип некоторого значения, но только если этот тип ассоциативен со значением. То есть если это число 1, мы можем явно указать лишь “числовой” тип (такой, как <code>Integer</code> или <code>Double</code>). А вот фокусы с приведением символа к целочисленному значению, как это было продемонстрировано выше, в Haskell невозможны.</p>
@@ -271,7 +271,7 @@
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/about-haskell/pure-functionality.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/about-haskell/pure-functionality.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -279,7 +279,7 @@
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/about-haskell/immutability.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/about-haskell/immutability.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>

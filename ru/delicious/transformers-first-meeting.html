@@ -60,24 +60,24 @@
         <div id="content">
             <h1>Трансформеры: первая встреча</h1>
 
-            <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="../../ru/delicious/applicative-functors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="../../ru/delicious/transformers-reader.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+            <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/applicative-functors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/transformers-reader.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Монадные трансформеры (monad transformers) занимают важное место в Haskell. Знать о них необходимо, ведь многие пакеты, живущие в Hackage, используют трансформеры. К тому же, этот языковой механизм весьма элегантен, и потому заслуживает нашего самого пристального внимания.</p>
 <p>Суть его очень проста:</p>
@@ -306,24 +306,24 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <!--            <div id="content">-->
 <!--                <h1>Трансформеры: первая встреча</h1>-->
 
-<!--                <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="/ru/delicious/applicative-functors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
-            </div>
-        </div>
-    </div>
-    
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="/ru/delicious/transformers-reader.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-<div style="padding-top: 40px;"><div>
+<!--                <!--<div class="row">-->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-left">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/applicative-functors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    -->
+<!--    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">-->
+<!--        <div class="clear-button text-right">-->
+<!--            <div class="chapters-selector">-->
+<!--                <a href="/ru/delicious/transformers-reader.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<div style="padding-top: 40px;"><div>-->
 
 <p>Монадные трансформеры (monad transformers) занимают важное место в Haskell. Знать о них необходимо, ведь многие пакеты, живущие в Hackage, используют трансформеры. К тому же, этот языковой механизм весьма элегантен, и потому заслуживает нашего самого пристального внимания.</p>
 <p>Суть его очень проста:</p>
@@ -339,9 +339,9 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <h2 id="привычный-способ">Привычный способ</h2>
 <p>Пишем:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">emailIsValid ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
-<span class="co">-- Пусть наличие &#39;@&#39; будет нашим единственным</span>
+<span class="co">-- Пусть наличие '@' будет нашим единственным</span>
 <span class="co">-- критерием корректности почтового адреса.</span>
-emailIsValid email <span class="fu">=</span> <span class="ch">&#39;@&#39;</span> <span class="ot">`elem`</span> email
+emailIsValid email <span class="fu">=</span> <span class="ch">'@'</span> <span class="ot">`elem`</span> email
 
 <span class="ot">getEmail ::</span> <span class="dt">IO</span> (<span class="dt">Maybe</span> <span class="dt">String</span>)
 getEmail <span class="fu">=</span> <span class="kw">do</span>
@@ -373,7 +373,7 @@ getEmail <span class="fu">=</span> <span class="kw">do</span>
 <span class="kw">import </span><span class="dt">Control.Monad</span> 
 
 <span class="ot">emailIsValid ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
-emailIsValid email <span class="fu">=</span> <span class="ch">&#39;@&#39;</span> <span class="ot">`elem`</span> email
+emailIsValid email <span class="fu">=</span> <span class="ch">'@'</span> <span class="ot">`elem`</span> email
 
 <span class="ot">getEmail ::</span> <span class="dt">MaybeT</span> <span class="dt">IO</span> <span class="dt">String</span>
 getEmail <span class="fu">=</span> <span class="kw">do</span>
@@ -449,7 +449,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/delicious/applicative-functors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/delicious/applicative-functors.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -457,7 +457,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/delicious/transformers-reader.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/delicious/transformers-reader.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
