@@ -1,44 +1,83 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Создаём проект | О Haskell по-человечески</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content="Денис Шевченко">
+        <link rel="icon" href="../../static/images/favicon.ico">
+
+        <title>Создаём проект</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../static/css/default.css" rel="stylesheet">
         
-        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
-        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
     </head>
-    <body>
-        <div id="wrapper">
 
-            <div class="ribbon">
-                <a href="https://github.com/denisshevchenko/ohaskell">Живу на GitHub</a>
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="logo">
+                <a class="navbar-brand" href="../../ru/index.html" title="Домой">
+                  О Haskell по-человечески
+                </a>
+              </div>
             </div>
-
-            <div id="wrapper_2">
-            <div id="header">
-                <div id="logo">
-                    <a href="../../ru/index.html" title="Домой">О Haskell по-человечески</a><span class="logo-note">для обыкновенных программистов</span>
-                </div>
-                <div id="navigation">
-                    <a href="../../ru/chapters.html">ОГЛАВЛЕНИЕ</a>
-                </div>
-            </div>
-
             
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../../ru/chapters.html" target="_blank">Оглавление</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
 
-            <div id="content">
-                <h1>Создаём проект</h1>
+        <div id="content">
+            <h1>Создаём проект</h1>
 
-                <div style="padding-top: 10px;"></div>
-
-<div id="prev_arrow">
-    <a href="../../ru/prepare/index.html">❮</a>
+            <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../ru/prepare/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../ru/prepare/about-modules-minimum.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div id="next_arrow">
-    <a href="../../ru/prepare/about-modules-minimum.html">❯</a>
-</div>
+<div style="padding-top: 40px;"><div>
 
 <p>Мы не можем начать изучение языка без испытательного полигона. Поэтому скачайте и установите <a href="http://www.haskell.org/platform/">Haskell Platform</a>.</p>
 <p>В состав Haskell Platform входит два важнейших компонента, о которых вам нужно знать:</p>
@@ -98,7 +137,7 @@ $ <span class="kw">touch</span> Real/src/Utils/Helpers.hs</code></pre>
 <span class="co">-- see http://haskell.org/cabal/users-guide/</span>
 
 name<span class="fu">:</span>                <span class="dt">Real</span>
-version<span class="fu">:</span>             <span class="dv">0</span><span class="fu">.</span><span class="dv">1</span><span class="fu">.</span><span class="dv">0</span><span class="fu">.</span><span class="dv">0</span>
+version<span class="fu">:</span>             <span class="fl">0.1</span><span class="fu">.</span><span class="fl">0.0</span>
 <span class="co">-- synopsis:            </span>
 <span class="co">-- description:         </span>
 license<span class="fu">:</span>             <span class="dt">GPL</span><span class="fu">-</span><span class="dv">3</span>
@@ -109,13 +148,13 @@ maintainer<span class="fu">:</span>          me<span class="fu">@</span>dshevche
 <span class="co">-- category:            </span>
 build<span class="fu">-</span><span class="kw">type</span><span class="fu">:</span>          <span class="dt">Simple</span>
 <span class="co">-- extra-source-files:  </span>
-cabal<span class="fu">-</span>version<span class="fu">:</span>       <span class="fu">&gt;=</span><span class="dv">1</span><span class="fu">.</span><span class="dv">10</span>
+cabal<span class="fu">-</span>version<span class="fu">:</span>       <span class="fu">&gt;=</span><span class="fl">1.10</span>
 
 executable <span class="dt">Real</span>
   <span class="co">-- main-is:             </span>
   <span class="co">-- other-modules:       </span>
   <span class="co">-- other-extensions:    </span>
-  build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">&gt;=</span><span class="dv">4</span><span class="fu">.</span><span class="dv">7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span><span class="dv">4</span><span class="fu">.</span><span class="dv">8</span>
+  build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">&gt;=</span><span class="fl">4.7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span><span class="fl">4.8</span>
   hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src
   default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span></code></pre>
 <p>Здесь уже сохранены те самые значения, которые мы вводили в процессе вышеупомянутого диалога. Однако собрать проект прямо сейчас мы не сможем, потому что строка:</p>
@@ -131,7 +170,7 @@ executable <span class="dt">Real</span>
   main<span class="fu">-</span>is<span class="fu">:</span>             Main.hs             
   <span class="co">-- other-modules:       </span>
   <span class="co">-- other-extensions:    </span>
-  build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">&gt;=</span><span class="dv">4</span><span class="fu">.</span><span class="dv">7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span><span class="dv">4</span><span class="fu">.</span><span class="dv">8</span>
+  build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">&gt;=</span><span class="fl">4.7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span><span class="fl">4.8</span>
   hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src
   default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span></code></pre>
 <p>Видите отступ в два пробела перед четырьмя последними строчками? Оказывается, этот отступ необходим, и без него проект не соберётся. Кроме того, отступ этот должен быть не менее двух пробелов. Я рекомендую четыре, для красоты. О важности отступов мы, кстати, поговорим в одной из будущих глав.</p>
@@ -164,6 +203,25 @@ executable <span class="dt">Real</span>
 <span class="kw">Hi</span> haskeller!</code></pre>
 <p>Вот и всё. Теперь вы знаете, как создавать, настраивать и собирать Haskell-проект. Вероятно, вас интересует, зачем мы создавали файл <code>Helpers.hs</code> в подкаталоге <code>Utils</code>? Какой в нём смысл, если он всё равно остался пустым? В следующей главе вы это узнаете.</p>
 
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../ru/prepare/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../ru/prepare/about-modules-minimum.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding-top: 40px;"><div>
+
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -180,33 +238,283 @@ executable <span class="dt">Real</span>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
 
-            </div>
-            
-            <div id="footer">
-                <div id="social">
-                    © Денис Шевченко 2013-2014
-                </div>
-                <div id="hakyll_mark">
-                    Книга создана с помощью <a href="http://jaspervdj.be/hakyll">Hakyll</a>
-                </div>
-            </div>
+        </div> 
 
-            <div id="search_form">
-                <script>
-                  (function() {
-                    var cx = '007697214108744450483:au850gpbupm';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                        '//www.google.com/cse/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                  })();
-                </script>
-                <gcse:search></gcse:search>
+        <footer class="footer">
+            Книга создана с помощью <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Исходный код сайта и содержимое книги распространяются на условиях <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
             </div>
+        </footer>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"-->
+<!--"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">-->
+<!--    <head>-->
+<!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+<!--        <title>Создаём проект | О Haskell по-человечески</title>-->
+<!--        -->
+<!--        <link rel="stylesheet" type="text/css" href="/css/default.css" />-->
+<!--        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />-->
+<!--    </head>-->
+<!--    <body>-->
+<!--        <div id="wrapper">-->
+
+<!--            <div class="ribbon">-->
+<!--                <a href="https://github.com/denisshevchenko/ohaskell">Живу на GitHub</a>-->
+<!--            </div>-->
+
+<!--            <div id="wrapper_2">-->
+<!--            <div id="header">-->
+<!--                <div id="logo">-->
+<!--                    <a href="/ru/index.html" title="Домой">О Haskell по-человечески</a><span class="logo-note">для обыкновенных программистов</span>-->
+<!--                </div>-->
+<!--                <div id="navigation">-->
+<!--                    <a href="/ru/chapters.html">ОГЛАВЛЕНИЕ</a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            -->
+
+<!--            <div id="content">-->
+<!--                <h1>Создаём проект</h1>-->
+
+<!--                <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="/ru/prepare/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="/ru/prepare/about-modules-minimum.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding-top: 40px;"><div>
+
+<p>Мы не можем начать изучение языка без испытательного полигона. Поэтому скачайте и установите <a href="http://www.haskell.org/platform/">Haskell Platform</a>.</p>
+<p>В состав Haskell Platform входит два важнейших компонента, о которых вам нужно знать:</p>
+<ol style="list-style-type: decimal">
+<li><code>ghc</code>, компилятор Haskell (Glasgow Haskell Compiler);</li>
+<li><code>ghci</code>, интерпретатор Haskell.</li>
+</ol>
+<p>Запомнили? А теперь можете забыть. Особенно про интерпретатор. Ведь вы планируете использовать Haskell в реальной работе, а это значит, все ваши проекты будут компилироваться. Да, интерпретатор бывает полезен в ряде случаев, но без него вполне можно обойтись. Однако и непосредственное использование компилятора вам тоже едва ли понадобится.</p>
+<p>В реальной работе вы не будете создавать файлик <code>Main.hs</code> на рабочем столе для последующего скармливания его компилятору. Напротив, вы создадите нормальный рабочий проект с логичной внутренней структурой. Так давайте и создадим такой с самого начала. А поможет нам в этом удобная утилита из Haskell Platform с необычным названием <code>cabal</code>. Эта утилита предназначена для сборки проектов. Уверен, вы слышали о вещах типа <code>cmake</code> или <code>qmake</code>, так вот воспринимайте <code>cabal</code> как <code>cmake</code> для Haskell.</p>
+<p>Как вы уже поняли, <code>.hs</code> - стандартное расширение для файлов с исходным кодом на Haskell.</p>
+<p>Начнём творить. Разумеется, все описываемые ниже действия подразумевают вашу крепкую дружбу с командной строкой. Я буду приводить Unix-овые команды, если же вы используете Windows - адаптируйте примеры под себя (лично я с 2008 года окончательно ушёл в мир Unix и про Windows уже давно забыл).</p>
+<h2 id="готовим-структуру">Готовим структуру</h2>
+<p>Открываем терминал и творим:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> -p Real/src/Utils
+$ <span class="kw">touch</span> Real/src/Main.hs
+$ <span class="kw">touch</span> Real/src/Utils/Helpers.hs</code></pre>
+<p>Итак, у нас появился каталог <code>Real</code> с привычной структурой: </p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real/</span>
+    <span class="kw">src/</span>
+        <span class="kw">Main.hs</span>
+        <span class="kw">Utils/</span>
+            <span class="kw">Helpers.hs</span></code></pre>
+<p>Есть корневой каталог <code>src</code>, внутри которой лежат все наши исходники, некоторым образом сгруппированные.</p>
+<p>Кстати, об именах. Вам, вероятно, интересно, почему имена файлов и каталогов внутри каталога <code>src</code> начинаются с большой буквы? Чуть позже я объясню причину. А пока откроем файл <code>Main.hs</code> и напишем в нём:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="st">&quot;Hi, haskeller!&quot;</span></code></pre>
+<p>Закрываем, возвращаемся в корень проекта.</p>
+<h2 id="настраиваем">Настраиваем</h2>
+<p>На всякий случай, проверим нашу версию <code>cabal</code>:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> --version
+<span class="kw">cabal-install</span> version 1.18.0.5
+<span class="kw">using</span> version 1.18.1.4 of the Cabal library</code></pre>
+<p>Если у вас эта же версия или старше - прекрасно. Если младше - значит вы установили слишком старую версию Haskell Platform (непонятно, откуда вы вообще её взяли). На официальном сайте Haskell <strong>обязательно</strong> возьмите новую.</p>
+<p>Теперь выполняем команду:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> sandbox init</code></pre>
+<p>Вы увидите что-то наподобие этого:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Writing</span> a default package environment file to
+<span class="kw">/Users/dshevchenko/Profession/Learn/Real/cabal.sandbox.config</span>
+<span class="kw">Creating</span> a new sandbox at
+<span class="kw">/Users/dshevchenko/Profession/Learn/Real/.cabal-sandbox</span></code></pre>
+<p>Итак, наша песочница создана. Подробнее о том, что это такое и с чего это едят, я рассказываю в главе <a href="http://ohaskell.dshevchenko.biz/ru/prepare/about-sandbox.html">О песочнице</a>. А пока выполним следующую команду:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> init</code></pre>
+<p>Мы попадём в интерактивный диалог, в ходе которого нам будет предложено ответить на несколько вопросов о нашем проекте. В конце этого диалога будут автоматически созданы файлы проекта, и наш каталог приобретёт следующее содержимое:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real.cabal</span>
+<span class="kw">Setup.hs</span>
+<span class="kw">cabal.sandbox.config</span>
+<span class="kw">src/</span>
+    <span class="kw">Main.hs</span>
+    <span class="kw">Utils/</span>
+        <span class="kw">Helpers.hs</span></code></pre>
+<p>Кстати, если вдруг вы увидите вот такое предупреждение:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Generating</span> LICENSE...
+<span class="kw">Warning</span>: unknown license type, you must put a copy in LICENSE yourself.</code></pre>
+<p>не беспокойтесь. Просто добавьте файл <code>LICENSE</code> вручную, для поддержания классического вида проекта. Например, так:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> -O LICENSE http://www.gnu.org/licenses/gpl-3.0.txt</code></pre>
+<p>Продолжим. Как уже было упомянуто, в корневом каталоге нашего проекта появились два новых файла, <code>Real.cabal</code> и <code>Setup.hs</code>. Второй файл нам не так интересен, а вот первый - это и есть сборочный файл нашего проекта. Откроем его:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Initial Real.cabal generated by cabal init.  For further documentation, </span>
+<span class="co">-- see http://haskell.org/cabal/users-guide/</span>
+
+name<span class="fu">:</span>                <span class="dt">Real</span>
+version<span class="fu">:</span>             <span class="fl">0.1</span><span class="fu">.</span><span class="fl">0.0</span>
+<span class="co">-- synopsis:            </span>
+<span class="co">-- description:         </span>
+license<span class="fu">:</span>             <span class="dt">GPL</span><span class="fu">-</span><span class="dv">3</span>
+license<span class="fu">-</span>file<span class="fu">:</span>        <span class="dt">LICENSE</span>
+author<span class="fu">:</span>              <span class="dt">Denis</span> <span class="dt">Shevchenko</span>
+maintainer<span class="fu">:</span>          me<span class="fu">@</span>dshevchenko<span class="fu">.</span>biz
+<span class="co">-- copyright:           </span>
+<span class="co">-- category:            </span>
+build<span class="fu">-</span><span class="kw">type</span><span class="fu">:</span>          <span class="dt">Simple</span>
+<span class="co">-- extra-source-files:  </span>
+cabal<span class="fu">-</span>version<span class="fu">:</span>       <span class="fu">&gt;=</span><span class="fl">1.10</span>
+
+executable <span class="dt">Real</span>
+  <span class="co">-- main-is:             </span>
+  <span class="co">-- other-modules:       </span>
+  <span class="co">-- other-extensions:    </span>
+  build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">&gt;=</span><span class="fl">4.7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span><span class="fl">4.8</span>
+  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src
+  default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span></code></pre>
+<p>Здесь уже сохранены те самые значения, которые мы вводили в процессе вышеупомянутого диалога. Однако собрать проект прямо сейчас мы не сможем, потому что строка:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="co">-- main-is:</span></code></pre>
+<p>закомментирована. В этом файле принят Haskell-подобный синтаксис, и поэтому однострочные комментарии здесь, как и в программном коде, начинаются с двух минусов подряд. Многострочный комментарий, который вам тоже понадобится, заключается между символами <code>{-</code> и <code>-}</code>.</p>
+<p>Нам необходимо раскомментировать эту строку и прописать в ней имя файла <code>Main.hs</code>, содержащего функцию <code>main</code>:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">  main<span class="fu">-</span>is<span class="fu">:</span> Main.hs</code></pre>
+<h2 id="конфигурируем">Конфигурируем</h2>
+<p>Выполняем:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> configure</code></pre>
+<p>В результате произойдёт подготовка проекта к сборке. Но прежде чем перейти к этой самой сборке, обращаю ваше внимание на последнюю часть файла <code>Real.cabal</code>:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">executable <span class="dt">Real</span>
+  main<span class="fu">-</span>is<span class="fu">:</span>             Main.hs             
+  <span class="co">-- other-modules:       </span>
+  <span class="co">-- other-extensions:    </span>
+  build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">&gt;=</span><span class="fl">4.7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span><span class="fl">4.8</span>
+  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src
+  default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span></code></pre>
+<p>Видите отступ в два пробела перед четырьмя последними строчками? Оказывается, этот отступ необходим, и без него проект не соберётся. Кроме того, отступ этот должен быть не менее двух пробелов. Я рекомендую четыре, для красоты. О важности отступов мы, кстати, поговорим в одной из будущих глав.</p>
+<p>И ещё одна деталь. Это необязательно, но лишним не будет. Допишем в секцию executable Real ещё одну строку:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">  ghc<span class="fu">-</span>options<span class="fu">:</span>         <span class="fu">-</span><span class="dt">W</span></code></pre>
+<p>Параметр <code>ghc-options</code> позволяет задавать компиляторные флаги. В частности, флаг <code>-W</code> вежливо попросит <code>ghc</code> показывать все основные предупреждения при компиляции. Не стоит пренебрегать этой возможностью, поверьте мне на слово.</p>
+<h2 id="собираем">Собираем</h2>
+<p>Выполняем:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> build
+<span class="kw">Resolving</span> dependencies...
+<span class="kw">Configuring</span> Real-0.1.0.0...
+<span class="kw">Building</span> Real-0.1.0.0...
+<span class="kw">Preprocessing</span> executable <span class="st">&#39;Real&#39;</span> for Real-0.1.0.0...
+[<span class="kw">1</span> of 1] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
+<span class="kw">Linking</span> dist/build/Real/Real ...</code></pre>
+<p>Готово. В нашем каталоге появилось кое-что новенькое:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">LICENSE</span>
+<span class="kw">Real.cabal</span>
+<span class="kw">Setup.hs</span>
+<span class="kw">cabal.sandbox.config</span>
+<span class="kw">dist/</span>
+    <span class="kw">build/</span>
+        <span class="kw">Real/</span>
+            <span class="kw">Real</span>  <span class="kw">&lt;</span>- Это и есть исполняемый файл.
+<span class="kw">...</span></code></pre>
+<p>Остальное содержимое каталога <code>dist</code> нас пока не интересует.</p>
+<h2 id="запускаем">Запускаем</h2>
+<p>Пришло время запустить наше приложение. Находясь в корне проекта, выполняем:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./dist/build/Real/Real</span>
+<span class="kw">Hi</span> haskeller!</code></pre>
+<p>Вот и всё. Теперь вы знаете, как создавать, настраивать и собирать Haskell-проект. Вероятно, вас интересует, зачем мы создавали файл <code>Helpers.hs</code> в подкаталоге <code>Utils</code>? Какой в нём смысл, если он всё равно остался пустым? В следующей главе вы это узнаете.</p>
+
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="/ru/prepare/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="/ru/prepare/about-modules-minimum.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding-top: 40px;"><div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+-->
+<!--            </div>-->
+<!--            -->
+<!--            <div id="footer">-->
+<!--                <div id="social">-->
+<!--                    &copy; Денис Шевченко 2013-2014-->
+<!--                </div>-->
+<!--                <div id="hakyll_mark">-->
+<!--                    Книга создана с помощью <a href="http://jaspervdj.be/hakyll">Hakyll</a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div id="search_form">-->
+<!--                <script>-->
+<!--                  (function() {-->
+<!--                    var cx = '007697214108744450483:au850gpbupm';-->
+<!--                    var gcse = document.createElement('script');-->
+<!--                    gcse.type = 'text/javascript';-->
+<!--                    gcse.async = true;-->
+<!--                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +-->
+<!--                        '//www.google.com/cse/cse.js?cx=' + cx;-->
+<!--                    var s = document.getElementsByTagName('script')[0];-->
+<!--                    s.parentNode.insertBefore(gcse, s);-->
+<!--                  })();-->
+<!--                </script>-->
+<!--                <gcse:search></gcse:search>-->
+<!--            </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </body>-->
+<!--</html>-->

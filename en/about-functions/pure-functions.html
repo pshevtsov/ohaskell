@@ -1,42 +1,83 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Pure functions | О Haskell по-человечески</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content="Денис Шевченко">
+        <link rel="icon" href="../../static/images/favicon.ico">
+
+        <title>Pure functions</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../static/css/default.css" rel="stylesheet">
         
-        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
-        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
     </head>
-    <body>
-        <div id="wrapper">
 
-            <div class="ribbon">
-                <a href="https://github.com/denisshevchenko/ohaskell">Live on GitHub</a>
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="logo">
+                <a class="navbar-brand" href="../../en/index.html" title="Home">
+                  About Haskell humanly
+                </a>
+              </div>
             </div>
-
-            <div id="wrapper_2">
-            <div id="header">
-                <div id="logo">
-                    <a href="../../en/index.html" title="Домой">About Haskell humanly</a><span class="logo-note">for ordinary developers</span>
-                </div>
-                <div id="navigation">
-                    <a href="../../en/chapters.html">CONTENTS</a>
-                </div>
+            
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../../en/chapters.html" target="_blank">Contents</a></li>
+              </ul>
             </div>
+          </div>
+        </nav>
 
-            <div id="content">
-                <h1>Pure functions</h1>
+        <div id="content">
+            <h1>Pure functions</h1>
 
-                <div style="padding-top: 10px;"></div>
-
-<div id="prev_arrow">
-    <a href="../../en/about-functions/index.html">❮</a>
+            <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/about-functions/index.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/about-functions/lambda-functions.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div id="next_arrow">
-    <a href="../../en/about-functions/lambda-functions.html">❯</a>
-</div>
+<div class="padding-top: 40px;"><div>
 
 <p>Since Haskell is a purely functional language, let’s discuss pure functions as one of the cornerstones of the language.</p>
 <p>To begin with, let’s recall some school math and formulate the basic definition of a function.</p>
@@ -84,7 +125,12 @@ simpleSum value <span class="fu">=</span> value <span class="fu">+</span> value<
 indicate address <span class="fu">=</span> 
     <span class="kw">if</span> adress <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre>
 <p>This function takes an argument of standard type <code>String</code>, which represents some IP-address. In the function’s body argument is checked on equality to <code>127.0.0.1</code>, in result we end up in one out of two logical branches. In <code>C++</code> it will look like that.</p>
-<p><code>c++ std::string indicate( const std::string&amp; address ) {     if( address == &quot;127.0.0.1&quot; ) {         return &quot;localhost&quot;;     }     return address; }</code></p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp">std::string indicate( <span class="dt">const</span> std::string&amp; address ) {
+    <span class="kw">if</span>( address == <span class="st">&quot;127.0.0.1&quot;</span> ) {
+        <span class="kw">return</span> <span class="st">&quot;localhost&quot;</span>;
+    }
+    <span class="kw">return</span> address;
+}</code></pre>
 <p>We explicitly pointed two exit points. But in Haskell we don’t need to do that, as when we will get into one of the branches the selected expressions would be returned.</p>
 <p>To make it more clear, let’s refactor the body of this function and get rid of <code>if-then-else</code> expression:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
@@ -121,23 +167,23 @@ indicate adress
 <p>For example, we have such function:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
-	line <span class="fu">*</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">4959</span></code></pre>
+	line <span class="fu">*</span> <span class="fl">0.4959</span></code></pre>
 <p>Here we prepare the length of some line by multiplying its original length by given correction coefficient. However, we got a classical magic number, the implication of it is not clear and it’s bad. Adding comments is not the best solution. Thus, let’s add an expression which will clear the point of that number.</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
 	line <span class="fu">*</span> coefficient
-	<span class="kw">where</span> coefficient <span class="fu">=</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">4959</span></code></pre>
+	<span class="kw">where</span> coefficient <span class="fu">=</span> <span class="fl">0.4959</span></code></pre>
 <p>Keyword <code>where</code> sets an expression, that may be used inside the function’s body. Consider it as a pseudonym: identifier <code>coefficient</code> may now be used as analog of a numeric value <code>0.4959</code>.</p>
 <p>There may be several local expressions:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">...</span>
     line <span class="fu">*</span> coefficient <span class="fu">-</span> correction
-    <span class="kw">where</span> coefficient <span class="fu">=</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">4959</span>
-          correction <span class="fu">=</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">0012</span></code></pre>
+    <span class="kw">where</span> coefficient <span class="fu">=</span> <span class="fl">0.4959</span>
+          correction <span class="fu">=</span> <span class="fl">0.0012</span></code></pre>
 <p>There is one more way to set the local auxiliary expression, particularly with the help of the keyword <code>let</code>. With the example of our last function, it will look this way:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
-	<span class="kw">let</span> coefficient <span class="fu">=</span> <span class="dv">12</span><span class="fu">.</span><span class="dv">4959</span>
-	    correction <span class="fu">=</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">0012</span>
+	<span class="kw">let</span> coefficient <span class="fu">=</span> <span class="fl">12.4959</span>
+	    correction <span class="fu">=</span> <span class="fl">0.0012</span>
 	<span class="kw">in</span>
 	line <span class="fu">*</span> coefficient <span class="fu">-</span> correction</code></pre>
 <p>The common structure is as follows:</p>
@@ -147,10 +193,10 @@ prepareLength line <span class="fu">=</span>
 <p>Firstly, it’s possible to have only one <code>where</code> expression and it should be placed to the end of the function’s body, at the same time <code>let</code> can appear many times in any part of function’s body.</p>
 <p>Secondly, expression set by <code>where</code> keyword is visible from any part of the function, whereas the expression set by keyword <code>let</code>, may be “super-local”. For example:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">...</span>
-	<span class="kw">let</span> coefficient <span class="fu">=</span> <span class="dv">12</span><span class="fu">.</span><span class="dv">4959</span>
-	    correction <span class="fu">=</span> <span class="dv">0</span><span class="fu">.</span><span class="dv">0012</span>
+	<span class="kw">let</span> coefficient <span class="fu">=</span> <span class="fl">12.4959</span>
+	    correction <span class="fu">=</span> <span class="fl">0.0012</span>
 	<span class="kw">in</span>
-	line <span class="fu">*</span> coefficient <span class="fu">-</span> correction <span class="fu">-</span> (<span class="kw">let</span> s <span class="fu">=</span> <span class="dv">10</span><span class="fu">.</span><span class="dv">9</span> <span class="kw">in</span> s <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">-</span> s</code></pre>
+	line <span class="fu">*</span> coefficient <span class="fu">-</span> correction <span class="fu">-</span> (<span class="kw">let</span> s <span class="fu">=</span> <span class="fl">10.9</span> <span class="kw">in</span> s <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">-</span> s</code></pre>
 <p>Here we set “super-local” expression with the name <code>s</code> which exists only inside the round parenthesis. That’s why that code wouldn’t pass the compilation, cause the second expression <code>s</code> is is outside the parenthesis.</p>
 <h2 id="without-declaration">Without declaration</h2>
 <p>As you remember, we can’t declare the function without defining it. But what about to define the function without declaring it? The answer is: we can.</p>
@@ -161,6 +207,25 @@ prepareLength line <span class="fu">=</span>
 <p>however for complicated functions such practice is not recommended, because the definition becomes poorer, as the description of arguments and type of output helps to understand the work done by function. Moreover, if you wouldn’t specify these types, they’ll become polymorphic, but let’s talk about that later.</p>
 <p>However, if we consider really trivial functions, consisting of one-two lines, talking for themselves, then the declaring types of output and arguments will look excessive. In that case omit them.</p>
 <p>That’s it, now you know about the pure functions. By the way, they will make you a lot of use, we’ll come back to them in the subsequent chapters.</p>
+
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/about-functions/index.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/about-functions/lambda-functions.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="padding-top: 40px;"><div>
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
@@ -178,33 +243,15 @@ prepareLength line <span class="fu">=</span>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
 
-            </div>
-            
-            <div id="footer">
-                <div id="social">
-                    © Denis Shevchenko 2013-2014
-                </div>
-                <div id="hakyll_mark">
-                    Created by <a href="http://jaspervdj.be/hakyll">Hakyll</a>
-                </div>
-            </div>
+        </div> 
 
-            <div id="search_form">
-                <script>
-                  (function() {
-                    var cx = '007697214108744450483:py6mcdzwavw';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                        '//www.google.com/cse/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                  })();
-                </script>
-                <gcse:search></gcse:search>
+        <footer class="footer">
+            Book created with <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> and lives on <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Source code and contents of this site are distributed on terms of <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">MIT license</a>.
             </div>
-            </div>
-        </div>
-    </body>
+        </footer>
+    </div>
+  </body>
 </html>
+

@@ -1,44 +1,83 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>C из Haskell | О Haskell по-человечески</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content="Денис Шевченко">
+        <link rel="icon" href="../../static/images/favicon.ico">
+
+        <title>C из Haskell</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../static/css/default.css" rel="stylesheet">
         
-        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
-        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
     </head>
-    <body>
-        <div id="wrapper">
 
-            <div class="ribbon">
-                <a href="https://github.com/denisshevchenko/ohaskell">Живу на GitHub</a>
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="logo">
+                <a class="navbar-brand" href="../../ru/index.html" title="Домой">
+                  О Haskell по-человечески
+                </a>
+              </div>
             </div>
-
-            <div id="wrapper_2">
-            <div id="header">
-                <div id="logo">
-                    <a href="../../ru/index.html" title="Домой">О Haskell по-человечески</a><span class="logo-note">для обыкновенных программистов</span>
-                </div>
-                <div id="navigation">
-                    <a href="../../ru/chapters.html">ОГЛАВЛЕНИЕ</a>
-                </div>
-            </div>
-
             
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../../ru/chapters.html" target="_blank">Оглавление</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
 
-            <div id="content">
-                <h1>C из Haskell</h1>
+        <div id="content">
+            <h1>C из Haskell</h1>
 
-                <div style="padding-top: 10px;"></div>
-
-<div id="prev_arrow">
-    <a href="../../ru/integration/index.html">❮</a>
+            <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../ru/integration/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../ru/end/index.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div id="next_arrow">
-    <a href="../../ru/end/index.html">❯</a>
-</div>
+<div style="padding-top: 40px;"><div>
 
 <p>В ряде случаев нам необходима интеграция Haskell-кода с кодом, написанным на другом языке. Вот вам не выдуманный сценарий. Жила-была программная система, и было в ней несколько модулей. Один модуль решили переписать на Haskell, а вот другой, не менее важный модуль, переписать на Haskell нет времени/возможности/желания. Здесь и возникает потребность в том, чтобы подружить Haskell-код с кодом чужеродным.</p>
 <p>Возможен и второй сценарий. Есть Haskell-приложение, и присутствует в нём одна секция, очень уж критичная к скорости выполнения. К счастью, имеется готовое решение, написанное на языке C. Опять-таки, без интеграции не обойтись.</p>
@@ -346,6 +385,25 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <li>При ручном выделении памяти её необходимо вручную и удалить.</li>
 </ul>
 
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../ru/integration/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../ru/end/index.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding-top: 40px;"><div>
+
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -362,33 +420,465 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
 
-            </div>
-            
-            <div id="footer">
-                <div id="social">
-                    © Денис Шевченко 2013-2014
-                </div>
-                <div id="hakyll_mark">
-                    Книга создана с помощью <a href="http://jaspervdj.be/hakyll">Hakyll</a>
-                </div>
-            </div>
+        </div> 
 
-            <div id="search_form">
-                <script>
-                  (function() {
-                    var cx = '007697214108744450483:au850gpbupm';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                        '//www.google.com/cse/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                  })();
-                </script>
-                <gcse:search></gcse:search>
+        <footer class="footer">
+            Книга создана с помощью <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> и живёт на <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Исходный код сайта и содержимое книги распространяются на условиях <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">свободной лицензии MIT</a>.
             </div>
+        </footer>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"-->
+<!--"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">-->
+<!--    <head>-->
+<!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />-->
+<!--        <title>C из Haskell | О Haskell по-человечески</title>-->
+<!--        -->
+<!--        <link rel="stylesheet" type="text/css" href="/css/default.css" />-->
+<!--        <link rel="icon" type="image/x-icon" href="/images/favicon.ico" />-->
+<!--    </head>-->
+<!--    <body>-->
+<!--        <div id="wrapper">-->
+
+<!--            <div class="ribbon">-->
+<!--                <a href="https://github.com/denisshevchenko/ohaskell">Живу на GitHub</a>-->
+<!--            </div>-->
+
+<!--            <div id="wrapper_2">-->
+<!--            <div id="header">-->
+<!--                <div id="logo">-->
+<!--                    <a href="/ru/index.html" title="Домой">О Haskell по-человечески</a><span class="logo-note">для обыкновенных программистов</span>-->
+<!--                </div>-->
+<!--                <div id="navigation">-->
+<!--                    <a href="/ru/chapters.html">ОГЛАВЛЕНИЕ</a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            -->
+
+<!--            <div id="content">-->
+<!--                <h1>C из Haskell</h1>-->
+
+<!--                <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="/ru/integration/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
-    </body>
-</html>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="/ru/end/index.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding-top: 40px;"><div>
+
+<p>В ряде случаев нам необходима интеграция Haskell-кода с кодом, написанным на другом языке. Вот вам не выдуманный сценарий. Жила-была программная система, и было в ней несколько модулей. Один модуль решили переписать на Haskell, а вот другой, не менее важный модуль, переписать на Haskell нет времени/возможности/желания. Здесь и возникает потребность в том, чтобы подружить Haskell-код с кодом чужеродным.</p>
+<p>Возможен и второй сценарий. Есть Haskell-приложение, и присутствует в нём одна секция, очень уж критичная к скорости выполнения. К счастью, имеется готовое решение, написанное на языке C. Опять-таки, без интеграции не обойтись.</p>
+<p>Вы спросите, почему мы начинаем именно с языка C? Причина проста: стандарт гласит, что Haskell проще всего подружить со старым добрым C, что обусловлено, прежде всего, историческими причинами. Приступим.</p>
+<h2 id="hello-foreign-world">Hello foreign world!</h2>
+<p>Открываем <code>Main.hs</code> и пишем следующее:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE ForeignFunctionInterface #-}</span>
+
+<span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+
+<span class="kw">import </span><span class="dt">Prelude</span> <span class="kw">hiding</span> (sin)  <span class="co">-- Во избежание конфликта имён.</span>
+<span class="kw">import </span><span class="dt">Foreign.C</span>             <span class="co">-- Наш проводник в мир языка C.</span>
+
+foreign <span class="kw">import </span>ccall sin :: <span class="dt">CDouble</span> -&gt; <span class="dt">CDouble</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    putStrLn <span class="st">&quot;Please input your number:&quot;</span>
+    number <span class="ot">&lt;-</span> getLine
+    putStr <span class="st">&quot;This is sinus: &quot;</span>
+    print <span class="fu">$</span> sin <span class="fu">$</span> read number</code></pre>
+<p>Вывод будет таким:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Please</span> input your number:
+<span class="kw">1</span>
+<span class="kw">This</span> is sinus: 0.8414709848078965</code></pre>
+<p>Вот и случилось маленькое чудо: мы вызвали стандартную функцию <code>sin</code> прямо из Haskell-приложения. Как же нам это удалось?</p>
+<p>Прежде всего мы импортировали важный модуль:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Foreign.C</span></code></pre>
+<p>Этот стандартный модуль является нашим проводником в мир языка C. Кроме того, мы активизировали необходимое расширение Haskell:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE ForeignFunctionInterface #-}</span></code></pre>
+<p>А теперь рассмотрим следующую строку:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>ccall sin :: <span class="dt">CDouble</span> -&gt; <span class="dt">CDouble</span></code></pre>
+<p>Эта строка представляет для нас наибольший интерес, ведь главное чудо произошло именно здесь. С помощью ключевого слова <code>foreign</code> мы приглашаем чужака в наше Haskell-приложение. Далее следует слово import, потому что чужак импортный, ибо пришёл к нам извне. После него следует специальный стандартный идентификатор, показывающий тип чужака: <code>ccall</code> означает “вызов функции языка C”. После идёт имя функции и её аргументы. Всё это можно прочесть так:</p>
+<pre><code>foreign import      ccall      sin :: CDouble -&gt; CDouble
+
+импортируем чужака: C-функция  sin    с сигнатурой как в Haskell</code></pre>
+<p>Обратите внимание на тип <code>CDouble</code>. Это - тип-обёртка. Объявление стандартной функции <code>sin</code> выглядит так:</p>
+<pre class="sourceCode c"><code class="sourceCode c"><span class="dt">double</span> sin(<span class="dt">double</span> x);</code></pre>
+<p>Однако компилятор Haskell не имеет ни малейшего представления о том, что такое <code>double</code>. Именно поэтому мы оборачиваем чужеродный тип <code>double</code> в специальный Haskell-тип <code>CDouble</code>, определённый в модуле Foreign.C.Types. После этого мы можем вызывать функцию <code>sin</code> так же, как если бы она была родной Haskell-функцией.</p>
+<h2 id="псевдоним">Псевдоним</h2>
+<p>Поскольку в модуле <code>Prelude</code> тоже присутствует функция по имени <code>sin</code>, мы скрыли её, во избежание конфликта имён:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Prelude</span> <span class="kw">hiding</span> (sin)  <span class="co">-- Не желаем видеть Haskell-функцию sin!</span></code></pre>
+<p>Однако можно пойти другим путём, а именно добавить псевдоним для чужака. В этом случае объявление изменится вот так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>ccall &quot;sin&quot; c_sin :: <span class="dt">CDouble</span> -&gt; <span class="dt">CDouble</span></code></pre>
+<p>В кавычках - реальное имя чужака. После кавычек идёт псевдоним. Теперь вызов функции будет записан так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">print <span class="fu">$</span> c_sin <span class="fu">$</span> read number</code></pre>
+<p>Кстати, если вдруг вы ошибётесь в написании реального имени чужой функции и напишете, например, так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>ccall &quot;sinu&quot; c_sin :: <span class="dt">CDouble</span> -&gt; <span class="dt">CDouble</span></code></pre>
+<p>на стадии компоновки вы получите грозное сообщение:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Linking</span> dist/build/Real/Real ...
+<span class="kw">Undefined</span> symbols for architecture x86_64:
+  <span class="st">&quot;_sinu&quot;</span>, <span class="kw">referenced</span> from:
+      <span class="kw">_s24m_info</span> in Main.o
+      <span class="kw">_s2aR_info</span> in Main.o
+<span class="kw">ld</span>: symbol(s) <span class="kw">not</span> found for architecture x86_64</code></pre>
+<p>И ещё. Стандарт Haskell 2010 рекомендует указывать перед псевдонимом имя заголовочного файла, в котором объявлена функция-чужак. В нашем случае это будет выглядеть так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>ccall &quot;math.h sin&quot; c_sin :: <span class="dt">CDouble</span> -&gt; <span class="dt">CDouble</span></code></pre>
+<p>Впрочем, признаюсь вам: имя заголовочника будет проигнорировано. Так что воспринимайте его просто как пояснительный комментарий о том, где живёт функция-чужак.</p>
+<h2 id="идём-во-внешний-мир">Идём во внешний мир</h2>
+<p>Функция <code>sin</code> - чистая, поэтому с ней всё просто. Теперь попробуем пригласить в наш код чужака с побочными эффектами. Узнаем, который час:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+
+<span class="kw">import </span><span class="dt">Foreign.C</span>
+<span class="kw">import </span><span class="dt">Foreign.Ptr</span>  <span class="co">-- Для работы с C-указателями.</span>
+
+foreign <span class="kw">import </span>ccall time :: <span class="dt">Ptr</span> <span class="dt">CTime</span> -&gt; <span class="dt">IO</span> <span class="dt">CTime</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    posixTime <span class="ot">&lt;-</span> time nullPtr  <span class="co">-- Заменитель для NULL.</span>
+    print posixTime</code></pre>
+<p>В результате мы увидим старое доброе Unix-время:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">1395350583</span></code></pre>
+<p>Теперь разберёмся. Во-первых, мы добавили дополнительный модуль <code>Foreign.Ptr</code>, необходимый для работы с C-указателями. Во-вторых, вспомним объявление стандартной функции time:</p>
+<pre class="sourceCode c"><code class="sourceCode c">time_t time(time_t* timer);</code></pre>
+<p>Чужак объявлен как принимающий значение типа <code>Ptr CTime</code>, то есть указатель на значение типа <code>CTime</code>, и возвращающий монаду <code>IO</code>, содержащую в себе значение типа <code>CTime</code> (ведь мы знаем, что получить реальное время можно лишь из внешнего мира). В итоге, передавая в качестве аргумента нулевой указатель, мы и получаем текущее время.</p>
+<h2 id="а-если-void">А если void?</h2>
+<p>В функциях C часто используется тип <code>void</code>, однако в Haskell такого типа нет. Но поскольку <code>void</code> означает пустоту, создатели Haskell решили пойти самым простым путём: если функция принимает <code>void</code> (то есть не принимает ничего), в своей Haskell-сигнатуре она объявляется без аргумента.</p>
+<p>Проверим это на стандартной функции clock, объявленной вот так:</p>
+<pre class="sourceCode c"><code class="sourceCode c">clock_t clock(<span class="dt">void</span>);</code></pre>
+<p>Пригласим её в наш код:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>ccall clock :: <span class="dt">IO</span> <span class="dt">CClock</span>  <span class="co">-- Аргумента нет.</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    ticks <span class="ot">&lt;-</span> clock
+    print ticks</code></pre>
+<p>Но как же нам быть, если функця объявлена как <em>возвращающая</em> тип <code>void</code>? Ведь мы не можем объявить Haskell-функцию без возвращаемого значения. Для таких случаев создатели Haskell предусмотрели маленький трюк: если C-функция не возвращает ничего, то в своей Haskell-сигнатуре она объявляется как возвращающая пустую <code>IO</code>-монаду.</p>
+<p>Например, стандартная функция <code>exit</code> объявлена так:</p>
+<pre class="sourceCode c"><code class="sourceCode c"><span class="dt">void</span> exit(<span class="dt">int</span> status);</code></pre>
+<p>Пригласим её в гости:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>ccall exit :: <span class="dt">CInt</span> -&gt; <span class="dt">IO</span> ()  <span class="co">-- Возвращает... ничего.</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> exit <span class="dv">2</span>  <span class="co">-- Выходим из приложения со статусом 2.</span></code></pre>
+<p>При запуске получим:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">shell</span> returned 2</code></pre>
+<p>Кстати, тип <code>void*</code>, часто используемый в языке C, соответствует типу <code>Ptr ()</code>, то есть указатель на ничего.</p>
+<h2 id="структура-и-память">Структура и память</h2>
+<p>Следующий пример поинтереснее. Поработаем с локальным временем с помощью стандартных функций <code>time</code>, <code>localtime</code> и <code>asctime</code>:</p>
+<pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> main() {
+    time_t rawtime;
+    struct tm* timeinfo;
+
+    time( &amp;rawtime );
+    timeinfo = localtime( &amp;rawtime );
+
+    printf( <span class="st">&quot;%s&quot;</span>, asctime( timeinfo ) );
+}</code></pre>
+<p>Результат:  </p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Tue</span> Mar 25 08:33:02 2014</code></pre>
+<p>И так нам приглянулись эти функции, что решили мы использовать их в нашем Haskell-приложении. Сказано - сделано. Для начала вспомним родные объявления этих функций, чтобы написать их Haskell-аналоги:  </p>
+<pre class="sourceCode c"><code class="sourceCode c">time_t time(time_t* timer);
+
+<span class="kw">struct</span> tm* localtime(<span class="dt">const</span> time_t* timer);
+
+<span class="dt">char</span>* asctime(<span class="dt">const</span> <span class="kw">struct</span> tm* timeptr);</code></pre>
+<p>С функцией <code>time</code> мы уже знакомы, а вот две её коллеги заслуживают нашего пристального внимания. Функция <code>localtime</code> возвращает указатель на структуру <code>tm</code>. А функция <code>asctime</code>, во-первых, принимает этот указатель в качестве единственного аргумента, а во-вторых, возвращает старую добрую C-строку.</p>
+<p>Главный вопрос: что нам делать со структурой? Ведь тип <code>struct tm</code>, хотя и определён в стандартном заголовочнике <code>&lt;time.h&gt;</code>, не является стандартным типом языка C, поэтому ему нет аналога в модуле <code>Foreign.C.Types</code>. А это значит, нам потребуется небольшой трюк. Пишем:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> where 
+
+<span class="kw">import </span><span class="dt">Foreign.C</span>
+<span class="kw">import </span><span class="dt">Foreign.Ptr</span>
+<span class="kw">import </span><span class="dt">Foreign.Marshal.Alloc</span>
+
+<span class="kw">data</span> <span class="dt">CTmStruct</span> <span class="fu">=</span> <span class="dt">CTmStruct</span>         <span class="co">-- Наш аналог для типа struct tm.</span>
+<span class="kw">type</span> <span class="dt">CTmStructPtr</span> <span class="fu">=</span> <span class="dt">Ptr</span> <span class="dt">CTmStruct</span>  <span class="co">-- Определяем указатель на этот аналог.</span>
+
+foreign <span class="kw">import </span>ccall time :: <span class="dt">Ptr</span> <span class="dt">CTime</span> -&gt; <span class="dt">IO</span> <span class="dt">CTime</span>
+foreign <span class="kw">import </span>ccall localtime :: <span class="dt">Ptr</span> <span class="dt">CTime</span> -&gt; <span class="dt">IO</span> <span class="dt">CTmStructPtr</span>
+foreign <span class="kw">import </span>ccall asctime :: <span class="dt">CTmStructPtr</span> -&gt; <span class="dt">CString</span></code></pre>
+<p>Трюк оказался предельно простым: мы ввели новый тип <code>CTmStruct</code>, “заменяющий” C-тип struct tm. Но постойте, ведь тип <code>CTmStruct</code> не более чем пустышка, как же он может заменить тип <code>struct tm</code>? А он и не должен его заменять, он должен лишь <em>отобразить</em> его. Мы говорим: “Теперь у нас есть тип <code>CTmStruct</code>, и есть указатель на него, но что этот тип представляет собой на самом деле мы не знаем и знать не хотим”. Именно поэтому импорт функции <code>localtime</code> выглядит так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foreign <span class="kw">import </span>ccall localtime :: <span class="dt">Ptr</span> <span class="dt">CTime</span> -&gt; <span class="dt">IO</span> <span class="dt">CTmStructPtr</span></code></pre>
+<p>Да, мы знаем, что эта функция принесёт из внешнего мира значение типа  <code>CTmStruct</code>, но поскольку мы не будем копаться во внутренностях этого значения, нам и незачем знать, что оно собою представляет. Мы даже могли бы обойтись без типа <code>CTmStruct</code> и воспользоваться “пустым указателем”, написав просто:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">CTmStructPtr</span> <span class="fu">=</span> <span class="dt">Ptr</span> ()  <span class="co">-- Просто указатель на нечто.</span></code></pre>
+<p>С этим разобрались. Но есть ещё одна трудность. Вспомним код на C:</p>
+<pre class="sourceCode c"><code class="sourceCode c">    time_t rawtime;
+    struct tm* timeinfo;
+
+    time( &amp;rawtime );                  -- Взятие адреса переменной?    
+    timeinfo = localtime( &amp;rawtime );  -- Опять берём адрес??</code></pre>
+<p>Здесь нужно совершить действие, обычное для языка C: применить к некоторому значению унарный оператор взятия адреса <code>&amp;</code>. Однако в Haskell такого оператора нет. Следовательно, нам не обойтись без ещё одного трюка.</p>
+<p>Определим функцию, работающую с нашими друзьями-чужаками:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">timeObtainer ::</span> <span class="dt">Ptr</span> <span class="dt">CTime</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
+timeObtainer timePtr <span class="fu">=</span> <span class="kw">do</span>
+    time timePtr
+    tm <span class="ot">&lt;-</span> localtime timePtr
+    peekCString <span class="fu">$</span> asctime tm</code></pre>
+<p>Всё просто: вызываем три функции так же, как и в том примере на C. Даже новая для нас функция <code>peekCString</code> предельно ясна, ибо превращает C-строку в Haskell-строку. В общем, ничего примечательного в <code>timeObtainer</code> нет. Но, глядя на эту функцию, у вас обязательно возникнет вопрос о том, откуда же мы возьмём этот <code>timePtr</code>? Тут-то и выходит на сцену упомянутый выше трюк. Определим ещё одну функцию:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">getTime ::</span> <span class="dt">IO</span> <span class="dt">String</span>
+getTime <span class="fu">=</span> alloca <span class="fu">$</span> timeObtainer  <span class="co">-- Трюк со взятием адреса.</span></code></pre>
+<p>Мы видим новую для нас функцию <code>alloca</code>, определённую в стандартном модуле <code>Foreign.Marshal.Alloc</code>. Вот её объявление:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">alloca <span class="ot">::</span> <span class="dt">Storable</span> a <span class="ot">=&gt;</span> (<span class="dt">Ptr</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> b) <span class="ot">-&gt;</span> <span class="dt">IO</span> b</code></pre>
+<p>Именно она предоставляет указатель для нашей функции <code>timeObtainer</code>. Обратите внимание: тип <code>a</code>, указатель на который принимает функция <code>timeObtainer</code>, должен входить в контекст класса <code>Storable</code>. Суть этого класса ясна из его названия: значение типа, относящегося к этому классу, можно сохранить в “сырой” памяти. Таким образом, функция <code>timeObtainer</code> имеет дело с указателем <code>timePtr</code>, <em>уже</em> инициализированным реальным адресом локального значения типа <code>CTime</code>, и всё благодаря функции <code>alloca</code>.</p>
+<p>Теперь пишем:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    timeFromCWorld <span class="ot">&lt;-</span> getTime
+    putStr timeFromCWorld</code></pre>
+<p>и получаем ожидаемый результат:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Wed</span> Mar 26 23:42:15 2014</code></pre>
+<h2 id="работаем-с-внутренностями">Работаем с внутренностями</h2>
+<p>Работая с указателем на значение типа <code>CTmStruct</code>, мы не проявляли ни малейшего интереса к содержимому этого значения. Именно поэтому мы смогли полностью абстрагироваться от внутренностей <code>CTmStruct</code> и написать так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">CTmStructPtr</span> <span class="fu">=</span> <span class="dt">Ptr</span> ()  <span class="co">-- Просто указатель на нечто.</span></code></pre>
+<p>Однако в ряде случаев мы <em>обязаны</em> работать с содержимым чужеродного значения. Канонический пример: необходимая нам C-функция ожидает на вход указатель на структуру, поля которой нам необходимо выставить в некие известные нам значения.</p>
+<p>Рассмотрим функцию <code>utime</code>. Эта функция, определённая в стандартном заголовочнике <code>&lt;utime.h&gt;</code>, предназначена для установки времени последнего доступа к файлу и времени его последней модификации. Вот как это выглядит в C:</p>
+<pre class="sourceCode c"><code class="sourceCode c"><span class="ot">#include &lt;utime.h&gt;</span>
+<span class="ot">#include &lt;stdio.h&gt;</span>
+
+<span class="dt">int</span> main() {
+    struct utimbuf real_time;
+    real_time.actime = <span class="dv">1396126594</span>;  <span class="co">/* Дату мы как-то получили... */</span>
+    real_time.modtime = <span class="dv">1396126594</span>; <span class="co">/* И эту тоже. */</span>
+
+    int code = utime( <span class="st">&quot;/Users/dshevchenko/test.c&quot;</span>, &amp;real_time );
+    if( code == <span class="dv">0</span> ) {
+        printf( <span class="st">&quot;It&#39;s done.&quot;</span> );
+    } <span class="kw">else</span> {
+        printf( <span class="st">&quot;Something wrong...&quot;</span> );
+    }
+}</code></pre>
+<p>И вот случилось так, что нам позарез понадобилась функция <code>utime</code> в нашем Haskell-приложении. В этом случае абстрактным указателем мы уже не обойдёмся, ведь нам придётся полноценно работать со значением типа <code>struct utimbuf</code>. Как же это делается?</p>
+<p>Для начала создадим новый файл <code>UTime.hsc</code> в каталоге <code>src/Utils</code>. Вы заметили? У этого файла какое-то странное расширение, <code>.hsc</code> вместо привычного <code>.hs</code>. А всё потому, что этот файл является своего рода посредником между Haskell и C: содержащийся в нём код представляет собой необычную смесь из C-кода и Haskell-кода. Откроем этот файл и напишем следующее:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Utils.UTime</span> <span class="kw">where</span>
+
+<span class="st">#</span><span class="kw">include</span><span class="st"> &lt;utime.h&gt;  -- Знакомимся с C-типом struct utimbuf...</span>
+
+<span class="kw">import </span><span class="dt">Foreign.C</span>
+<span class="kw">import </span><span class="dt">Foreign.Ptr</span>
+<span class="kw">import </span><span class="dt">Foreign.Storable</span>
+
+<span class="co">-- Тип-посредник с двумя такими же полями, как в структуре utimbuf.</span>
+
+<span class="kw">data</span> <span class="dt">UTimeBuffer</span> <span class="fu">=</span> <span class="dt">UTimeBuffer</span> {<span class="ot"> accessTime ::</span> <span class="dt">CTime</span>
+                               ,<span class="ot"> modificationTime ::</span> <span class="dt">CTime</span>
+                               }
+
+<span class="kw">type</span> <span class="dt">UTimeBufferPtr</span> <span class="fu">=</span> <span class="dt">Ptr</span> <span class="dt">UTimeBuffer</span>
+
+<span class="kw">instance</span> <span class="dt">Storable</span> <span class="dt">UTimeBuffer</span> <span class="kw">where</span>
+    sizeOf _ <span class="fu">=</span> (<span class="st">#const sizeof (struct utimbuf))</span>
+    alignment _ <span class="fu">=</span> alignment (undefined<span class="ot"> ::</span> <span class="dt">CInt</span>)
+
+    peek ptr <span class="fu">=</span> <span class="kw">do</span>
+        c_actime <span class="ot">&lt;-</span> (<span class="st">#peek struct utimbuf, actime) ptr</span>
+        c_modtime <span class="ot">&lt;-</span> (<span class="st">#peek struct utimbuf, modtime) ptr</span>
+        return <span class="fu">$</span> <span class="dt">UTimeBuffer</span> c_actime c_modtime
+
+    poke ptr realValue <span class="fu">=</span> <span class="kw">do</span>
+        (<span class="st">#poke struct utimbuf, actime) ptr (accessTime realValue)</span>
+        (<span class="st">#poke struct utimbuf, modtime) ptr (modificationTime realValue)</span>
+
+<span class="co">-- Наше приглашение для функции-чужака.  </span>
+foreign <span class="kw">import </span>ccall &quot;utime.h utime&quot;
+                     <span class="ot">c_utime ::</span> <span class="dt">CString</span> <span class="ot">-&gt;</span> <span class="dt">UTimeBufferPtr</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">CInt</span></code></pre>
+<p>Необычно выглядит, не правда ли? Давайте разбираться.</p>
+<p>Первое новшество - тип <code>UTimeBuffer</code>. Поскольку мы не можем работать с нестандартным C-типом напрямую, нам необходим Haskell-посредник. В этом типе определены два поля тех же типов, что и поля в структуре <code>utimbuf</code>.</p>
+<p>Второе новшество - экземпляр класса <code>Storable</code> для нашего типа <code>UTimeBuffer</code>. Как уже было упомянуто выше, мы обязаны добавить наш тип в контекст этого класса, если планируем сохранять значения нашего типа в “сырой” памяти. Здесь определяются четыре метода, заслушивающие нашего внимания.</p>
+<p>Метод <code>sizeOf</code> возвращает размер нашего типа, подобно ключевому слову <code>sizeof</code> в языке C. Метод <code>alignment</code> возвращает величину <a href="https://en.wikipedia.org/wiki/Data_structure_alignment">выравнивания структуры</a>. Метод <code>peek</code> читает значение, расположенное по указанному адресу. Ну а метод <code>poke</code>, напротив, записывает некое значение по указанному адресу.</p>
+<p>Вы спросите, что это за странный синтаксис? Какие-то круглые скобки и решётки… А это именно то, о чём было сказано выше: содержимое <code>.hsc</code>-файлов не является полноценным кодом на Haskell. Этот файл - препроцессорный, и чтобы превратить его в настоящий Haskell-код, нужен препроцессор под названием <a href="http://www.haskell.org/ghc/docs/7.6.3/html/users_guide/hsc2hs.html"><code>hsc2hs</code></a>. Однако непосредственное его использование вам едва ли понадобится, ведь наша подруга <code>cabal</code> сама разберётся, какие файлы проекта являются препроцессорными, и сама выполнит для них команду <code>hsc2hs</code>. Поэтому просто добавьте имя модуля <code>Utils.UTime</code> в <code>Real.cabal</code>, в параметре <code>other-modules</code>.</p>
+<p>Теперь рассмотрим эти препроцессорные инструкции внимательнее. Вот <code>sizeOf</code>:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">sizeOf _ <span class="fu">=</span> (<span class="st">#const sizeof (struct utimbuf))</span></code></pre>
+<p>Мы говорим: “Метод <code>sizeOf</code>, применяемый к некоторому значению нашего типа, вернёт целочисленную константу, соответствующую размеру типа <code>struct utimbuf</code>”. Обратите внимание: мы используем полноценное выражение на языке C:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">sizeof (struct utimbuf)</code></pre>
+<p>включающее в себя родное имя той самой структуры, с которой мы собираемся работать. И чтобы препроцессор знал, о какой структуре идёт речь, мы включаем заголовочный файл, в котором она определена:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="st">#</span><span class="kw">include</span><span class="st"> &lt;utime.h&gt;</span></code></pre>
+<p>А вот метод <code>peek</code>:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">peek ptr <span class="fu">=</span> <span class="kw">do</span>
+    c_actime <span class="ot">&lt;-</span> (<span class="st">#peek struct utimbuf, actime) ptr</span>
+    c_modtime <span class="ot">&lt;-</span> (<span class="st">#peek struct utimbuf, modtime) ptr</span>
+    return <span class="fu">$</span> <span class="dt">UTimeBuffer</span> c_actime c_modtime</code></pre>
+<p>Этот метод должен вернуть Haskell-значение, находящееся по адресу <code>ptr</code>, а значит, мы последовательно считываем два значения, входящие в нашу структуру-посредника. Рассмотрим первое прочтение:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">c_actime <span class="ot">&lt;-</span> (<span class="st">#peek struct utimbuf, actime) ptr</span></code></pre>
+<p>Мы говорим: “Читаем значение типа <code>struct utimbuf</code>, находящееся по адресу <code>ptr</code>, и значение его поля <code>actime</code> ассоциируем с идентификатором <code>c_actime</code>”. После прочтения обоих полей мы создаём значение нашего типа-посредника <code>UTimeBuffer</code> и возвращаем его в <code>IO</code>-монаду.</p>
+<p>Как видите, данный препроцессорный код читается довольно легко, ведь по своему виду он очень приближен к родному Haskell-коду. Теперь откроем наш <code>Main.hs</code> и напишем в нём следующее:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+
+<span class="kw">import </span><span class="dt">Utils.UTime</span>
+<span class="kw">import </span><span class="dt">Foreign.C</span>
+<span class="kw">import </span><span class="dt">Foreign.Marshal.Alloc</span>
+<span class="kw">import </span><span class="dt">Foreign.Storable</span>
+
+<span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    path <span class="ot">&lt;-</span> newCString <span class="st">&quot;/Users/dshevchenko/test.c&quot;</span>
+    utimeBufferPtr <span class="ot">&lt;-</span> malloc
+    poke utimeBufferPtr realTime
+    code <span class="ot">&lt;-</span> c_utime path utimeBufferPtr
+    putStrLn <span class="fu">$</span> <span class="kw">if</span> code <span class="fu">==</span> <span class="dv">0</span> <span class="kw">then</span> <span class="st">&quot;It&#39;s done&quot;</span> <span class="kw">else</span> <span class="st">&quot;Something wrong...&quot;</span>
+    where realTime <span class="fu">=</span> <span class="dt">UTimeBuffer</span> { accessTime <span class="fu">=</span> <span class="dv">1396123253</span>
+                                 , modificationTime <span class="fu">=</span> <span class="dv">1333050979</span>
+                                 }</code></pre>
+<p>Наше внимание привлекают следующие строки:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">    path <span class="ot">&lt;-</span> newCString <span class="st">&quot;/Users/dshevchenko/test.c&quot;</span>
+    utimeBufferPtr <span class="ot">&lt;-</span> malloc    <span class="co">-- Повеяло языком C, не правда ли?</span>
+    poke utimeBufferPtr realTime</code></pre>
+<p>В первой мы используем функцию <code>newCString</code>, превращающую Haskell-строку в C-строку. Далее мы выделяем память для нашей структуры-посредника с помощью стандартной функции <code>malloc</code>. А потом мы сохраняем значение <code>realTime</code> по адресу, ассоциированному с указателем <code>utimeBufferPtr</code>.</p>
+<p>Обратите внимание и на нашего старого знакомого - на составной тип, формируемый с помощью фигурных скобок:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">    where realTime <span class="fu">=</span> <span class="dt">UTimeBuffer</span> { accessTime <span class="fu">=</span> <span class="dv">1396123253</span>
+                                 , modificationTime <span class="fu">=</span> <span class="dv">1333050979</span>
+                                 }</code></pre>
+<p>Не важно, откуда мы получили эти posixtime-значения, важно, что когда мы запустим этот код, получим ожидаемый результат:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">It</span><span class="st">&#39;s done</span></code></pre>
+<p>Поверьте мне на слово - это работает, и время модификации файла действительно изменяется.</p>
+<h2 id="а-убираться-кто-будет">А убираться кто будет?!</h2>
+<p>Ай-яй-яй, мы чуть не забыли… Вот наш код:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">    path <span class="ot">&lt;-</span> newCString <span class="st">&quot;/Users/dshevchenko/test.c&quot;</span>
+    utimeBufferPtr <span class="ot">&lt;-</span> malloc  <span class="co">-- Радостно выделяем память в куче...   </span>
+    poke utimeBufferPtr realTime
+    code <span class="ot">&lt;-</span> c_utime path utimeBufferPtr
+    putStrLn <span class="fu">$</span> <span class="kw">if</span> code <span class="fu">==</span> <span class="dv">0</span> <span class="kw">then</span> <span class="st">&quot;It&#39;s done&quot;</span> <span class="kw">else</span> <span class="st">&quot;Something wrong...&quot;</span>
+    <span class="fu">...</span>
+    <span class="co">-- А освободить-то забыли...  </span></code></pre>
+<p>В самом деле, выделить-то мы выделили, а убираться кто будет? Встроенный в Haskell уборщик мусора здесь нам не помощник, ведь взаимодействие с чужаками вынудило нас выделить память вручную, как в языке C. А если выделили явно - нужно явно и освободить.</p>
+<p>А кстати, вдруг я вас обманываю? Действительно ли утечка имеет место в нашем примере? Обратимся к нашему верному помощнику <a href="http://valgrind.org">valgrind</a>. Выполним:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">valgrind</span> --leak-check=full ./dist/build/Real/Real</code></pre>
+<p>И вот грустный, но вполне ожидаемый отчёт:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">==<span class="kw">25303</span>== 16 bytes in 1 blocks are definitely lost in loss record 4 of 14
+==<span class="kw">25303</span>==    at 0xE0D6: malloc (vg_replace_malloc.c:274)
+==<span class="kw">25303</span>==    by 0x1000019DA: s25W_info (in ./dist/build/Real/Real)</code></pre>
+<p>Утекло. А чтобы этого избежать, воспользуемся стандартной функцией free и напишем так:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">...</span>
+    path <span class="ot">&lt;-</span> newCString <span class="st">&quot;/Users/dshevchenko/test.c&quot;</span>
+    utimeBufferPtr <span class="ot">&lt;-</span> malloc  <span class="co">-- Радостно выделяем память в куче...   </span>
+    poke utimeBufferPtr realTime
+    code <span class="ot">&lt;-</span> c_utime path utimeBufferPtr
+    free utimeBufferPtr       <span class="co">-- И столь же радостно освобождаем.</span>
+    putStrLn <span class="fu">$</span> <span class="kw">if</span> code <span class="fu">==</span> <span class="dv">0</span> <span class="kw">then</span> <span class="st">&quot;It&#39;s done&quot;</span> <span class="kw">else</span> <span class="st">&quot;Something wrong...&quot;</span>
+    <span class="fu">...</span></code></pre>
+<p>Теперь проверим:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">valgrind</span> --leak-check=full ./dist/build/Real/Real</code></pre>
+<p>И вот он, радостный отчёт:  </p>
+<pre class="sourceCode bash"><code class="sourceCode bash">==<span class="kw">25356</span>==  LEAK SUMMARY:
+==<span class="kw">25356</span>==    definitely lost: 0 bytes in 0 blocks</code></pre>
+<p>Память освобождается.</p>
+<h2 id="в-сухом-остатке">В сухом остатке</h2>
+<ul>
+<li>Haskell легко подружить с языком C.</li>
+<li>Чтобы вызывать C-функцию из Haskell, необходимо объявить Haskell-прототип этой функции.</li>
+<li>Все стандартные C-типы имеют соответствующие Haskell-обёртки.</li>
+<li>Если C-функция принимает <code>void</code>, её Haskell-прототип не имеет аргументов. Если C-функция возвращает <code>void</code>, её Haskell-прототип возвращает <code>IO ()</code>.</li>
+<li>Для взятия адреса локальной переменной используется функция <code>alloca</code>.</li>
+<li>Для работы с C-структурой следует создать посреднический Haskell-тип.</li>
+<li>Экземпляр класса <code>Storable</code> для посреднического типа пишется на препроцессорном коде в <code>.hsc</code>-файле.</li>
+<li>При ручном выделении памяти её необходимо вручную и удалить.</li>
+</ul>
+
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="/ru/integration/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="/ru/end/index.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding-top: 40px;"><div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+-->
+<!--            </div>-->
+<!--            -->
+<!--            <div id="footer">-->
+<!--                <div id="social">-->
+<!--                    &copy; Денис Шевченко 2013-2014-->
+<!--                </div>-->
+<!--                <div id="hakyll_mark">-->
+<!--                    Книга создана с помощью <a href="http://jaspervdj.be/hakyll">Hakyll</a>-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div id="search_form">-->
+<!--                <script>-->
+<!--                  (function() {-->
+<!--                    var cx = '007697214108744450483:au850gpbupm';-->
+<!--                    var gcse = document.createElement('script');-->
+<!--                    gcse.type = 'text/javascript';-->
+<!--                    gcse.async = true;-->
+<!--                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +-->
+<!--                        '//www.google.com/cse/cse.js?cx=' + cx;-->
+<!--                    var s = document.getElementsByTagName('script')[0];-->
+<!--                    s.parentNode.insertBefore(gcse, s);-->
+<!--                  })();-->
+<!--                </script>-->
+<!--                <gcse:search></gcse:search>-->
+<!--            </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </body>-->
+<!--</html>-->

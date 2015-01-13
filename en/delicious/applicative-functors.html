@@ -1,42 +1,83 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Аппликативные функторы | О Haskell по-человечески</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content="Денис Шевченко">
+        <link rel="icon" href="../../static/images/favicon.ico">
+
+        <title>Аппликативные функторы</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../static/css/default.css" rel="stylesheet">
         
-        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
-        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
     </head>
-    <body>
-        <div id="wrapper">
 
-            <div class="ribbon">
-                <a href="https://github.com/denisshevchenko/ohaskell">Live on GitHub</a>
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="logo">
+                <a class="navbar-brand" href="../../en/index.html" title="Home">
+                  About Haskell humanly
+                </a>
+              </div>
             </div>
-
-            <div id="wrapper_2">
-            <div id="header">
-                <div id="logo">
-                    <a href="../../en/index.html" title="Домой">About Haskell humanly</a><span class="logo-note">for ordinary developers</span>
-                </div>
-                <div id="navigation">
-                    <a href="../../en/chapters.html">CONTENTS</a>
-                </div>
+            
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../../en/chapters.html" target="_blank">Contents</a></li>
+              </ul>
             </div>
+          </div>
+        </nav>
 
-            <div id="content">
-                <h1>Аппликативные функторы</h1>
+        <div id="content">
+            <h1>Аппликативные функторы</h1>
 
-                <div style="padding-top: 10px;"></div>
-
-<div id="prev_arrow">
-    <a href="../../en/delicious/functors.html">❮</a>
+            <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/delicious/functors.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/delicious/transformers-first-meeting.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div id="next_arrow">
-    <a href="../../en/delicious/transformers-first-meeting.html">❯</a>
-</div>
+<div class="padding-top: 40px;"><div>
 
 <p>Поговорим об аппликативных функторах (applicative functors). Знаю, название немного пугает, но поверьте, ничего страшного в них нет. Более того, аппликативный функтор, как вы вскоре убедитесь, очень полезный инструмент.</p>
 <p>Суть проста. Если тип <code>X</code> является обыкновенным функтором, мы можем применить некую функцию к одному значению типа <code>X</code>. Если же тип <code>X</code> является аппликативным функтором, мы можем применить некую функцию к <em>нескольким</em> значениям типа <code>X</code>. Начнём.</p>
@@ -63,14 +104,14 @@ fmap  <span class="ot">::</span>   (a <span class="ot">-&gt;</span> b) <span 
 <pre class="sourceCode haskell"><code class="sourceCode haskell">add (<span class="dt">Distance</span> a) (<span class="dt">Distance</span> b) <span class="fu">=</span> <span class="dt">Distance</span> (a <span class="fu">+</span> b)</code></pre>
 <p>Теперь мы можем складывать наши дистанции: </p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> <span class="dt">Distance</span> <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span> <span class="ot">`add`</span> <span class="dt">Distance</span> <span class="dv">1</span><span class="fu">.</span><span class="dv">6</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> <span class="dt">Distance</span> <span class="fl">19.78</span> <span class="ot">`add`</span> <span class="dt">Distance</span> <span class="fl">1.6</span></code></pre>
 <p>Результат:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Distance</span> 21.380000000000003</code></pre>
 <p>Симпатично. Однако для дистанций одного сложения, вероятно, будет маловато. Определим функцию для вычитания:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">minus (<span class="dt">Distance</span> a) (<span class="dt">Distance</span> b) <span class="fu">=</span> <span class="dt">Distance</span> (a <span class="fu">-</span> b)</code></pre>
 <p>Теперь можно вычитать:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> <span class="dt">Distance</span> <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span> <span class="ot">`minus`</span> <span class="dt">Distance</span> <span class="dv">1</span><span class="fu">.</span><span class="dv">6</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> <span class="dt">Distance</span> <span class="fl">19.78</span> <span class="ot">`minus`</span> <span class="dt">Distance</span> <span class="fl">1.6</span></code></pre>
 <p>Хм… Всё это, конечно, хорошо, но ведь можно ещё и умножать, и делить. Нам что, для каждой такой операции определять свою функцию? Нет, умный в гору не пойдёт. Мы ведь хотим упрощения нашей программистской жизни, а не усложнения. Тут-то и спешит нам на помощь АФ.</p>
 <h2 id="превращаем">Превращаем</h2>
 <p>Превратим тип <code>Distance</code> в АФ. Впрочем, я поторопился: сначала нам нужно сделать его обыкновенным функтором, а уже потом аппликативным. Пишем:</p>
@@ -91,12 +132,12 @@ main <span class="fu">=</span> print <span class="fu">$</span> <span class="dt">
 <p>Ну а теперь пора разобраться, зачем же мы сделали всё это?</p>
 <p>Данный механизм освобождает нас от обязанности самостоятельно определять бинарные функции для работы со значениями типа  <code>Distance</code>. Поэтому теперь, когда нам понадобится получить сумму двух дистанций, мы напишем вот так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> (<span class="fu">+</span>) <span class="fu">&lt;$&gt;</span> <span class="dt">Distance</span> <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span> <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">1</span><span class="fu">.</span><span class="dv">6</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> (<span class="fu">+</span>) <span class="fu">&lt;$&gt;</span> <span class="dt">Distance</span> <span class="fl">19.78</span> <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">1.6</span></code></pre>
 <p>Результат:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Distance</span> 21.380000000000003</code></pre>
 <p>Если же нужно вычесть, пишем так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> (<span class="fu">-</span>) <span class="fu">&lt;$&gt;</span> <span class="dt">Distance</span> <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span> <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">1</span><span class="fu">.</span><span class="dv">6</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> (<span class="fu">-</span>) <span class="fu">&lt;$&gt;</span> <span class="dt">Distance</span> <span class="fl">19.78</span> <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">1.6</span></code></pre>
 <p>Вполне ожидаемый результат:  </p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Distance</span> 18.18</code></pre>
 <h2 id="как-это-работает">Как это работает</h2>
@@ -111,20 +152,20 @@ main <span class="fu">=</span> print <span class="fu">$</span> (<span class="fu"
 <p>На первом шаге оператор <code>&lt;$&gt;</code>, являющийся, как вы помните, инфиксной копией функции <code>fmap</code>, применил стоящую слева от него функцию сложения к функтору, стоящему справа. Чтобы понять произошедшее на этом шаге, вспомним объявление функции <code>fmap</code> для нашего типа:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">fmap magicWand (<span class="dt">Distance</span> value) <span class="fu">=</span> <span class="dt">Distance</span> (magicWand value)</code></pre>
 <p>Заменим волшебную палочку на функцию сложения и <code>value</code> на реальное значение:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap (<span class="fu">+</span>) (<span class="dt">Distance</span> <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span>) <span class="fu">=</span> <span class="dt">Distance</span> ((<span class="fu">+</span>) <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span>)</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">fmap (<span class="fu">+</span>) (<span class="dt">Distance</span> <span class="fl">19.78</span>) <span class="fu">=</span> <span class="dt">Distance</span> ((<span class="fu">+</span>) <span class="fl">19.78</span>)</code></pre>
 <p>Ба, знакомые все лица! Функция <code>fmap</code> возвращает значение типа <code>Distance</code>, но оно содержит в себе уже не число, а нашу старую подругу, частично применённую функцию. Эта функция появилась на свет благодаря применению функции сложения к единственному аргументу <code>19.78</code>.</p>
 <p>Что же произошло на втором шаге? Взглянем:</p>
 <pre><code>APPL_FTOR &lt;*&gt; APPL_FTOR</code></pre>
 <p>Здесь вступает в игру оператор последовательного применения. Вспомним его определение для нашего типа:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Distance</span> magicWand <span class="fu">&lt;*&gt;</span> functor <span class="fu">=</span> fmap magicWand functor</code></pre>
 <p>Подставим реальные значения для ясности:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Distance</span> ((<span class="fu">+</span>) <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span>) <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">1</span><span class="fu">.</span><span class="dv">6</span> <span class="fu">=</span> fmap ((<span class="fu">+</span>) <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span>)  <span class="dt">Distance</span> <span class="dv">1</span><span class="fu">.</span><span class="dv">6</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Distance</span> ((<span class="fu">+</span>) <span class="fl">19.78</span>) <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">1.6</span> <span class="fu">=</span> fmap ((<span class="fu">+</span>) <span class="fl">19.78</span>)  <span class="dt">Distance</span> <span class="fl">1.6</span></code></pre>
 <p>Теперь все карты раскрыты. В результате работы оператора <code>&lt;*&gt;</code> внутренняя функция <code>fmap</code> применила нашу частично применённую функцию сложения к значению, содержащемуся во втором функторе. И на выходе мы получили результат сложения в виде <code>Distance 21.380000000000003</code>.</p>
 <h2 id="не-только-два">Не только два</h2>
 <p>Раз мы смогли применить бинарную функцию к двум АФ одновременно, значит, можно и расшириться. Количество аргументов функции, поступающей на вход функторной очереди, должна соответствовать количеству функторов в этой очереди. Поэтому если нам нужно узнать общую длину трёх дистанций, мы пишем так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span>
-    print <span class="fu">$</span> totalSum <span class="fu">&lt;$&gt;</span> <span class="dt">Distance</span> <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span> <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">1</span><span class="fu">.</span><span class="dv">6</span> <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">289</span><span class="fu">.</span><span class="dv">0</span>
+    print <span class="fu">$</span> totalSum <span class="fu">&lt;$&gt;</span> <span class="dt">Distance</span> <span class="fl">19.78</span> <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">1.6</span> <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">289.0</span>
     where totalSum arg1 arg2 arg3 <span class="fu">=</span> arg1 <span class="fu">+</span> arg2 <span class="fu">+</span> arg3</code></pre>
 <p>Три аргумента - три функтора. Функция <code>totalSum</code> бежит по ним и потихоньку собирает их внутренние значения в общую сумму, на выходе выдавая нам:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Distance</span> 310.38</code></pre>
@@ -140,9 +181,9 @@ main <span class="fu">=</span>
 <p>Это позволит нам переписать наш пример так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span>
-    print <span class="fu">$</span> pure totalSum <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span>
-                          <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">1</span><span class="fu">.</span><span class="dv">6</span>
-                          <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">289</span><span class="fu">.</span><span class="dv">0</span>
+    print <span class="fu">$</span> pure totalSum <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">19.78</span>
+                          <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">1.6</span>
+                          <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">289.0</span>
     where totalSum arg1 arg2 arg3 <span class="fu">=</span> arg1 <span class="fu">+</span> arg2 <span class="fu">+</span> arg3</code></pre>
 <p>Здесь уже нет оператора <code>&lt;$&gt;</code>, его обязанности на себя взяла функция <code>pure</code>, которая взяла функцию <code>totalSum</code> и, скажем так, подготовила её к работе с нашими аппликативными функторами. В англоязычной документации пишут, что функция <code>pure</code> подняла (lift) функцию <code>totalSum</code>. Это можно воспринимать как подъём на более высокий уровень абстрации: была просто функция, а стала… непросто функция.</p>
 <h2 id="последовательность-действий">Последовательность действий</h2>
@@ -160,14 +201,17 @@ main <span class="fu">=</span>
               игнорирую
                 второй</code></pre>
 <p>Чтобы стало понятнее, определим первый из этих операторов для нашего типа:</p>
-<p><code>haskell  instance Applicative Distance where     Distance magicWand &lt;*&gt; functor = fmap magicWand functor     pure magicWand = Distance magicWand     Distance a *&gt; Distance b = Distance b  -- Просто возвращаем второй. </code></p>
+<pre class="haskell "><code>instance Applicative Distance where
+    Distance magicWand &lt;*&gt; functor = fmap magicWand functor
+    pure magicWand = Distance magicWand
+    Distance a *&gt; Distance b = Distance b  -- Просто возвращаем второй. </code></pre>
 <p>Предельно просто: оператор <code>*&gt;</code> разрывает цепочку передачи значения между функторами. Например, если мы напишем так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span>  
-    print <span class="fu">$</span> pure totalSum <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">19</span><span class="fu">.</span><span class="dv">78</span>
-                          <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">1</span><span class="fu">.</span><span class="dv">6</span>
-                          <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="dv">289</span><span class="fu">.</span><span class="dv">0</span>
-                          <span class="fu">*&gt;</span>  <span class="dt">Distance</span> <span class="dv">2</span><span class="fu">.</span><span class="dv">0</span>  <span class="co">-- Цепочка уже разорвалась!</span>
+    print <span class="fu">$</span> pure totalSum <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">19.78</span>
+                          <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">1.6</span>
+                          <span class="fu">&lt;*&gt;</span> <span class="dt">Distance</span> <span class="fl">289.0</span>
+                          <span class="fu">*&gt;</span>  <span class="dt">Distance</span> <span class="fl">2.0</span>  <span class="co">-- Цепочка уже разорвалась!</span>
     where totalSum arg1 arg2 arg3 <span class="fu">=</span> arg1 <span class="fu">+</span> arg2 <span class="fu">+</span> arg3</code></pre>
 <p>ответом будет:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Distance</span> 2.0</code></pre>
@@ -225,6 +269,25 @@ main <span class="fu">=</span> print <span class="fu">$</span> (<span class="fu"
 <li>Там, где можно обойтись возможностями АФ, не следует прибегать к монадическим возможностям. Впрочем, выбор за вами.</li>
 </ul>
 
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/delicious/functors.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/delicious/transformers-first-meeting.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="padding-top: 40px;"><div>
+
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -241,33 +304,15 @@ main <span class="fu">=</span> print <span class="fu">$</span> (<span class="fu"
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
 
-            </div>
-            
-            <div id="footer">
-                <div id="social">
-                    © Denis Shevchenko 2013-2014
-                </div>
-                <div id="hakyll_mark">
-                    Created by <a href="http://jaspervdj.be/hakyll">Hakyll</a>
-                </div>
-            </div>
+        </div> 
 
-            <div id="search_form">
-                <script>
-                  (function() {
-                    var cx = '007697214108744450483:py6mcdzwavw';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                        '//www.google.com/cse/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                  })();
-                </script>
-                <gcse:search></gcse:search>
+        <footer class="footer">
+            Book created with <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> and lives on <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Source code and contents of this site are distributed on terms of <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">MIT license</a>.
             </div>
-            </div>
-        </div>
-    </body>
+        </footer>
+    </div>
+  </body>
 </html>
+

@@ -1,42 +1,83 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Контекст типа | О Haskell по-человечески</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content="Денис Шевченко">
+        <link rel="icon" href="../../static/images/favicon.ico">
+
+        <title>Контекст типа</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../static/css/default.css" rel="stylesheet">
         
-        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
-        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
     </head>
-    <body>
-        <div id="wrapper">
 
-            <div class="ribbon">
-                <a href="https://github.com/denisshevchenko/ohaskell">Live on GitHub</a>
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="logo">
+                <a class="navbar-brand" href="../../en/index.html" title="Home">
+                  About Haskell humanly
+                </a>
+              </div>
             </div>
-
-            <div id="wrapper_2">
-            <div id="header">
-                <div id="logo">
-                    <a href="../../en/index.html" title="Домой">About Haskell humanly</a><span class="logo-note">for ordinary developers</span>
-                </div>
-                <div id="navigation">
-                    <a href="../../en/chapters.html">CONTENTS</a>
-                </div>
+            
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../../en/chapters.html" target="_blank">Contents</a></li>
+              </ul>
             </div>
+          </div>
+        </nav>
 
-            <div id="content">
-                <h1>Контекст типа</h1>
+        <div id="content">
+            <h1>Контекст типа</h1>
 
-                <div style="padding-top: 10px;"></div>
-
-<div id="prev_arrow">
-    <a href="../../en/about-user-types/about-value-constructors.html">❮</a>
+            <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/about-user-types/about-value-constructors.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/about-user-types/composite-types.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div id="next_arrow">
-    <a href="../../en/about-user-types/composite-types.html">❯</a>
-</div>
+<div class="padding-top: 40px;"><div>
 
 <p>Как вы уже знаете, тип аргумента функции может быть полиморфным, что позволит нам применить такую функцию к значению любого типа. Но на практике нам редко нужна столь радикальная гибкость, ведь в большинстве случаев, говоря об аргументе любого типа, мы подразумеваем вовсе не любой тип, а тип из некоторой группы. Об этом и поговорим.</p>
 <h2 id="любой-да-не-совсем">Любой, да не совсем</h2>
@@ -79,6 +120,25 @@ nothing value <span class="fu">=</span> value</code></pre>
 nothing value1 value2 <span class="fu">=</span> show value1 <span class="fu">++</span> show value2</code></pre>
 <p>Тип первого аргумента должен входить в контекст класса <code>Show</code>, в то время как тип второго должен входить в контексты сразу двух классов, <code>Show</code> и <code>Eq</code>.</p>
 
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/about-user-types/about-value-constructors.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/about-user-types/composite-types.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="padding-top: 40px;"><div>
+
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -95,33 +155,15 @@ nothing value1 value2 <span class="fu">=</span> show value1 <span class="fu">++<
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
 
-            </div>
-            
-            <div id="footer">
-                <div id="social">
-                    © Denis Shevchenko 2013-2014
-                </div>
-                <div id="hakyll_mark">
-                    Created by <a href="http://jaspervdj.be/hakyll">Hakyll</a>
-                </div>
-            </div>
+        </div> 
 
-            <div id="search_form">
-                <script>
-                  (function() {
-                    var cx = '007697214108744450483:py6mcdzwavw';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                        '//www.google.com/cse/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                  })();
-                </script>
-                <gcse:search></gcse:search>
+        <footer class="footer">
+            Book created with <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> and lives on <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Source code and contents of this site are distributed on terms of <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">MIT license</a>.
             </div>
-            </div>
-        </div>
-    </body>
+        </footer>
+    </div>
+  </body>
 </html>
+

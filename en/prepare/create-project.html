@@ -1,42 +1,83 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>Creating a project | О Haskell по-человечески</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content="Денис Шевченко">
+        <link rel="icon" href="../../static/images/favicon.ico">
+
+        <title>Creating a project</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../static/css/default.css" rel="stylesheet">
         
-        <link rel="stylesheet" type="text/css" href="../../css/default.css" />
-        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
     </head>
-    <body>
-        <div id="wrapper">
 
-            <div class="ribbon">
-                <a href="https://github.com/denisshevchenko/ohaskell">Live on GitHub</a>
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="logo">
+                <a class="navbar-brand" href="../../en/index.html" title="Home">
+                  About Haskell humanly
+                </a>
+              </div>
             </div>
-
-            <div id="wrapper_2">
-            <div id="header">
-                <div id="logo">
-                    <a href="../../en/index.html" title="Домой">About Haskell humanly</a><span class="logo-note">for ordinary developers</span>
-                </div>
-                <div id="navigation">
-                    <a href="../../en/chapters.html">CONTENTS</a>
-                </div>
+            
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../../en/chapters.html" target="_blank">Contents</a></li>
+              </ul>
             </div>
+          </div>
+        </nav>
 
-            <div id="content">
-                <h1>Creating a project</h1>
+        <div id="content">
+            <h1>Creating a project</h1>
 
-                <div style="padding-top: 10px;"></div>
-
-<div id="prev_arrow">
-    <a href="../../en/prepare/index.html">❮</a>
+            <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/prepare/index.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/prepare/about-modules-minimum.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
 </div>
-
-<div id="next_arrow">
-    <a href="../../en/prepare/about-modules-minimum.html">❯</a>
-</div>
+<div class="padding-top: 40px;"><div>
 
 <p>We can’t start studying the language without a basis. Thus, download and install <a href="http://www.haskell.org/platform"><code>Haskell Platform</code></a>.</p>
 <p>Haskell Platform contains two essential components, which you should know about:</p>
@@ -82,7 +123,7 @@ Warning: unknown license type, you must put a copy in LICENSE yourself.</code></
 	<span class="dt">For</span> further documentation,
 	<span class="co">-- see http://haskell.org/cabal/users-guide/</span>
 	name<span class="fu">:</span>               <span class="dt">Real</span>
-	version<span class="fu">:</span>            <span class="dv">0</span><span class="fu">.</span><span class="dv">1</span><span class="fu">.</span><span class="dv">0</span><span class="fu">.</span><span class="dv">0</span>
+	version<span class="fu">:</span>            <span class="fl">0.1</span><span class="fu">.</span><span class="fl">0.0</span>
 	synopsis<span class="fu">:</span>           <span class="dt">Real</span> project <span class="kw">in</span> <span class="dt">Haskell</span>
 	<span class="co">-- description:</span>
 	<span class="co">-- license:</span>
@@ -92,11 +133,11 @@ Warning: unknown license type, you must put a copy in LICENSE yourself.</code></
 	<span class="co">-- copyright:</span>
 	<span class="co">-- category:</span>
 	build<span class="fu">-</span><span class="kw">type</span><span class="fu">:</span>         <span class="dt">Simple</span>
-	cabal<span class="fu">-</span>version<span class="fu">:</span>      <span class="fu">&gt;=</span><span class="dv">1</span><span class="fu">.</span><span class="dv">8</span>
+	cabal<span class="fu">-</span>version<span class="fu">:</span>      <span class="fu">&gt;=</span><span class="fl">1.8</span>
 	executable <span class="dt">Real</span>
 	  <span class="co">-- main-is:</span>
 	  <span class="co">-- other-modules:</span>
-	  build<span class="fu">-</span>depends<span class="fu">:</span>      base <span class="fu">==</span><span class="dv">4</span><span class="fu">.</span><span class="dv">6</span><span class="fu">.*</span>
+	  build<span class="fu">-</span>depends<span class="fu">:</span>      base <span class="fu">==</span><span class="fl">4.6</span><span class="fu">.*</span>
 	  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>     src</code></pre>
 <p>The values which we input in dialog mentioned above are already saved here. However we can’t actually build the project at the moment as the line:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">	<span class="co">-- main-is:</span></code></pre>
@@ -110,7 +151,7 @@ Warning: unknown license type, you must put a copy in LICENSE yourself.</code></
 <pre class="sourceCode haskell"><code class="sourceCode haskell">	executable <span class="dt">Real</span>
 	  main<span class="fu">-</span>is<span class="fu">:</span>
 	  <span class="co">-- other-modules:</span>
-	  build<span class="fu">-</span>depends<span class="fu">:</span>      base <span class="fu">==</span><span class="dv">4</span><span class="fu">.</span><span class="dv">6</span><span class="fu">.*</span>
+	  build<span class="fu">-</span>depends<span class="fu">:</span>      base <span class="fu">==</span><span class="fl">4.6</span><span class="fu">.*</span>
 	  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>     src</code></pre>
 <p>Can you see the two-space indentation of the last four lines? It turns out that such indent is essential and the project wouldn’t build without it. Furthermore, this indent should be at least two spaces. I recommend to use four spaces for beauty.</p>
 <p>One more detail. It is not necessary but wouldn’t be superfluous. Append section <code>executable Real</code> with this line:</p>
@@ -139,6 +180,25 @@ dist/
 <span class="kw">Hi</span> haskeller!</code></pre>
 <p>That’s it. Now you know how to create, configure and build a Haskell project. Probably you are wondering why did we create file <code>Helpers.hs</code> in the subdirectory <code>Utils</code>? What’s the point of that, if it is left empty? You will find it out in the following chapter.</p>
 
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/prepare/index.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/prepare/about-modules-minimum.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="padding-top: 40px;"><div>
+
 <div id="disqus_thread"></div>
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -155,33 +215,15 @@ dist/
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
 
-            </div>
-            
-            <div id="footer">
-                <div id="social">
-                    © Denis Shevchenko 2013-2014
-                </div>
-                <div id="hakyll_mark">
-                    Created by <a href="http://jaspervdj.be/hakyll">Hakyll</a>
-                </div>
-            </div>
+        </div> 
 
-            <div id="search_form">
-                <script>
-                  (function() {
-                    var cx = '007697214108744450483:py6mcdzwavw';
-                    var gcse = document.createElement('script');
-                    gcse.type = 'text/javascript';
-                    gcse.async = true;
-                    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                        '//www.google.com/cse/cse.js?cx=' + cx;
-                    var s = document.getElementsByTagName('script')[0];
-                    s.parentNode.insertBefore(gcse, s);
-                  })();
-                </script>
-                <gcse:search></gcse:search>
+        <footer class="footer">
+            Book created with <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> and lives on <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Source code and contents of this site are distributed on terms of <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">MIT license</a>.
             </div>
-            </div>
-        </div>
-    </body>
+        </footer>
+    </div>
+  </body>
 </html>
+
