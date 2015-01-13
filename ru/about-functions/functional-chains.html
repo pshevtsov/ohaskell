@@ -60,7 +60,7 @@
         <div id="content">
             <h1>Функциональные цепочки</h1>
 
-<!--            <p>В отношении функций часто можно сказать: “Один в поле не воин”. В этой главе мы рассмотрим два удобных способа организации взаимодействия функций.</p>
+            <p>В отношении функций часто можно сказать: “Один в поле не воин”. В этой главе мы рассмотрим два удобных способа организации взаимодействия функций.</p>
 <h2 id="пример-с-url">Пример с URL</h2>
 <p>Известно, что вид URL обязан соответствовать особым правилам. Но в реальной жизни это не всегда так, поэтому иногда URL необходимо преобразовать к правильному виду. Вот как это может выглядеть:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
@@ -120,9 +120,9 @@ makeItLowerCase <span class="fu">=</span> map toLower</code></pre>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> <span class="st">&quot;Hi master!&quot;</span></code></pre>
 <p>Функция композиции не позволила бы проделать такой фокус.</p>
 <p>Вы спросите, зачем всё это нужно? Рассмотрим вот такой вызов:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print (<span class="st">&quot;Hi master &#39;&quot;</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">&quot;&#39;, have a nice day!&quot;</span>)</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print (<span class="st">&quot;Hi master '&quot;</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">&quot;', have a nice day!&quot;</span>)</code></pre>
 <p>Функция <code>print</code> готова работать исключительно с одним аргументом, поэтому три литерала, объединяющиеся в один, необходимо взять в скобки. Значительно удобнее написать так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> <span class="st">&quot;Hi master &#39;&quot;</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">&quot;&#39;, have a nice day!&quot;</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> <span class="st">&quot;Hi master '&quot;</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">&quot;', have a nice day!&quot;</span></code></pre>
 <p>Мы избавились от скобок, объединив функцию и её аргумент в маленькую цепочку. Именно благодаря такому свойству функции композиции и применения часто используют вместе:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">addPrefix <span class="fu">.</span> encodeAllSpaces <span class="fu">.</span> makeItLowerCase <span class="fu">$</span> url</code></pre>
 <p>Точка объединяет функции, а доллар привязывает их к аргументу. Кстати, в реальных Haskell-проектах чаще всего используется именно такая “бесскобочная” форма вызова.</p>
@@ -137,7 +137,7 @@ makeItLowerCase <span class="fu">=</span> map toLower</code></pre>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/about-functions/higher-order-functions.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/about-functions/higher-order-functions.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -145,7 +145,7 @@ makeItLowerCase <span class="fu">=</span> map toLower</code></pre>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/about-functions/functions-and-operators.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/about-functions/functions-and-operators.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -167,7 +167,7 @@ makeItLowerCase <span class="fu">=</span> map toLower</code></pre>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
--->
+
         </div> 
 
         <footer class="footer">

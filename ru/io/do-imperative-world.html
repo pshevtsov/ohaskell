@@ -60,7 +60,7 @@
         <div id="content">
             <h1>do: императивный мир</h1>
 
-<!--            <p>Вы прочли правильно: императивный мир. Несмотря на то, что Haskell является чисто функциональным языком, в случае необходимости мы можем написать императивный код. А при работе с внешним миром такая необходимость возникает постоянно.</p>
+            <p>Вы прочли правильно: императивный мир. Несмотря на то, что Haskell является чисто функциональным языком, в случае необходимости мы можем написать императивный код. А при работе с внешним миром такая необходимость возникает постоянно.</p>
 <p>Как вы знаете, императивный подход подразумевает выполнение программных инструкций в чётко указанном порядке. В чистых функциях такой подход излишен, потому что в них неважен порядок вычисления выражений. Однако в функциях, взаимодействующих с внешним миром, ситуация кардинально меняется.</p>
 <p>Вспомним наш пример работы со стандартными вводом и выводом:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
@@ -87,7 +87,7 @@ obtainUserText prompt <span class="fu">=</span> <span class="kw">do</span>
 main <span class="fu">=</span> <span class="kw">do</span>
     firstText <span class="ot">&lt;-</span> obtainUserText <span class="st">&quot;Enter your text, please: &quot;</span>
     secondText <span class="ot">&lt;-</span> obtainUserText <span class="st">&quot;One more, please: &quot;</span>
-    putStrLn <span class="fu">$</span> <span class="st">&quot;You said &#39;&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;&#39; and &#39;&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span></code></pre>
+    putStrLn <span class="fu">$</span> <span class="st">&quot;You said '&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
 <p>Функция <code>obtainUserText</code> заключает в себе два последовательных шага, поэтому в ней тоже используется слово <code>do</code>. Мы ожидаем, что сначала будет выведено соответствующее приглашение на экран, и только после этого действие, порождённое функцией <code>getLine</code>, отправится во внешний мир и вернётся оттуда с введённой пользователем строкой.</p>
 <h2 id="о-функции-return">О функции return</h2>
 <p>В языке C есть ключевое слово <code>return</code>, задающее точку возврата из функции. В Haskell нет такого ключевого слова, зато есть такая функция. И чтобы продемонстрировать её назначение, рассмотрим другой пример:</p>
@@ -97,7 +97,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     firstText <span class="ot">&lt;-</span> getLine
     putStrLn <span class="st">&quot;One more, please: &quot;</span>
     secondText <span class="ot">&lt;-</span> getLine
-    <span class="st">&quot;&#39;&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;&#39; and &#39;&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span> <span class="co">-- Простая строка??</span>
+    <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span> <span class="co">-- Простая строка??</span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
@@ -111,7 +111,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     firstText <span class="ot">&lt;-</span> getLine
     putStrLn <span class="st">&quot;One more, please: &quot;</span>
     secondText <span class="ot">&lt;-</span> getLine
-    return <span class="fu">$</span> <span class="st">&quot;&#39;&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;&#39; and &#39;&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span></code></pre>
+    return <span class="fu">$</span> <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
 <p>Императивно выглядит, не правда ли? Только не забывайте, что с ключевым словом <code>return</code> в языке C такая запись не имеет ничего общего.</p>
 <p>Функция <code>return</code> берёт значение и оборачивает его в действие, возвращающее это значение. В нашем случае мы передали ей строку, составленную из пользовательских текстов, а на выходе получили действие, возвращающее эту строку. Поэтому теперь наш код успешно скомпилируется.</p>
 <p>Кстати, чтобы доказать вам, что функция <code>return</code> действительно не имеет никакого отношения к ключевому слову <code>return</code> в C-подобных языках, я позволю себе небольшое хулиганство:</p>
@@ -121,7 +121,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     firstText <span class="ot">&lt;-</span> getLine
     putStrLn <span class="st">&quot;One more, please: &quot;</span>
     secondText <span class="ot">&lt;-</span> getLine
-    return <span class="fu">$</span> <span class="st">&quot;&#39;&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;&#39; and &#39;&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;&#39;&quot;</span>
+    return <span class="fu">$</span> <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span>
     putStrLn <span class="st">&quot;And third text, please: &quot;</span> <span class="co">-- Мы всё ещё продолжаем наш диалог!</span>
     getLine</code></pre>
 <p>Это может сбить с толку программистов, имеющих опыт в императивном программировании, но, как уже и было сказано выше, функция <code>return</code> всего лишь оборачивает значение в действие, возвращающее это значение. Она не прерывает ход наших действий, и если за ней есть другие действия, они спокойно продолжат выполняться. Фактически, в этой хулиганской функции мы потеряем два первых пользовательских текста и вернём действие, которое принесёт нам только третий текст.</p>
@@ -136,7 +136,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/io/IO-a.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/io/IO-a.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -144,7 +144,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/io/exceptions-handling.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/io/exceptions-handling.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -166,7 +166,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
--->
+
         </div> 
 
         <footer class="footer">

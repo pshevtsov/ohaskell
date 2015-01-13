@@ -60,7 +60,7 @@
         <div id="content">
             <h1>Собственные исключения</h1>
 
-<!--            <p>До сих пор мы лишь ловили исключения. Теперь поговорим о том, как их бросать, а также о том, как создать свои собственные типы исключений.</p>
+            <p>До сих пор мы лишь ловили исключения. Теперь поговорим о том, как их бросать, а также о том, как создать свои собственные типы исключений.</p>
 <h2 id="создаём">Создаём</h2>
 <p>Определяем тип исключения:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span>
@@ -83,7 +83,7 @@
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">extractProtocol ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 extractProtocol path <span class="fu">=</span>
     if path <span class="ot">`startsWith`</span> <span class="st">&quot;git&quot;</span> <span class="fu">||</span> path <span class="ot">`startsWith`</span> <span class="st">&quot;ssh&quot;</span>
-    then takeWhile (<span class="fu">/=</span> <span class="ch">&#39;:&#39;</span>) path
+    then takeWhile (<span class="fu">/=</span> <span class="ch">':'</span>) path
     else throw <span class="fu">$</span> <span class="dt">InvalidRepository</span> path  <span class="co">-- Протокол неверный, кидаем...</span>
     where startsWith url prefix <span class="fu">=</span> startswith prefix url
 
@@ -108,7 +108,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/io/exceptions-handling.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/io/exceptions-handling.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -116,7 +116,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/delicious/index.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/delicious/index.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -138,7 +138,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
--->
+
         </div> 
 
         <footer class="footer">

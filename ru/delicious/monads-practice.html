@@ -60,7 +60,7 @@
         <div id="content">
             <h1>Монады: практика</h1>
 
-<!--            <p>Зачем же ради соединения вычислений в последовательную цепочку обматывать эти вычисления в какие-то монадические обёртки?</p>
+            <p>Зачем же ради соединения вычислений в последовательную цепочку обматывать эти вычисления в какие-то монадические обёртки?</p>
 <p>Главная цель такого подхода: гибкость и упрощение кода. Приступим.</p>
 <h2 id="разоблачение-списков">Разоблачение списков</h2>
 <p>Списки в Haskell - это тоже монады. Рассмотрим, какую пользу нам может принести этот факт.</p>
@@ -69,7 +69,7 @@
 
 toLowerCase <span class="fu">=</span> return <span class="fu">.</span> toLower
 
-underlineSpaces char <span class="fu">=</span> return <span class="fu">$</span> <span class="kw">if</span> char <span class="fu">==</span> <span class="ch">&#39; &#39;</span> <span class="kw">then</span> <span class="ch">&#39;_&#39;</span> <span class="kw">else</span> char
+underlineSpaces char <span class="fu">=</span> return <span class="fu">$</span> <span class="kw">if</span> char <span class="fu">==</span> <span class="ch">' '</span> <span class="kw">then</span> <span class="ch">'_'</span> <span class="kw">else</span> char
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span>
@@ -98,7 +98,7 @@ toLowerCase <span class="fu">=</span> return <span class="fu">.</span> toLower
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span>
     print <span class="fu">$</span> name <span class="fu">&gt;&gt;=</span> toLowerCase
-    where name <span class="fu">=</span> <span class="dt">Just</span> <span class="ch">&#39;A&#39;</span></code></pre>
+    where name <span class="fu">=</span> <span class="dt">Just</span> <span class="ch">'A'</span></code></pre>
 <p>Обратите внимание на новую для нас строку:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE NoMonomorphismRestriction #-}</span></code></pre>
 <p>Перед нами - препроцессорный прагма-тег <code>LANGUAGE</code>, предназначенный для активизирования того или иного расширения языка Haskell. Расширения используются для добавления в ваш код определённых вкусностей. В данном случае мы активизировали расширение <code>NoMonomorphismRestriction</code>. Кстати, если вдруг вы ошибётесь в написании того или иного расширения, на стадии сборки компилятор выскажет своё негодование. А список всех поддерживаемых расширений мы сможем лицезреть, выполнив команду:</p>
@@ -131,7 +131,7 @@ main <span class="fu">=</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/delicious/monads-IO.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/delicious/monads-IO.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -139,7 +139,7 @@ main <span class="fu">=</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/delicious/maybe.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/delicious/maybe.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -161,7 +161,7 @@ main <span class="fu">=</span>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
--->
+
         </div> 
 
         <footer class="footer">

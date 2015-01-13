@@ -60,7 +60,7 @@
         <div id="content">
             <h1>List comprehension</h1>
 
-<!--            <p>Не удивляйтесь, что название этой главы не переведено на русский. Корректный перевод понятия “list comprehension” я так и не смог подобрать, долго размышлял - и в итоге решил оставить как есть. В русскоязычной литературе иногда предлагается вариант “преобразование списков”, но мне такой перевод кажется не вполне корректным.</p>
+            <p>Не удивляйтесь, что название этой главы не переведено на русский. Корректный перевод понятия “list comprehension” я так и не смог подобрать, долго размышлял - и в итоге решил оставить как есть. В русскоязычной литературе иногда предлагается вариант “преобразование списков”, но мне такой перевод кажется не вполне корректным.</p>
 <p>Речь пойдёт об одной хитрой конструкции, предназначенной для прохода по элементам списка(ов) и применения к ним некоторых действий. Да-да, это похоже на уже известные нам функции <code>map</code> и <code>filter</code>, однако есть некоторые дополнительные вкусности.</p>
 <h2 id="хитрый-список">Хитрый список</h2>
 <p>Вот как это выглядит:</p>
@@ -82,18 +82,18 @@ main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <spa
 <p>Например:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
 
-main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">==</span> <span class="ch">&#39;t&#39;</span>]</code></pre>
+main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">==</span> <span class="ch">'t'</span>]</code></pre>
 <p>На выходе будет:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;TT&quot;</span></code></pre>
 <p>Мы прошлись по всем четырём символам строки <code>http</code>, но функция <code>toUpper</code> была применена только к тем символам, которые удовлетворили предикату <code>c == 't'</code>. Именно поэтому на выходе мы получили строку лишь из этих двух символов.</p>
 <p>Предикатов, кстати, может быть несколько. Например, так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
 
-main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">/=</span> <span class="ch">&#39;h&#39;</span>, c <span class="fu">/=</span> <span class="ch">&#39;p&#39;</span>]</code></pre>
+main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">/=</span> <span class="ch">'h'</span>, c <span class="fu">/=</span> <span class="ch">'p'</span>]</code></pre>
 <p>Вывод в этом случае будет таким же:  </p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;TT&quot;</span></code></pre>
 <p>Здесь два предиката, <code>c /= 'h'</code> и <code>c /= 'p'</code>. Они соединяются в единый предикат через логическое “И”, поэтому мы можем написать и так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">[toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">/=</span> <span class="ch">&#39;h&#39;</span> <span class="fu">&amp;&amp;</span> c <span class="fu">/=</span> <span class="ch">&#39;p&#39;</span>]</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">[toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">/=</span> <span class="ch">'h'</span> <span class="fu">&amp;&amp;</span> c <span class="fu">/=</span> <span class="ch">'p'</span>]</code></pre>
 <p>Результат будет таким же.</p>
 <p>Обратите внимание на комбинацию символов <code>/=</code>. Это функция проверки на неравенство, аналог оператора <code>!=</code> в языке C. Кстати, он тоже носит математический окрас. Сравните:</p>
 <pre><code>/=   -- Haskell-форма
@@ -134,7 +134,7 @@ main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <spa
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
 
 main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>,
-                          let hletter <span class="fu">=</span> <span class="ch">&#39;h&#39;</span> <span class="kw">in</span> c <span class="fu">/=</span> hletter]</code></pre>
+                          let hletter <span class="fu">=</span> <span class="ch">'h'</span> <span class="kw">in</span> c <span class="fu">/=</span> hletter]</code></pre>
 <p>Промежуточное значение может быть использовано во избежание дубляжа при наличии нескольких предикатов.</p>
 <h2 id="пример">Пример</h2>
 <p>Разберём более практичный пример:</p>
@@ -145,7 +145,7 @@ checkGooglerBy email <span class="fu">=</span>
     if <span class="st">&quot;gmail.com&quot;</span> <span class="ot">`isSuffixOf`</span> email
     then nameFrom email <span class="fu">++</span> <span class="st">&quot; is a Googler!&quot;</span>
     else email
-    where nameFrom fullEmail <span class="fu">=</span> takeWhile (<span class="fu">/=</span> <span class="ch">&#39;@&#39;</span>) fullEmail
+    where nameFrom fullEmail <span class="fu">=</span> takeWhile (<span class="fu">/=</span> <span class="ch">'@'</span>) fullEmail
 
 main <span class="fu">=</span> print [checkGooglerBy email <span class="fu">|</span> email <span class="ot">&lt;-</span> [<span class="st">&quot;adam@gmail.com&quot;</span>,
                                                <span class="st">&quot;bob@yahoo.com&quot;</span>,
@@ -156,7 +156,7 @@ main <span class="fu">=</span> print [checkGooglerBy email <span class="fu">|</s
 <pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;adam is a Googler!&quot;</span>,<span class="st">&quot;bob@yahoo.com&quot;</span>,<span class="st">&quot;richard is a Googler!&quot;</span>,<span class="st">&quot;elena@yandex.ru&quot;</span>,<span class="st">&quot;denis is a Googler!&quot;</span>]</code></pre>
 <p>Мы проанализировали список email-адресов, и заменили все gmail-адреса фразой, начинающейся с имени пользователя.</p>
 <p>Рассмотрим эту строку:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">takeWhile (<span class="fu">/=</span> <span class="ch">&#39;@&#39;</span>) fullEmail</code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">takeWhile (<span class="fu">/=</span> <span class="ch">'@'</span>) fullEmail</code></pre>
 <p>Скелет стандартной функции <code>takeWhile</code> можно отобразить так:</p>
 <pre><code>takeWhile PREDICATE LIST </code></pre>
 <p>Здесь мы говорим: “Последовательно забирай (take) элементы из списка <code>LIST</code> до тех пор (While), пока <code>PREDICATE</code>, применённый к этим элементам, возвращает <code>True</code>. Если наткнёшься на элемент, не соответствующий этому предикату, немедленно прекращай работу и возвращай список из ранее полученных элементов”. Нам нужно извлечь имя пользователя из его email-адреса, а значит, мы бежим по email до тех пор, пока символы не равны <code>'@'</code>, что и отражается предикатом <code>(/= '@')</code>. Как только натыкаемся на собачку - возвращаем всё, находящееся перед ней.</p>
@@ -170,7 +170,7 @@ main <span class="fu">=</span> print [checkGooglerBy email <span class="fu">|</s
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/about-lists/tuples.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/about-lists/tuples.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -178,7 +178,7 @@ main <span class="fu">=</span> print [checkGooglerBy email <span class="fu">|</s
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/about-user-types/index.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/about-user-types/index.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -200,7 +200,7 @@ main <span class="fu">=</span> print [checkGooglerBy email <span class="fu">|</s
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
--->
+
         </div> 
 
         <footer class="footer">

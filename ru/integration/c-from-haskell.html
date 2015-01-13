@@ -60,7 +60,7 @@
         <div id="content">
             <h1>C из Haskell</h1>
 
-<!--            <p>В ряде случаев нам необходима интеграция Haskell-кода с кодом, написанным на другом языке. Вот вам не выдуманный сценарий. Жила-была программная система, и было в ней несколько модулей. Один модуль решили переписать на Haskell, а вот другой, не менее важный модуль, переписать на Haskell нет времени/возможности/желания. Здесь и возникает потребность в том, чтобы подружить Haskell-код с кодом чужеродным.</p>
+            <p>В ряде случаев нам необходима интеграция Haskell-кода с кодом, написанным на другом языке. Вот вам не выдуманный сценарий. Жила-была программная система, и было в ней несколько модулей. Один модуль решили переписать на Haskell, а вот другой, не менее важный модуль, переписать на Haskell нет времени/возможности/желания. Здесь и возникает потребность в том, чтобы подружить Haskell-код с кодом чужеродным.</p>
 <p>Возможен и второй сценарий. Есть Haskell-приложение, и присутствует в нём одна секция, очень уж критичная к скорости выполнения. К счастью, имеется готовое решение, написанное на языке C. Опять-таки, без интеграции не обойтись.</p>
 <p>Вы спросите, почему мы начинаем именно с языка C? Причина проста: стандарт гласит, что Haskell проще всего подружить со старым добрым C, что обусловлено, прежде всего, историческими причинами. Приступим.</p>
 <h2 id="hello-foreign-world">Hello foreign world!</h2>
@@ -235,7 +235,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 
     int code = utime( <span class="st">&quot;/Users/dshevchenko/test.c&quot;</span>, &amp;real_time );
     if( code == <span class="dv">0</span> ) {
-        printf( <span class="st">&quot;It&#39;s done.&quot;</span> );
+        printf( <span class="st">&quot;It's done.&quot;</span> );
     } <span class="kw">else</span> {
         printf( <span class="st">&quot;Something wrong...&quot;</span> );
     }
@@ -307,7 +307,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     utimeBufferPtr <span class="ot">&lt;-</span> malloc
     poke utimeBufferPtr realTime
     code <span class="ot">&lt;-</span> c_utime path utimeBufferPtr
-    putStrLn <span class="fu">$</span> <span class="kw">if</span> code <span class="fu">==</span> <span class="dv">0</span> <span class="kw">then</span> <span class="st">&quot;It&#39;s done&quot;</span> <span class="kw">else</span> <span class="st">&quot;Something wrong...&quot;</span>
+    putStrLn <span class="fu">$</span> <span class="kw">if</span> code <span class="fu">==</span> <span class="dv">0</span> <span class="kw">then</span> <span class="st">&quot;It's done&quot;</span> <span class="kw">else</span> <span class="st">&quot;Something wrong...&quot;</span>
     where realTime <span class="fu">=</span> <span class="dt">UTimeBuffer</span> { accessTime <span class="fu">=</span> <span class="dv">1396123253</span>
                                  , modificationTime <span class="fu">=</span> <span class="dv">1333050979</span>
                                  }</code></pre>
@@ -321,7 +321,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
                                  , modificationTime <span class="fu">=</span> <span class="dv">1333050979</span>
                                  }</code></pre>
 <p>Не важно, откуда мы получили эти posixtime-значения, важно, что когда мы запустим этот код, получим ожидаемый результат:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">It</span><span class="st">&#39;s done</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">It</span><span class="st">'s done</span></code></pre>
 <p>Поверьте мне на слово - это работает, и время модификации файла действительно изменяется.</p>
 <h2 id="а-убираться-кто-будет">А убираться кто будет?!</h2>
 <p>Ай-яй-яй, мы чуть не забыли… Вот наш код:</p>
@@ -329,7 +329,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     utimeBufferPtr <span class="ot">&lt;-</span> malloc  <span class="co">-- Радостно выделяем память в куче...   </span>
     poke utimeBufferPtr realTime
     code <span class="ot">&lt;-</span> c_utime path utimeBufferPtr
-    putStrLn <span class="fu">$</span> <span class="kw">if</span> code <span class="fu">==</span> <span class="dv">0</span> <span class="kw">then</span> <span class="st">&quot;It&#39;s done&quot;</span> <span class="kw">else</span> <span class="st">&quot;Something wrong...&quot;</span>
+    putStrLn <span class="fu">$</span> <span class="kw">if</span> code <span class="fu">==</span> <span class="dv">0</span> <span class="kw">then</span> <span class="st">&quot;It's done&quot;</span> <span class="kw">else</span> <span class="st">&quot;Something wrong...&quot;</span>
     <span class="fu">...</span>
     <span class="co">-- А освободить-то забыли...  </span></code></pre>
 <p>В самом деле, выделить-то мы выделили, а убираться кто будет? Встроенный в Haskell уборщик мусора здесь нам не помощник, ведь взаимодействие с чужаками вынудило нас выделить память вручную, как в языке C. А если выделили явно - нужно явно и освободить.</p>
@@ -346,7 +346,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     poke utimeBufferPtr realTime
     code <span class="ot">&lt;-</span> c_utime path utimeBufferPtr
     free utimeBufferPtr       <span class="co">-- И столь же радостно освобождаем.</span>
-    putStrLn <span class="fu">$</span> <span class="kw">if</span> code <span class="fu">==</span> <span class="dv">0</span> <span class="kw">then</span> <span class="st">&quot;It&#39;s done&quot;</span> <span class="kw">else</span> <span class="st">&quot;Something wrong...&quot;</span>
+    putStrLn <span class="fu">$</span> <span class="kw">if</span> code <span class="fu">==</span> <span class="dv">0</span> <span class="kw">then</span> <span class="st">&quot;It's done&quot;</span> <span class="kw">else</span> <span class="st">&quot;Something wrong...&quot;</span>
     <span class="fu">...</span></code></pre>
 <p>Теперь проверим:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">valgrind</span> --leak-check=full ./dist/build/Real/Real</code></pre>
@@ -370,7 +370,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/integration/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/integration/index.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -378,7 +378,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/end/index.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/end/index.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -400,7 +400,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
--->
+
         </div> 
 
         <footer class="footer">

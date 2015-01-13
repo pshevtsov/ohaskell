@@ -60,7 +60,7 @@
         <div id="content">
             <h1>Кортежи</h1>
 
-<!--            <p>Кортеж - это особый вид списка. Он тоже хранит в себе набор элементов, однако имеет три фундаментальных отличия от списка:</p>
+            <p>Кортеж - это особый вид списка. Он тоже хранит в себе набор элементов, однако имеет три фундаментальных отличия от списка:</p>
 <ol style="list-style-type: decimal">
 <li>круглые скобки вместо квадратных;</li>
 <li>гетерогенность;</li>
@@ -80,8 +80,8 @@
 <pre class="sourceCode haskell"><code class="sourceCode haskell">(<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Vasil`evich&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>)
 (<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>)</code></pre>
 <p>типы этих кортежей абсолютно разные: тип первого <code>(String, String, String)</code>, а тип второго <code>(String, String)</code>. Поэтому если функцию, в качестве аргумента ожидающую кортеж из двух строк, применить к кортежу из трёх строк, компилятор выразит свой категорический протест:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Couldn</span><span class="st">&#39;t match expected type `(String, String)&#39;</span>
-            <span class="kw">with</span> actual type <span class="kw">`(</span>[<span class="kw">Char</span>], [Char], [Char]<span class="kw">)</span><span class="st">&#39;</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Couldn</span><span class="st">'t match expected type `(String, String)'</span>
+            <span class="kw">with</span> actual type <span class="kw">`(</span>[<span class="kw">Char</span>], [Char], [Char]<span class="kw">)</span><span class="st">'</span></code></pre>
 <p>Оно и понятно: ожидали кортеж из двух строк, а тут вдруг - из трёх!</p>
 <p>Кстати, кортеж похож на список ещё и тем, что тоже может быть пустым, то есть не содержать в себе ни одного элемента. Пустой кортеж используется как отражение понятия “ничего”. Скоро мы увидим такие случаи.</p>
 <h2 id="что-с-ними-можно-делать">Что с ними можно делать</h2>
@@ -129,7 +129,7 @@ main <span class="fu">=</span> print <span class="fu">$</span> sel5 (<span class
 <p>Итак, пытаемся извлечь пятый элемент при наличии только четырёх. Получили трудноуловимую ошибку? Или, может, будет брошено исключение? Вовсе нет. Такой код просто не пройдёт компиляцию:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">src</span>/Main.hs:<span class="kw">23</span>:12:
     <span class="kw">No</span> instance for (Sel5 ([Char], [Char], [Char], [Char]) <span class="kw">a0</span>)
-      <span class="kw">arising</span> from a use of <span class="kw">`sel5</span><span class="st">&#39;</span></code></pre>
+      <span class="kw">arising</span> from a use of <span class="kw">`sel5</span><span class="st">'</span></code></pre>
 <p>Как мы помним, тип кортежа жёстко привязан к количеству хранящихся в нём значений. Именно поэтому такого рода ошибки будут выявлены на стадии компиляции.</p>
 <h2 id="в-сухом-остатке">В сухом остатке</h2>
 <ul>
@@ -142,7 +142,7 @@ main <span class="fu">=</span> print <span class="fu">$</span> sel5 (<span class
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-left">
             <div class="chapters-selector">
-                <a href="/ru/about-lists/ranges.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
+                <a href="../../ru/about-lists/ranges.html" title="Предыдущая глава"><span class="fa fa-hand-o-left"></span></a>
             </div>
         </div>
     </div>
@@ -150,7 +150,7 @@ main <span class="fu">=</span> print <span class="fu">$</span> sel5 (<span class
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
         <div class="clear-button text-right">
             <div class="chapters-selector">
-                <a href="/ru/about-lists/list-comprehension.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
+                <a href="../../ru/about-lists/list-comprehension.html" title="Следующая глава"><span class="fa fa-hand-o-right"></span></a>
             </div>
         </div>
     </div>
@@ -172,7 +172,7 @@ main <span class="fu">=</span> print <span class="fu">$</span> sel5 (<span class
 <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
  
--->
+
         </div> 
 
         <footer class="footer">
