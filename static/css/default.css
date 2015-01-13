@@ -198,40 +198,6 @@ div#social {
     font-size: 16px;
 }
 
-div#tagsCloud {
-    font-family: 'Ubuntu Mono';
-    text-align: center;
-}
-
-span#twitter {
-    font-weight: 700;
-    font-size: 20px;
-}
-
-span#github {
-    font-size: 20px;
-    font-weight: 700;
-    color: black;
-}
-
-span#googleplus {
-    font-size: 20px;
-    font-weight: 700;
-    color: black;
-}
-
-span#facebook {
-    font-size: 20px;
-    font-weight: 700;
-    color: black;
-}
-
-span#linkedin {
-    color: black;
-    font-weight: 700;
-    font-size: 20px;
-}
-
 span#root_link {
     font-family: 'Menlo', 'Monaco', monospace;
     font-size: 18px;
