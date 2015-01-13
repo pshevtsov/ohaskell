@@ -16,6 +16,6 @@ Because I'm fed up! Almost all the books about Haskell starts with quick sort al
 
 Functional programming is a kind of ghetto in the big megapolis of the software development. Portion of functional languages on the market is very small. And who are Haskell-programmers in the eyes of mainstream's programmers? Either an unattainable elite or an antisocial idiots. This book will destroy such a view.
 
-<div id="begin_button">
-<a href="/en/intro/index.html" title="So, let's begin...">&#10144;</a>
+<div class="begin-button">
+<a href="/en/intro/index.html" title="So, let's begin..."><span class="fa fa-hand-o-right"></span></a>
 </div>
