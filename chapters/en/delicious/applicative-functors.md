@@ -263,7 +263,7 @@ main =
 
 Чтобы стало понятнее, определим первый из этих операторов для нашего типа:
 
-```haskell 
+```haskell
 instance Applicative Distance where
     Distance magicWand <*> functor = fmap magicWand functor
     pure magicWand = Distance magicWand
