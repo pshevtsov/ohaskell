@@ -65,7 +65,7 @@
 <h2 id="собственный-тип">Собственный тип</h2>
 <p>Определим тип для IP-адреса:  </p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IPAddress</span> <span class="dt">String</span></code></pre>
-<p>Готово. Перед нами - простейший пользовательский тип. Значение этого типа фактически будет представлять собой значение типа <code>String</code> с меткой <code>IPAddress</code>. Рассматривайте метку как пояснительный идентификатор. Многие типы не имеют метки, поэтому их можно инициализировать значениями непосредственно. Например, если у нас есть некая функция, принимающая значение типа Int, то при её вызове мы будем писать просто:</p>
+<p>Готово. Перед нами - простейший пользовательский тип. Значение этого типа фактически будет представлять собой значение типа <code>String</code> с меткой <code>IPAddress</code>. Рассматривайте метку как пояснительный идентификатор. Многие типы не имеют метки, поэтому их можно инициализировать значениями непосредственно. Например, если у нас есть некая функция, принимающая значение типа <code>Int</code>, то при её вызове мы будем писать просто:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">show <span class="dv">6</span></code></pre>
 <p>Однако если эта же функция будет применена к значению нашего типа <code>IPAddress</code>, мы должны будем явно указать это:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>

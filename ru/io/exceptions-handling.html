@@ -66,9 +66,9 @@
 <p>Этот стандартный модуль предназначен для кидания и ловли исключений, причём как стандартных, так и наших собственных. Важно отметить: мы можем бросить исключение как из чистых функций, так и из функций с побочными эффектами, однако поймать его в чистой функции мы не сможем.</p>
 <h2 id="проблема-с-файлом">Проблема с файлом</h2>
 <p>Чаще всего мы будем сталкиваться с исключениями, брошенными из функций, взаимодействующих с внешним миром. Канонический пример: мы хотим прочесть содержимое файла, который отсутствует:</p>
-<pre class="haskell "><code>main :: IO ()
-main = do
-    fileContent &lt;- readFile &quot;Users/shevchenko/test.c&quot;  -- Неверный путь...
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+main <span class="fu">=</span> <span class="kw">do</span>
+    fileContent <span class="ot">&lt;-</span> readFile <span class="st">&quot;Users/shevchenko/test.c&quot;</span>  <span class="co">-- Неверный путь...</span>
     putStrLn fileContent</code></pre>
 <p>Вывод будет таким:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real</span>: Users/shevchenko/test.c: openFile: does not exist (No such file or directory)</code></pre>

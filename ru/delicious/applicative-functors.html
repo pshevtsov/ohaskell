@@ -182,10 +182,10 @@ main <span class="fu">=</span>
               игнорирую
                 второй</code></pre>
 <p>Чтобы стало понятнее, определим первый из этих операторов для нашего типа:</p>
-<pre class="haskell "><code>instance Applicative Distance where
-    Distance magicWand &lt;*&gt; functor = fmap magicWand functor
-    pure magicWand = Distance magicWand
-    Distance a *&gt; Distance b = Distance b  -- Просто возвращаем второй. </code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Applicative</span> <span class="dt">Distance</span> <span class="kw">where</span>
+    <span class="dt">Distance</span> magicWand <span class="fu">&lt;*&gt;</span> functor <span class="fu">=</span> fmap magicWand functor
+    pure magicWand <span class="fu">=</span> <span class="dt">Distance</span> magicWand
+    <span class="dt">Distance</span> a <span class="fu">*&gt;</span> <span class="dt">Distance</span> b <span class="fu">=</span> <span class="dt">Distance</span> b  <span class="co">-- Просто возвращаем второй. </span></code></pre>
 <p>Предельно просто: оператор <code>*&gt;</code> разрывает цепочку передачи значения между функторами. Например, если мы напишем так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span>  
