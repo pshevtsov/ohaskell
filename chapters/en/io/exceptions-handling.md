@@ -4,7 +4,7 @@ prevChapter: /en/io/do-imperative-world.html
 nextChapter: /en/io/own-exceptions.html
 ----
 
-We all aim at creating error-free software. Nevertheless, they sometimes emerge, and therefore, we have to deal with them. Let's discuss exceptions, that topic is especially necessary to know as many packages from Hackage contain code which throws exceptions.
+We all aim at creating error-free software. Nevertheless, errors sometimes emerge, and therefore, we have to deal with them. Let's discuss exceptions, that topic is especially important as many packages from Hackage contain code which throws exceptions.
 
 First of all, we need module `Control.Exception`:
 
@@ -16,7 +16,7 @@ That standard module is made for throwing and catching exceptions, either standa
 
 ## Problem with file
 
-Usually we'll be meeting exceptions which are thrown from functions which interact with the outside world. Canonical example: we want to read the content of the non-existent file:
+Usually we'll be dealing with exceptions which are thrown from functions which interact with the outside world. Canonical example: we want to read the content of the non-existent file:
 
 ```haskell
 main :: IO ()
@@ -31,7 +31,7 @@ That gives us output:
 Real: Users/shevchenko/test.c: openFile: does not exist (No such file or directory)
 ```
 
-Function `readFile` had thrown an exception, as it's the only way it could report about a problem with file. Exception haven't found any barriers on its way and was caught, on application's top level, after that a message about error was printed out and the application died on its feet.
+Function `readFile` had thrown an exception, as it's the only way it could report about a problem with file. Exception haven't found any barriers on its way and was caught on application's top level, after that a message about error was printed out and the application died on its feet.
 
 ## Catching
 
@@ -76,7 +76,7 @@ possibleErrors :: IOException -> IO String
 possibleErrors error = return $ show error
 ```
 
-Handler takes value of type `IOException`. In the handler's body we stringify the resultant exception, then we take the resultant string containing a description of an error and wrap it into an action `IO String`. In case if you are not happy with existing error message provide your own:
+Handler takes a value of type `IOException`. In the handler's body we stringify the resultant exception, then we take the resultant string that contains a description of an error and wrap it into an action `IO String`. In case if you are not happy with existing error message provide your own:
 
 ```haskell
 possibleErrors error = return "Unable to open this file. Please check it."
@@ -131,7 +131,7 @@ try $ readFile path :: IO (Either IOException String)
 
 We said, "Let function `try` return us a value of type `Either IOException String`, which contains either value of type `IOException` (when something happened while reading a file) or a value of type `String` with the contents of file".
 
-Next, check was it successful:
+Next, check if it was successful:
 
 ```haskell
 case result of
