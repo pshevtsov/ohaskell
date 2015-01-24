@@ -60,19 +60,19 @@
         <div id="content">
             <h1>Handling exception</h1>
 
-            <p>We all aim at creating error-free software. Nevertheless, they sometimes emerge, and therefore, we have to deal with them. Let’s discuss exceptions, that topic is especially necessary to know as many packages from Hackage contain code which throws exceptions.</p>
+            <p>We all aim at creating error-free software. Nevertheless, errors sometimes emerge, and therefore, we have to deal with them. Let’s discuss exceptions, that topic is especially important as many packages from Hackage contain code which throws exceptions.</p>
 <p>First of all, we need module <code>Control.Exception</code>:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span></code></pre>
 <p>That standard module is made for throwing and catching exceptions, either standard ones or our own. It’s significant that we can throw exception from either a pure function or from a function with side effect, but we can’t catch it in pure function.</p>
 <h2 id="problem-with-file">Problem with file</h2>
-<p>Usually we’ll be meeting exceptions which are thrown from functions which interact with the outside world. Canonical example: we want to read the content of the non-existent file:</p>
+<p>Usually we’ll be dealing with exceptions which are thrown from functions which interact with the outside world. Canonical example: we want to read the content of the non-existent file:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     fileContent <span class="ot">&lt;-</span> readFile <span class="st">&quot;Users/shevchenko/test.c&quot;</span>  <span class="co">-- Incorrect path...</span>
     putStrLn fileContent</code></pre>
 <p>That gives us output:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real</span>: Users/shevchenko/test.c: openFile: does not exist (No such file or directory)</code></pre>
-<p>Function <code>readFile</code> had thrown an exception, as it’s the only way it could report about a problem with file. Exception haven’t found any barriers on its way and was caught, on application’s top level, after that a message about error was printed out and the application died on its feet.</p>
+<p>Function <code>readFile</code> had thrown an exception, as it’s the only way it could report about a problem with file. Exception haven’t found any barriers on its way and was caught on application’s top level, after that a message about error was printed out and the application died on its feet.</p>
 <h2 id="catching">Catching</h2>
 <p>So:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span> 
@@ -97,7 +97,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>If we get an error while reading a file the corresponding exception is passed to our handler:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">possibleErrors ::</span> <span class="dt">IOException</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
 possibleErrors error <span class="fu">=</span> return <span class="fu">$</span> show error</code></pre>
-<p>Handler takes value of type <code>IOException</code>. In the handler’s body we stringify the resultant exception, then we take the resultant string containing a description of an error and wrap it into an action <code>IO String</code>. In case if you are not happy with existing error message provide your own:</p>
+<p>Handler takes a value of type <code>IOException</code>. In the handler’s body we stringify the resultant exception, then we take the resultant string that contains a description of an error and wrap it into an action <code>IO String</code>. In case if you are not happy with existing error message provide your own:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">possibleErrors error <span class="fu">=</span> return <span class="st">&quot;Unable to open this file. Please check it.&quot;</span></code></pre>
 <p>That message would be printed if the problem occurs.</p>
 <h2 id="catch-the-other-way">Catch the other way</h2>
@@ -126,7 +126,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>That function takes our <code>IO</code>-action and returns another <code>IO</code>-action, which returns value of standard type <code>Either e a</code>. <code>Either</code> is a type constructor designed to store either value which represents good result or value which represents bad result. Note, we explicitly specified type of value which function <code>try</code> returns.</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">try <span class="fu">$</span> readFile<span class="ot"> path ::</span> <span class="dt">IO</span> (<span class="dt">Either</span> <span class="dt">IOException</span> <span class="dt">String</span>)</code></pre>
 <p>We said, “Let function <code>try</code> return us a value of type <code>Either IOException String</code>, which contains either value of type <code>IOException</code> (when something happened while reading a file) or a value of type <code>String</code> with the contents of file”.</p>
-<p>Next, check was it successful:</p>
+<p>Next, check if it was successful:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">case</span> result <span class="kw">of</span>
     <span class="dt">Left</span> exception <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;Fault: &quot;</span> <span class="fu">++</span> show exception
     <span class="dt">Right</span> content <span class="ot">-&gt;</span> putStrLn content</code></pre>
