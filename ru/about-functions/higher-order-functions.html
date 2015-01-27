@@ -60,15 +60,14 @@
         <div id="content">
             <h1>Функции высшего порядка</h1>
 
-            <p>Функции высшего порядка (higher-order functions) занимают важное место в языке Haskell. Из предыдущих глав вы узнали, что чистые функции - это, в конечном итоге, значения. Следовательно, чистые функции можно, во-первых, передавать другим функциям в качестве аргументов, а во-вторых, возвращать их из других функций.</p>
-<p>Функцией высшего порядка называют такую функцию, которая принимает другую функцию в качестве аргумента и/или возвращает другую функцию.</p>
+            <p>Функции высшего порядка (higher-order functions) занимают очень важное место в языке Haskell. Из предыдущих глав вы узнали, что чистые функции - это, в конечном итоге, значения. А раз это значения, значит их можно, во-первых, передавать другим функциям в качестве аргументов, а во-вторых, возвращать их из других функций. Так вот функцию, принимающую другую функцию в качестве аргумента и/или возвращающую другую функцию, называют <em>функцией высшего порядка</em>.</p>
 <h2 id="разоблачение-функций">Разоблачение функций</h2>
 <p>Помните, в рассказе о чистых функциях было упомянуто, что они могут принимать как один, так и множество аргументов? Пришло время признаться в обмане, ибо правда такова:</p>
 <blockquote>
 <p><strong>Чистые функции в Haskell всегда принимают только один аргумент.</strong> </p>
 </blockquote>
 <p>Постойте, но как же мы тогда смогли определить функции, принимающие по два и даже по три аргумента?</p>
-<p>Это была хитрость, и называется она “каррирование” (currying), иногда говорят “карринг”. Слово это знаменитое, ибо происходит от имени <a href="https://en.wikipedia.org/wiki/Haskell_Curry">Haskell Curry</a>. Каррирование - это превращение функции, принимающей множество аргументов, в функцию, принимающую все эти аргументы по одному.</p>
+<p>Это была хитрость, и называется она “каррирование” (currying), иногда говорят “карринг”. Слово это знаменитое, ибо происходит от имени <a href="https://en.wikipedia.org/wiki/Haskell_Curry">Haskell Curry</a>. Каррирование - это превращение функции, принимающей множество аргументов, в функцию, принимающую эти аргументы по одному.</p>
 <p>Определим функцию деления двух чисел:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">divide ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 divide arg1 arg2 <span class="fu">=</span> arg1 <span class="fu">/</span> arg2</code></pre>
@@ -95,7 +94,7 @@ totalSum arg1 arg2 arg3 <span class="fu">=</span> arg1 <span class="fu">+</span>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">totalSum ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> (<span class="dt">Double</span> <span class="ot">-&gt;</span> (<span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>))</code></pre>
 <p>а её вызов - так:  </p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">((totalSum <span class="fl">10.03</span>) <span class="fl">2.1</span>) <span class="fl">45.7</span></code></pre>
-<p>  И чтобы всё окончательно прояснилось, изучим одну важную деталь.</p>
+<p>  И чтобы всё окончательно прояснилось, изучим один важный механизм.</p>
 <h2 id="частичное-применение-функции">Частичное применение функции</h2>
 <p>Несмотря на “двухэтапность” вызова функции <code>divide</code>, её тело будет выполнено один раз. Вызов один, просто он разделён на два последовательных шага. А чтобы понять суть этих шагов, изучим частичное применение функции (partial application).</p>
 <p>Функцию называют частично применённой, если количество аргументов, к которым она применена, оказалось меньше ожидаемого ею количества аргументов. И здесь нам пригодятся уже известные нам λ-функции.</p>
@@ -103,25 +102,26 @@ totalSum arg1 arg2 arg3 <span class="fu">=</span> arg1 <span class="fu">+</span>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
     let temporaryFunction <span class="fu">=</span> divide <span class="fl">10.03</span>  <span class="co">-- &quot;Запомнили&quot; первое значение...</span>
     in
-    print (temporaryFunction <span class="fl">2.1</span>)   <span class="co">-- А вот теперь можем выполнить работу.</span></code></pre>
+    print (temporaryFunction <span class="fl">2.1</span>)   <span class="co">-- А вот теперь можем выполнить деление.</span></code></pre>
 <p>Теперь всё встало на свои места. Здесь наглядно показано, что же на самом деле означает выражение вида:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">(divide <span class="fl">10.03</span>) <span class="fl">2.1</span></code></pre>
-<p>В результате первого вызова, когда мы применили функцию <code>divide</code> к первому аргументу, мы ещё не можем получить результат деления, ведь второго-то аргумента ещё нет! Вместо этого мы получили временную λ-функцию, которую для наглядности ассоциировали с выражением <code>temporaryFunction</code>. Эта временная λ-функция как бы запомнила значение первого аргумента, и только когда мы применим её ко второму аргументу, мы и получим результат деления.</p>
+<p>В результате первого вызова, когда мы применили функцию <code>divide</code> к первому аргументу, мы ещё не можем получить результат деления, ведь второго-то аргумента у нас пока нет. Вместо этого мы получили временную λ-функцию, которую для наглядности ассоциировали с выражением <code>temporaryFunction</code>. Эта временная λ-функция как бы запомнила значение первого аргумента, и только когда мы применим её ко второму аргументу, получим результат деления.</p>
 <p>По аналогии, вызов нашей функции <code>totalSum</code>, происходящий в три этапа, можно разложить так:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
-    let firstFunction <span class="fu">=</span> totalSum <span class="fl">1.0</span>       <span class="co">-- &quot;Запомнили&quot; первый...</span>
-        secondFunction <span class="fu">=</span> firstFunction <span class="fl">2.0</span> <span class="co">-- &quot;Запомнили&quot; второй...</span>
+    let firstFunction  <span class="fu">=</span> totalSum <span class="fl">1.0</span>       <span class="co">-- &quot;Запомнили&quot; первое значение...</span>
+        secondFunction <span class="fu">=</span> firstFunction <span class="fl">2.0</span>  <span class="co">-- &quot;Запомнили&quot; второе значение...</span>
     in
-    print (secondFunction <span class="fl">3.0</span>)    <span class="co">-- А вот теперь можем складывать.</span></code></pre>
+    print (secondFunction <span class="fl">3.0</span>)              <span class="co">-- А вот теперь можем складывать.</span></code></pre>
 <p>В процессе вызова у нас появилось уже две временные λ-функции, каждая из которых применялась к очередному аргументу и запоминала его. И только когда вторая промежуточная λ-функция была применена к третьему, последнему аргументу, мы и получили сумму.</p>
+<p>Так вот упомянутое выше каррирование работает благодаря механизму частичного применения функции. В самом деле, как бы мы смогли разложить функцию от двух аргументов на два одноаргументных шага? Только через частичное применение.</p>
 <h2 id="зачем-это-нужно">Зачем это нужно</h2>
-<p>В подавляющем большинстве случаев знать вышеизложенную информацию о каррировании функций и о частичном применении не обязательно. Основное преимущество каррирования лежит в академической плоскости: выводить математические доказательства гораздо легче, если договориться, что каждая из вычисляемых функций всегда принимает строго один аргумент и возвращает строго одно значение. Но нас с вами больше интересует аспект практический. И поэтому мы возвращаемся к рассмотрению функций высшего порядка (далее - ФВП).</p>
-<p>Формально функции <code>divide</code> и <code>totalSum</code> являются ФВП, в силу тех самых промежуточных λ-функций. Фактически, все функции, принимающие более одного аргумента, являются ФВП. Но все эти промежуточные λ-функции - всего лишь “подкапотные” дела, они скрыты от наших глаз. Гораздо больший интерес для нас представляют “настоящие” ФВП, которые явно объявлены как принимающие на вход функциональные значения и/или возвращающие функциональные значения.</p>
+<p>В подавляющем большинстве случаев знать вышеизложенную информацию о каррировании функций и о частичном применении не обязательно. Основное преимущество каррирования лежит в академической плоскости: выводить математические доказательства гораздо легче, если договориться, что каждая из вычисляемых функций всегда принимает строго один аргумент и возвращает строго одно значение. Но нас-то с вами больше интересует аспект практический. И поэтому мы возвращаемся к рассмотрению функций высшего порядка (далее - ФВП).</p>
+<p>Формально функции <code>divide</code> и <code>totalSum</code> являются ФВП, в силу тех самых промежуточных λ-функций. Более того, все функции в Haskell, принимающие более одного аргумента, являются ФВП. Но все эти промежуточные λ-функции - всего лишь “подкапотные” дела, они скрыты от наших глаз. Гораздо больший интерес для нас представляют “настоящие” ФВП, которые явно объявлены как принимающие на вход функциональные значения и/или возвращающие функциональные значения.</p>
 <p>Рассмотрим небольшой пример:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Login</span> <span class="fu">=</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">Password</span> <span class="fu">=</span> <span class="dt">String</span>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Login</span>     <span class="fu">=</span> <span class="dt">String</span>
+<span class="kw">type</span> <span class="dt">Password</span>  <span class="fu">=</span> <span class="dt">String</span>
 <span class="kw">type</span> <span class="dt">AvatarURL</span> <span class="fu">=</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">UserId</span> <span class="fu">=</span> <span class="dt">Integer</span>
+<span class="kw">type</span> <span class="dt">UserId</span>    <span class="fu">=</span> <span class="dt">Integer</span>
 
 <span class="ot">userInfo ::</span> <span class="dt">Login</span> <span class="ot">-&gt;</span> <span class="dt">Password</span> <span class="ot">-&gt;</span> <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 userInfo login password avatarURL userId <span class="fu">=</span>
@@ -130,27 +130,22 @@ userInfo login password avatarURL userId <span class="fu">=</span>
     <span class="st">&quot;\n password: &quot;</span> <span class="fu">++</span> password <span class="fu">++</span>
     <span class="st">&quot;\n avatar URL: &quot;</span> <span class="fu">++</span> avatarURL
 
-<span class="kw">type</span> <span class="dt">EmptyInfo</span> <span class="fu">=</span> <span class="dt">Login</span> <span class="ot">-&gt;</span> <span class="dt">Password</span> <span class="ot">-&gt;</span> <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">WithLogin</span> <span class="fu">=</span>          <span class="dt">Password</span> <span class="ot">-&gt;</span> <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">AndWithPassword</span> <span class="fu">=</span>                <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">AndWithAvatarURL</span> <span class="fu">=</span>                            <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<span class="kw">type</span> <span class="dt">EmptyInfo</span>        <span class="fu">=</span> <span class="dt">Login</span> <span class="ot">-&gt;</span> <span class="dt">Password</span> <span class="ot">-&gt;</span> <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<span class="kw">type</span> <span class="dt">WithLogin</span>        <span class="fu">=</span>          <span class="dt">Password</span> <span class="ot">-&gt;</span> <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<span class="kw">type</span> <span class="dt">AndWithPassword</span>  <span class="fu">=</span>                      <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<span class="kw">type</span> <span class="dt">AndWithAvatarURL</span> <span class="fu">=</span>                                   <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 
 <span class="ot">storeLoginIn ::</span> <span class="dt">EmptyInfo</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">WithLogin</span>
 storeLoginIn emptyInfo userId <span class="fu">=</span>
     emptyInfo <span class="st">&quot;denis&quot;</span>
-    <span class="co">{- В реальности логин будет получен</span>
-<span class="co">       в соответствии с переданным userId -}</span>
 
 <span class="ot">storePasswordIn ::</span> <span class="dt">WithLogin</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">AndWithPassword</span>
-storePasswordIn infoWithLogin userId <span class="fu">=</span> infoWithLogin <span class="st">&quot;123456789abc&quot;</span>
-    <span class="co">{- В реальности пароль будет получен</span>
-<span class="co">       в соответствии с переданным userId -}</span>
+storePasswordIn infoWithLogin userId <span class="fu">=</span> 
+    infoWithLogin <span class="st">&quot;123456789abc&quot;</span>
 
 <span class="ot">storeAvatarURLIn ::</span> <span class="dt">AndWithPassword</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">AndWithAvatarURL</span>
 storeAvatarURLIn infoWithPassword userId <span class="fu">=</span>
     infoWithPassword <span class="st">&quot;http://dshevchenko.biz/denis_avatar.png&quot;</span>
-    <span class="co">{- В реальности URL будет получен</span>
-<span class="co">       в соответствии с переданным userId -}</span>
 
 main <span class="fu">=</span>
     let userId <span class="fu">=</span> <span class="dv">1234</span>
@@ -171,10 +166,10 @@ main <span class="fu">=</span>
 <p>Это оператор конкатенации двух списков в один. А поскольку строка есть список символов, к ней этот оператор вполне применим.</p>
 <p>А вот теперь начинается самое интересное. Подразумевается, что изначально у нас имеется только идентификатор пользователя, а соответствующие ему логин, пароль и путь к аватару нам нужно откуда-то получить. К счастью, у нас есть три функции, каждая из которых знает, где взять логин, пароль и путь к аватару соответственно. И каждая из этих трёх функций является ФВП.</p>
 <p>Рассмотрим псевдонимы:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">EmptyInfo</span> <span class="fu">=</span> <span class="dt">Login</span> <span class="ot">-&gt;</span> <span class="dt">Password</span> <span class="ot">-&gt;</span> <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">WithLogin</span> <span class="fu">=</span>          <span class="dt">Password</span> <span class="ot">-&gt;</span> <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">AndWithPassword</span> <span class="fu">=</span>                <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
-<span class="kw">type</span> <span class="dt">AndWithAvatarURL</span> <span class="fu">=</span>                            <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">EmptyInfo</span>        <span class="fu">=</span> <span class="dt">Login</span> <span class="ot">-&gt;</span> <span class="dt">Password</span> <span class="ot">-&gt;</span> <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<span class="kw">type</span> <span class="dt">WithLogin</span>        <span class="fu">=</span>          <span class="dt">Password</span> <span class="ot">-&gt;</span> <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<span class="kw">type</span> <span class="dt">AndWithPassword</span>  <span class="fu">=</span>                      <span class="dt">AvatarURL</span> <span class="ot">-&gt;</span> <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<span class="kw">type</span> <span class="dt">AndWithAvatarURL</span> <span class="fu">=</span>                                   <span class="dt">UserId</span> <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
 <p>Каждый из них вводит упрощающее имя для функционального типа, образованного “урезанием” от типа функции <code>userInfo</code>. Обратите внимание: каждый последующий тип ожидает на один аргумент меньше, чем предыдущий тип. Эти псевдонимы задают типы для очередной промежуточной λ-функции, которые нужны, как вы уже догадались, для частичного применения функции <code>userInfo</code>.</p>
 <p>Рассмотрим первый вызов:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">infoWithLogin <span class="fu">=</span> storeLoginIn userInfo userId</code></pre>
