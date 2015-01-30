@@ -66,8 +66,7 @@
 <pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>]</code></pre>
 <p>а можем просто задать диапазон:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dv">1</span><span class="fu">..</span><span class="dv">10</span>]</code></pre>
-<p>Готово.</p>
-<p>Разумеется, такой фокус можно проделать не только с числами. Например, вот так мы получим список всех букв английского алфавита в нижнем регистре:</p>
+<p>Готово. Разумеется, такой фокус можно проделать не только с числами. Например, вот так мы получим список всех букв английского алфавита в нижнем регистре:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="ch">'a'</span><span class="fu">..</span><span class="ch">'z'</span>]</code></pre>
 <p>На выходе получим красивый список символов, или простую строку:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span></code></pre>
@@ -82,7 +81,7 @@
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span><span class="fu">..</span><span class="dv">30</span>]</code></pre>
 <p>и так тоже не пишите:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="dv">2</span>,<span class="dv">4</span><span class="fu">..</span><span class="dv">28</span>,<span class="dv">30</span>]</code></pre>
-<p>Компилятор обидится на вас, ведь вы пытаетесь сказать ему то, что он и сам прекрасно понимает.</p>
+<p>Такого рода уточнения компилятору не нужны.</p>
 <h2 id="без-конца">Без конца</h2>
 <p>Как вы помните, ленивость языка Haskell позволяет нам оперировать бесконечными списками. И мы можем создать такой список через диапазон.</p>
 <p>Например, вот такой диапазон:</p>

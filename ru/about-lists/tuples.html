@@ -60,18 +60,18 @@
         <div id="content">
             <h1>Кортежи</h1>
 
-            <p>Кортеж - это особый вид списка. Он тоже хранит в себе набор элементов, однако имеет три фундаментальных отличия от списка:</p>
+            <p>Воспринимайте кортеж как особый вид списка. Он тоже хранит в себе набор элементов, однако имеет три фундаментальных отличия от списка:</p>
 <ol style="list-style-type: decimal">
-<li>круглые скобки вместо квадратных;</li>
-<li>гетерогенность;</li>
+<li>круглые скобки вместо квадратных,</li>
+<li>гетерогенность,</li>
 <li>тип, зависящий от размера.</li>
 </ol>
 <p>С первым отличием всё очевидно:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>]  <span class="co">-- Это список из двух строк.</span>
-(<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>)  <span class="co">-- Это кортеж из двух строк.</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>]  <span class="co">-- Это список из двух строк.</span>
+(<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>)  <span class="co">-- Это кортеж из двух строк.</span></code></pre>
 <p>Второе отличие - это способность кортежа хранить в себе элементы разных типов:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;Denis&quot;</span>, <span class="fl">1.234</span>]  <span class="co">-- Будьте уверены, компиляция не пройдёт...</span>
-(<span class="st">&quot;Denis&quot;</span>, <span class="fl">1.234</span>)  <span class="co">-- А тут - без проблем!</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;Denis&quot;</span>, <span class="fl">1.234</span>]  <span class="co">-- Компиляция не пройдёт...</span>
+(<span class="st">&quot;Denis&quot;</span>, <span class="fl">1.234</span>)  <span class="co">-- А тут - без проблем!</span></code></pre>
 <p>Теперь о третьем отличии. Если у нас есть два разных по размеру списка строк:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Vasil`evich&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>]
 [<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>]</code></pre>
@@ -79,9 +79,9 @@
 <p>С кортежами всё обстоит совершенно иначе. Если у нас есть два кортежа, разных по длине:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">(<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Vasil`evich&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>)
 (<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>)</code></pre>
-<p>типы этих кортежей абсолютно разные: тип первого <code>(String, String, String)</code>, а тип второго <code>(String, String)</code>. Поэтому если функцию, в качестве аргумента ожидающую кортеж из двух строк, применить к кортежу из трёх строк, компилятор выразит свой категорический протест:</p>
+<p>типы этих кортежей абсолютно разные: тип первого - <code>(String, String, String)</code>, а тип второго - <code>(String, String)</code>. Поэтому если функцию, в качестве аргумента ожидающую кортеж из двух строк, применить к кортежу из трёх строк, компилятор выразит свой категорический протест:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Couldn</span><span class="st">'t match expected type `(String, String)'</span>
-            <span class="kw">with</span> actual type <span class="kw">`(</span>[<span class="kw">Char</span>], [Char], [Char]<span class="kw">)</span><span class="st">'</span></code></pre>
+            <span class="kw">with</span> actual type <span class="kw">`(</span>[<span class="kw">Char</span>], [Char], [Char]<span class="kw">)</span><span class="st">'</span></code></pre>
 <p>Оно и понятно: ожидали кортеж из двух строк, а тут вдруг - из трёх!</p>
 <p>Кстати, кортеж похож на список ещё и тем, что тоже может быть пустым, то есть не содержать в себе ни одного элемента. Пустой кортеж используется как отражение понятия “ничего”. Скоро мы увидим такие случаи.</p>
 <h2 id="что-с-ними-можно-делать">Что с ними можно делать</h2>
@@ -94,7 +94,7 @@ chessMove pair <span class="fu">=</span> fst pair <span class="fu">++</span> <sp
 main <span class="fu">=</span> print <span class="fu">$</span> chessMove (<span class="st">&quot;e2&quot;</span>, <span class="st">&quot;e4&quot;</span>)</code></pre>
 <p>Мы последовательно извлекли первый и второй элементы из полученной пары и сделали из них единую строку:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">e2-e4</span></code></pre>
-<p>Но что же мы будем делать, если количество элементов в кортеже больше двух? Ведь функции <code>fst</code> и <code>snd</code> работают только с парами. Если элементов больше двух, извлекать их нужно иным способом.</p>
+<p>Всё предельно просто. Но что же мы будем делать, если количество элементов в кортеже окажется больше двух? Ведь функции <code>fst</code> и <code>snd</code> работают только с парами. Если элементов больше двух, извлекать их нужно иным способом.</p>
 <h2 id="неудобный-способ">Неудобный способ</h2>
 <p>Первый способ неудобен, ибо нам придётся самим определять необходимые функции. Но нас трудности не страшат, поэтому сделаем это:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">get1 (element, _, _, _) <span class="fu">=</span> element
@@ -104,7 +104,7 @@ get4 (_, _, _, element) <span class="fu">=</span> element</code></pre>
 <p>Подразумевается, что мы хотим работать с кортежем из четырёх элементов. В этом случае есть лишь четыре варианта извлечения, поэтому определим четыре функции для извлечения первого элемента, второго, третьего и четвёртого соответственно. Кстати, говоря “первый элемент”, мы подразумеваем именно первый по счёту, поэтому цифра <code>1</code> в имени <code>get1</code> - это порядковый номер, а не индекс.</p>
 <p>А теперь рассмотрим определение первой функции:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">get1 (element, _, _, _) <span class="fu">=</span> element</code></pre>
-<p>Эта функция применяется к кортежу из четырёх элементов и возвращает первый из них. Обратите внимание на странные символы подчёркивания. Воспринимайте этот символ как “нечто”, “что бы то ни было”. Мы говорим: “Да, в этом кортеже есть четыре элемента, но нас абсолютно не интересует, что там под номером два, и что под номером три, и что под номером четыре. Нас интересует только то, что под номером один. Вот этот номер один мы и вернём”.</p>
+<p>Эта функция применяется к кортежу из четырёх элементов и возвращает первый из них. Обратите внимание на странные символы подчёркивания. Воспринимайте этот символ как “нечто”, “что бы то ни было”. Эдакий placeholder-пустышка. Мы говорим: “Да, в этом кортеже есть четыре элемента, но нас абсолютно не интересует, что там под номером два, и что под номером три, и что под номером четыре. Нас интересует только то, что под номером один. Вот этот номер один мы и вернём”.</p>
 <p>Так же и вторая функция:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">get2 (_, element, _, _) <span class="fu">=</span> element</code></pre>
 <p>Получаем четыре элемента, и хотя что-то там стоит под номерами один, три и четыре, нас это не волнует, нам нужен только элемент под номером два, поэтому именно его и возвращаем.</p>
@@ -116,13 +116,14 @@ get4 (_, _, _, element) <span class="fu">=</span> element</code></pre>
 <p>Зачем делать самому то, что уже сделали другие? А другие уже сделали пакет <code>tuple</code> из Hackage. Живёт пакет <a href="http://hackage.haskell.org/package/tuple">здесь</a>. Установим его командой:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> install tuple</code></pre>
 <p>Затем добавим имя этого пакета к параметру <code>build-depends</code> в файле <code>Real.cabal</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">    build<span class="fu">-</span>depends<span class="fu">:</span>  base <span class="fu">==</span><span class="fl">4.6</span><span class="fu">.</span>\<span class="fu">*</span>, <span class="dt">MissingH</span>, tuple</code></pre>
-<p>Импортируем модуль <code>Data.Tuple.Select</code>, и сразу же можем приступить:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">    build<span class="fu">-</span>depends<span class="fu">:</span> base <span class="fu">&gt;=</span><span class="fl">4.7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span><span class="fl">4.8</span>,
+                   tuple</code></pre>
+<p>Теперь пишем:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Tuple.Select</span>
 
 main <span class="fu">=</span> print <span class="fu">$</span> sel3 (<span class="st">&quot;One&quot;</span>, <span class="st">&quot;Two&quot;</span>, <span class="st">&quot;Three&quot;</span>, <span class="st">&quot;Four&quot;</span>)</code></pre>
 <p>Метод <code>sel3</code> извлекает третий элемент кортежа. Просто и удобно. Кстати, в модуле <code>Data.Tuple.Select</code> определены функции от <code>sel1</code> до <code>sel15</code>. Авторы этого пакета вполне резонно предположили, что создавать кортеж из более чем 15 элементов никакому вменяемому программисту в голову не придёт…</p>
-<p>А кстати, как же насчёт безопасности? Что будет, если мы по ошибке попытаемся извлечь из этого кортежа пятый элемент? Попробуем:</p>
+<p>А кстати, как насчёт безопасности? Что будет, если мы по ошибке попытаемся извлечь из этого кортежа пятый элемент? Попробуем:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Tuple.Select</span>
 
 main <span class="fu">=</span> print <span class="fu">$</span> sel5 (<span class="st">&quot;One&quot;</span>, <span class="st">&quot;Two&quot;</span>, <span class="st">&quot;Three&quot;</span>, <span class="st">&quot;Four&quot;</span>)</code></pre>
@@ -130,10 +131,10 @@ main <span class="fu">=</span> print <span class="fu">$</span> sel5 (<span class
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">src</span>/Main.hs:<span class="kw">23</span>:12:
     <span class="kw">No</span> instance for (Sel5 ([Char], [Char], [Char], [Char]) <span class="kw">a0</span>)
       <span class="kw">arising</span> from a use of <span class="kw">`sel5</span><span class="st">'</span></code></pre>
-<p>Как мы помним, тип кортежа жёстко привязан к количеству хранящихся в нём значений. Именно поэтому такого рода ошибки будут выявлены на стадии компиляции.</p>
+<p>Как мы помним, тип кортежа жёстко привязан к количеству хранящихся в нём значений. Именно поэтому такого рода ошибки будут гарантированно выявлены на стадии компиляции.</p>
 <h2 id="в-сухом-остатке">В сухом остатке</h2>
 <ul>
-<li>Кортеж - это упрощённый список, позволяющий хранить значения разных типов.</li>
+<li>Кортеж - это своего рода упрощённый список, позволяющий хранить значения разных типов.</li>
 <li>Тип кортежа определяется количеством и типом хранящихся в нём значений.</li>
 <li>Единственное, что мы можем сделать с кортежем - извлечь из него значения, если таковые имеются.</li>
 </ul>

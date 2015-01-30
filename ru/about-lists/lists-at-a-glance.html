@@ -90,8 +90,7 @@ thisIsAWildAnimal name <span class="fu">=</span>
     where wildAnimals <span class="fu">=</span> [<span class="st">&quot;Bear&quot;</span>, <span class="st">&quot;Tiger&quot;</span>, <span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Wolf&quot;</span>]
 
 main <span class="fu">=</span> print <span class="fu">$</span> <span class="kw">if</span> thisIsAWildAnimal <span class="st">&quot;Cat&quot;</span> <span class="kw">then</span> <span class="st">&quot;Yes!&quot;</span> <span class="kw">else</span> <span class="st">&quot;No!&quot;</span></code></pre>
-<p>Здесь функция стандартная функция <code>elem</code>, записанная в инфиксной форме (то есть между двумя своими аргументами), проверяет наличие строки <code>&quot;Cat&quot;</code> в списке диких животных.</p>
-<p>Стандартная библиотека Haskell позволяет делать со списком самые разные вещи, такие как получение минимального значения, вычисления суммы элементов, извлечение части списка, проверка на пустоту и равенство и так далее и в том же духе.</p>
+<p>Здесь стандартная функция <code>elem</code>, записанная в инфиксной форме (то есть между двумя своими аргументами), проверяет наличие строки <code>&quot;Cat&quot;</code> в списке диких животных.</p>
 <h2 id="неизменность-списка">Неизменность списка</h2>
 <p>Как вы знаете, все значения в Haskell неизменны, как Египетские пирамиды. Списки - не исключение: мы не можем изменить список, мы можем лишь создать на его основе новый список. Например:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addNewHostToFront ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
@@ -102,6 +101,8 @@ main <span class="fu">=</span>
     where listOfHosts <span class="fu">=</span> [<span class="st">&quot;45.67.78.89&quot;</span>, <span class="st">&quot;123.45.65.54&quot;</span>, <span class="st">&quot;127.0.0.1&quot;</span>]</code></pre>
 <p>Вывод:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;124.67.54.90&quot;</span>,<span class="st">&quot;45.67.78.89&quot;</span>,<span class="st">&quot;123.45.65.54&quot;</span>,<span class="st">&quot;127.0.0.1&quot;</span>]</code></pre>
+<p>Оператор <code>:</code> добавляет значение, являющееся левым операндом, в начало списка, являющегося правым операндом:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">newHost <span class="fu">:</span> listOfHosts</code></pre>
 <p>С концептуальной точки зрения функция <code>addNewHostToFront</code> добавила новый адрес в начало переданного ей списка. Но в действительности никакого добавления не произошло: функция просто взяла значение <code>newHost</code> и список <code>listOfHosts</code> и создала на их основе новый список, содержащий уже четыре адреса вместо трёх.</p>
 <h2 id="действия-над-элементами">Действия над элементами</h2>
 <p>Мы создаём список для того, чтобы что-то делать с его элементами. Например, такая функция:</p>
@@ -113,9 +114,9 @@ removeAllEmptyNamesFrom listOfNames <span class="fu">=</span>
 main <span class="fu">=</span>
     print <span class="fu">$</span> removeAllEmptyNamesFrom listOfNames
     where listOfNames <span class="fu">=</span> [<span class="st">&quot;John&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;Ann&quot;</span>]</code></pre>
-<p>Стандартная функция <code>filter</code> последовательно применяет предикат <code>notEmptyName</code> к каждой строке в списке и конструирует новый список лишь из тех строк, которые удовлетворяют этому предикату. В качестве предиката выступает функция, применяющаяся к одной строке и возвращающая значение <code>True</code> только в том случае, если эта строка не <code>null</code> (то есть непустая). Обратите внимание, мы вновь использовали короткую форму записи функции notEmptyName, опустив имя аргумента.</p>
+<p>Стандартная функция <code>filter</code> последовательно применяет предикат <code>notEmptyName</code> к каждой строке в списке и конструирует новый список лишь из тех строк, которые удовлетворяют этому предикату. В качестве предиката выступает композиция функций. Эта композиция применяется к одной строке и возвращает <code>True</code> в том случае, если эта строка не <code>null</code> (то есть непустая). Обратите внимание, мы вновь использовали короткую форму записи функции <code>notEmptyName</code>, опустив имя аргумента.</p>
 <h2 id="сворачивание">Сворачивание</h2>
-<p>Об этом механизме я не могу промолчать, уж очень он занимательный и полезный. Речь идёт о сворачивании (folding) списка. Суть его очень проста и элегантна, а потому сворачивание очень часто используется на практике.</p>
+<p>Об этом механизме я не могу промолчать, уж очень он занимательный и полезный. Речь идёт о сворачивании (folding) списка. Суть его очень проста и элегантна, и поэтому сворачивание очень часто используется на практике.</p>
 <p>Сворачивание - это процесс превращения всех элементов списка в одно значение. Сразу пример:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
     putStrLn <span class="fu">$</span> foldl (<span class="fu">++</span>) <span class="st">&quot;http&quot;</span> [<span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google.com&quot;</span>]</code></pre>
@@ -128,7 +129,7 @@ main <span class="fu">=</span>
     print <span class="fu">$</span> scanl (<span class="fu">++</span>) <span class="st">&quot;http&quot;</span> [<span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google.com&quot;</span>]</code></pre>
 <p>Результат будет таким:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;http&quot;</span>,<span class="st">&quot;http://&quot;</span>,<span class="st">&quot;http://www&quot;</span>,<span class="st">&quot;http://www.&quot;</span>,<span class="st">&quot;http://www.google.com&quot;</span>]</code></pre>
-<p>Функция <code>scanl</code> выступает в роли эдакого рентгена для функции <code>foldl</code>, показывая внутреннюю работу последней: в возвращённом списке строк мы видим, как сворачивается наш изначальный список.</p>
+<p>Функция <code>scanl</code> выступает в роли эдакого рентгена для функции <code>foldl</code>, показывая внутреннюю работу последней: в возвращённом списке строк мы видим, как постепенно сворачивается наш изначальный список.</p>
 <p>Разумеется, сворачивать список можно не только слева, но и справа. Для этого, как вы уже догадались, следует использовать функцию <code>foldr</code>:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
     putStrLn <span class="fu">$</span> foldr (<span class="fu">++</span>) <span class="st">&quot;.com&quot;</span> [<span class="st">&quot;http&quot;</span>, <span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google&quot;</span>]</code></pre>
