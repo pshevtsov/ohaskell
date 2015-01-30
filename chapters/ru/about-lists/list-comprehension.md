@@ -1,19 +1,19 @@
 ----
-title: List comprehension
+title: Генератры списков
 prevChapter: /ru/about-lists/tuples.html
 nextChapter: /ru/about-user-types/index.html
 ----
 
-Не удивляйтесь, что название этой главы не переведено на русский. Корректный перевод понятия "list comprehension" я так и не смог подобрать, долго размышлял - и в итоге решил оставить как есть. В русскоязычной литературе иногда предлагается вариант "преобразование списков", но мне такой перевод кажется не вполне корректным.
+Понятие "list comprehension" в русскоязычной документации чаще всего переводится как "генератор списка". Строго говоря, это не лучший перевод, но я не смог подобрать ничего лучшего.
 
-Речь пойдёт об одной хитрой конструкции, предназначенной для прохода по элементам списка(ов) и применения к ним некоторых действий. Да-да, это похоже на уже известные нам функции `map` и `filter`, однако есть некоторые дополнительные вкусности.
+Речь пойдёт об одной хитрой конструкции, предназначенной для прохода по элементам списка(ов) и применения к ним некоторых действий, в результате чего будет создан (сгенерирован) новый список. Да-да, это похоже на уже известные нам функции `map` и `filter`, однако есть некоторые дополнительные вкусности.
 
 ## Хитрый список
 
 Вот как это выглядит:
 
 ```haskell
-import Data.Char 
+import Data.Char
 
 main = print [toUpper c | c <- "http"]
 ```
@@ -30,9 +30,11 @@ main = print [toUpper c | c <- "http"]
 [toUpper c | c <- "http"]
 ```
 
-Мы видим квадратные скобки... То есть перед нами список? Не совсем. Можно сказать, что перед нами генератор списка. Скелет такой конструкции можно представить так:
+Мы видим квадратные скобки... То есть перед нами список? Ну почти. Перед нами - генератор списка. Скелет такой конструкции можно представить так:
 
-    [OPERATION ELEM | ELEM <- LIST] 
+```
+[OPERATION ELEM | ELEM <- LIST]
+```
 
 где `LIST` - список, `ELEM` - элемент этого списка, а `OPERATION` - функция, применяемая к каждому элементу. Мы говорим: "Возьми список `LIST`, последовательно пройдись по всем его элементам и примени к каждому из них функцию `OPERATION`". В результате значения, возвращаемые функцией `OPERATION`, породят новый список.
 
@@ -42,7 +44,9 @@ main = print [toUpper c | c <- "http"]
 
 Мы можем добавить предикат в эту конструкцию. Тогда её скелет станет таким:
 
-    [OPERATION ELEM | ELEM <- LIST, PREDICATE]
+```
+[OPERATION ELEM | ELEM <- LIST, PREDICATE]
+```
 
 В этом случае мы говорим: "Возьми список `LIST`, последовательно пройдись по всем его элементам и примени функцию `OPERATION` только к тем элементам, которые удовлетворят предикату `PREDICATE`".
 
@@ -71,7 +75,7 @@ main = print [toUpper c | c <- "http", c /= 'h', c /= 'p']
 ```
 
 Вывод в этом случае будет таким же:
- 
+
 ```bash
 "TT"
 ```
@@ -86,24 +90,28 @@ main = print [toUpper c | c <- "http", c /= 'h', c /= 'p']
 
 Обратите внимание на комбинацию символов `/=`. Это функция проверки на неравенство, аналог оператора `!=` в языке C. Кстати, он тоже носит математический окрас. Сравните:
 
-    /=   -- Haskell-форма
-    ≠    -- математическая форма
+```
+/=   -- Haskell-форма
+≠    -- математическая форма
+```
 
 Симпатично, не правда ли? Прямое сходство, мы лишь передвинули перечеркивающую косую палочку.
 
 ## Больше списков
 
-Мы можем использовать эту конструкцию для совместной работы с несколькими списками. Скелет в этом случае будет таким:
+Мы можем использовать генератор для совместной работы с несколькими списками. Скелет в этом случае будет таким:
 
-    [OPERATION_with_ELEMs | ELEM1 <- LIST1, ..., ELEMN <- LISTN ] 
+```
+[OPERATION_with_ELEMs | ELEM1 <- LIST1, ..., ELEMN <- LISTN ]
+```
 
 Здесь мы работаем сразу с `N` списками, а `OPERATION_with_ELEMs` представляет собой функцию, в которую передаются все элементы наших списков. Например:
 
 ```haskell
 main =
-    print [prefix ++ name | name <- names, prefix <- namePrefix]
-    where names = ["James", "Victor", "Denis", "Michael"]
-          namePrefix = ["Mr. "]
+    print [prefix ++ name | name <- names, prefix <- namePrefix]
+    where names = ["James", "Victor", "Denis", "Michael"]
+          namePrefix = ["Mr. "]
 ```
 
 На выходе получим:
@@ -116,9 +124,9 @@ main =
 
 ```haskell
 main =
-    print [prefix ++ name | name <- names, prefix <- namePrefix]
-    where names = ["James", "Victor", "Denis", "Michael"]
-          namePrefix = ["Mr. ", "sir "]  -- Теперь префиксов два
+    print [prefix ++ name | name <- names, prefix <- namePrefix]
+    where names = ["James", "Victor", "Denis", "Michael"]
+          namePrefix = ["Mr. ", "sir "] -- Теперь префиксов два
 ```
 
 В этом случае на выходе будет:
@@ -135,12 +143,12 @@ main =
 
 ```haskell
 main =
-    print [if car == "Bentley" then "Wow!" else "Good!" | car <- cars]
-    where cars = ["Mercedes",
-                  "BMW",
-                  "Bentley",
-                  "Audi",
-                  "Bentley"]
+    print [if car == "Bentley" then "Wow!" else "Good!" | car <- cars]
+    where cars = ["Mercedes",
+                  "BMW",
+                  "Bentley",
+                  "Audi",
+                  "Bentley"]
 ```
 
 Результат:
@@ -159,7 +167,7 @@ main =
 import Data.Char
 
 main = print [toUpper c | c <- "http",
-                          let hletter = 'h' in c /= hletter]
+                          let hletter = 'h' in c /= hletter]
 ```
 
 Промежуточное значение может быть использовано во избежание дубляжа при наличии нескольких предикатов.
@@ -173,16 +181,16 @@ import Data.List
 
 checkGooglerBy :: String -> String
 checkGooglerBy email =
-    if "gmail.com" `isSuffixOf` email
-    then nameFrom email ++ " is a Googler!"
-    else email
-    where nameFrom fullEmail = takeWhile (/= '@') fullEmail
+    if "gmail.com" `isSuffixOf` email
+    then nameFrom email ++ " is a Googler!"
+    else email
+    where nameFrom fullEmail = takeWhile (/= '@') fullEmail
 
 main = print [checkGooglerBy email | email <- ["adam@gmail.com",
-                                               "bob@yahoo.com",
-                                               "richard@gmail.com",
-                                               "elena@yandex.ru",
-                                               "denis@gmail.com"]]
+                                               "bob@yahoo.com",
+                                               "richard@gmail.com",
+                                               "elena@yandex.ru",
+                                               "denis@gmail.com"]]
 ```
 
 Результат:
@@ -201,12 +209,14 @@ takeWhile (/= '@') fullEmail
 
 Скелет стандартной функции `takeWhile` можно отобразить так:
 
-    takeWhile PREDICATE LIST 
+```
+takeWhile PREDICATE LIST
+```
 
 Здесь мы говорим: "Последовательно забирай (take) элементы из списка `LIST` до тех пор (While), пока `PREDICATE`, применённый к этим элементам, возвращает `True`. Если наткнёшься на элемент, не соответствующий этому предикату, немедленно прекращай работу и возвращай список из ранее полученных элементов". Нам нужно извлечь имя пользователя из его email-адреса, а значит, мы бежим по email до тех пор, пока символы не равны `'@'`, что и отражается предикатом `(/= '@')`. Как только натыкаемся на собачку - возвращаем всё, находящееся перед ней.
 
 ## В сухом остатке
 
-* List comprehension - это конструкция, порождающая новый список из одного или нескольких имеющихся списов.
+* Генератор списка - это конструкция, порождающая новый список из одного или нескольких имеющихся списов.
 * Новый список порождается в результате применения различных функций к элементам имеющегося списка/списков.
 

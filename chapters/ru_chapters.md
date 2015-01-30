@@ -32,7 +32,7 @@ title: Оглавление
   <div id="chapter"> [Списки - одним взглядом](/ru/about-lists/lists-at-a-glance.html)</div>
   <div id="chapter"> [Диапазоны](/ru/about-lists/ranges.html)</div>
   <div id="chapter"> [Кортежи](/ru/about-lists/tuples.html)</div>
-  <div id="chapter"> [List comprehension](/ru/about-lists/list-comprehension.html)</div>
+  <div id="chapter"> [Генераторы списков](/ru/about-lists/list-comprehension.html)</div>
 
 <div id="chaptersGroup"> [О пользовательских типах](/ru/about-user-types/index.html)</div>
   <div id="chapter"> [Типы - одним взглядом](/ru/about-user-types/types-at-a-glance.html)</div>
