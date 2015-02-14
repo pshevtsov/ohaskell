@@ -59,7 +59,7 @@ makeItLowerCase = map toLower
 
 мы объявляем: "Всё, теперь `makeItLowerCase` - это псевдоним для записи `map toLower`. Поэтому везде, где мы напишем `makeItLowerCase arg`, мы будем подразумевать запись `map toLower arg`". То есть `makeItLowerCase` просто заменяется записью `map toLower`.
 
-Кстати, функция `replace` живёт в модуле `Data.String.Utils`, являющемся частью пакета `MissingH`. Установите его командой:
+Кстати, функция `replace` живёт в модуле `Data.String.Utils`, являющемся частью пакета `MissingH`. Находясь в корне репозитория, выполните знакомую нам команду:
 
 ```bash
 $ cabal install MissingH
