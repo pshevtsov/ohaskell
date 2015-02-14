@@ -61,7 +61,7 @@ makeItLowerCase = map toLower
 
 Кстати, функция `replace` живёт в модуле `Data.String.Utils`, являющемся частью пакета `MissingH`. Установите его командой:
 
-```
+```bash
 $ cabal install MissingH
 ```
 
