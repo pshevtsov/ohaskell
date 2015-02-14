@@ -15,6 +15,7 @@ module Main where
 
 import Data.Char
 import Data.List
+import Data.String.Utils
 
 addPrefix :: String -> String
 addPrefix url =
@@ -57,6 +58,12 @@ makeItLowerCase = map toLower
 ```
 
 мы объявляем: "Всё, теперь `makeItLowerCase` - это псевдоним для записи `map toLower`. Поэтому везде, где мы напишем `makeItLowerCase arg`, мы будем подразумевать запись `map toLower arg`". То есть `makeItLowerCase` просто заменяется записью `map toLower`.
+
+Кстати, функция `replace` живёт в модуле `Data.String.Utils`, являющемся частью пакета `MissingH`. Установите его командой:
+
+```
+$ cabal install MissingH
+```
 
 Итак, у нас имеются три функции, каждая из которых делает с нашим URL простую исправительную операцию: `makeItLowerCase` переводит все символы в нижний регистр, `encodeAllSpaces` заменяет пробелы строкой `"%20"`, `addPrefix` добавляет префикс, если таковой отсутствует. И мы строим из этих трёх функций цепочку, на входе которой - неправильный URL, а на выходе - исправленный URL. Рассмотрим эту цепочку поближе:
 

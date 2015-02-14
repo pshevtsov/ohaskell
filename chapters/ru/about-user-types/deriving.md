@@ -12,7 +12,7 @@ nextChapter: /ru/about-user-types/own-type-classes.html
 
 ```haskell
 data IPAddress = IP String
-                 deriving Show
+                 deriving Show
 ```
 
 Всё. Мы можем сразу напечатать наше значение:
@@ -22,14 +22,14 @@ main = print $ IP "127.0.0.1"
 ```
 
 Вывод:
- 
+
 ```bash
 IP "127.0.0.1"
 ```
 
 Готово. Никаких экземпляров. Мы просто определили наш тип как наследуемый от класса `Show`. Именно поэтому нам не нужно определять собственную версию метода `show`, ведь компилятор уже сделал это за нас.
 
-Но вас, вероятно, интересует, откуда компилятор знает, _как_ нужно выводить на экран значение нашего типа? А он этого и не знает, поэтому идёт по пути наименьшего сопротивления. Обратите внимание на вывод:
+Но вас, вероятно, интересует, откуда же компилятор узнал, _как_ следует выводить на экран значение нашего типа? А он этого и не узнал, поэтому пошёл по пути наименьшего сопротивления. Обратите внимание на вывод:
 
 ```haskell
 IP "127.0.0.1"
@@ -41,26 +41,26 @@ IP "127.0.0.1"
 
 ```haskell
 data User = User { firstName
-                 , lastName
-                 , email
-                 , yearOfBirth :: String
-                 , account
-                 , uid :: Integer
-                 } deriving Show
+                 , lastName
+                 , email
+                 , yearOfBirth :: String
+                 , account
+                 , uid :: Integer
+                 } deriving Show
 
 main =
-    print user
-    where user = User { firstName = "Denis"
-                      , lastName = "Shevchenko"
-                      , email = "me@dshevchenko.biz"
-                      , yearOfBirth = "1981"
-                      , account = 1234567890
-                      , uid = 123
-                      }
+    print user
+    where user = User { firstName   = "Denis"
+                      , lastName    = "Shevchenko"
+                      , email       = "me@dshevchenko.biz"
+                      , yearOfBirth = "1981"
+                      , account     = 1234567890
+                      , uid         = 123
+                      }
 ```
 
 Вывод будет таким:
- 
+
 ```bash
 User {firstName = "Denis", lastName = "Shevchenko", email = "me@dshevchenko.biz", yearOfBirth = "1981", account = 1234567890, uid = 123}
 ```
@@ -69,12 +69,12 @@ User {firstName = "Denis", lastName = "Shevchenko", email = "me@dshevchenko.biz"
 
 Кстати, наследоваться можно только от некоторых классов. В соответствии со стандартом Haskell 2010 к таковым относятся:
 
-1. `Eq`, 
+1. `Eq`,
 2. `Ord`,
 3. `Enum`,
 4. `Bounded`,
 5. `Read`,
-6. `Show`. 
+6. `Show`.
 
 Рассмотрим, что сделает с нашим типом наследование от этих классов.
 
@@ -86,7 +86,7 @@ User {firstName = "Denis", lastName = "Shevchenko", email = "me@dshevchenko.biz"
 
 ```haskell
 data IPAddress = IP String
-                 deriving (Eq, Ord)
+                 deriving (Eq, Ord)
 ```
 
 ## Enum
@@ -100,12 +100,12 @@ data TransportLayer = TCP | UDP | SCTP | DCCP | SPX
 
 descriptionOf :: TransportLayer -> String
 descriptionOf protocol =
-    case protocol of
-        TCP  -> "Transmission Control Protocol"
-        UDP  -> "User Datagram Protocol"
-        SCTP -> "Stream Control Transmission Protocol"
-        DCCP -> "Datagram Congestion Control Protocol"
-        SPX  -> "Sequenced Packet Exchange"
+    case protocol of
+        TCP  -> "Transmission Control Protocol"
+        UDP  -> "User Datagram Protocol"
+        SCTP -> "Stream Control Transmission Protocol"
+        DCCP -> "Datagram Congestion Control Protocol"
+        SPX  -> "Sequenced Packet Exchange"
 ```
 
 Поработаем со списком протоколов:
@@ -120,7 +120,7 @@ main = print [descriptionOf protocol | protocol <- [TCP, UDP]]
 ["Transmission Control Protocol","User Datagram Protocol"]
 ```
 
-Здесь мы воспользовались услугами нашего старого друга, list comprehension, чтобы пройтись по всем элементам списка протоколов и вернуть список с соответствующими описаниями.
+Здесь мы воспользовались услугами нашего старого друга, генератора списков, чтобы пройтись по всем элементам списка протоколов и вернуть список с соответствующими описаниями.
 
 Но что мы будем делать, если захотим получить описание всех протоколов транспортного уровня? Нам придётся вручную указывать все пять. Ничего страшного в этом нет, однако если бы это были протоколы физического уровня, то их было бы уже порядка двадцати. Писать их вручную - скучно. Но есть у нас один инструмент, позволяющий создать список малыми усилиями. Речь идёт о диапазонах. Вот тут-то и выходит на сцену класс `Enum`.
 
@@ -128,7 +128,7 @@ main = print [descriptionOf protocol | protocol <- [TCP, UDP]]
 
 ```haskell
 data TransportLayer = TCP | UDP | SCTP | DCCP | SPX
-                      deriving Enum
+                      deriving Enum
 ```
 
 и теперь мы можем использовать его так:
@@ -156,12 +156,13 @@ main = print [descriptionOf protocol | protocol <- [TCP ..]]
 Когда мы наследуем наш тип от класса `Bounded`, мы получаем возможность применять к нашему типу две стандартные функции, `minBound` и `maxBound`. Обратите внимание: эти функции применяются именно к типу, а не к значению, и возвращают они минимальное и максимальное значение данного типа. Например:
 
 ```haskell
-main = print $ "minimal Int value: " ++ show (minBound :: Int) ++
-               ", maximum Int value: " ++ show (maxBound :: Int)
+main = putStrLn $ "minimal Int value: " ++ show (minBound :: Int)
+                  ++
+                  ", maximum Int value: " ++ show (maxBound :: Int)
 ```
- 
+
 Вывод будет таким:
- 
+
 ```bash
 "minimal Int value: -9223372036854775808, maximum Int value: 9223372036854775807"
 ```
@@ -170,10 +171,11 @@ main = print $ "minimal Int value: " ++ show (minBound :: Int) ++
 
 ```haskell
 data TransportLayer = TCP | UDP | SCTP | DCCP | SPX
-                      deriving (Show, Enum, Bounded)
- 
-main = print $ "first protocol: " ++ show (minBound :: TransportLayer) ++
-               ", last protocol: " ++ show (maxBound :: TransportLayer)
+                      deriving (Show, Enum, Bounded)
+
+main = putStrLn $ "first protocol: " ++ show (minBound :: TransportLayer)
+                  ++
+                  ", last protocol: " ++ show (maxBound :: TransportLayer)
 ```
 
 Вывод:
@@ -190,29 +192,28 @@ main = print $ "first protocol: " ++ show (minBound :: TransportLayer) ++
 
 ```haskell
 data User = User { firstName
-                 , lastName
-                 , email
-                 , yearOfBirth :: String
-                 , account
-                 , uid :: Integer
-                 } deriving (Show, Read, Eq)
+                 , lastName
+                 , email
+                 , yearOfBirth :: String
+                 , account
+                 , uid :: Integer
+                 } deriving (Show, Read, Eq)
 
 main =
-    let object = user
-        serializedObject = show object
-        deserializedObject = read serializedObject
-    in
-    print $ object == deserializedObject -- Не сомневайтесь, объекты равны.
-    where user = User { firstName = "Denis"
-                      , lastName = "Shevchenko"
-                      , email = "me@dshevchenko.biz"
-                      , yearOfBirth = "1981"
-                      , account = 1234567890
-                      , uid = 123
-                      }
+    let object             = user
+        serializedObject   = show object
+        deserializedObject = read serializedObject
+    in print $ object == deserializedObject -- Не сомневайтесь, объекты равны.
+    where user = User { firstName = "Denis"
+                      , lastName = "Shevchenko"
+                      , email = "me@dshevchenko.biz"
+                      , yearOfBirth = "1981"
+                      , account = 1234567890
+                      , uid = 123
+                      }
 ```
 
-Ну вот, теперь вы знаете, что такое deriving. Открою вам секрет: наследоваться можно не только от шести вышеперечисленных классов, но и от нескольких других. Однако это касается довольно-таки редких случаев, поэтому сейчас мы не будем их рассматривать.
+Ну вот, теперь вы знаете, что такое `deriving`. Открою вам секрет: наследоваться можно не только от шести вышеперечисленных классов, но и от нескольких других. Однако это касается довольно-таки продвинутых случаев, поэтому сейчас мы не будем их рассматривать.
 
 ## В сухом остатке
 

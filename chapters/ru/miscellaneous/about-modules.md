@@ -1,7 +1,7 @@
 ----
 title: О модулях
 prevChapter: /ru/miscellaneous/index.html
-nextChapter: /ru/miscellaneous/map.html
+nextChapter: /ru/miscellaneous/pattern-matching.html
 ----
 
 Как вы помните, в самом начале мы уже немного говорили о модулях. Пришло время изучить их более основательно.

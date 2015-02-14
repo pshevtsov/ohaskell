@@ -65,6 +65,7 @@ title: Оглавление
 
 <div id="chaptersGroup"> [Разное](/ru/miscellaneous/index.html)</div>
   <div id="chapter"> [О модулях](/ru/miscellaneous/about-modules.html)</div>
+  <div id="chapter"> [Сравнение с образцом](/ru/miscellaneous/pattern-matching.html)</div>
   <div id="chapter"> [Контейнеры: словарь](/ru/miscellaneous/map.html)</div>
   <div id="chapter"> [Контейнеры: множество](/ru/miscellaneous/set.html)</div>
   <div id="chapter"> [Рекурсивные функции](/ru/miscellaneous/recursive-functions.html)</div>

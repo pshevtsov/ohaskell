@@ -1,6 +1,6 @@
 ----
 title: Контейнеры: словарь
-prevChapter: /ru/miscellaneous/about-modules.html
+prevChapter: /ru/miscellaneous/pattern-matching.html
 nextChapter: /ru/miscellaneous/set.html
 ----
 
