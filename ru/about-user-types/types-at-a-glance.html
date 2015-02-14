@@ -60,48 +60,61 @@
         <div id="content">
             <h1>Типы - одним взглядом</h1>
 
-            <p>В настоящих проектах нам обязательно понадобятся наши собственные типы. О них и поговорим.</p>
-<p>Прежде всего познакомимся с новыми ключевыми словами. Слово <code>data</code> служит для определения типа. Слово <code>class</code> используется для определения класса типов. А слово <code>instance</code> необходимо для определения экземпляра класса типов.</p>
+            <p>В настоящих проектах нам обязательно понадобятся собственные типы. А как вы помните, язык Haskell уделяет типам самое пристальное внимание.</p>
+<p>Прежде всего познакомимся с новыми ключевыми словами. Слово <code>data</code> служит для определения типа. Слово <code>class</code> используется для определения класса типов. А слово <code>instance</code> необходимо для определения экземпляра класса типов. Запомните эти слова, ведь в процессе разработки на Haskell вы будете сталкиваться с ними постоянно.</p>
 <h2 id="собственный-тип">Собственный тип</h2>
-<p>Определим тип для IP-адреса:  </p>
+<p>Определим собственный тип для IP-адреса:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IPAddress</span> <span class="dt">String</span></code></pre>
-<p>Готово. Перед нами - простейший пользовательский тип. Значение этого типа фактически будет представлять собой значение типа <code>String</code> с меткой <code>IPAddress</code>. Рассматривайте метку как пояснительный идентификатор. Многие типы не имеют метки, поэтому их можно инициализировать значениями непосредственно. Например, если у нас есть некая функция, принимающая значение типа <code>Int</code>, то при её вызове мы будем писать просто:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">show <span class="dv">6</span></code></pre>
-<p>Однако если эта же функция будет применена к значению нашего типа <code>IPAddress</code>, мы должны будем явно указать это:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
-<p>Выражение <code>IPAddress &quot;127.0.0.1&quot;</code> породит значение типа <code>IPAddress</code>, содержащее в себе строку <code>&quot;127.0.0.1&quot;</code>.</p>
-<p>Кстати, метку принято называть конструктором значения.</p>
+<p>Готово. Перед нами - простейший пользовательский тип. А вот как мы будем создавать значение этого типа:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> localhost <span class="fu">=</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
+<p>Мы взяли обыкновенную строку и завернули её в типовую обёртку <code>IPAddress</code>. Ещё эту обёртку принято называть <em>конструктором значения</em>. А чтобы окончательно понять данный принцип, представьте себе, что <code>IPAddress</code> - это функция:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">IPAddress</span>  <span class="st">&quot;127.0.0.1&quot;</span>
+<span class="fu">|</span>          <span class="fu">|</span>
+<span class="st">&quot;функция&quot;</span>  значение</code></pre>
+<p>Таким образом, конструирование значения этого типа можно представить как апплицирование функции <code>IPAddress</code> к значению типа <code>String</code>: взяли конструктор значения, применили его к обыкновенной строке - и получилась уже не строка, а значение типа <code>IPAddress</code>.</p>
 <p>Запомните: имя типа не может начинаться с маленькой буквы. Поэтому такой код:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> ipAddress <span class="fu">=</span> ipAddress <span class="dt">String</span></code></pre>
 <p>будет отвергнут компилятором.</p>
 <h2 id="класс-типов">Класс типов</h2>
 <p>Проблема в том, что тип <code>IPAddress</code> в его нынешнем виде настолько примитивен, что не представляет для нас большого интереса. Мы, создав значение этого типа, даже не сможем вывести его на экран. И если мы прямо сейчас напишем так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
-<p>компилятор выдаст нам следующее:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">.</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
+<p>компилятор выдаст нам следующую ошибку:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">No</span> instance for (Show IPAddress) <span class="kw">arising</span> from a use of <span class="kw">`show</span><span class="st">'</span></code></pre>
-<p>И мы не имеем права обижаться на компилятор, он поступил совершенно правильно: стандартная функция <code>show</code>, преобразующая переданный ей аргумент в строковый вид, не имеет ни малейшего понятия о том, как представить объект типа <code>IPAddress</code> в виде строки. И она не узнает это до тех пор, пока мы явно не расскажем ей об этом. Вот тут-то и выходят на сцену классы типов.</p>
-<p>Класс типов - это логическая группа типов. Она несёт в себе черты, общие для всех этих типов. А чертами этими являются методы, объявленные в данном классе, и каждый тип, имеющий к этому классу отношение, должен предоставлять свою реализацию этих методов. Класс типов можно рассматривать как абстрактный интерфейс.</p>
-<p>Например, стандартный класс типов <code>Show</code>. Он обобщает все типы, объекты которых могут быть “показаны” (shown), то есть отображены в виде стандартной строки. Вот определение этого класса:</p>
+<p>И мы не имеем права обижаться на компилятор, он поступил совершенно правильно: стандартная функция <code>show</code>, преобразующая переданный ей аргумент в строковый вид, не имеет ни малейшего понятия о том, <em>как</em> представить объект типа <code>IPAddress</code> в виде строки. И она не узнает это до тех пор, пока мы явно не расскажем ей об этом. Вот тут-то и выходят на сцену классы типов.</p>
+<p>Класс типов - это логическая группа типов. Она несёт в себе черты, общие для всех этих типов. А черты эти отражены методами, объявленными в данном классе. И каждый тип, имеющий отношение к этому классу, обязан предоставлять собственную реализацию этих методов. Класс типов можно рассматривать как абстрактный интерфейс.</p>
+<p>Например, стандартный класс типов <code>Show</code> обобщает все типы, объекты которых могут быть “показаны” (shown), то есть отображены в виде стандартной строки. Вот определение этого класса:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Show</span> a <span class="kw">where</span>
-    <span class="ot">show ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
-<p>Здесь присутствует один-единственный метод <code>show</code>, принимающий в качестве аргумента объект типа a и возвращающий строковое отображение этого объекта.</p>
-<p>Вы спросите, что это за тип такой - <code>a</code>? Ранее я уже упоминал термин полиморфный тип, так вот обозначенное буквой <code>a</code> - это он и есть. Благодаря этому метод <code>show</code> может применяться к значениям самых разных типов. Программисты из мира C++ сразу вспомнят шаблоны… По сложившейся традиции полиморфные типы принято именовать одной буквой, однако вы можете называть их как угодно.</p>
-<p>Но откуда же метод <code>show</code> узнаёт, как ему стрингифицировать объект конкретного типа? Ведь мы можем применить его к объектам разных типов, для которых понятие “показать” может иметь абсолютно разный смысл. Встречайте экземпляр класса типов.</p>
+<span class="ot">    show ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<p>Здесь присутствует один-единственный метод <code>show</code>, принимающий в качестве аргумента объект типа <code>a</code> и возвращающий строковое отображение этого объекта.</p>
+<p>Вы спросите, что это за тип такой - <code>a</code>? Ранее я уже упоминал термин “полиморфный тип”, так вот обозначенное буквой <code>a</code> - это он и есть. Благодаря этому метод <code>show</code> может применяться к значениям самых разных типов. Программисты из мира C++ сразу вспомнят шаблоны. По сложившейся традиции полиморфные типы принято именовать одной буквой в нижнем регистре, однако вы можете называть их как угодно.</p>
+<p>Но откуда же метод <code>show</code> узнаёт, <em>как</em> ему стрингифицировать объект конкретного типа? Ведь мы можем применить его к объектам разных типов, для которых понятие “показать” может иметь абсолютно разный смысл. Встречайте экземпляр класса типов.</p>
 <h2 id="экземпляр-класса-типов">Экземпляр класса типов</h2>
-<p>Если класс типов <code>Show</code> - это логическая группа для типов, объекты которых можно показать, то экземпляр класса типов <code>Show</code> - это реальное объяснение того, <em>как</em> можно показать объект того или иного типа. И если мы хотим показывать объекты нашего типа <code>IPAddress</code>, мы обязаны предоставить экземпляр класса типов <code>Show</code> для типа <code>IPAddress</code>. Сделаем же это:</p>
+<p>Если класс типов <code>Show</code> - это логическая группа для типов, объекты которых можно показать, то экземпляр класса типов <code>Show</code> - это объяснение того, <em>как</em> можно показать объект того или иного типа. И если мы хотим показывать объекты типа <code>IPAddress</code>, мы обязаны предоставить экземпляр класса типов <code>Show</code> для типа <code>IPAddress</code>. Сделаем же это:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Show</span> <span class="dt">IPAddress</span> <span class="kw">where</span>
-    show (<span class="dt">IPAddress</span> address) <span class="fu">=</span>
-        if address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre>
-<p>Мы использовали ключевое слово <code>instance</code>, а полиморфный тип <code>a</code> заменили на тип <code>IPAddress</code>. Далее следует определение метода <code>show</code>, которое и объясняет, как отобразить значение типа <code>IPAddress</code> в виде строки. Этот метод принимает объект типа <code>IPAddress</code>, порождённый выражением <code>IPAddress address</code>. Далее следует простое условие, выводящее слово <code>&quot;localhost&quot;</code> в том случае, если адрес равен <code>&quot;127.0.0.1&quot;</code>.</p>
+    show (<span class="dt">IPAddress</span> address) <span class="fu">=</span>
+        <span class="kw">if</span> address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre>
+<p>Мы использовали ключевое слово <code>instance</code>, а полиморфный тип <code>a</code> заменили на реальный тип <code>IPAddress</code>. Далее следует определение метода <code>show</code>, которое и объясняет, как отобразить значение типа <code>IPAddress</code> в виде строки.</p>
+<p>Кстати, обратите внимание, как необычно определён метод <code>show</code>. Вместо простого указания имени аргумента:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">show address <span class="fu">=</span>
+    <span class="fu">...</span></code></pre>
+<p>мы указали выражение, порождающее значение типа <code>IPAddress</code>:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">show (<span class="dt">IPAddress</span> address) <span class="fu">=</span>
+      <span class="fu">|</span>   выражение   <span class="fu">|</span>
+    <span class="fu">...</span></code></pre>
+<p>Сделали мы так для того, чтобы вытащить конкретное строковое значение IP-адреса, находящееся в типовой обёртке <code>IPAddress</code>. Чтобы стало понятнее, взгляните на определение ещё раз, но с небольшим уточнением:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">show (<span class="dt">IPAddress</span> address) <span class="fu">=</span> <span class="kw">if</span> address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address
+                <span class="fu">-------</span>       <span class="fu">-------</span>                                      <span class="fu">-------</span></code></pre>
+<p>Видите? Нельзя вытащить реальный адрес из значения типа <code>IPAddress</code>, кроме как таким способом. Этот способ называется сравнением с образцом (pattern matching). В Haskell этот способ используется повсеместно, и я даже посвятил ему <a href>отдельную главу</a>. А пока запомним главную идею сравнения с образцом: с одной стороны от знака равенства - выражение с некой “деталью”, с другой стороны от знака равенства - выражение, использующее эту “деталь”.</p>
+<p>В данном случае деталью является <code>address</code>, и мы как бы говорим: “Из левого выражения, порождающего значение типа <code>IPAddress</code>, взглянем на строку <code>address</code>. Она-то и будет использована в if-else-конструкции справа.” Как я уже сказал, этому важному вопросу посвящена отдельная глава, так что мы ещё вернемся к нему.</p>
 <p>А теперь пишем:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">.</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
 <p>И получаем ожидаемый вывод:</p>
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">localhost</span></code></pre>
 <h2 id="в-сухом-остатке">В сухом остатке</h2>
 <ul>
 <li>Если видим слово <code>data</code> - перед нами пользовательский тип.</li>
 <li>Класс типов - это абстрактный интерфейс, отражающий некие общие черты для набора типов.</li>
-<li>Каждый тип, желающий породниться с неким классом, предоставляет свой экземпляр этого класса, определяя его методы на свой лад.</li>
+<li>Каждый тип, желающий породниться с неким классом, обязан предоставить свой экземпляр этого класса, определяя его методы на свой лад.</li>
 </ul>
 
 <div class="row">

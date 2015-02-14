@@ -67,6 +67,7 @@
 
 <span class="kw">import </span><span class="dt">Data.Char</span>
 <span class="kw">import </span><span class="dt">Data.List</span>
+<span class="kw">import </span><span class="dt">Data.String.Utils</span>
 
 <span class="ot">addPrefix ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 addPrefix url <span class="fu">=</span>
@@ -91,6 +92,8 @@ makeItLowerCase <span class="fu">=</span> map toLower</code></pre>
 <p>Это - полная форма записи функции. Но мы можем сократить её, убрав аргумент. Почему? Потому что такой инструкцией:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">makeItLowerCase <span class="fu">=</span> map toLower</code></pre>
 <p>мы объявляем: “Всё, теперь <code>makeItLowerCase</code> - это псевдоним для записи <code>map toLower</code>. Поэтому везде, где мы напишем <code>makeItLowerCase arg</code>, мы будем подразумевать запись <code>map toLower arg</code>”. То есть <code>makeItLowerCase</code> просто заменяется записью <code>map toLower</code>.</p>
+<p>Кстати, функция <code>replace</code> живёт в модуле <code>Data.String.Utils</code>, являющемся частью пакета <code>MissingH</code>. Установите его командой:</p>
+<pre><code>$ cabal install MissingH</code></pre>
 <p>Итак, у нас имеются три функции, каждая из которых делает с нашим URL простую исправительную операцию: <code>makeItLowerCase</code> переводит все символы в нижний регистр, <code>encodeAllSpaces</code> заменяет пробелы строкой <code>&quot;%20&quot;</code>, <code>addPrefix</code> добавляет префикс, если таковой отсутствует. И мы строим из этих трёх функций цепочку, на входе которой - неправильный URL, а на выходе - исправленный URL. Рассмотрим эту цепочку поближе:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell">addPrefix (encodeAllSpaces (makeItLowerCase url))</code></pre>
 <p>Каждая из функций принимает на вход URL и возвращает уже обработанный ею URL, поступающий на вход следующей функции.</p>
