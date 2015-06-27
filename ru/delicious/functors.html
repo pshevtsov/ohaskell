@@ -79,7 +79,7 @@
 <pre class="sourceCode haskell"><code class="sourceCode haskell">fmap digitToInt [<span class="ch">'1'</span><span class="fu">..</span><span class="ch">'9'</span>]</code></pre>
 <p>на выходе у нас получится функтор типа <code>[Int]</code>.</p>
 <h2 id="создаём-свой">Создаём свой</h2>
-<p>Путь это будет год:</p>
+<p>Пусть это будет год:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Year</span> value <span class="fu">=</span> <span class="dt">Year</span> value
                   deriving <span class="dt">Show</span></code></pre>
 <p>Тип <code>Year</code> содержит в себе год. Параметризация в данном случае весьма полезна: значение года может быть задано как числом, так и строкой. И поскольку значение года может (с концептуальной точки зрения) меняться, сделаем тип <code>Year</code> функторным:</p>
