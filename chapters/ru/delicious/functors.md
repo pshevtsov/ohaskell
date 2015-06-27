@@ -49,7 +49,7 @@ fmap digitToInt ['1'..'9']
 
 ## Создаём свой
 
-Путь это будет год:
+Пусть это будет год:
 
 ```haskell
 data Year value = Year value
