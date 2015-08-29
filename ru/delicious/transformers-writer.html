@@ -92,8 +92,8 @@ makeItLowerCase url <span class="fu">=</span> <span class="kw">do</span>
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     <span class="kw">let</span> url <span class="fu">=</span> <span class="st">&quot;www.SITE.com/test me/Start page&quot;</span>
-    result <span class="ot">&lt;-</span> runWriterT <span class="fu">$</span> addPrefix url 
-                           <span class="fu">&gt;&gt;=</span> encodeAllSpaces 
+    result <span class="ot">&lt;-</span> runWriterT <span class="fu">$</span> addPrefix url
+                           <span class="fu">&gt;&gt;=</span> encodeAllSpaces
                            <span class="fu">&gt;&gt;=</span> makeItLowerCase
     <span class="kw">let</span> correctedUrl <span class="fu">=</span> fst result
         log <span class="fu">=</span> snd result
@@ -112,8 +112,8 @@ makeItLowerCase url <span class="fu">=</span> <span class="kw">do</span>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     <span class="kw">let</span> url <span class="fu">=</span> <span class="st">&quot;www.SITE.com/test me/Start page&quot;</span>
-    result <span class="ot">&lt;-</span> runWriterT <span class="fu">$</span> addPrefix url 
-                           <span class="fu">&gt;&gt;=</span> encodeAllSpaces 
+    result <span class="ot">&lt;-</span> runWriterT <span class="fu">$</span> addPrefix url
+                           <span class="fu">&gt;&gt;=</span> encodeAllSpaces
                            <span class="fu">&gt;&gt;=</span> makeItLowerCase
     <span class="kw">let</span> correctedUrl <span class="fu">=</span> fst result
         log <span class="fu">=</span> snd result
@@ -132,8 +132,8 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     <span class="kw">let</span> url <span class="fu">=</span> <span class="st">&quot;www.SITE.com/test me/Start page&quot;</span>
-        result <span class="fu">=</span> runWriter <span class="fu">$</span> addPrefix url 
-                             <span class="fu">&gt;&gt;=</span> encodeAllSpaces 
+        result <span class="fu">=</span> runWriter <span class="fu">$</span> addPrefix url
+                             <span class="fu">&gt;&gt;=</span> encodeAllSpaces
                              <span class="fu">&gt;&gt;=</span> makeItLowerCase
         correctedUrl <span class="fu">=</span> fst result
         log <span class="fu">=</span> snd result
@@ -145,14 +145,14 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>Представим, что наше приложение собирает информацию о файлах исходного кода. Скажем, есть файл, и нужно узнать используемый в нём язык программирования, дату его последней модификации и его размер.</p>
 <p>Для начала определим наш “облачный” тип:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Monad.Writer.Lazy</span>
-<span class="kw">import </span><span class="dt">System.Directory</span> 
-<span class="kw">import </span><span class="dt">System.FilePath</span> 
-<span class="kw">import </span><span class="dt">System.Posix</span> 
+<span class="kw">import </span><span class="dt">System.Directory</span>
+<span class="kw">import </span><span class="dt">System.FilePath</span>
+<span class="kw">import </span><span class="dt">System.Posix</span>
 
 <span class="kw">type</span> <span class="dt">Environment</span> <span class="fu">=</span> <span class="dt">String</span>
 <span class="kw">type</span> <span class="dt">FileInfoCloud</span> <span class="fu">=</span> <span class="dt">WriterT</span> <span class="dt">Environment</span> <span class="dt">IO</span> <span class="dt">String</span></code></pre>
 <p>Теперь определим три функции-анализатора, каждая из которых получает свою порцию статистической информации и кладёт её в нашем монадическом “облаке”. Этим функциям требуется единственный аргумент - путь к файлу. И самое интересное в том, что единственная полезная работа, производимая каждой из этих функций - это запись информации о файле в “облако”. То есть если в предыдущем примере функции передавали друг другу постепенно изменяемый URL, а логирование в “облако” было лишь “побочным действием”, то здесь запись информации в “облако” и есть главная работа.</p>
-<p>Вот и наша первая функция, определяющая используемый в файле язык программирования. Для простоты будем опираться на расширение:</p>
+<p>А вот и наша первая функция, определяющая используемый в файле язык программирования. Для простоты будем опираться на расширение:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainLanguage ::</span> FilePath <span class="ot">-&gt;</span> <span class="dt">FileInfoCloud</span>
 obtainLanguage path <span class="fu">=</span> <span class="kw">do</span>
     tell <span class="fu">$</span> <span class="kw">case</span> takeExtension path <span class="kw">of</span>
@@ -162,7 +162,7 @@ obtainLanguage path <span class="fu">=</span> <span class="kw">do</span>
                 <span class="st">&quot;.m&quot;</span>   <span class="ot">-&gt;</span> <span class="st">&quot;Objective-C, &quot;</span>
                 _      <span class="ot">-&gt;</span> <span class="st">&quot;Unknown, &quot;</span>
     return path</code></pre>
-<p>Обратите внимание, что <code>path</code>, поступаемый на вход, анализируется и затем просто возвращается обратно в монаду. Вся полезная работа заключается только в записи в “облако”, с помощью нашей подруги <code>tell</code>. Вы спросите, зачем же нам возвращать путь, раз мы всё равно ничего с ним не делаем? А это нужно для формирования нашей любимой монадической цепочки, в функции <code>main</code>.</p>
+<p>Обратите внимание, что <code>path</code>, поступающий на вход, анализируется и затем просто возвращается обратно в монаду. Вся полезная работа заключается только в записи в “облако”, с помощью нашей подруги <code>tell</code>. Вы спросите, зачем же нам возвращать путь, раз мы всё равно ничего с ним не делаем? А это нужно для формирования нашей любимой монадической цепочки, в функции <code>main</code>.</p>
 <p>Определим ещё два анализатора:</p>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainModificationDate ::</span> FilePath <span class="ot">-&gt;</span> <span class="dt">FileInfoCloud</span>
 obtainModificationDate path <span class="fu">=</span> <span class="kw">do</span>
@@ -179,8 +179,8 @@ obtainSize path <span class="fu">=</span> <span class="kw">do</span>
 <pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     <span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/Users/dshevchenko/main.cpp&quot;</span>
-    info <span class="ot">&lt;-</span> execWriterT <span class="fu">$</span> obtainLanguage path 
-                          <span class="fu">&gt;&gt;=</span> obtainModificationDate 
+    info <span class="ot">&lt;-</span> execWriterT <span class="fu">$</span> obtainLanguage path
+                          <span class="fu">&gt;&gt;=</span> obtainModificationDate
                           <span class="fu">&gt;&gt;=</span> obtainSize
     putStrLn <span class="fu">$</span> <span class="st">&quot;Info about &quot;</span> <span class="fu">++</span> path <span class="fu">++</span> <span class="st">&quot;:\n&quot;</span>
                <span class="fu">++</span> info</code></pre>
