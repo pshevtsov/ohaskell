@@ -42,8 +42,8 @@ makeItLowerCase url = do
 main :: IO ()
 main = do
     let url = "www.SITE.com/test me/Start page"
-    result <- runWriterT $ addPrefix url 
-                           >>= encodeAllSpaces 
+    result <- runWriterT $ addPrefix url
+                           >>= encodeAllSpaces
                            >>= makeItLowerCase
     let correctedUrl = fst result
         log = snd result
@@ -75,8 +75,8 @@ makeItLowerCase url = do
 main :: IO ()
 main = do
     let url = "www.SITE.com/test me/Start page"
-    result <- runWriterT $ addPrefix url 
-                           >>= encodeAllSpaces 
+    result <- runWriterT $ addPrefix url
+                           >>= encodeAllSpaces
                            >>= makeItLowerCase
     let correctedUrl = fst result
         log = snd result
@@ -84,7 +84,7 @@ main = do
                "Log: " ++ log
 ```
 
-Функция `runWriterT` запускает наше "облачное" логирование. Значение типа `LoggingCloud` незримо передаётся от корректировщика к корректировщику, за это отвечает наш старый друг, оператор последовательной связки `(>>=)`. А в итоге, на выходе из функции `runWriterT` мы получаем пару, завёрнутую в используемую нами `IO`-обёртку. Вытащив пару в `result`, мы применили к ней функции `fst` и `snd` и получили первый элемент (скорректированный URL) и второй (наш лог). 
+Функция `runWriterT` запускает наше "облачное" логирование. Значение типа `LoggingCloud` незримо передаётся от корректировщика к корректировщику, за это отвечает наш старый друг, оператор последовательной связки `(>>=)`. А в итоге, на выходе из функции `runWriterT` мы получаем пару, завёрнутую в используемую нами `IO`-обёртку. Вытащив пару в `result`, мы применили к ней функции `fst` и `snd` и получили первый элемент (скорректированный URL) и второй (наш лог).
 
 ## А монада Writer?
 
@@ -105,8 +105,8 @@ type LoggingCloud = Writer Environment String
 main :: IO ()
 main = do
     let url = "www.SITE.com/test me/Start page"
-        result = runWriter $ addPrefix url 
-                             >>= encodeAllSpaces 
+        result = runWriter $ addPrefix url
+                             >>= encodeAllSpaces
                              >>= makeItLowerCase
         correctedUrl = fst result
         log = snd result
@@ -126,9 +126,9 @@ main = do
 
 ```haskell
 import Control.Monad.Writer.Lazy
-import System.Directory 
-import System.FilePath 
-import System.Posix 
+import System.Directory
+import System.FilePath
+import System.Posix
 
 type Environment = String
 type FileInfoCloud = WriterT Environment IO String
@@ -150,7 +150,7 @@ obtainLanguage path = do
     return path
 ```
 
-Обратите внимание, что `path`, поступаемый на вход, анализируется и затем просто возвращается обратно в монаду. Вся полезная работа заключается только в записи в "облако", с помощью нашей подруги `tell`. Вы спросите, зачем же нам возвращать путь, раз мы всё равно ничего с ним не делаем? А это нужно для формирования нашей любимой монадической цепочки, в функции `main`.
+Обратите внимание, что `path`, поступающий на вход, анализируется и затем просто возвращается обратно в монаду. Вся полезная работа заключается только в записи в "облако", с помощью нашей подруги `tell`. Вы спросите, зачем же нам возвращать путь, раз мы всё равно ничего с ним не делаем? А это нужно для формирования нашей любимой монадической цепочки, в функции `main`.
 
 Определим ещё два анализатора:
 
@@ -174,8 +174,8 @@ obtainSize path = do
 main :: IO ()
 main = do
     let path = "/Users/dshevchenko/main.cpp"
-    info <- execWriterT $ obtainLanguage path 
-                          >>= obtainModificationDate 
+    info <- execWriterT $ obtainLanguage path
+                          >>= obtainModificationDate
                           >>= obtainSize
     putStrLn $ "Info about " ++ path ++ ":\n"
                ++ info
@@ -209,4 +209,3 @@ obtainModificationDate path = do
 * Каждая из функций оставляет запись в общем журнале с помощью функции `tell`.
 * Монада `Writer` - это простейший вариант трансформера `WriterT`.
 * Функция `execWriterT` возвращает только журнал, что полезно в тех случаях, когда именно журнал и представляет для нас ценность.
-
