@@ -63,13 +63,13 @@
             <p>So, let’s talk about list comprehension. This tool is used for creating new lists based on old ones. It similar to functions <code>map</code> and <code>filter</code>, but more powerful.</p>
 <h2 id="intricate-list">Intricate list</h2>
 <p>Here’s how it looks:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span> 
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span> 
 
-main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>]</code></pre>
+main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>]</code></pre></div>
 <p>Result:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;HTTP&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;HTTP&quot;</span></code></pre></div>
 <p>So:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">[toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>]</code></pre></div>
 <p>We see the square brackets… So is it a list? Not quite. We can say that it’s a <em>generator</em> of the list. Skeleton of such a structure can be expressed as follows:</p>
 <pre><code>[OPERATION ELEM | ELEM &lt;- LIST] </code></pre>
 <p>where <code>LIST</code> - a list, <code>ELEM</code> - element of this list, <code>OPERATION</code> - function that will be applied to each elements of this list. We say: “Take a list <code>LIST</code> and sequentially apply function <code>OPERATION</code> to each elements.” And from a values returned by function <code>OPERATION</code> we create a new list.</p>
@@ -79,19 +79,19 @@ main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <spa
 <pre><code>[OPERATION ELEM | ELEM &lt;- LIST, PREDICATE]</code></pre>
 <p>In this case we say: “Take a list <code>LIST</code> and sequentially apply function <code>OPERATION</code> to elements that satisfy to a predicate <code>PREDICATE</code>”.</p>
 <p>For example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
 
-main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">==</span> <span class="ch">'t'</span>]</code></pre>
+main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">==</span> <span class="ch">'t'</span>]</code></pre></div>
 <p>Result:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;TT&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;TT&quot;</span></code></pre></div>
 <p>Function <code>toUpper</code> was applied only to <code>t</code> char. By the way, we may have more than one predicate. For example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
 
-main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">/=</span> <span class="ch">'h'</span>, c <span class="fu">/=</span> <span class="ch">'p'</span>]</code></pre>
+main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">/=</span> <span class="ch">'h'</span>, c <span class="fu">/=</span> <span class="ch">'p'</span>]</code></pre></div>
 <p>Result is:  </p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;TT&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;TT&quot;</span></code></pre></div>
 <p>Predicates <code>c /= 'h'</code> and <code>c /= 'p'</code> are merged via logical “AND”, so we can write like this:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">[toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">/=</span> <span class="ch">'h'</span> <span class="fu">&amp;&amp;</span> c <span class="fu">/=</span> <span class="ch">'p'</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>, c <span class="fu">/=</span> <span class="ch">'h'</span> <span class="fu">&amp;&amp;</span> c <span class="fu">/=</span> <span class="ch">'p'</span>]</code></pre></div>
 <p>Result will be the same.</p>
 <p>Take a look at <code>/=</code>. It’s an operator for non-equality checking, like an operator <code>!=</code> in C langauge. By the way, compare these forms:</p>
 <pre><code>/=   -- Haskell-form
@@ -101,42 +101,42 @@ main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <spa
 <p>We can work with more than one list at a time. So skeleton will be:</p>
 <pre><code>[OPERATION_with_ELEMs | ELEM1 &lt;- LIST1, ..., ELEMN &lt;- LISTN ] </code></pre>
 <p>We work with <code>N</code> lists, and function <code>OPERATION_with_ELEMs</code> applies to each element of all these lists. For example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
     print [prefix <span class="fu">++</span> name <span class="fu">|</span> name <span class="ot">&lt;-</span> names, prefix <span class="ot">&lt;-</span> namePrefix]
     where names <span class="fu">=</span> [<span class="st">&quot;James&quot;</span>, <span class="st">&quot;Victor&quot;</span>, <span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Michael&quot;</span>]
-          namePrefix <span class="fu">=</span> [<span class="st">&quot;Mr. &quot;</span>]</code></pre>
+          namePrefix <span class="fu">=</span> [<span class="st">&quot;Mr. &quot;</span>]</code></pre></div>
 <p>Output is:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Mr. James&quot;</span>,<span class="st">&quot;Mr. Victor&quot;</span>,<span class="st">&quot;Mr. Denis&quot;</span>,<span class="st">&quot;Mr. Michael&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Mr. James&quot;</span>,<span class="st">&quot;Mr. Victor&quot;</span>,<span class="st">&quot;Mr. Denis&quot;</span>,<span class="st">&quot;Mr. Michael&quot;</span>]</code></pre></div>
 <p>In this example we work with two lists, <code>names</code> and <code>namePrefix</code>. Let’s add second predicate into list <code>namePrefix</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
     print [prefix <span class="fu">++</span> name <span class="fu">|</span> name <span class="ot">&lt;-</span> names, prefix <span class="ot">&lt;-</span> namePrefix]
     where names <span class="fu">=</span> [<span class="st">&quot;James&quot;</span>, <span class="st">&quot;Victor&quot;</span>, <span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Michael&quot;</span>]
-          namePrefix <span class="fu">=</span> [<span class="st">&quot;Mr. &quot;</span>, <span class="st">&quot;sir &quot;</span>]  <span class="co">-- Теперь префиксов два</span></code></pre>
+          namePrefix <span class="fu">=</span> [<span class="st">&quot;Mr. &quot;</span>, <span class="st">&quot;sir &quot;</span>]  <span class="co">-- Теперь префиксов два</span></code></pre></div>
 <p>In this case output is:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Mr. James&quot;</span>,<span class="st">&quot;sir James&quot;</span>,<span class="st">&quot;Mr. Victor&quot;</span>,<span class="st">&quot;sir Victor&quot;</span>,<span class="st">&quot;Mr. Denis&quot;</span>,<span class="st">&quot;sir Denis&quot;</span>,<span class="st">&quot;Mr. Michael&quot;</span>,<span class="st">&quot;sir Michael&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Mr. James&quot;</span>,<span class="st">&quot;sir James&quot;</span>,<span class="st">&quot;Mr. Victor&quot;</span>,<span class="st">&quot;sir Victor&quot;</span>,<span class="st">&quot;Mr. Denis&quot;</span>,<span class="st">&quot;sir Denis&quot;</span>,<span class="st">&quot;Mr. Michael&quot;</span>,<span class="st">&quot;sir Michael&quot;</span>]</code></pre></div>
 <p>As you see we work with <em>each</em> element of both lists.</p>
 <h2 id="add-condition">Add condition</h2>
 <p>In some cases predicate is not what we need. Sometimes we need a condition. Let’s add it:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
     print [<span class="kw">if</span> car <span class="fu">==</span> <span class="st">&quot;Bentley&quot;</span> <span class="kw">then</span> <span class="st">&quot;Wow!&quot;</span> <span class="kw">else</span> <span class="st">&quot;Good!&quot;</span> <span class="fu">|</span> car <span class="ot">&lt;-</span> cars]
     where cars <span class="fu">=</span> [<span class="st">&quot;Mercedes&quot;</span>,
                   <span class="st">&quot;BMW&quot;</span>,
                   <span class="st">&quot;Bentley&quot;</span>,
                   <span class="st">&quot;Audi&quot;</span>,
-                  <span class="st">&quot;Bentley&quot;</span>]</code></pre>
+                  <span class="st">&quot;Bentley&quot;</span>]</code></pre></div>
 <p>Result:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Good!&quot;</span>,<span class="st">&quot;Good!&quot;</span>,<span class="st">&quot;Wow!&quot;</span>,<span class="st">&quot;Good!&quot;</span>,<span class="st">&quot;Wow!&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Good!&quot;</span>,<span class="st">&quot;Good!&quot;</span>,<span class="st">&quot;Wow!&quot;</span>,<span class="st">&quot;Good!&quot;</span>,<span class="st">&quot;Wow!&quot;</span>]</code></pre></div>
 <p>Here we apply a condition to each string.</p>
 <h2 id="add-local-expression">Add local expression</h2>
 <p>We can add a local expression using <code>let</code> keyword. For example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
 
 main <span class="fu">=</span> print [toUpper c <span class="fu">|</span> c <span class="ot">&lt;-</span> <span class="st">&quot;http&quot;</span>,
-                          let hletter <span class="fu">=</span> <span class="ch">'h'</span> <span class="kw">in</span> c <span class="fu">/=</span> hletter]</code></pre>
+                          let hletter <span class="fu">=</span> <span class="ch">'h'</span> <span class="kw">in</span> c <span class="fu">/=</span> hletter]</code></pre></div>
 <p>As usual, local expression can be used to avoid code duplication.</p>
 <h2 id="one-more-example">One more example</h2>
 <p>Well, it’s a little more practical example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.List</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.List</span>
 
 <span class="ot">checkGooglerBy ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 checkGooglerBy email <span class="fu">=</span>
@@ -149,11 +149,11 @@ main <span class="fu">=</span> print [checkGooglerBy email <span class="fu">|</s
                                                <span class="st">&quot;bob@yahoo.com&quot;</span>,
                                                <span class="st">&quot;richard@gmail.com&quot;</span>,
                                                <span class="st">&quot;elena@yandex.ru&quot;</span>,
-                                               <span class="st">&quot;denis@gmail.com&quot;</span>]]</code></pre>
+                                               <span class="st">&quot;denis@gmail.com&quot;</span>]]</code></pre></div>
 <p>Result is:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;adam is a Googler!&quot;</span>,<span class="st">&quot;bob@yahoo.com&quot;</span>,<span class="st">&quot;richard is a Googler!&quot;</span>,<span class="st">&quot;elena@yandex.ru&quot;</span>,<span class="st">&quot;denis is a Googler!&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;adam is a Googler!&quot;</span>,<span class="st">&quot;bob@yahoo.com&quot;</span>,<span class="st">&quot;richard is a Googler!&quot;</span>,<span class="st">&quot;elena@yandex.ru&quot;</span>,<span class="st">&quot;denis is a Googler!&quot;</span>]</code></pre></div>
 <p>Take a look at this line:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">takeWhile (<span class="fu">/=</span> <span class="ch">'@'</span>) fullEmail</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">takeWhile (<span class="fu">/=</span> <span class="ch">'@'</span>) fullEmail</code></pre></div>
 <p>Skeleton of standard function <code>takeWhile</code> looks like this:</p>
 <pre><code>takeWhile PREDICATE LIST </code></pre>
 <p>We say: “Take elements from list <code>LIST</code> as long as predicate <code>PREDICATE</code> we apply to element returns <code>True</code>. As soon as meet an element that doesn’t satisfy to <code>PREDICATE</code> - immediately stop working and return the new list.” So we find <code>'@'</code> char and take substring from chars before it, and this is a user name.</p>

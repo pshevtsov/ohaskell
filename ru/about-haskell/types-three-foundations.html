@@ -71,25 +71,25 @@
 <h2 id="кит-второй">Кит второй</h2>
 <p>Строгость типов - это требование соответствия того, что мы ожидаем, тому, что мы получаем.</p>
 <p>Например, в языке C мы можем написать такую функцию:</p>
-<pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> coefficient() {
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> coefficient() {
     return <span class="fl">12.9437</span>;
-}</code></pre>
+}</code></pre></div>
 <p>Это пример неявного приведения типов. Функция должна вернуть значение типа <code>int</code>, но ведь мы видим, что значение-то у нас типа <code>double</code>. Однако компилятор языка C спокойно проглотит это, при этом аккуратно отбросив дробную часть возвращаемого значения, ведь реальный тип этого значения будет незримо и грубо приведён к <code>int</code>.</p>
 <p>В Haskell подобный код не имеет ни малейших шансов пройти компиляцию, потому что в этом языке не существует неявного приведения типов: если мы ожидаем целое число - будь добр предоставить именно целое число.</p>
 <p>Впрочем, явное приведение типов в Haskell тоже очень ограничено. В том же C++ мы можем написать так:</p>
-<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main() {
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main() {
     std::cout &lt;&lt; (<span class="dt">int</span>)<span class="st">'1'</span> &lt;&lt; std::endl;
-}</code></pre>
+}</code></pre></div>
 <p>Взяли значение типа <code>char</code> - и бесцеремонно переделали его в значение типа <code>int</code>. Компилятор - молчок. Последствия такого рода ошибок уже стали притчею во языцех…</p>
 <p>В Haskell мы можем явно указать тип некоторого значения, но только если этот тип подходит к значению. То есть если это число 1, мы можем явно указать лишь “числовой” тип (такой, как <code>Integer</code> или <code>Double</code>). А вот фокусы с приведением символа к целочисленному значению в Haskell невозможны.</p>
 <h2 id="кит-третий">Кит третий</h2>
 <p>Автоматическое выведение типов - это способность компилятора понять тип выражения по самому этому выражению.</p>
 <p>Например, в языке C мы обязаны указывать тип явно:</p>
-<pre class="sourceCode c"><code class="sourceCode c"><span class="dt">double</span> i = <span class="fl">10.34</span>;</code></pre>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">double</span> i = <span class="fl">10.34</span>;</code></pre></div>
 <p>В Haskell этого делать не нужно. Мы просто пишем:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">i <span class="fu">=</span> <span class="fl">10.34</span> </code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">i <span class="fu">=</span> <span class="fl">10.34</span> </code></pre></div>
 <p>Компилятор проанализирует значение <code>10.34</code> и сам поймёт, что тип <code>i</code> - это <code>Double</code>. Впрочем, как уже было сказано, мы <em>можем</em> указать тип выражения явно:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">i <span class="fu">=</span> <span class="dv">10</span><span class="ot"> ::</span> <span class="dt">Double</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">i <span class="fu">=</span> <span class="dv">10</span><span class="ot"> ::</span> <span class="dt">Double</span></code></pre></div>
 <p>Кроме того, в ряде случаев мы <em>должны</em> это сделать, но об этом будет рассказно в следующих главах.</p>
 <h2 id="выводы">Выводы</h2>
 <p>Эти три кита - очень хорошие друзья программиста, ведь они гарантированно избавляют его от целого ряда глупых и потенциально опасных ошибок. А следовательно, Haskell позволяет создавать более надёжные программные решения.</p>

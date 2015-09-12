@@ -72,23 +72,23 @@
 <h2 id="foundation-two">Foundation two</h2>
 <p>Type strictness is a requirement of a correspondence between something we expect and something we get.</p>
 <p>For example we can write the following function in C:</p>
-<pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> coefficient() {
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> coefficient() {
 	<span class="kw">return</span> <span class="fl">12.9</span>;
-}</code></pre>
+}</code></pre></div>
 <p>This is an example of implicit type conversion. We expect a value of type <code>int</code> but in fact we get a value of type <code>double</code>. However the compiler will allow this and truncate the fractional part of the return value, because this expression’s type will be implicitly converted to <code>int</code>.</p>
 <p>There is no chance for this code to compile in Haskell, because there is no implicit type conversion there: if we expect an integer - you need to provide exactly an integer.</p>
 <p>However, explicit type conversion is also very limited. In C++ we can write something like:</p>
-<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main() {
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main() {
 	std::cout &lt;&lt; (<span class="dt">int</span>)<span class="st">'1'</span> &lt;&lt; std::endl;
-}</code></pre>
+}</code></pre></div>
 <p>We took a value of type <code>char</code> and remade it into a value of type <code>int</code>. The compiler keeps silence. The consequences of such errors are well known.</p>
 <p>In Haskell we can explicitly name the type of some value, but only if the type is associated with the value. Like if it is the number <code>1</code>, we can only explicitly name a “numerical” type (like <code>Integer</code> or <code>Double</code>). Tricks with converting a symbol to an integer, like the one shown above, are not possible in Haskell.</p>
 <h2 id="foundation-three">Foundation three</h2>
 <p>Automatic type inference is a compiler’s ability to understand an expression’s type by the expression itself.</p>
 <p>For example, in C we need to declare the type explicitly:</p>
-<pre class="sourceCode c"><code class="sourceCode c"><span class="dt">double</span> i = <span class="fl">10.34</span>;</code></pre>
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">double</span> i = <span class="fl">10.34</span>;</code></pre></div>
 <p>We do not need this in Haskell. We just write:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">i <span class="fu">=</span> <span class="fl">10.34</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">i <span class="fu">=</span> <span class="fl">10.34</span></code></pre></div>
 <p>The compiler will analyze the value <code>10.34</code> and will understand, that type of <code>i</code> is <code>Double</code>. However, as it was already said, we can explicitly name the type of the expression (and sometimes we <strong><em>must</em></strong> do it). I will show it soon.</p>
 
 <div class="row">

@@ -65,66 +65,66 @@
 <h2 id="идея">Идея</h2>
 <p>Собственно, название говорит само за себя - сравнение с образцом. Но эта идея не станет понятной без примеров.</p>
 <p>Как мы знаем, стандартная функция <code>head</code> (определённая в модуле <code>Prelude</code>) возвращает первый элемент непустого списка:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> head [<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>]</code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> head [<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>]</code></pre></div>
 <p>Вывод:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">23</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">23</span></code></pre></div>
 <p>А теперь давайте взглянем на код этой функции:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">head<span class="ot"> ::</span> [a] <span class="ot">-&gt;</span> a
-head (x <span class="fu">:</span> _) <span class="fu">=</span> x</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">head<span class="ot"> ::</span> [a] <span class="ot">-&gt;</span> a
+head (x <span class="fu">:</span> _) <span class="fu">=</span> x</code></pre></div>
 <p>Хм… С объявлением всё понятно: принимаем список значений некоторого типа и возвращаем значение этого же тип. Но вот определение вызывает у нас вопрос. Круглые скобки вроде бы говорят нам о кортеже, однако функция работает со списком, а не с кортежем.</p>
 <p>Перед нами - один из классических случаев pattern matching. То, что мы приняли за кортеж, на самом деле является образцом, с которым и происходит сравнение. Взглянем повнимательнее:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">(x <span class="fu">:</span> _) <span class="fu">=</span> x</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(x <span class="fu">:</span> _) <span class="fu">=</span> x</code></pre></div>
 <p>Конструкция в круглых скобках - это концептуальный образец списка. Именно образец, потому-то здесь и нет квадратных скобок. Это удивляет, но лишь до тех пор, пока мы не вспомним, что назначение оператора <code>:</code> в том, чтобы добавлять свой левый операнд в начало списка, являющегося правым операндом. Это проясняет картину:</p>
 <pre><code>( x          :             _       )
   некое      добавляется   некоего
   значение   в начало      списка</code></pre>
 <p>В результате работы оператора <code>:</code> порождается новый список, однако в контексте данного образца нас это не интересует. Более того, нас даже не интересует содержимое списка, в начало которого мы добавляем <code>x</code>, поэтому мы используем пустышку <code>_</code>. Нас интересует исключительно <code>x</code>, ведь именно <code>x</code> ассоциируется с первым элементом того самого пустышечного списка. И чтобы завершить сравнение с образцом, мы объявляем равенство:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">head (x <span class="fu">:</span> _) <span class="fu">=</span> x</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">head (x <span class="fu">:</span> _) <span class="fu">=</span> x</code></pre></div>
 <p>Теперь функция <code>head</code> вернёт нам тот самый <code>x</code>. А чтобы стало совсем понятно, подставим наш реальный список, и вот что получится:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">head (<span class="dv">23</span> <span class="fu">:</span> [<span class="dv">45</span>, <span class="dv">67</span>]) <span class="fu">=</span> <span class="dv">23</span>
-      <span class="co">--               --</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">head (<span class="dv">23</span> <span class="fu">:</span> [<span class="dv">45</span>, <span class="dv">67</span>]) <span class="fu">=</span> <span class="dv">23</span>
+      <span class="co">--               --</span></code></pre></div>
 <p>Мы как бы говорим: “Пусть функция <code>head</code> вернёт нам <em>то</em>, что нужно было бы добавить в начало списка <code>[45, 67]</code>, чтобы получился список <code>[23, 45, 56]</code>”. А этим <em>то</em> и является значение 23.</p>
 <p>Кстати, имя <code>x</code> не является каким-то особенным. Мы могли бы использовать и любое другое имя:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">head<span class="ot"> ::</span> [a] <span class="ot">-&gt;</span> a
-head (firstElement <span class="fu">:</span> _) <span class="fu">=</span> firstElement</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">head<span class="ot"> ::</span> [a] <span class="ot">-&gt;</span> a
+head (firstElement <span class="fu">:</span> _) <span class="fu">=</span> firstElement</code></pre></div>
 <h2 id="дублируем-элемент">Дублируем элемент</h2>
 <p>Рассмотрим другой пример. Определим функцию, дублирующую первый элемент списка:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
 
 <span class="ot">duplicateFirstElement ::</span> [a] <span class="ot">-&gt;</span> [a]
 duplicateFirstElement (x <span class="fu">:</span> xs) <span class="fu">=</span> x <span class="fu">:</span> x <span class="fu">:</span> xs
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> duplicateFirstElement [<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>]</code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> duplicateFirstElement [<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>]</code></pre></div>
 <p>Вывод:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="kw">23</span>,23,45,67]</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="kw">23</span>,23,45,67]</code></pre></div>
 <p>Рассмотрим сравнение в теле функции <code>duplicateFirstElement</code> внимательнее:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">(x <span class="fu">:</span> xs) <span class="fu">=</span> x <span class="fu">:</span> x <span class="fu">:</span> xs</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(x <span class="fu">:</span> xs) <span class="fu">=</span> x <span class="fu">:</span> x <span class="fu">:</span> xs</code></pre></div>
 <p>Имена <code>x</code> и <code>xs</code> в подобных образцах - не более чем дань традиции. А раз так, заменим их на более понятные:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">(firstElement <span class="fu">:</span> otherElements) <span class="fu">=</span> firstElement <span class="fu">:</span> firstElement <span class="fu">:</span> otherElements</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(firstElement <span class="fu">:</span> otherElements) <span class="fu">=</span> firstElement <span class="fu">:</span> firstElement <span class="fu">:</span> otherElements</code></pre></div>
 <p>Теперь мы уже не может использовать пустышку <code>_</code>, поскольку нас <em>интересует</em> переданный нам список. И для большей ясности добавим наши реальные значения:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">(<span class="dv">23</span> <span class="fu">:</span> [<span class="dv">45</span>, <span class="dv">67</span>]) <span class="fu">=</span> <span class="dv">23</span> <span class="fu">:</span> <span class="dv">23</span> <span class="fu">:</span> [<span class="dv">45</span>, <span class="dv">67</span>] <span class="fu">=</span> [<span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>]
- <span class="co">--   ========    --   --   ========    --  --  ======</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(<span class="dv">23</span> <span class="fu">:</span> [<span class="dv">45</span>, <span class="dv">67</span>]) <span class="fu">=</span> <span class="dv">23</span> <span class="fu">:</span> <span class="dv">23</span> <span class="fu">:</span> [<span class="dv">45</span>, <span class="dv">67</span>] <span class="fu">=</span> [<span class="dv">23</span>, <span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>]
+ <span class="co">--   ========    --   --   ========    --  --  ======</span></code></pre></div>
 <p>Полагаю, теперь всё предельно понятно.</p>
 <h2 id="несколько-образцов">Несколько образцов</h2>
 <p>Да, их может быть несколько. Определим функцию, берующую вершины из двух переданных ей списков и возвращающую кортеж, составленных из этих вершин:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
 
 <span class="ot">takeTwoHeads ::</span> [a] <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> (a, a)
 takeTwoHeads (x <span class="fu">:</span> _) (y <span class="fu">:</span> _) <span class="fu">=</span> (x, y)
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> takeTwoHeads [<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>] [<span class="dv">89</span>, <span class="dv">93</span>]</code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> takeTwoHeads [<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">67</span>] [<span class="dv">89</span>, <span class="dv">93</span>]</code></pre></div>
 <p>Результат:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">(23</span>,89<span class="kw">)</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">(23</span>,89<span class="kw">)</span></code></pre></div>
 <p>Данное сравнение уже не требует пояснений:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">takeTwoHeads (x  <span class="fu">:</span> _       ) (y  <span class="fu">:</span> _   ) <span class="fu">=</span> (x,  y)
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">takeTwoHeads (x  <span class="fu">:</span> _       ) (y  <span class="fu">:</span> _   ) <span class="fu">=</span> (x,  y)
 
 takeTwoHeads (<span class="dv">23</span> <span class="fu">:</span> [<span class="dv">45</span>, <span class="dv">67</span>]) (<span class="dv">89</span> <span class="fu">:</span> [<span class="dv">93</span>]) <span class="fu">=</span> (<span class="dv">23</span>, <span class="dv">89</span>)
-              <span class="co">--              ==            --  ==</span></code></pre>
+              <span class="co">--              ==            --  ==</span></code></pre></div>
 <p>Как вы уже поняли, комбинировать образцы можно многими способами.</p>
 <h2 id="section"></h2>
 

@@ -89,13 +89,13 @@
 <pre><code>f a</code></pre>
 <p>is read like: “The application of function <code>f</code> to an argument <code>a</code>.”</p>
 <p>This is how it looks in Haskell:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x <span class="fu">*</span> x) <span class="dv">5</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(\x <span class="ot">-&gt;</span> x <span class="fu">*</span> x) <span class="dv">5</span></code></pre></div>
 <p>λ-expression in parenteses gives a λ-function, which is immediately applied to an argument <code>5</code>.</p>
 <h2 id="multiple-arguments">Multiple arguments</h2>
 <p>λ-function can be applied to multiple arguments. Assume we have a function, which returns the result of a multiplication of the first value to the second:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
     print (f <span class="dv">5</span> <span class="dv">6</span>)
-        <span class="kw">where</span> f <span class="fu">=</span> \arg1 arg2 <span class="ot">-&gt;</span> arg1 <span class="fu">*</span> arg2</code></pre>
+        <span class="kw">where</span> f <span class="fu">=</span> \arg1 arg2 <span class="ot">-&gt;</span> arg1 <span class="fu">*</span> arg2</code></pre></div>
 <p>The argument list is between the backslash and the arrow.</p>
 <h2 id="whats-the-use">What’s the use</h2>
 <p>In C we have a standart sequence of three steps when working with a function:</p>
@@ -105,25 +105,25 @@
 <li>call</li>
 </ol>
 <p>For example:</p>
-<pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> sq(<span class="dt">int</span> i) {
+<div class="sourceCode"><pre class="sourceCode c"><code class="sourceCode c"><span class="dt">int</span> sq(<span class="dt">int</span> i) {
 	<span class="kw">return</span> i*i;
 }
 
 <span class="dt">int</span> main() {
 	printf(<span class="st">&quot;%d&quot;</span>, sq(<span class="dv">5</span>));
-}</code></pre>
+}</code></pre></div>
 <p>We prepare our “global subprogram” and then enter it via a call.</p>
 <p>And that’s how it looks in Haskell:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print ((\x <span class="ot">-&gt;</span> x <span class="fu">*</span> x) <span class="dv">5</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print ((\x <span class="ot">-&gt;</span> x <span class="fu">*</span> x) <span class="dv">5</span>)</code></pre></div>
 <p>We prepare nothing in advance. On the contrary, we create a function as a value, locally and immediately before usage. We create it and immediately apply iy to the argument <code>5</code>.</p>
 <p>For simplicity we can introduce an explanatory expression for our function:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">print (f <span class="dv">5</span>)
-    <span class="kw">where</span> f <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">*</span> x</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">print (f <span class="dv">5</span>)
+    <span class="kw">where</span> f <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">*</span> x</code></pre></div>
 <p>The main advantage of a λ-function is in its locality. Why do we need to declare and define the function in advance if we can create and immediately use in exactly where we need it?</p>
 <p>Of course if λ-funciton is used in many places, we can define it globally to avoid duplication by binding it with some name. For example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">f <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">*</span> x
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">f <span class="fu">=</span> \x <span class="ot">-&gt;</span> x <span class="fu">*</span> x
 
-main <span class="fu">=</span> print ((f <span class="dv">5</span>) <span class="fu">+</span> (f <span class="dv">6</span>))</code></pre>
+main <span class="fu">=</span> print ((f <span class="dv">5</span>) <span class="fu">+</span> (f <span class="dv">6</span>))</code></pre></div>
 <p>The expression <code>f</code> is equal to our λ-function, and now we can apply it multiple times to different arguments.</p>
 <p>Done. Now you know what λ-functions are. But their most interesting application is connected with higher-order functions, and we’ll talk about it right now.</p>
 

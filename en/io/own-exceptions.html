@@ -63,7 +63,7 @@
             <p>Previously we were only catching exceptions. Now, let’s discuss how to throw them and how to create our own exception types.</p>
 <h2 id="creating">Creating</h2>
 <p>Define the type of exception:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span>
 <span class="kw">import </span><span class="dt">Data.String.Utils</span>
 <span class="kw">import </span><span class="dt">Data.Typeable</span>
 
@@ -72,15 +72,15 @@
 <span class="kw">data</span> <span class="dt">InvalidRepository</span> <span class="fu">=</span> <span class="dt">InvalidRepository</span> <span class="dt">Repo</span>
                          deriving (<span class="dt">Show</span>, <span class="dt">Typeable</span>)
 
-<span class="kw">instance</span> <span class="dt">Exception</span> <span class="dt">InvalidRepository</span></code></pre>
+<span class="kw">instance</span> <span class="dt">Exception</span> <span class="dt">InvalidRepository</span></code></pre></div>
 <p>Some repository is analysed, if it is incorrect it’s time for exception <code>InvalidRepository</code>. This exception is inherited from two type-classes, <code>Show</code> and <code>Typeable</code>. That’s necessary as our type must provide an instance of type-class <code>Exception</code> and that type class deduces context from these two type-classes.</p>
 <p>You’ll ask, what is that unusual string for:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Exception</span> <span class="dt">InvalidRepository</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Exception</span> <span class="dt">InvalidRepository</span></code></pre></div>
 <p>We face an instance of type-class <code>Exception</code> but that instance has neither keyword <code>where</code>, nor subsequent implementations of corresponding methods. Type-class <code>Exception</code> contains two different methods, but we say, “Here is our instance of type-class <code>Exception</code>, but we are not going to provide implementations of its methods”.</p>
 <h2 id="throw">Throw</h2>
 <p>In order to throw the exception we use standard function <code>throw</code>. Remember that even in case if exception was thrown from pure function, we can catch it only in <code>IO</code>-function.</p>
 <p>Write:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">extractProtocol ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">extractProtocol ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 extractProtocol path <span class="fu">=</span>
     if path <span class="ot">`startsWith`</span> <span class="st">&quot;git&quot;</span> <span class="fu">||</span> path <span class="ot">`startsWith`</span> <span class="st">&quot;ssh&quot;</span>
     then takeWhile (<span class="fu">/=</span> <span class="ch">':'</span>) path
@@ -93,9 +93,9 @@ main <span class="fu">=</span> <span class="kw">do</span>
                     <span class="ot">::</span> <span class="dt">IO</span> (<span class="dt">Either</span> <span class="dt">SomeException</span> <span class="dt">String</span>)
     case result <span class="kw">of</span>
         <span class="dt">Left</span> exception <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;Fault: &quot;</span> <span class="fu">++</span> show exception
-        <span class="dt">Right</span> protocol <span class="ot">-&gt;</span> putStrLn protocol</code></pre>
+        <span class="dt">Right</span> protocol <span class="ot">-&gt;</span> putStrLn protocol</code></pre></div>
 <p>Here is an output:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Fault</span>: InvalidRepository <span class="st">&quot;ss://ul@sch/proj.git&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Fault</span>: InvalidRepository <span class="st">&quot;ss://ul@sch/proj.git&quot;</span></code></pre></div>
 <p>We are trying to extract protocol from the full path to repository and if its wrong we throw an exception which is caught by the function <code>try</code>.</p>
 <h2 id="so">So</h2>
 <ul>

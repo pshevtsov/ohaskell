@@ -69,122 +69,122 @@
 <p>Hence follows an important feature of pure functions, precisely the lack of <em>side-effects</em>. Input value of a pure function entirely and completely defines its output value. Therefore if we pass same value as input million times, we are guaranteed that on the output we’ll get the same result million times.</p>
 <h2 id="declaring">Declaring</h2>
 <p>Same as in other programming languages, function should first be declared. Let us do that.</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">simpleSum ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">simpleSum ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre></div>
 <p>Before the symbol <code>::</code> we declared the name of the function, then follows its type.</p>
 <pre><code>simpleSum :: Int -&gt; Int
 |       |    |        |
   name          type</code></pre>
 <p>I understand that the collocation “type of function” sounds weird, but pure function is a value that has type of function.</p>
 <p>Consider the declaration of this type:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre></div>
 <p>Notice an arrow. This arrow itself means that we face the pure function. The type of the only argument (in this case it’s the standard type <code>Int</code>) is on the left side of arrow, on the right side we have an output type (same <code>Int</code>). The arrow may be considered as a “mental designation” to the stream of information which pass through the function from input to output, left to right.</p>
 <p>I should remind you that pure function must have at least one argument and return something, cause that is the point of mathematical function.</p>
 <p>Concerning amount of arguments. Of course function may take several arguments. Here is a type of function that takes three arguments.</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre></div>
 <p>That notation should be read as follows: find the last (most right) arrow, that’s the separator: to the left from it goes the list of arguments’ types, to the right type of the output.</p>
 <pre><code>Int -&gt; Int -&gt; Int -&gt; Int
 arguments' types |  | output's type</code></pre>
 <h2 id="defining">Defining</h2>
 <p>Now the function needs to be defined. By the way, the function <em>must</em> be defined. For example in the <code>C</code> or <code>C++</code> language we may declare the function, but not define it (provided that it is never called) and stay calm. Haskell has a stricter approach: if you declared the function, please be so kind to define it, otherwise the compiler will express it’s categorical discontent.</p>
 <p>That’s why right after the declaration we write the definition:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">simpleSum ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-simpleSum value <span class="fu">=</span> value <span class="fu">+</span> value</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">simpleSum ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+simpleSum value <span class="fu">=</span> value <span class="fu">+</span> value</code></pre></div>
 <p>In this case the “mental separator” is the equal sign. Skeleton of that expression may be expressed this way:</p>
 <pre><code>NAME ARGUMENTS = BODY_EXPRESSION</code></pre>
 <p>where <code>NAME</code> is function’s name, <code>ARGUMENTS</code> is the list of arguments (their names, not types), and <code>BODY\_EXPRESSION</code> is the body of function. In that case we have the only argument namely <code>value</code>, we also have a simple body where we just sum argument with itself.</p>
 <h2 id="calling">Calling</h2>
 <p>Now our function may be called. Let us do that with argument 4, or as we say in world of <code>FP</code>, apply the function to the argument 4:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn (show (simpleSum <span class="dv">4</span>))</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn (show (simpleSum <span class="dv">4</span>))</code></pre></div>
 <p>Result:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">8</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">8</span></code></pre></div>
 <p>Done. Now I should clarify some important details.</p>
 <h2 id="exit-from-function">Exit from function</h2>
 <p>In the C language, if you have a function with returnable type, we must specify the exit points using <code>return</code> instruction. Moreover, there may be several exit points.</p>
 <p>It’s very different with Haskell. Firstly, there may be only one exit point. Secondly, Haskell has no analog for <code>return</code> instruction. If we recall the mathematical nature of a pure function, we’ll understand that there is no another way. After all, the pure function is a description of the dependency of the output value from the values on input, that’s why it’s body is an aggregate of expressions which are evaluated and in result they give only one, the last expression. That last expression is actually the “exit point” of the function.</p>
 <p>I’ll give an example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 indicate address <span class="fu">=</span> 
-    <span class="kw">if</span> adress <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre>
+    <span class="kw">if</span> adress <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre></div>
 <p>This function takes an argument of standard type <code>String</code>, which represents some IP-address. In the function’s body argument is checked on equality to <code>127.0.0.1</code>, in result we end up in one out of two logical branches. In <code>C++</code> it will look like that.</p>
-<pre class="sourceCode cpp"><code class="sourceCode cpp">std::string indicate( <span class="dt">const</span> std::string&amp; address ) {
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">std::string indicate( <span class="dt">const</span> std::string&amp; address ) {
     <span class="kw">if</span>( address == <span class="st">&quot;127.0.0.1&quot;</span> ) {
         <span class="kw">return</span> <span class="st">&quot;localhost&quot;</span>;
     }
     <span class="kw">return</span> address;
-}</code></pre>
+}</code></pre></div>
 <p>We explicitly pointed two exit points. But in Haskell we don’t need to do that, as when we will get into one of the branches the selected expressions would be returned.</p>
 <p>To make it more clear, let’s refactor the body of this function and get rid of <code>if-then-else</code> expression:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 indicate <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span>
-indicate address <span class="fu">=</span> address</code></pre>
+indicate address <span class="fu">=</span> address</code></pre></div>
 <p>Haskell allows to set several definitions for the same function. Consider it as a special type of overload. Here we say: “If the input argument equals to <code>127.0.0.1</code> use the body №1, otherwise use the body №2.” Therefore, when compiler will see call to that function in code it will just substitute it with the corresponding expression: either string <code>localhost</code> in case if the first body is used, or the passed argument in case if the second body is used.</p>
 <p>Now everything fell into place: there is no need to explicitly specify the exit point of pure function, because the final expression in the body of this function will just substitute the call to it. That is, if it’s written this way:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn (indicate <span class="st">&quot;127.0.0.1&quot;</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn (indicate <span class="st">&quot;127.0.0.1&quot;</span>)</code></pre></div>
 <p>it is the same thing as just:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="st">&quot;localhost&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="st">&quot;localhost&quot;</span></code></pre></div>
 <p>That is an important property of pure functions: we always can safely substitute calls to them with returned results, and the application will work as it did before. That’s why it’s easy to work with pure function.</p>
 <h2 id="guards">Guards</h2>
 <p>There is one more method to perform the selection inside the function with no use of <code>if-then-else</code>. It is called guard. Let’s refactor our function one more time:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 indicate address
 	<span class="fu">|</span> address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span>
 	<span class="fu">|</span> null address <span class="fu">=</span> <span class="st">&quot;empty IP-address&quot;</span>
-	<span class="fu">|</span> otherwise <span class="fu">=</span> address</code></pre>
+	<span class="fu">|</span> otherwise <span class="fu">=</span> address</code></pre></div>
 <p>Symbol <code>'|'</code> represents the selection, as if we substitute it with the word “or”. It is followed by logical condition and the corresponding final value of the function.</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">|</span> address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">|</span> address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span>
 <span class="fu">|</span> null address           <span class="fu">=</span> <span class="st">&quot;empty IP-address&quot;</span>
 <span class="fu">...</span>
-<span class="co">-- logical condition     = total value</span></code></pre>
+<span class="co">-- logical condition     = total value</span></code></pre></div>
 <p>By the way, branch with condition <code>otherwise</code> should always take place. In case if you miss it, the code would compile, but a treacherous bug will be settled down inside your code. Particularly, if you’ll write it these way:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 indicate adress
 	<span class="fu">|</span> address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span>
-	<span class="fu">|</span> null adress <span class="fu">=</span> <span class="st">&quot;empty IP-address&quot;</span></code></pre>
+	<span class="fu">|</span> null adress <span class="fu">=</span> <span class="st">&quot;empty IP-address&quot;</span></code></pre></div>
 <p>and then apply the function to a non-empty string, which is not “<code>127.0.0.1</code>”, you’ll get a runtime error:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real</span>: src/Main.hs:(23,1)<span class="kw">-</span>(25,36)<span class="kw">:</span> Non-exhaustive patterns in function</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real</span>: src/Main.hs:(23,1)<span class="kw">-</span>(25,36)<span class="kw">:</span> Non-exhaustive patterns in function</code></pre></div>
 <p>Be careful.</p>
 <h2 id="local-expressions">Local expressions</h2>
 <p>Local expression inside the function’s body is a very useful thing, which can save us from magic numbers and repetitions.</p>
 <p>For example, we have such function:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
-	line <span class="fu">*</span> <span class="fl">0.4959</span></code></pre>
+	line <span class="fu">*</span> <span class="fl">0.4959</span></code></pre></div>
 <p>Here we prepare the length of some line by multiplying its original length by given correction coefficient. However, we got a classical magic number, the implication of it is not clear and it’s bad. Adding comments is not the best solution. Thus, let’s add an expression which will clear the point of that number.</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
 	line <span class="fu">*</span> coefficient
-	<span class="kw">where</span> coefficient <span class="fu">=</span> <span class="fl">0.4959</span></code></pre>
+	<span class="kw">where</span> coefficient <span class="fu">=</span> <span class="fl">0.4959</span></code></pre></div>
 <p>Keyword <code>where</code> sets an expression, that may be used inside the function’s body. Consider it as a pseudonym: identifier <code>coefficient</code> may now be used as analog of a numeric value <code>0.4959</code>.</p>
 <p>There may be several local expressions:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">...</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">...</span>
     line <span class="fu">*</span> coefficient <span class="fu">-</span> correction
     <span class="kw">where</span> coefficient <span class="fu">=</span> <span class="fl">0.4959</span>
-          correction <span class="fu">=</span> <span class="fl">0.0012</span></code></pre>
+          correction <span class="fu">=</span> <span class="fl">0.0012</span></code></pre></div>
 <p>There is one more way to set the local auxiliary expression, particularly with the help of the keyword <code>let</code>. With the example of our last function, it will look this way:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
 	<span class="kw">let</span> coefficient <span class="fu">=</span> <span class="fl">12.4959</span>
 	    correction <span class="fu">=</span> <span class="fl">0.0012</span>
 	<span class="kw">in</span>
-	line <span class="fu">*</span> coefficient <span class="fu">-</span> correction</code></pre>
+	line <span class="fu">*</span> coefficient <span class="fu">-</span> correction</code></pre></div>
 <p>The common structure is as follows:</p>
 <pre><code>let `bindings` in `expression`,</code></pre>
 <p>where <code>bindings</code> are the local expressions and <code>expression</code> is the place where we are going to use these local expressions.</p>
 <p>You are wondering what is the difference between <code>where</code> and <code>let</code>?</p>
 <p>Firstly, it’s possible to have only one <code>where</code> expression and it should be placed to the end of the function’s body, at the same time <code>let</code> can appear many times in any part of function’s body.</p>
 <p>Secondly, expression set by <code>where</code> keyword is visible from any part of the function, whereas the expression set by keyword <code>let</code>, may be “super-local”. For example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">...</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">...</span>
 	<span class="kw">let</span> coefficient <span class="fu">=</span> <span class="fl">12.4959</span>
 	    correction <span class="fu">=</span> <span class="fl">0.0012</span>
 	<span class="kw">in</span>
-	line <span class="fu">*</span> coefficient <span class="fu">-</span> correction <span class="fu">-</span> (<span class="kw">let</span> s <span class="fu">=</span> <span class="fl">10.9</span> <span class="kw">in</span> s <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">-</span> s</code></pre>
+	line <span class="fu">*</span> coefficient <span class="fu">-</span> correction <span class="fu">-</span> (<span class="kw">let</span> s <span class="fu">=</span> <span class="fl">10.9</span> <span class="kw">in</span> s <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">-</span> s</code></pre></div>
 <p>Here we set “super-local” expression with the name <code>s</code> which exists only inside the round parenthesis. That’s why that code wouldn’t pass the compilation, cause the second expression <code>s</code> is is outside the parenthesis.</p>
 <h2 id="without-declaration">Without declaration</h2>
 <p>As you remember, we can’t declare the function without defining it. But what about to define the function without declaring it? The answer is: we can.</p>
 <p>The common practice is to declare the function and then define it. Yes, we <em>may</em> write it this way:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- There is no declarition only the definition</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- There is no declarition only the definition</span>
 prepareLength line <span class="fu">=</span>
-	<span class="fu">...</span></code></pre>
+	<span class="fu">...</span></code></pre></div>
 <p>however for complicated functions such practice is not recommended, because the definition becomes poorer, as the description of arguments and type of output helps to understand the work done by function. Moreover, if you wouldn’t specify these types, they’ll become polymorphic, but let’s talk about that later.</p>
 <p>However, if we consider really trivial functions, consisting of one-two lines, talking for themselves, then the declaring types of output and arguments will look excessive. In that case omit them.</p>
 <p>That’s it, now you know about the pure functions. By the way, they will make you a lot of use, we’ll come back to them in the subsequent chapters.</p>

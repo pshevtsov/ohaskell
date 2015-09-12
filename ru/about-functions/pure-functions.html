@@ -66,157 +66,157 @@
 <p><strong>Функция - это описание зависимости чего-то от чего-то.</strong></p>
 </blockquote>
 <p>То есть функциия представляет собою закон, определяющий то, <em>как</em> одному конкретному значению соответствует другое конкретное значение. Например, уже известная нам функция <code>f1</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">f1 x <span class="fu">=</span> x <span class="fu">*</span> x</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">f1 x <span class="fu">=</span> x <span class="fu">*</span> x</code></pre></div>
 <p>В рамках данной функции каждому целочисленному значению однозначно соответствует его квадрат. Так вот чистые функции в Haskell - это и есть функции в математическом смысле. Они представляют собой описание того, <em>как</em> конкретное входное значение определяет конкретное выходное значение.</p>
 <p>Отсюда вытекает важнейшая характеристика чистых функций, а именно отсутствие побочных эффектов. Значение на входе чистой функции всецело и полностью определяет значение на выходе. Поэтому если мы миллион раз подадим на вход функции <code>f1</code> одно и то же значение, то на выходе мы миллион раз получим один и тот же результат. Гарантированно.</p>
 <p>Кстати, по поводу побочных эффектов. Чистая функция не способна взаимодействовать с внешним миром. Не существует никакого способа заставить чистую функцию записать строчку в файл, прочитать запись из БД, отправить HTTP-запрос или получить текст, вводимый пользователем с клавиатуры. А раз так, чистая функция является в высшей степени предсказуемой конструкцией: она никогда не преподнесёт нам сюрприз, потому что единственное что она делает, это определяет зависимость своего выходного значения от своих аргументов.</p>
 <h2 id="объявляем">Объявляем</h2>
 <p>Сначала функцию рекомендуется объявить. Сделаем же это:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">simpleSum ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">simpleSum ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre></div>
 <p>До символа <code>::</code> указывается имя функции, а после - её тип.</p>
 <pre><code>simpleSum :: Int -&gt; Int
 |       |    |        |
    имя          тип </code></pre>
 <p>Я понимаю, словосочетание “тип функции” звучит странно, но в мире Haskell так: чистая функция - это значение, имеющее тип функции. Рассмотрим описание этого типа:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre></div>
 <p>Обратите внимание на стрелочку. В объявлении всех чистых функций всегда присутствует эта стрелочка. Слева от неё указан тип единственного аргумента (в данном случае это стандартный тип <code>Int</code>), а справа от неё - тип выходного значения (тот же <code>Int</code>). Саму же стрелочку можно воспринимать как ментальное указание на поток информации, движущийся через функцию: от её входа к выходу, слева направо.</p>
 <p>Я повторю эту важную мысль ещё раз: чистая функция - это значение. В императивном программировании данные и функции - это совершенно разные вещи. Но в чисто функциональном языке данные и функции - это одно и то же. И на протяжении последущих глав мы много раз будем возвращаться к этой простой и важной мысли. Да, если вы имеете опыт разработки на императивном языке, эта мысль не кажется вам такой уж простой (а вероятно, она вообще кажется вам абсурдной), но вскоре всё встанет на свои места.</p>
 <p>Кстати, вы заметили, что выше было упомянуто о том, что функцию рекомендуется объявить? Строго говоря, в Haskell делать это необязательно. Однако объявление показывает нам типы аргументов и тип возвращаемого значения, а это делает код значительно более читабельным.</p>
 <p>Напоминаю, что чистая функция обязана иметь хотя бы один аргумент и обязана что-то возвращать, ведь это и отражает суть математической функции: что-то обязательно подаём на вход и что-то обязательно получаем на выходе.</p>
 <p>Разумеется, чистая функция может принимать и несколько аргументов. Вот тип функции, принимающей три аргумента:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></code></pre></div>
 <p>Читать эту запись следует так: ищем последнюю по счёту (самую правую) стрелочку - она-то и будет тем самым разделителем: слева от неё идёт список типов аргументов, справа - тип возвращаемого выражения:</p>
 <pre><code>Int -&gt; Int -&gt; Int -&gt; Int
 типы аргументов  |  |тип возвращаемого значения</code></pre>
 <h2 id="определяем">Определяем</h2>
 <p>Теперь функцию необходимо определить. Да, определить нужно <em>обязательно</em>. Например, в языке C или C++ мы можем спокойно объявить функцию и не определять её (при условии, что она никогда не вызывается). В Haskell более строгий подход: если объявил функцию - будь добр и определить её, в противном случае компилятор выскажет своё категорическое недовольство.</p>
 <p>Поэтому сразу же после объявления пишем определение:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">simpleSum ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-simpleSum value <span class="fu">=</span> value <span class="fu">+</span> value</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">simpleSum ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+simpleSum value <span class="fu">=</span> value <span class="fu">+</span> value</code></pre></div>
 <p>Здесь ментальным разделителем является знак равенства. Скелет данного выражения можно представить так:</p>
 <pre><code>NAME ARGUMENTS = BODY_EXPRESSION </code></pre>
 <p>где <code>NAME</code> - имя функции, <code>ARGUMENTS</code> - список имён аргументов (имён, а не типов), а <code>BODY_EXPRESSION</code> - тело функции. В данном случае у нас имеется один-единственный аргумент по имени <code>value</code>, а также имеется простое тело, в котором мы просто складываем аргумент с самим собой.</p>
 <h2 id="вызываем">Вызываем</h2>
 <p>Теперь нашу функцию можно вызывать. Сделаем же это с аргументом <code>4</code>, или, как принято говорить в мире функционального программирования, применим функцию к аргументу <code>4</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn (show (simpleSum <span class="dv">4</span>))</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn (show (simpleSum <span class="dv">4</span>))</code></pre></div>
 <p>Стандартная функция <code>putStrLn</code> выводит строку на экран с завершающим <code>\n</code>. Результат выполнения этого кода вполне ожидаем:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">8</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">8</span></code></pre></div>
 <p>Готово. А теперь необходимо уточнить некоторые важные детали.</p>
 <h2 id="выход-из-функции">Выход из функции</h2>
 <p>В языке C, если у нас есть функция с возвращаемым значением, мы обязаны где-то в её теле указать точку выхода с помощью инструкции <code>return</code>. Кроме того, точек выхода может быть несколько.</p>
 <p>В Haskell всё обстоит совершенно иначе. Во-первых, точка выхода из чистой функции может быть только одна, а во-вторых, аналога инструкции <code>return</code> в Haskell нет. Да, существует специальная фукнция <code>return</code>, но, как будет упомянуто в следующих главах, она несёт совершено иной смысл.</p>
 <p>Почему же в Haskell нет C-подобной инструкции <code>return</code>? Если мы вспомним математическую природу чистой функции, то поймём, что иначе и быть не может. Ведь чистая функция представляет собой описание зависимости выходного значения от входных значений, поэтому её тело представляет собой совокупность выражений, которые вычисляются и в конечном итоге оставляют одно-единственное, последнее выражение. Так вот это последнее выражение и будет являться “точкой выхода” из функции.</p>
 <p>Приведу пример:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 indicate address <span class="fu">=</span>
-    if address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre>
+    if address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre></div>
 <p>Эта функция принимает единственный аргумент стандартного типа <code>String</code>, соответствующий некоторому IP-адресу. В теле функции происходит проверка аргумента на равенство адресу <code>127.0.0.1</code>, в результате чего мы окажемся в одной из двух логических ветвей. В C++ это выглядело бы так:</p>
-<pre class="sourceCode cpp"><code class="sourceCode cpp">std::string indicate( <span class="dt">const</span> std::string&amp; address ) {
+<div class="sourceCode"><pre class="sourceCode cpp"><code class="sourceCode cpp">std::string indicate( <span class="dt">const</span> std::string&amp; address ) {
     if( address == <span class="st">&quot;127.0.0.1&quot;</span> ) {
         return <span class="st">&quot;localhost&quot;</span>;
     }
 
     return address;
-}</code></pre>
+}</code></pre></div>
 <p>Мы явно указали две точки выхода из функции. Но в Haskell этого делать не нужно, потому что когда мы окажемся в одной из двух логических ветвей, то выражение, на котором мы окажемся, и будет возвращено.</p>
 <p>Чтобы стало понятнее, перепишем тело этой функции так, чтобы избавиться от выражения <code>if-then-else</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 indicate <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span>
-indicate address <span class="fu">=</span> address</code></pre>
+indicate address <span class="fu">=</span> address</code></pre></div>
 <p>Haskell позволяет вводить несколько определений для одной функции. Рассматривайте это как особый вариант перегрузки. Здесь мы говорим: “Если входной аргумент будет равен ‘127.0.0.1’, пусть будет использовано тело №1, в противном случае пусть будет использовано тело №2”. Следовательно, когда компилятор увидит вызов этой функции в коде, он просто подставит на место этого вызова соответствующее выражение: либо строку “localhost”, в случае использования первого тела, либо фактически переданный аргумент, в случае использования второго тела.</p>
 <p>Кстати, порядок указания тел функции важен. Если бы мы написали так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 indicate address <span class="fu">=</span> address
-indicate <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span></code></pre>
+indicate <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span></code></pre></div>
 <p>то функция всегда возвращала бы свой фактический адрес. Ведь любое строковое значение удовлетворяло бы телу №1, и до второго тела мы никогда бы не дошли. Таким образом, если у чистой функции несколько тел, указывать их следует от частного к общему, но не наоборот.</p>
 <p>Теперь всё встало на свои места: явно определять точку выхода из чистой функции не нужно потому, что конечное выражение в теле этой функции просто заменит собою её вызов. То есть если написано так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn (indicate <span class="st">&quot;127.0.0.1&quot;</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn (indicate <span class="st">&quot;127.0.0.1&quot;</span>)</code></pre></div>
 <p>это то же самое, как если бы было написано просто:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="st">&quot;localhost&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="st">&quot;localhost&quot;</span></code></pre></div>
 <p>Это чрезвычайно важное свойство чистых функций: мы всегда можем безопасно заменить места их вызова соответствующими возвращёнными значениями, и работа приложения при этом гарантированно останется неизменной. А всё потому, что чистая функция - это и есть возвращённое ею значение. Именно поэтому работать с чистой функцией очень легко.</p>
 <h2 id="охрана">Охрана</h2>
 <p>Существует ещё один способ задать выбор внутри функции без использования конструкции <code>if-then-else</code>. Называется он охрана (guard), хотя можно перевести и как “защита” или “стража”. Перепишем нашу функцию:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 indicate address
     <span class="fu">|</span> address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span>
     <span class="fu">|</span> null address <span class="fu">=</span> <span class="st">&quot;empty IP-address&quot;</span>
-    <span class="fu">|</span> otherwise <span class="fu">=</span> address</code></pre>
+    <span class="fu">|</span> otherwise <span class="fu">=</span> address</code></pre></div>
 <p>Символ <code>|</code> отражает выбор, как если бы мы написали вместо него слово “либо”. После него идёт логическое условие и соответствующее ему итоговое значение функции:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">    <span class="fu">...</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">    <span class="fu">...</span>
     <span class="fu">|</span> address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span>
     <span class="fu">|</span> null address           <span class="fu">=</span> <span class="st">&quot;empty IP-address&quot;</span>
     <span class="fu">...</span>
-      <span class="co">-- логическое условие  = итоговое значение</span></code></pre>
+      <span class="co">-- логическое условие  = итоговое значение</span></code></pre></div>
 <p>Кстати, ветку <code>otherwise</code> необходимо использовать всегда. Если вы её пропустите, код пройдёт компиляцию, однако в вашем коде поселится коварная ошибка. В частности, если вы напишете так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">indicate ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 indicate address
     <span class="fu">|</span> address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">=</span> <span class="st">&quot;localhost&quot;</span>
-    <span class="fu">|</span> null address <span class="fu">=</span> <span class="st">&quot;empty IP-address&quot;</span></code></pre>
+    <span class="fu">|</span> null address <span class="fu">=</span> <span class="st">&quot;empty IP-address&quot;</span></code></pre></div>
 <p>а потом примените эту функцию к непустой строке, отличающейся от “127.0.0.1”, вы получите ошибку времени выполнения:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real</span>: src/Main.hs:(23,1)<span class="kw">-</span>(25,36)<span class="kw">:</span> Non-exhaustive patterns in function indicate</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real</span>: src/Main.hs:(23,1)<span class="kw">-</span>(25,36)<span class="kw">:</span> Non-exhaustive patterns in function indicate</code></pre></div>
 <p>Будьте внимательны.</p>
 <h2 id="отступы">Отступы</h2>
 <p>Обратите внимание, что в функции <code>indicate</code> перед символами <code>|</code> находится отступ. Этот отступ очень важен! В Haskell-коде форматирование имеет большое значение, и если оно, это форматирование, неправильное, компиляция не пройдёт. Подробнее о практических примерах форматирования рассказано в главе <a href="../../ru/miscellaneous/about-formatting.html">О форматировании</a>.</p>
 <h2 id="локальные-выражения">Локальные выражения</h2>
 <p>Локальное выражение в теле функции - штука очень полезная, спасающая нас от магических чисел и от дубляжа кода.</p>
 <p>Например, у нас есть такая функция:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
-prepareLength line <span class="fu">=</span> line <span class="fu">*</span> <span class="fl">0.4959</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+prepareLength line <span class="fu">=</span> line <span class="fu">*</span> <span class="fl">0.4959</span></code></pre></div>
 <p>Здесь мы готовим длину некой линии путём умножения её первоначальной длины на заданный поправочный коэффициент. Но перед нами - классическое магическое число, смысл которого непонятен, и это плохо. Добавлять комментарий - не самое лучшее решение. Поэтому добавим локальное поясняющее выражение:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
     line <span class="fu">*</span> coefficient
-    where coefficient <span class="fu">=</span> <span class="fl">0.4959</span></code></pre>
+    where coefficient <span class="fu">=</span> <span class="fl">0.4959</span></code></pre></div>
 <p>Ключевое слово <code>where</code> вводит локальный псевдоним для выражения. Теперь идентификатор <code>coefficient</code> теперь можно использовать как аналог числового значения <code>0.4959</code>.</p>
 <p>Локальных выражений может быть и несколько:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
     line <span class="fu">*</span> coefficient <span class="fu">-</span> correction
     where coefficient <span class="fu">=</span> <span class="fl">0.4959</span>
-          correction <span class="fu">=</span> <span class="fl">0.0012</span></code></pre>
+          correction <span class="fu">=</span> <span class="fl">0.0012</span></code></pre></div>
 <p>Есть ещё один способ ввести локальное вспомогательное выражение, а именно с помощью ключевого слова <code>let</code>. На примере нашей последней функции это будет выглядеть так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
     let coefficient <span class="fu">=</span> <span class="fl">12.4959</span>
         correction <span class="fu">=</span> <span class="fl">0.0012</span>
     in
-    line <span class="fu">*</span> coefficient <span class="fu">-</span> correction</code></pre>
+    line <span class="fu">*</span> coefficient <span class="fu">-</span> correction</code></pre></div>
 <p>Общая модель такая:</p>
 <pre><code>let bindings in expression,</code></pre>
 <p>где <code>bindings</code> - локальные выражения, а <code>expression</code> - то место, где мы собираемся использовать эти локальные выражения. Кстати, слово <code>in</code> не всегда обязательно, но об этом мы узнаем в следующих главах.</p>
 <p>Вы спросите, в чём же разница между <code>where</code> и <code>let</code>?</p>
 <p>Во-первых, выражение <code>where</code> может быть только одно и только в конце тела функции, в то время как выражение <code>let</code> может присутствовать многократно и в любой части тела функции.</p>
 <p>Во-вторых, выражение, введённое ключевым словом <code>where</code>, видимо в любой точке тела функции, в то время как выражение, введённое ключевым словом <code>let</code>, может быть “супер-локальным”. Например:  </p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
     let coefficient <span class="fu">=</span> <span class="fl">12.4959</span>
         correction <span class="fu">=</span> <span class="fl">0.0012</span>
     in
-    line <span class="fu">*</span> coefficient <span class="fu">-</span> correction <span class="fu">-</span> (<span class="kw">let</span> s <span class="fu">=</span> <span class="fl">10.9</span> <span class="kw">in</span> s <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">-</span> s</code></pre>
+    line <span class="fu">*</span> coefficient <span class="fu">-</span> correction <span class="fu">-</span> (<span class="kw">let</span> s <span class="fu">=</span> <span class="fl">10.9</span> <span class="kw">in</span> s <span class="fu">+</span> <span class="dv">1</span>) <span class="fu">-</span> s</code></pre></div>
 <p>Здесь мы ввели “супер-локальное” выражение с именем <code>s</code>, которое существует только внутри круглых скобок. Именно поэтому этот код не пройдёт компиляцию, ведь второе выражение <code>s</code> находится уже за пределами круглых скобок.</p>
 <p>Вы спросите, можем ли мы использовать и <code>let</code>, и <code>where</code> одновременно? Можем, но с одним ограничением. Пишем:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
     <span class="kw">let</span> coefficient <span class="fu">=</span> <span class="fl">12.4959</span>
     in 
     line <span class="fu">*</span> coefficient <span class="fu">-</span> correction
-    where correction <span class="fu">=</span> <span class="fl">0.0012</span></code></pre>
+    where correction <span class="fu">=</span> <span class="fl">0.0012</span></code></pre></div>
 <p>Всё прекрасно работает. Мы можем написать и так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
     <span class="kw">let</span> coefficient <span class="fu">=</span> <span class="fl">12.4959</span> <span class="fu">-</span> specValue
     in line <span class="fu">*</span> coefficient <span class="fu">-</span> correction
     where correction <span class="fu">=</span> <span class="fl">0.0012</span>
-          specValue  <span class="fu">=</span> <span class="fl">0.03</span></code></pre>
+          specValue  <span class="fu">=</span> <span class="fl">0.03</span></code></pre></div>
 <p>Тоже работает. Как видите, мы ввели третий <code>where</code>-псевдоним <code>specValue</code> и смогли использовать его в <code>let</code>-выражении. А если попробовать наоборот? Вот так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">prepareLength ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span>
 prepareLength line <span class="fu">=</span>
     <span class="kw">let</span> coefficient <span class="fu">=</span> <span class="fl">12.4959</span>
         specValue <span class="fu">=</span> <span class="fl">0.03</span>
     in line <span class="fu">*</span> coefficient <span class="fu">-</span> correction
-    where correction <span class="fu">=</span> <span class="fl">0.0012</span> <span class="fu">-</span> specValue</code></pre>
+    where correction <span class="fu">=</span> <span class="fl">0.0012</span> <span class="fu">-</span> specValue</code></pre></div>
 <p>Теперь псевдоним <code>specValue</code> задан в <code>let</code>-выражении, и мы хотим использовать его в <code>where</code>-выражении. Увы, но такой код не скомпилируется, и мы увидим следующую ошибку:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Not</span> in scope: ‘specValue’</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Not</span> in scope: ‘specValue’</code></pre></div>
 <p>Это и есть то самое единственное ограничение: мы не можем использовать <code>let</code>-псевдонимы внутри <code>where</code>-выражения.</p>
 <h2 id="в-сухом-остатке">В сухом остатке</h2>
 <ul>

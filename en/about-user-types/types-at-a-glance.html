@@ -64,39 +64,39 @@
 <p>First of all, there are new keywords. The word <code>data</code> is used to create a new type. The word <code>class</code> is used to define the type class. And the word <code>instance</code> is used to declare the class instance.</p>
 <h2 id="our-first-type">Our first type</h2>
 <p>This is type for IP-address:  </p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IPAddress</span> <span class="dt">String</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IPAddress</span> <span class="dt">String</span></code></pre></div>
 <p>Done. It’s a very simple type. In fact, value of this type will be just a string with a label <code>IPAddress</code>. Label is an explanatory identifier. Many types don’t have labels, so you can initialize values of such a types directly. For example, if we have a function that takes a value of type <code>Int</code>, then when we’ll call it, we’ll can write just:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">show <span class="dv">6</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">show <span class="dv">6</span></code></pre></div>
 <p>But if this function will be applied to value of our type <code>IPAddress</code>, we must specify it explicitly:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre></div>
 <p>Expression <code>IPAddress &quot;127.0.0.1&quot;</code> will create a value of type <code>IPAddress</code> with a string <code>&quot;127.0.0.1&quot;</code> inside.</p>
 <p>By the way, label is called a <em>value constructor</em>.</p>
 <p>And remember: name of type (as well as name of value constructor) cannot starts with lowercase letter. So such a code:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> ipAddress <span class="fu">=</span> ipAddress <span class="dt">String</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> ipAddress <span class="fu">=</span> ipAddress <span class="dt">String</span></code></pre></div>
 <p>will be rejected by compiler.</p>
 <h2 id="type-class">Type class</h2>
 <p>The problem is that our type is a very primitive. If we create a value of <code>IPAddress</code> we’ll cannot even print it on the terminal. And if we’ll write like this:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre></div>
 <p>compiler will show us an error:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">No</span> instance for (Show IPAddress) <span class="kw">arising</span> from a use of <span class="kw">`show</span><span class="st">'</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">No</span> instance for (Show IPAddress) <span class="kw">arising</span> from a use of <span class="kw">`show</span><span class="st">'</span></code></pre></div>
 <p>And compiler is absolutely right: standard function <code>show</code> that converts its argument to a string form, doesn’t have a clue about how to present a value of type <code>IPAddress</code> as a string. So that where we meet a type class.</p>
 <p>Type class is a logical group of types. It has some features common to all these types. And these features represented as a methods declared in this class. Every type that is relevant to type class should implement methods of this class. Type class can be viewed as an abstract interface.</p>
 <p>For example, standard class <code>Show</code> unites all the types that can be “shown” (i.e. printed in a string form). This is declaration of this type class:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Show</span> a <span class="kw">where</span>
-    <span class="ot">show ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Show</span> a <span class="kw">where</span>
+    <span class="ot">show ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre></div>
 <p>As you see there’s a single method called <code>show</code>. It takes just one argument of the type <code>a</code> and returns its string form.</p>
 <p>You ask, what is this type <code>a</code>? Earlier I mentioned the term “polymorphic type”, and <code>a</code> in this example is a polymorphic type. This mean that method <code>show</code> can be applied to a values of different types. Traditionally polymorphic types is called by a single letter, but you can call them whatever you like.</p>
 <p>But how did <code>show</code> knows <em>how to</em> stringificate value of <code>IPAddress</code>? We understand that different types can be printed differently. Class instance is here!</p>
 <h2 id="class-instance">Class instance</h2>
 <p>Whereas type class <code>Show</code> is a logical group of the types that can be “shown”, the instance of this class is an <em>explanation</em> of how to print a value of particular type. So if we want to print our IP-addresses we must provide an instance of the class <code>Show</code> for type <code>IPAddress</code>. Let’s do it:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Show</span> <span class="dt">IPAddress</span> <span class="kw">where</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Show</span> <span class="dt">IPAddress</span> <span class="kw">where</span>
     show (<span class="dt">IPAddress</span> address) <span class="fu">=</span>
-        if address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre>
+        if address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre></div>
 <p>We’ve used keyword <code>instance</code>, and polymorphic type <code>a</code> was replaced by type <code>IPAddress</code>. And after that we define method <code>show</code> for owr IP-addresses. This method take a value of type <code>IPAddress</code> that was created by expression <code>IPAddress address</code>. So if address string is equal to <code>&quot;127.0.0.1&quot;</code>, string <code>&quot;localhost&quot;</code> will be printed.</p>
 <p>And our <code>main</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre></div>
 <p>Result:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">localhost</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">localhost</span></code></pre></div>
 <p>It works.</p>
 <h2 id="so">So</h2>
 <ul>

@@ -61,15 +61,15 @@
             <h1>Functions and operators</h1>
 
             <p>To avoid confusion let’s clarify the terminology. You’ll see a words “function” and “operator” many times in this book. Operator is a function with name that contains only symbols (without letters). For example, operator of concatenation of two lists:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> fullAddress <span class="fu">=</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">++</span> <span class="st">&quot;:80&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> fullAddress <span class="fu">=</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="fu">++</span> <span class="st">&quot;:80&quot;</span></code></pre></div>
 <p>This operator contains two plus signs. Yes, we <em>could</em> name it a <em>function</em> and even write it in the non-operator form:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> fullAddress <span class="fu">=</span> (<span class="fu">++</span>) <span class="st">&quot;127.0.0.1&quot;</span> <span class="st">&quot;:80&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> fullAddress <span class="fu">=</span> (<span class="fu">++</span>) <span class="st">&quot;127.0.0.1&quot;</span> <span class="st">&quot;:80&quot;</span></code></pre></div>
 <p>But such a function commonly called an operator. Moreover, almost all operators are intended for the infix form. Compare this form:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dv">1</span> <span class="fu">+</span> <span class="dv">2</span></code></pre></div>
 <p>with this form:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">(<span class="fu">+</span>) <span class="dv">1</span> <span class="dv">2</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(<span class="fu">+</span>) <span class="dv">1</span> <span class="dv">2</span></code></pre></div>
 <p>First variant is a simpler, isn’t it? Of course, there’s a functions for the infix form, for example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">if</span> <span class="st">&quot;.com&quot;</span> <span class="ot">`isSuffixOf`</span> <span class="st">&quot;google.com&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">if</span> <span class="st">&quot;.com&quot;</span> <span class="ot">`isSuffixOf`</span> <span class="st">&quot;google.com&quot;</span></code></pre></div>
 <p>But name of such a functions are not symbol-only, so it’s a functions, not an operator.</p>
 <p>So, we <em>can</em> name an operator as a function, but not vice versa. Better choice is to name a function as a “function”, and operator as an “operator”.</p>
 

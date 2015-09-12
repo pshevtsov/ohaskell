@@ -63,13 +63,13 @@
             <p>До этого мы рассматривали лишь стандартные классы типов. А теперь поговорим о собственных классах типов.</p>
 <h2 id="перцы">Перцы</h2>
 <p>Объявим класс типов <code>Pepper</code> (перец):</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">SHU</span> <span class="fu">=</span> <span class="dt">Integer</span>  <span class="co">-- SHU (Scoville Heat Units), единица жгучести перца</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">SHU</span> <span class="fu">=</span> <span class="dt">Integer</span>  <span class="co">-- SHU (Scoville Heat Units), единица жгучести перца</span>
 
 <span class="kw">class</span> <span class="dt">Pepper</span> p <span class="kw">where</span>
     <span class="ot">color ::</span> p <span class="ot">-&gt;</span> <span class="dt">String</span>
-    <span class="ot">pungency ::</span> p <span class="ot">-&gt;</span> <span class="dt">SHU</span></code></pre>
+    <span class="ot">pungency ::</span> p <span class="ot">-&gt;</span> <span class="dt">SHU</span></code></pre></div>
 <p>У этого класса два метода, <code>color</code> (цвет) и <code>pungency</code> (жгучесть). Создадим два разных перца:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Poblano</span> <span class="fu">=</span> <span class="dt">Poblano</span>  <span class="co">-- Распространён в национальных блюдах Мексики.</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Poblano</span> <span class="fu">=</span> <span class="dt">Poblano</span>  <span class="co">-- Распространён в национальных блюдах Мексики.</span>
 
 <span class="kw">data</span> <span class="dt">TrinidadScorpion</span> <span class="fu">=</span> <span class="dt">TrinidadScorpion</span>  <span class="co">-- Самый жгучий перец в мире.</span>
 
@@ -79,25 +79,25 @@
 
 <span class="kw">instance</span> <span class="dt">Pepper</span> <span class="dt">TrinidadScorpion</span> <span class="kw">where</span>
     color <span class="dt">TrinidadScorpion</span> <span class="fu">=</span> <span class="st">&quot;red&quot;</span>
-    pungency <span class="dt">TrinidadScorpion</span> <span class="fu">=</span> <span class="dv">855000</span></code></pre>
+    pungency <span class="dt">TrinidadScorpion</span> <span class="fu">=</span> <span class="dv">855000</span></code></pre></div>
 <p>Теперь мы можем работать с этими перцами как обычно:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
     putStrLn <span class="fu">$</span> show (pungency trinidad) <span class="fu">++</span> <span class="st">&quot;, &quot;</span> <span class="fu">++</span> color trinidad
-    where trinidad <span class="fu">=</span> <span class="dt">TrinidadScorpion</span></code></pre>
+    where trinidad <span class="fu">=</span> <span class="dt">TrinidadScorpion</span></code></pre></div>
 <h2 id="зачем-они-нужны">Зачем они нужны</h2>
 <p>В самом деле, разве мы не можем использовать каждый из типов перца самостоятельно? Конечно можем. Главная цель определения собственного класса типов - указание контекста типов. Определим функцию, выводящую информацию о конкретном перце:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">pepperInfo ::</span> <span class="dt">Pepper</span> p <span class="ot">=&gt;</span> p <span class="ot">-&gt;</span> <span class="dt">String</span>
-pepperInfo pepper <span class="fu">=</span> show (pungency pepper) <span class="fu">++</span> <span class="st">&quot;, &quot;</span> <span class="fu">++</span> color pepper</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">pepperInfo ::</span> <span class="dt">Pepper</span> p <span class="ot">=&gt;</span> p <span class="ot">-&gt;</span> <span class="dt">String</span>
+pepperInfo pepper <span class="fu">=</span> show (pungency pepper) <span class="fu">++</span> <span class="st">&quot;, &quot;</span> <span class="fu">++</span> color pepper</code></pre></div>
 <p>Контекст полиморфного типа <code>p</code> говорит нам о том, что эта функция предназначена только для работы с перцами. Более того, сам класс тоже может иметь контекст типа:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Pepper</span> p <span class="ot">=&gt;</span> <span class="dt">Chili</span> p <span class="kw">where</span>
-    <span class="ot">kind ::</span> p <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Pepper</span> p <span class="ot">=&gt;</span> <span class="dt">Chili</span> p <span class="kw">where</span>
+    <span class="ot">kind ::</span> p <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre></div>
 <p>Класс типов <code>Chili</code> объявлен с контекстом <code>Pepper</code>. Следовательно, занять место полиморфного типа <code>p</code> смогут лишь те типы, которые относятся к классу <code>Pepper</code>, и никакие другие. Это позволяет ограничить набор типов, которые смогут иметь отношение к классу <code>Chili</code>.</p>
 <p>Разумеется, контекст может состоять и из нескольких классов. В этом случае они, как обычно, перечисляются в виде кортежа:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> (<span class="dt">Pepper</span> p, <span class="dt">Capsicum</span> p) <span class="ot">=&gt;</span> <span class="dt">Chili</span> p <span class="kw">where</span>
-    <span class="ot">kind ::</span> p <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> (<span class="dt">Pepper</span> p, <span class="dt">Capsicum</span> p) <span class="ot">=&gt;</span> <span class="dt">Chili</span> p <span class="kw">where</span>
+    <span class="ot">kind ::</span> p <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre></div>
 <h2 id="константы">Константы</h2>
 <p>Добавим в наш класс константу:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">SHU</span> <span class="fu">=</span> <span class="dt">Integer</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">SHU</span> <span class="fu">=</span> <span class="dt">Integer</span>
 
 <span class="kw">class</span> <span class="dt">Pepper</span> p <span class="kw">where</span>
     <span class="ot">simple ::</span> p  <span class="co">-- Это константное значение, а не функция.</span>
@@ -113,9 +113,9 @@ pepperInfo pepper <span class="fu">=</span> show (pungency pepper) <span class="
     pungency (<span class="dt">Poblano</span> name) <span class="fu">=</span> <span class="dv">1500</span>
     name (<span class="dt">Poblano</span> name) <span class="fu">=</span> name
 
-main <span class="fu">=</span> putStrLn <span class="fu">$</span> name (<span class="ot">simple ::</span> <span class="dt">Poblano</span>)  <span class="co">-- Обращаемся к значению.</span></code></pre>
+main <span class="fu">=</span> putStrLn <span class="fu">$</span> name (<span class="ot">simple ::</span> <span class="dt">Poblano</span>)  <span class="co">-- Обращаемся к значению.</span></code></pre></div>
 <p><code>simple</code> - это константное значение, к которому можно обращаться напрямую. Мы говорим: “Каждый тип, относящийся к классу <code>Pepper</code>, обязан предоставлять константу <code>simple</code> своего собственного типа”. Поэтому при определении экземпляра класса <code>Pepper</code> мы готовим это константное значение:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">simple <span class="fu">=</span> <span class="dt">Poblano</span> <span class="st">&quot;ancho&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">simple <span class="fu">=</span> <span class="dt">Poblano</span> <span class="st">&quot;ancho&quot;</span></code></pre></div>
 <p>Поскольку теперь конструктор значения <code>Poblano</code> у нас унарный, он принимает строку (например, название перца или ассоциативного блюда). Здесь мы говорим: “Когда кто-нибудь обратится к константе <code>simple</code>, принадлежащей типу <code>Poblano</code>, он получит такое значение, как если бы мы написали просто <code>Poblanlo &quot;ancho&quot;</code>”. Таким образом, эту константу можно рассматривать как конструктор по умолчанию для значения типа <code>Poblano</code>. И это весьма удобно: если для нашего типа имеет смысл некоторое умолчальное значение, лучше задавать его прямо внутри нашего типа.</p>
 <h2 id="в-сухом-остатке">В сухом остатке</h2>
 <ul>

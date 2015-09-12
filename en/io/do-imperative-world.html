@@ -63,11 +63,11 @@
             <p>You got it right: imperative world. Despite that Haskell is a purely functional language, we can write imperative code when we need. Such necessity constantly arises when we work with the outside world.</p>
 <p>As you know, imperative approach implies that the execution of instructions goes strictly in the specified order. With pure functions such approach is excessive, that’s why in the case of pure function the order in which expressions are evaluated doesn’t matter.</p>
 <p>Recall our example of working with stdin and stdout:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     putStrLn <span class="st">&quot;Input your text, please:&quot;</span>
     lineFromUser <span class="ot">&lt;-</span> getLine               
-    putStrLn <span class="fu">$</span> <span class="st">&quot;Not bad: &quot;</span> <span class="fu">++</span> lineFromUser   </code></pre>
+    putStrLn <span class="fu">$</span> <span class="st">&quot;Not bad: &quot;</span> <span class="fu">++</span> lineFromUser   </code></pre></div>
 <p>Three steps are done.</p>
 <ol style="list-style-type: decimal">
 <li>print a greeting string;</li>
@@ -78,7 +78,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>That’s what the keyword <code>do</code> exists for: it binds our actions into a consecutive chain. When discussing that keyword, term “do-notation” is usually used.</p>
 <h2 id="not-only-the-main">Not only the main</h2>
 <p>We can use do-notation in any function with side-effects. For example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainUserText ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainUserText ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
 obtainUserText prompt <span class="fu">=</span> <span class="kw">do</span>
     putStrLn prompt  <span class="co">-- Print prompt to input the string</span>
     getLine          <span class="co">-- Get some string from user</span>
@@ -87,11 +87,11 @@ obtainUserText prompt <span class="fu">=</span> <span class="kw">do</span>
 main <span class="fu">=</span> <span class="kw">do</span>
     firstText <span class="ot">&lt;-</span> obtainUserText <span class="st">&quot;Enter your text, please: &quot;</span>
     secondText <span class="ot">&lt;-</span> obtainUserText <span class="st">&quot;One more, please: &quot;</span>
-    putStrLn <span class="fu">$</span> <span class="st">&quot;You said '&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
+    putStrLn <span class="fu">$</span> <span class="st">&quot;You said '&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre></div>
 <p>Function <code>obtainUserText</code> includes two consecutive steps, that’s why the keyword <code>do</code> is used. We expect that the certain prompt would be printed first and only then the action created by function <code>getLine</code> would be send to the outside world and would bring back the string which is typed by user.</p>
 <h2 id="about-function-return">About function “return”</h2>
 <p>C language has a keyword <code>return</code> it defines the point of function’s return. Haskell doesn’t have such keyword, but has such function. To demonstrate its usage we consider another example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainTwoTextsFromUser ::</span> <span class="dt">IO</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainTwoTextsFromUser ::</span> <span class="dt">IO</span> <span class="dt">String</span>
 obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     putStrLn <span class="st">&quot;Enter your text, please: &quot;</span>
     firstText <span class="ot">&lt;-</span> getLine
@@ -102,20 +102,20 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     twoTexts <span class="ot">&lt;-</span> obtainTwoTextsFromUser
-    putStrLn <span class="fu">$</span> <span class="st">&quot;You said &quot;</span> <span class="fu">++</span> twoTexts</code></pre>
+    putStrLn <span class="fu">$</span> <span class="st">&quot;You said &quot;</span> <span class="fu">++</span> twoTexts</code></pre></div>
 <p>Function <code>obtainTwoTextsFromUser</code> takes the responsibility to consecutively get two texts from user and return their concatenation. Unfortunately such code wouldn’t compile, as function should return an action, but last instruction is absolutely not an action, it’s a normal string. Here the standard function <code>return</code> would assist us.</p>
 <p>Rewrite that function:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainTwoTextsFromUser ::</span> <span class="dt">IO</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainTwoTextsFromUser ::</span> <span class="dt">IO</span> <span class="dt">String</span>
 obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     putStrLn <span class="st">&quot;Enter your text, please: &quot;</span>
     firstText <span class="ot">&lt;-</span> getLine
     putStrLn <span class="st">&quot;One more, please: &quot;</span>
     secondText <span class="ot">&lt;-</span> getLine
-    return <span class="fu">$</span> <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre>
+    return <span class="fu">$</span> <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span></code></pre></div>
 <p>Looks imperativish, isn’t it? Do not forget that such notation has nothing to do with <code>return</code> from the C language.</p>
 <p>Function <code>return</code> takes a value and wraps it into the action which returns that value. In our case we passed it a string, concatenated from user’s texts and got an action which returns that string. Now our code successfully compiles.</p>
 <p>By the way, to prove you that function <code>return</code> has nothing to do with C-like keyword <code>return</code>, I’ll show you a small trick.</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainTwoTextsFromUser ::</span> <span class="dt">IO</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainTwoTextsFromUser ::</span> <span class="dt">IO</span> <span class="dt">String</span>
 obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     putStrLn <span class="st">&quot;Enter your text, please: &quot;</span>
     firstText <span class="ot">&lt;-</span> getLine
@@ -123,7 +123,7 @@ obtainTwoTextsFromUser <span class="fu">=</span> <span class="kw">do</span>
     secondText <span class="ot">&lt;-</span> getLine
     return <span class="fu">$</span> <span class="st">&quot;'&quot;</span> <span class="fu">++</span> firstText <span class="fu">++</span> <span class="st">&quot;' and '&quot;</span> <span class="fu">++</span> secondText <span class="fu">++</span> <span class="st">&quot;'&quot;</span>
     putStrLn <span class="st">&quot;And third text, please: &quot;</span> <span class="co">-- We still going!!!!</span>
-    getLine</code></pre>
+    getLine</code></pre></div>
 <p>That might confuse programmers who are experienced with imperative programming, but as said above, function <code>return</code> simply wraps a value into action, which returns that value. It doesn’t stop the flow of actions and if any actions follow it they simply continue the execution. In fact, in this tricky function we’ll lose first two user’s texts and return an action which only brings the third text.</p>
 <h2 id="so">So</h2>
 <ul>

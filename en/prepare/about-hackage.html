@@ -81,18 +81,18 @@
 <h2 id="installing">Installing</h2>
 <p>There is an instrument for a convenient installation of package from Hackage, its name is <code>cabal</code>. Oh yeah, the same, already known to us utility!</p>
 <p>Change directory to the root of our project and run a command:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> update</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> update</code></pre></div>
 <p>With this command we updated the list of available packages. It is recommended to run this command from time to time, in order to stay on the “cutting-edge” of the Hackage development.</p>
 <p>After package list is updated we can install the required package:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> install text</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> install text</code></pre></div>
 <p>A bit of patience and the package is installed.</p>
 <h2 id="adding-to-the-project">Adding to the project</h2>
 <p>Open build file <code>Real.cabal</code> and add the name of the installed package to it. In order to do that, find parameter <code>build-depends</code> and append the name of the package after the comma:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">	build<span class="fu">-</span>depends<span class="fu">:</span>    base <span class="fu">==</span> <span class="fl">4.6</span><span class="fu">.*</span>, text</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">	build<span class="fu">-</span>depends<span class="fu">:</span>    base <span class="fu">==</span> <span class="fl">4.6</span><span class="fu">.*</span>, text</code></pre></div>
 <p>And the last step.</p>
 <h2 id="importing-modules">Importing modules</h2>
 <p>Package consists of modules (and modules, as you already know, are files with source code). There are quite many modules in the <code>text</code> package, we will take the first one, <code>Data.Text</code>. Open <code>Main.hs</code> and write in the beginning:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Text</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Text</span></code></pre></div>
 <p>Ready. Now we can use different goodies from that module. In the nearest future you will find out which of them we are going to use.</p>
 <h2 id="about-prelude">About Prelude</h2>
 <p>There is a standard module which is imported into all your modules by default. Its name is <code>Prelude</code>. It contains the most basic Haskell instruments, you will use many of them all the time.</p>

@@ -63,7 +63,7 @@
             <p>We’ve already know about modules, isn’t it? Not completely. Let’s dive into modules deeper.</p>
 <h2 id="about-hierarchy">About hierarchy</h2>
 <p>Let’s open <code>Helpers.hs</code> file from <code>src/Utils</code> directory and:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Utils.Helpers</span> (
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Utils.Helpers</span> (
     calibrate,
     graduate
 ) <span class="kw">where</span>
@@ -74,77 +74,77 @@ coefficient <span class="fu">=</span> <span class="fl">0.99874</span>
 
 calibrate length <span class="fu">=</span> length <span class="fu">*</span> coefficient
 
-graduate length <span class="fu">=</span> length <span class="fu">/</span> coefficient</code></pre>
+graduate length <span class="fu">=</span> length <span class="fu">/</span> coefficient</code></pre></div>
 <p>Now name of this module is <code>Utils.Helpers</code>, not <code>Helpers</code>, i.e. such a name is explicitly shows our sources’ hierarchy. Strictly speaking, we’re not need to do it, but such a practice is widespread. So now you know why modules we’ve worked with uses long names:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.String.Utils</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.String.Utils</span></code></pre></div>
 <p>It’s just a path: there’s a directory <code>Data</code> with a directory <code>String</code> with a file <code>Utils.hs</code>.</p>
 <p>By the way, don’t forget to change parameter <code>other-modules</code> in our <code>Real.cabal</code> file: replace <code>Helpers</code> to <code>Utils.Helpers</code>.</p>
 <h2 id="about-face">About face</h2>
 <p>Every module have a face. Face is all stuff we can import to other modules. By default all content of the module is open, so we can import everything. But in real projects such a behaviour is not preferable.</p>
 <p>Take a look at the beginning of <code>Utils.Helpers</code> module:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Utils.Helpers</span> (
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Utils.Helpers</span> (
     calibrate,
     graduate
-) <span class="kw">where</span></code></pre>
+) <span class="kw">where</span></code></pre></div>
 <p>Names of our two functions are placed in parentheses, and this is a face of this module: we may import only these two functions to other modules. Everything else in this module is inaccessible to the world. So if we write in some module this line:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span></code></pre></div>
 <p>only two our functions can be used here, and nothing else. So if we want to share <code>coefficient</code> value between other modules - just add it in the face:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Utils.Helpers</span> (
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Utils.Helpers</span> (
     calibrate,
     graduate,
     coefficient  <span class="co">-- Now it's visible to all.</span>
-) <span class="kw">where</span></code></pre>
+) <span class="kw">where</span></code></pre></div>
 <p>We can add our own type into the face:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Utils.Helpers</span> (
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Utils.Helpers</span> (
     calibrate,
     graduate,
     <span class="dt">Color</span> (<span class="dt">Red</span>, <span class="dt">Green</span>, <span class="dt">Blue</span>)
 ) <span class="kw">where</span>
 
-<span class="kw">data</span> <span class="dt">Color</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Green</span> <span class="fu">|</span> <span class="dt">Blue</span> <span class="kw">deriving</span> <span class="dt">Show</span></code></pre>
+<span class="kw">data</span> <span class="dt">Color</span> <span class="fu">=</span> <span class="dt">Red</span> <span class="fu">|</span> <span class="dt">Green</span> <span class="fu">|</span> <span class="dt">Blue</span> <span class="kw">deriving</span> <span class="dt">Show</span></code></pre></div>
 <p>Notice that it’s not enough to place a name of type only, we must specify list of data constructors too.</p>
 <h2 id="nothing-but">Nothing but…</h2>
 <p>In some cases we don’t want import all stuff from module. Let’s open Main.hs` and:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span> (calibrate)  <span class="co">-- Import calibrate only. </span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span> (calibrate)  <span class="co">-- Import calibrate only. </span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> calibrate <span class="fl">12.4</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> calibrate <span class="fl">12.4</span></code></pre></div>
 <p>We use a tuple after name of imported module, so now we can use only <code>calibrate</code> function, nothing else.</p>
 <p>You may ask why would we need such a restriction? Main target of explicit specifying of imported names - avoidance of conflicts between names. In fact, many real modules contain stuff with the same names. In such cases we can import only what we really need.</p>
 <h2 id="all-but">All but…</h2>
 <p>There’s another variant of partial import: almost all. In this case we need a word <code>hiding</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span> <span class="kw">hiding</span> (graduate)  <span class="co">-- Function graduate is hiding now.  </span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span> <span class="kw">hiding</span> (graduate)  <span class="co">-- Function graduate is hiding now.  </span></code></pre></div>
 <p>We specify names of hiding stuff in the tuple. This is used to avoiding of conflicts of names too.</p>
 <h2 id="belonging">Belonging</h2>
 <p>In the real projects we’ll often use same-name functions from the different modules. But we can’t do it as usual, because compiler will not be able to understand who is where from. In such cases we should specify it explicitly:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span> <span class="co">-- Here is a function `calibrate`...</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span> <span class="co">-- Here is a function `calibrate`...</span>
 <span class="kw">import </span><span class="dt">Utils.Math</span>    <span class="co">-- But what if here is a function with the same name? </span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> Utils.Helpers.calibrate <span class="fl">12.4</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> Utils.Helpers.calibrate <span class="fl">12.4</span></code></pre></div>
 <p>We have specified module explicitly, so no conflicts will be here.</p>
 <h2 id="short-belonging">Short belonging</h2>
 <p>Some packages (for example, known to us package <code>MissingH</code>) contain modules with very long names. For instance, <code>System.Console.GetOpt.Utils</code>. It’s inconvenient to specify such a “prefix” every time. Fortunately, we can shorten name of module like this:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span> <span class="kw">as</span> <span class="dt">H</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span> <span class="kw">as</span> <span class="dt">H</span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> H.graduate <span class="dv">23</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> H.graduate <span class="dv">23</span></code></pre></div>
 <p>We use keyword <code>as</code> to create an alias for our module. By the way, name of alias must begin with a capital letter, so such a variant will be rejected:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span> <span class="kw">as</span> h</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Utils.Helpers</span> <span class="kw">as</span> h</code></pre></div>
 <h2 id="mandatory-belonging">Mandatory belonging</h2>
 <p>In some cases it’s useful <em>to force</em> a developer to specify name of using modules. For example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import qualified</span> <span class="dt">Utils.Helpers</span> <span class="kw">as</span> <span class="dt">H</span> 
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import qualified</span> <span class="dt">Utils.Helpers</span> <span class="kw">as</span> <span class="dt">H</span> 
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> graduate <span class="dv">23</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> graduate <span class="dv">23</span></code></pre></div>
 <p>We use keyword <code>qualified</code>, so this code won’t be compiled. Keyword <code>qualified</code> force us to specify name of module every time we use something from it:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">print <span class="fu">$</span> H.graduate <span class="dv">23</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">print <span class="fu">$</span> H.graduate <span class="dv">23</span></code></pre></div>
 <h2 id="about-main-module">About Main module</h2>
 <p>And what about name of our <code>Main</code> module? Although name of this module can be omitted, you should name it (for unity with other modules):</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> where 
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> where 
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> <span class="fu">...</span></code></pre>
+main <span class="fu">=</span> <span class="fu">...</span></code></pre></div>
 <p>In fact, <code>ghc</code> compiler <em>can</em> itself detect <code>Main</code> module, but standard Haskell 2010 recommend to specify name of <code>Main</code> module explicitly.</p>
 <p>That’s all. Now you know all about modules.</p>
 

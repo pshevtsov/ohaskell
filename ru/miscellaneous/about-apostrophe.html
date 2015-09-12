@@ -62,24 +62,24 @@
 
             <p>Есть в Haskell одна особенность, связанная с именованием. Признаюсь, я удивился, когда о ней узнал. Оказывается, частью имени любой программной сущности может выступать апостроф. Да-да, та самая одинарная кавычка, в которую мы помещаем отдельный символ <code>Char</code>.</p>
 <p>Мы можем использовать один или более апострофов в имени функции:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">strangeFunction' ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-strangeFunction' arg <span class="fu">=</span> arg</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">strangeFunction' ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+strangeFunction' arg <span class="fu">=</span> arg</code></pre></div>
 <p>в имени типа:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Strange_'type'</span> <span class="fu">=</span> <span class="dt">Strange_'type'</span> <span class="dt">String</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Strange_'type'</span> <span class="fu">=</span> <span class="dt">Strange_'type'</span> <span class="dt">String</span></code></pre></div>
 <p>в имени класса типов:  </p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Stran''geClass''</span> a <span class="kw">where</span>
-    <span class="ot">fmethod ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Stran''geClass''</span> a <span class="kw">where</span>
+    <span class="ot">fmethod ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre></div>
 <p>и даже в имени значения:  </p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">strangeValue''' ::</span> <span class="dt">Integer</span>
-strangeValue''' <span class="fu">=</span> <span class="dv">123</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">strangeValue''' ::</span> <span class="dt">Integer</span>
+strangeValue''' <span class="fu">=</span> <span class="dv">123</span></code></pre></div>
 <p>На мой взгляд, включать апостроф в какое-либо имя не нужно вовсе (или очень, очень редко). Тем более что такой символ разрывает текстовую целостность слова (попробуйте выделить двойным кликом идентификатор с апострофом, и вы поймёте). Однако существует практика, в соответствии с которой имя с апострофом в конце используется как “промежуточное имя”. Например:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/usr/local/&quot;</span>
-    path' <span class="fu">=</span> path <span class="fu">++</span> <span class="st">&quot;lib/&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/usr/local/&quot;</span>
+    path' <span class="fu">=</span> path <span class="fu">++</span> <span class="st">&quot;lib/&quot;</span></code></pre></div>
 <p>Впрочем, на мой взгляд лучше написать так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/usr/local/&quot;</span>
-    pathWithLib <span class="fu">=</span> path <span class="fu">++</span> <span class="st">&quot;lib/&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/usr/local/&quot;</span>
+    pathWithLib <span class="fu">=</span> path <span class="fu">++</span> <span class="st">&quot;lib/&quot;</span></code></pre></div>
 <p>Кроме того, иногда апостроф может использоваться для придания имени функции, скажем так, большего математического вида. Например, имя производной функции принято писать со штрихом, и в этом случае апостроф вполне подойдёт:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f' ::</span> <span class="dt">X</span> <span class="ot">-&gt;</span> <span class="dt">Y</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f' ::</span> <span class="dt">X</span> <span class="ot">-&gt;</span> <span class="dt">Y</span></code></pre></div>
 <p>Всё. С апострофом вы тоже познакомились.</p>
 
 <div class="row">

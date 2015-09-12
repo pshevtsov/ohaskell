@@ -62,32 +62,32 @@
 
             <p>There’s one naming convention in Haskell: name can contain apostrophe. Yes, it’s a single quote we place a <code>Char</code> to.</p>
 <p>We can use apostrophe in the name of the function:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">strangeFunction' ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
-strangeFunction' arg <span class="fu">=</span> arg</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">strangeFunction' ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>
+strangeFunction' arg <span class="fu">=</span> arg</code></pre></div>
 <p>in the name of type:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Strange_'type'</span> <span class="fu">=</span> <span class="dt">Strange_'type'</span> <span class="dt">String</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Strange_'type'</span> <span class="fu">=</span> <span class="dt">Strange_'type'</span> <span class="dt">String</span></code></pre></div>
 <p>in the name of type class:  </p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Stran''geClass''</span> a <span class="kw">where</span>
-    <span class="ot">fmethod ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Stran''geClass''</span> a <span class="kw">where</span>
+    <span class="ot">fmethod ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre></div>
 <p>and even in the name of value:  </p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">strangeValue''' ::</span> <span class="dt">Integer</span>
-strangeValue''' <span class="fu">=</span> <span class="dv">123</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">strangeValue''' ::</span> <span class="dt">Integer</span>
+strangeValue''' <span class="fu">=</span> <span class="dv">123</span></code></pre></div>
 <p>In my opinion, apostrophe in the name is not so good idea. Moreover, apostrophe break a “word’s unity” of the name. But there’s a practice of usage of the apostrophe, so you should to know about it.</p>
 <h2 id="intermediate-value">Intermediate value</h2>
 <p>I mean such a case:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/usr/local/&quot;</span>
-    path' <span class="fu">=</span> path <span class="fu">++</span> <span class="st">&quot;lib/&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/usr/local/&quot;</span>
+    path' <span class="fu">=</span> path <span class="fu">++</span> <span class="st">&quot;lib/&quot;</span></code></pre></div>
 <p>I think it’s better to write like this:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/usr/local/&quot;</span>
-    pathWithLib <span class="fu">=</span> path <span class="fu">++</span> <span class="st">&quot;lib/&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/usr/local/&quot;</span>
+    pathWithLib <span class="fu">=</span> path <span class="fu">++</span> <span class="st">&quot;lib/&quot;</span></code></pre></div>
 <h2 id="math-form">Math form</h2>
 <p>For example, derivative of function can be written like this:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f' ::</span> <span class="dt">X</span> <span class="ot">-&gt;</span> <span class="dt">Y</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">f' ::</span> <span class="dt">X</span> <span class="ot">-&gt;</span> <span class="dt">Y</span></code></pre></div>
 <h2 id="strict-version">Strict version</h2>
 <p>In many Hackage packages apostrophe is used at the end of name of the functions for strict version of these functions. For example, this is a lazy version:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">foldl<span class="ot"> ::</span> (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b </code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">foldl<span class="ot"> ::</span> (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b </code></pre></div>
 <p>and this is a strict version:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">foldl' ::</span> (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b </code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">foldl' ::</span> (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b </code></pre></div>
 <p>That’s all. Now you know about an apostrophe in the names.</p>
 
 <div class="row">

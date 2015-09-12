@@ -64,10 +64,10 @@
 <h2 id="pure-vs-impure">Pure vs Impure</h2>
 <p>As you remember, pure functions have no side effects, that makes them a reflection of the mathematical concept “function”: the input unambiguously defines the output. That’s really great, but our application must interact with the outside world and pure functions do not look like good ambassadors to the outside world.</p>
 <p>Consider a function that reads text from a file: it takes a string with a path to that file and returns a string with the contents of the file:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">readMyFile ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">readMyFile ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
 readMyFile path <span class="fu">=</span>
     <span class="co">-- open the corresponding file</span>
-    <span class="co">-- read it and return the string with content...</span></code></pre>
+    <span class="co">-- read it and return the string with content...</span></code></pre></div>
 <p>But such function can’t be pure. Can we guarantee that the output stays the same if we apply it twice to the string with the path to the same file? Apparently no, between the first and second application the file could be changed triply. In that case the mathematical nature of such a function would fall in pieces: was applied to the same argument twice, the results on the output are different. That’s why interaction with the outside world is the land of the functions with side-effects.</p>
 <h2 id="action-vs-inaction">Action vs Inaction</h2>
 <p>Pure function is the world of inactivity. The world of calmness and silence. As you already know, such a function is a set of expressions which are evaluated in particular order and result into some last, final value. Then the compiler substitutes the function call with that value.</p>

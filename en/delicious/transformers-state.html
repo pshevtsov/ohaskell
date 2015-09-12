@@ -65,7 +65,7 @@
 <p><code>StateT</code> - это состояние. Фактически, это <code>ReaderT</code> и <code>WriterT</code> в одном флаконе, поскольку предоставляет группе функций общее значение, предназначенное как для чтения, так и для изменения. А учитывая, что вы уже умеете работать и с читателем, и с писателем, с состоянием у вас не возникнет ни малейших трудностей. Перейдём к примеру.</p>
 <h2 id="украшаем-отчёт">Украшаем отчёт</h2>
 <p>Возьмём пример со сбором информации о файле и украсим его:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Monad.State.Lazy</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Monad.State.Lazy</span>
 <span class="kw">import </span><span class="dt">System.Directory</span> 
 <span class="kw">import </span><span class="dt">System.FilePath</span> 
 <span class="kw">import </span><span class="dt">System.Posix</span> 
@@ -107,18 +107,18 @@ main <span class="fu">=</span> <span class="kw">do</span>
                         <span class="fu">&gt;&gt;=</span> obtainSize) 
                        <span class="st">&quot;&quot;</span> <span class="co">-- Пустое &quot;облако&quot; для записи...</span>
     putStrLn <span class="fu">$</span> <span class="st">&quot;Info about &quot;</span> <span class="fu">++</span> path <span class="fu">++</span> <span class="st">&quot;:\n&quot;</span>
-               <span class="fu">++</span> info</code></pre>
+               <span class="fu">++</span> info</code></pre></div>
 <p>Результат будет таким:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Info</span> about /Users/dshevchenko/main.cpp:
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Info</span> about /Users/dshevchenko/main.cpp:
   <span class="kw">C++</span>,
   <span class="kw">2014-03-29</span> 20:59:29 UTC,
-  <span class="kw">1835</span> bytes </code></pre>
+  <span class="kw">1835</span> bytes </code></pre></div>
 <p>Так гораздо красивее, не правда ли? Сравните с предыдущим вариантом:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Info</span> about /Users/dshevchenko/main.cpp:
-<span class="kw">C++</span>, 2014-03-29 20:59:29 UTC, 1835 bytes</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Info</span> about /Users/dshevchenko/main.cpp:
+<span class="kw">C++</span>, 2014-03-29 20:59:29 UTC, 1835 bytes</code></pre></div>
 <p>Теперь разберёмся, как же нам удалось сделать такую красоту. К тому же, как вы успели заметить, мы внесли совсем немного изменений, по сравнению с примером с <code>WriterT</code>.</p>
 <p>Рассмотрим наш первый анализатор:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainLanguage ::</span> FilePath <span class="ot">-&gt;</span> <span class="dt">FileInfoCloud</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainLanguage ::</span> FilePath <span class="ot">-&gt;</span> <span class="dt">FileInfoCloud</span>
 obtainLanguage path <span class="fu">=</span> <span class="kw">do</span>
     modify (<span class="fu">++</span> indent <span class="fu">++</span> <span class="kw">case</span> takeExtension path <span class="kw">of</span>
                              <span class="st">&quot;.c&quot;</span>   <span class="ot">-&gt;</span> <span class="st">&quot;C&quot;</span>
@@ -127,7 +127,7 @@ obtainLanguage path <span class="fu">=</span> <span class="kw">do</span>
                              <span class="st">&quot;.m&quot;</span>   <span class="ot">-&gt;</span> <span class="st">&quot;Objective-C&quot;</span>
                              _      <span class="ot">-&gt;</span> <span class="st">&quot;Unknown&quot;</span>)
     modify (<span class="fu">++</span> delimiter)
-    return path</code></pre>
+    return path</code></pre></div>
 <p>Функция <code>tell</code> исчезла, а её место заняла новая функция <code>modify</code>. Трансформер <code>StateT</code> даёт нам три основные функции для работы с общим значением, парящем в “облаке”:</p>
 <ul>
 <li><code>get</code> извлекает значение из “облака”;</li>
@@ -136,7 +136,7 @@ obtainLanguage path <span class="fu">=</span> <span class="kw">do</span>
 </ul>
 <p>Воспользовавшись услугами функции <code>modify</code>, мы украсили сохраняемую в “облаке” строку: в начало добавили отступ, а в конец дописали запятую с переводом строки.</p>
 <p>Теперь взглянем на нашу обновлённую <code>main</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     <span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/Users/dshevchenko/main.cpp&quot;</span>
     info <span class="ot">&lt;-</span> execStateT (obtainLanguage path 
@@ -144,16 +144,16 @@ main <span class="fu">=</span> <span class="kw">do</span>
                         <span class="fu">&gt;&gt;=</span> obtainSize) 
                        <span class="st">&quot;&quot;</span> <span class="co">-- Пустое &quot;облако&quot; для записи...</span>
     putStrLn <span class="fu">$</span> <span class="st">&quot;Info about &quot;</span> <span class="fu">++</span> path <span class="fu">++</span> <span class="st">&quot;:\n&quot;</span>
-               <span class="fu">++</span> info</code></pre>
+               <span class="fu">++</span> info</code></pre></div>
 <p>Тут всё почти так же. <code>execStateT</code> запускает “облако” и возвращает собранную анализаторами строку. Правда, “заготовку” для облака мы всё-таки должны предоставить, пусть даже и в виде пустой строки. Впрочем, можно было и так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     <span class="kw">let</span> path <span class="fu">=</span> <span class="st">&quot;/Users/dshevchenko/main.cpp&quot;</span>
     info <span class="ot">&lt;-</span> execStateT (obtainLanguage path 
                         <span class="fu">&gt;&gt;=</span> obtainModificationDate
                         <span class="fu">&gt;&gt;=</span> obtainSize) 
                        <span class="fu">$</span> <span class="st">&quot;Info about &quot;</span> <span class="fu">++</span> path <span class="fu">++</span> <span class="st">&quot;:\n&quot;</span>
-    putStrLn info</code></pre>
+    putStrLn info</code></pre></div>
 <p>Мы сразу добавили общий префикс к нашей информационной строке, а собираемая анализаторами информация будет постепенно дописываться в конец. Результат будет точно таким же.</p>
 <p>Существует три варианта функций запуска работы с трансформером <code>StateT</code>:</p>
 <ul>
@@ -163,19 +163,19 @@ main <span class="fu">=</span> <span class="kw">do</span>
 </ul>
 <h2 id="и-наша-монада-state">И наша монада State</h2>
 <p>Уверен, вы уже догадались: монада <code>State</code> является простейшим вариантом трансформера <code>StateT</code>. Вот уже знакомое нам определение:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">State</span> s <span class="fu">=</span> <span class="dt">StateT</span> s <span class="dt">Identity</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">State</span> s <span class="fu">=</span> <span class="dt">StateT</span> s <span class="dt">Identity</span></code></pre></div>
 <p>Следовательно, если внутренняя монада нам не нужна, <code>StateT</code> можно спокойно заменить на <code>State</code>. Всё точно так же, как в случае с <code>Reader</code> и <code>Writer</code>.</p>
 <h2 id="составное-облако">Составное облако</h2>
 <p>До сих пор в нашем “облаке” висело простое значение. Давайте слегка усложним его, воспользовавшись уже известным нам составным типом. В самом деле, зачем явно передавать путь к файлу в виде аргумента, если можно запихнуть его в наше “облако”? Сделаем это.</p>
 <p>Для начала определим информационный тип и обновим “облачный” тип:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">FileInfo</span> <span class="fu">=</span> <span class="dt">FileInfo</span> {<span class="ot"> path ::</span> FilePath
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">FileInfo</span> <span class="fu">=</span> <span class="dt">FileInfo</span> {<span class="ot"> path ::</span> FilePath
                          ,<span class="ot"> info ::</span> <span class="dt">String</span>
                          }
 
 <span class="kw">type</span> <span class="dt">Environment</span> <span class="fu">=</span> <span class="dt">FileInfo</span>
-<span class="kw">type</span> <span class="dt">FileInfoCloud</span> <span class="fu">=</span> <span class="dt">StateT</span> <span class="dt">Environment</span> <span class="dt">IO</span> ()</code></pre>
+<span class="kw">type</span> <span class="dt">FileInfoCloud</span> <span class="fu">=</span> <span class="dt">StateT</span> <span class="dt">Environment</span> <span class="dt">IO</span> ()</code></pre></div>
 <p>Первым полем в составном типе <code>FileInfo</code> идёт путь к файлу, вторым - информационная строка. Теперь изменим <code>main</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     <span class="kw">let</span> aPath <span class="fu">=</span> <span class="st">&quot;/Users/dshevchenko/main.cpp&quot;</span>
         initInfo <span class="fu">=</span> <span class="dt">FileInfo</span> { path <span class="fu">=</span> aPath
@@ -185,10 +185,10 @@ main <span class="fu">=</span> <span class="kw">do</span>
                             <span class="fu">&gt;&gt;</span> obtainModificationDate
                             <span class="fu">&gt;&gt;</span> obtainSize)
                            initInfo  <span class="co">-- Размещаем в нашем &quot;облаке&quot;...</span>
-    putStrLn <span class="fu">$</span> info fileInfo</code></pre>
+    putStrLn <span class="fu">$</span> info fileInfo</code></pre></div>
 <p>Создаём подготовительный информационный объект <code>initInfo</code>, сразу поместив в него путь к исследуемому файлу и информационную строку. И когда мы размещаем <code>initInfo</code> в нашем “облаке”, каждая из функций-анализаторов получает доступ как к пути (первому полю), так и к информационной строке (второму полю).</p>
 <p>Изменим наш первый анализатор:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainLanguage ::</span> <span class="dt">FileInfoCloud</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">obtainLanguage ::</span> <span class="dt">FileInfoCloud</span>
 obtainLanguage <span class="fu">=</span> <span class="kw">do</span>
     fileInfo <span class="ot">&lt;-</span> get  <span class="co">-- Извлекаем информационный объект из &quot;облака&quot;...</span>
     <span class="kw">let</span> currentInfo <span class="fu">=</span> info fileInfo  <span class="co">-- Вытащили текущую информацию...</span>
@@ -202,15 +202,15 @@ obtainLanguage <span class="fu">=</span> <span class="kw">do</span>
                                   <span class="st">&quot;.m&quot;</span>   <span class="ot">-&gt;</span> <span class="st">&quot;Objective-C&quot;</span>
                                   _      <span class="ot">-&gt;</span> <span class="st">&quot;Unknown&quot;</span>
                            <span class="fu">++</span> delimiter
-    put <span class="fu">$</span> fileInfo { info <span class="fu">=</span> infoWithLanguage }</code></pre>
+    put <span class="fu">$</span> fileInfo { info <span class="fu">=</span> infoWithLanguage }</code></pre></div>
 <p>Здесь задействованы все три базовые функции работы со <code>StateT</code>. Сначала мы извлекаем информационный объект из “облака” с помощью функции <code>get</code> и получаем его текущие поля. Затем мы создаём строку <code>infoWithLanguage</code> с указанием языка программирования. И в завершении обновляем информацию. Обратите внимание на эту строку:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">   put <span class="fu">$</span> fileInfo { info <span class="fu">=</span> infoWithLanguage }</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">   put <span class="fu">$</span> fileInfo { info <span class="fu">=</span> infoWithLanguage }</code></pre></div>
 <p>Здесь мы воспользовались уже знакомой нам конструкций с фигурными скобками. В результате поле <code>info</code> было заменено только что созданной <code>infoWithLanguage</code>. И сразу после этого мы поместили обновлённый информационный объект обратно в “облако”, с помощью функции <code>put</code>.</p>
 <p>Кстати, вы заметили ещё одно изменение в <code>main</code>? Взгляните вот на эту цепочку:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">execStateT (obtainLanguage
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">execStateT (obtainLanguage
             <span class="fu">&gt;&gt;</span> obtainModificationDate
             <span class="fu">&gt;&gt;</span> obtainSize)
-           initInfo</code></pre>
+           initInfo</code></pre></div>
 <p>Оператор <code>(&gt;&gt;=)</code> исчез, уступив своё место оператору <code>(&gt;&gt;)</code>. А иначе и быть не может. Вспомним наш “облачный” тип:</p>
 <pre><code>type FileInfoCloud = StateT Environment IO ()
                                         |

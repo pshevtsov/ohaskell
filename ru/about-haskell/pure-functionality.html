@@ -67,15 +67,15 @@
 <h2 id="декларативный-подход">Декларативный подход</h2>
 <p>Существует принципиально иной подход к написанию программ, а именно декларативный (от английского declarative, описание), при котором программа представляет собой набор описаний того, что должен представлять собою конечный результат. И как бы странно это ни звучало, декларативное программирование часто позволяет нам вообще не думать о порядке выполнения инструкций. Приведу пример.</p>
 <p>Допустим, у нас есть две следующие функции:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">f1 x <span class="fu">=</span> x <span class="fu">*</span> x
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">f1 x <span class="fu">=</span> x <span class="fu">*</span> x
 
-f2 x <span class="fu">=</span> x <span class="fu">*</span> x <span class="fu">*</span> x</code></pre>
+f2 x <span class="fu">=</span> x <span class="fu">*</span> x <span class="fu">*</span> x</code></pre></div>
 <p>Назначение этих функций предельно понятно: первая возвращает значение, равное квадрату своего единственного аргумента, а вторая - кубу своего единственного аргумента. Таким образом:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">f1 <span class="dv">2</span> <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">4</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">f1 <span class="dv">2</span> <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">4</span>
 
-f2 <span class="dv">2</span> <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> <span class="dv">2</span> <span class="fu">*</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">8</span></code></pre>
+f2 <span class="dv">2</span> <span class="fu">=</span> <span class="dv">2</span> <span class="fu">*</span> <span class="dv">2</span> <span class="fu">*</span> <span class="dv">2</span> <span class="fu">=</span> <span class="dv">8</span></code></pre></div>
 <p>А теперь напишем так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">sum <span class="fu">=</span> (f1 <span class="dv">2</span>) <span class="fu">+</span> (f2 <span class="dv">2</span>) <span class="fu">=</span> (<span class="dv">4</span>) <span class="fu">+</span> (<span class="dv">8</span>) <span class="fu">=</span> <span class="dv">12</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">sum <span class="fu">=</span> (f1 <span class="dv">2</span>) <span class="fu">+</span> (f2 <span class="dv">2</span>) <span class="fu">=</span> (<span class="dv">4</span>) <span class="fu">+</span> (<span class="dv">8</span>) <span class="fu">=</span> <span class="dv">12</span></code></pre></div>
 <p>Тут тоже всё ясно: вызываем каждую из двух функций, а значение <code>sum</code> будет равным сумме возвращённых функциями значений.</p>
 <p>А теперь вопрос вам, уважаемый читатель: какая из этих двух функций будет вызвана <em>первой</em> по счёту? Думаете, <code>f1</code>? Правда в том, что когда речь идёт о декларативном подходе, порядок вызова этих двух функций не важен. Не имеет никакого значения, какое число будет посчитано первым, 4 или 8. Важно, что значение <code>sum</code> в любом случае будет равным 12. Мы как будто говорим компилятору: “Друг, вот тебе две функции, реши, пожалуйста, сам, какую из них вызывать первой. Мы не хотим об этом думать, нам важен только конечный результат.”</p>
 <p>Так вот функциональное программирование является одним из воплощений декларативного подхода. И если сказанное выше сбило вас с толку, то я усилю ваше удивление и упомяну такие свойства языка Haskell, как:</p>

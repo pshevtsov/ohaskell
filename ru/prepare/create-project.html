@@ -60,129 +60,114 @@
         <div id="content">
             <h1>Создаём проект</h1>
 
-            <p>Мы не можем начать изучение языка без испытательного полигона. Поэтому скачайте и установите <a href="http://www.haskell.org/platform/">Haskell Platform</a>.</p>
-<p>В состав Haskell Platform входит два важнейших инструмента, о которых вам нужно знать:</p>
+            <p>Мы не можем начать изучение языка без испытательного полигона. Давайте установим Haskell.</p>
+<p>Строго говоря, сделать это можно несколькими способами, однако мы выберем самый простой и самый удобный. Называется он <a href="https://github.com/commercialhaskell/stack">Haskell Tool Stack</a>. Этот инструмент представляет собой одну-единственную утилиту, однако это всё, что вам понадобится для настоящей работы с Haskell.</p>
+<p><strong>Внимание!</strong> Haskell - кроссплатформенный язык, прекрасно работающий и в OS X, и в Linux и даже в Windows. Однако я с 2008 года оставил мир Windows, поэтому все последующие примеры взаимодействия с командной строкой используют Unix-way.</p>
+<h2 id="устанавливаем">Устанавливаем</h2>
+<p>Идём <a href="https://github.com/commercialhaskell/stack/releases/latest">сюда</a> и скачиваем архив для нужной нам ОС. Распаковываем архив - и перед нами утилитка под названием <code>stack</code>. Если вы используете Windows - переименуйте файл в <code>stack.exe</code>.</p>
+<p>Для удобства располагаем утилиту где-нибудь в <code>PATH</code> (для Windows - в <code>%PATH%</code>), чтобы она была легко доступна из командной строки. Рекомендуемый путь для Unix:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">$HOME</span><span class="kw">/.local/bin</span></code></pre></div>
+<p>Для Windows:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">%APPDATA%</span>\local\bin</code></pre></div>
+<p>Готово.</p>
+<h2 id="устанавливаем-на-os-x">Устанавливаем на OS X</h2>
+<p>Если вы живёте в мире Mac и пользуетесь замечательным инструментом <a href="http://brew.sh/">Homebrew</a>, то вам ещё проще. Делаете:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">brew</span> update
+$ <span class="kw">brew</span> install haskell-stack</code></pre></div>
+<p>Всё.</p>
+<h2 id="и-что-же-это-такое">И что же это такое?</h2>
+<p>Главное, что умеет делать утилита <code>stack</code> - это три вещи:</p>
 <ol style="list-style-type: decimal">
-<li><code>ghc</code>, компилятор Haskell (Glasgow Haskell Compiler);</li>
-<li><code>ghci</code>, интерпретатор Haskell.</li>
+<li>Подготавливать Haskell-инфраструктуру.</li>
+<li>Собирать ваши Haskell-проекты.</li>
+<li>Устанавливать нужные вам Haskell-библиотеки.</li>
 </ol>
-<p>Мы будем довольно редко использовать эти два инструмента непосредственно. Впрочем, к интерпретатору мы ещё вернемся. А сейчас важно следующее.</p>
-<p>В реальной работе вы не будете создавать файлик <code>Main.hs</code> на рабочем столе для последующего скармливания компилятору. Напротив, вы создадите нормальный рабочий проект с логичной внутренней иерархией. Так давайте и создадим такой с самого начала. А поможет нам в этом удобная утилита из Haskell Platform с необычным названием <code>cabal</code>. Эта утилита предназначена для сборки проектов. Уверен, вы слышали о вещах типа <code>cmake</code> или <code>qmake</code>, так вот воспринимайте <code>cabal</code> как <code>cmake</code> для Haskell.</p>
-<p>Как вы уже поняли, <code>.hs</code> - стандартное расширение для файлов с исходным кодом на Haskell.</p>
-<p>Начнём творить. Разумеется, все описываемые ниже действия подразумевают вашу крепкую дружбу с командной строкой. Я буду приводить Unix-овые команды, если же вы используете Windows - адаптируйте примеры под себя. Я с 2008 года окончательно ушёл в мир Uniх, про Windows уже давно забыл и разбираться с использованием Haskell Platform на этой операционной системе я не имею ни малейшего желания. Прошу прощения, если это задело ваши чувства…</p>
-<h2 id="готовим-структуру">Готовим структуру</h2>
-<p>Открываем терминал и творим:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> -p Real/src/Utils
-$ <span class="kw">touch</span> Real/src/Main.hs
-$ <span class="kw">touch</span> Real/src/Utils/Helpers.hs</code></pre>
-<p>Итак, у нас появился каталог <code>Real</code> с привычной структурой: </p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real/</span>
-    <span class="kw">src/</span>
-        <span class="kw">Main.hs</span>
-        <span class="kw">Utils/</span>
-            <span class="kw">Helpers.hs</span></code></pre>
-<p>Есть корневой каталог <code>src</code>, внутри которой лежат все наши исходники, некоторым образом сгруппированные.</p>
-<p>Кстати, об именах. Вам, вероятно, интересно, почему имена файлов и каталогов внутри каталога <code>src</code> начинаются с большой буквы? Чуть позже я объясню причину. А пока откроем файл <code>Main.hs</code> и напишем в нём:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="st">&quot;Hi, haskeller!&quot;</span></code></pre>
-<p>Закрываем, возвращаемся в корень проекта.</p>
-<h2 id="настраиваем">Настраиваем</h2>
-<p>На всякий случай, проверим нашу версию <code>cabal</code>:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> --version
-<span class="kw">cabal-install</span> version 1.18.0.5
-<span class="kw">using</span> version 1.18.1.4 of the Cabal library</code></pre>
-<p>Если у вас эта же версия или старше - прекрасно. Если младше - значит вы установили слишком старую версию Haskell Platform (непонятно, откуда вы вообще её взяли). На официальном сайте Haskell <strong>обязательно</strong> возьмите <a href="http://www.haskell.org/platform/">новую</a>.</p>
-<p>Теперь выполняем команду:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> sandbox init</code></pre>
-<p>Вы увидите что-то наподобие этого:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Writing</span> a default package environment file to
-<span class="kw">/Users/dshevchenko/Profession/Learn/Real/cabal.sandbox.config</span>
-<span class="kw">Creating</span> a new sandbox at
-<span class="kw">/Users/dshevchenko/Profession/Learn/Real/.cabal-sandbox</span></code></pre>
-<p>Итак, наша песочница создана. Подробнее о том, что это такое и с чего это едят, я рассказываю в главе <a href="http://ohaskell.dshevchenko.biz/ru/prepare/about-sandbox.html">О песочнице</a>. А пока выполним следующую команду:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> init</code></pre>
-<p>Мы попадём в интерактивный диалог, в ходе которого нам будет предложено ответить на несколько вопросов о нашем проекте. В конце этого диалога будут автоматически созданы файлы проекта, и наш каталог приобретёт следующее содержимое:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real.cabal</span>
-<span class="kw">Setup.hs</span>
-<span class="kw">cabal.sandbox.config</span>
-<span class="kw">src/</span>
-    <span class="kw">Main.hs</span>
-    <span class="kw">Utils/</span>
-        <span class="kw">Helpers.hs</span></code></pre>
-<p>Кстати, если вдруг вы увидите вот такое предупреждение:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Generating</span> LICENSE...
-<span class="kw">Warning</span>: unknown license type, you must put a copy in LICENSE yourself.</code></pre>
-<p>не беспокойтесь. Просто добавьте файл <code>LICENSE</code> вручную, для поддержания классического вида проекта. Например, так:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">wget</span> -O LICENSE http://www.gnu.org/licenses/gpl-3.0.txt</code></pre>
-<p>Продолжим. Как уже было упомянуто, в корневом каталоге нашего проекта появились два новых файла, <code>Real.cabal</code> и <code>Setup.hs</code>. Второй файл нам не так интересен, а вот первый - это и есть сборочный файл нашего проекта. Откроем его:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Initial Real.cabal generated by cabal init.  For further documentation, </span>
-<span class="co">-- see http://haskell.org/cabal/users-guide/</span>
-
-name<span class="fu">:</span>                <span class="dt">Real</span>
+<p>Haskell-инфраструктура - это базовая техническая экосистема, краеугольным камнем которой является компилятор <code>ghc</code> (Glasgow Haskell Compiler). Haskell - это компилируемый язык: приложение представляет собой обыкновенный, канонический исполняемый файл.</p>
+<p>Haskell-проект - это среда для создания настоящих приложений и библиотек.</p>
+<p>Haskell-библиотеки - это готовые решения, спасающие вас от изобретения сотен велосипедов.</p>
+<p>Приступим.</p>
+<h2 id="создаём-скелет-проекта">Создаём скелет проекта</h2>
+<p>Итак:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span>
+$ <span class="kw">stack</span> new Real
+$ <span class="kw">cd</span> Real/</code></pre></div>
+<p>У нас появился каталог <code>Real</code>, и это - крошечный, но самый настоящий Haskell-проект, сгенерированный утилитой <code>stack</code> по простейшему шаблону. Как вы поняли, имя <code>Real</code> мы выбрали сами, оно могло быть и другим.</p>
+<p>Теперь мы готовы собрать проект. Впрочем, нет, пока ещё не готовы, ведь нам нужно подготовить Haskell-инфраструктуру.</p>
+<h2 id="готовим-инфораструктуру">Готовим инфораструктуру</h2>
+<p>Делаем:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> setup</code></pre></div>
+<p>В результате на ваш компьютер будет установлена Haskell-инфраструктура последней стабильной версии. Жить всё это хозяйство будет не внутри каталога проекта <code>Real</code>, а в только что созданном скрытом каталоге <code>$HOME/.stack/</code>. Именно поэтому устанавливать инфраструктуру для последующих Haskell-проектов вам уже не придётся: единожды развернули, используем всегда.</p>
+<h2 id="собираем">Собираем</h2>
+<p>И вот теперь мы можем собрать наш проект:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> build</code></pre></div>
+<p>В результате мы получим обыкновенный исполняемый файл, готовый к запуску. Живёт этот файл глубоко в недрах только что созданного скрытого каталога <code>Real/.stack-work/</code>. Поэтому сделаем следующее:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> install</code></pre></div>
+<p>Теперь исполняемый файл переместился в упомянутый выше каталог <code>$HOME/.local/bin/</code>. Можем запускать его:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">Real-exe</span>
+<span class="kw">someFunc</span></code></pre></div>
+<p>Поздравляю! Вы только что установили Haskell-инфраструктуру на ваш компьютер, создали реальный Haskell-проект и запустили вашу первую Haskell-программу. Согласитесь, ничего сложного.</p>
+<p>А кстати, что это за <code>someFunc</code> появилась после запуска нашего приложения? Об этом - в следующих главах.</p>
+<h2 id="о-внутренностях-проекта">О внутренностях проекта</h2>
+<p>Один из самых главных файлов внутри каталога <code>Real</code> - файл <code>Real.cabal</code>. Это - сборочный файл нашего проекта. Откроем его:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">name<span class="fu">:</span>                <span class="dt">Real</span>
 version<span class="fu">:</span>             <span class="fl">0.1</span><span class="fu">.</span><span class="fl">0.0</span>
-<span class="co">-- synopsis:            </span>
-<span class="co">-- description:         </span>
-license<span class="fu">:</span>             <span class="dt">GPL</span><span class="fu">-</span><span class="dv">3</span>
+synopsis<span class="fu">:</span>            <span class="dt">Initial</span> project template from stack
+description<span class="fu">:</span>         <span class="dt">Please</span> see README.md
+homepage<span class="fu">:</span>            http<span class="fu">://</span>github<span class="fu">.</span>com<span class="fu">/</span>githubuser<span class="fu">/</span><span class="dt">Real</span><span class="fu">#</span>readme
+license<span class="fu">:</span>             <span class="dt">BSD3</span>
 license<span class="fu">-</span>file<span class="fu">:</span>        <span class="dt">LICENSE</span>
-author<span class="fu">:</span>              <span class="dt">Denis</span> <span class="dt">Shevchenko</span>
-maintainer<span class="fu">:</span>          me<span class="fu">@</span>dshevchenko<span class="fu">.</span>biz
-<span class="co">-- copyright:           </span>
-<span class="co">-- category:            </span>
+author<span class="fu">:</span>              <span class="dt">Author</span> name here
+maintainer<span class="fu">:</span>          example<span class="fu">@</span>example<span class="fu">.</span>com
+copyright<span class="fu">:</span>           <span class="dv">2010</span> <span class="dt">Author</span> <span class="dt">Here</span>
+category<span class="fu">:</span>            <span class="dt">Web</span>
 build<span class="fu">-</span><span class="kw">type</span><span class="fu">:</span>          <span class="dt">Simple</span>
-<span class="co">-- extra-source-files:  </span>
+<span class="co">-- extra-source-files:</span>
 cabal<span class="fu">-</span>version<span class="fu">:</span>       <span class="fu">&gt;=</span><span class="fl">1.10</span>
 
-executable <span class="dt">Real</span>
-  <span class="co">-- main-is:             </span>
-  <span class="co">-- other-modules:       </span>
-  <span class="co">-- other-extensions:    </span>
-  build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">&gt;=</span><span class="fl">4.7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span><span class="fl">4.8</span>
+library
   hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src
-  default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span></code></pre>
-<p>Здесь уже сохранены те самые значения, которые мы вводили в процессе вышеупомянутого диалога. Однако собрать проект прямо сейчас мы не сможем, потому что строка:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">  <span class="co">-- main-is:</span></code></pre>
-<p>закомментирована. Два минуса, идущие подряд, являются здесь однострочным комментарием.</p>
-<p>Нам необходимо раскомментировать эту строку и прописать в ней имя файла <code>Main.hs</code>, содержащего функцию <code>main</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">  main<span class="fu">-</span>is<span class="fu">:</span> Main.hs</code></pre>
-<h2 id="конфигурируем">Конфигурируем</h2>
-<p>Выполняем:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> configure</code></pre>
-<p>В результате произойдёт подготовка проекта к сборке. Но прежде чем перейти к этой самой сборке, обращаю ваше внимание на последнюю часть файла <code>Real.cabal</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">executable <span class="dt">Real</span>
-  main<span class="fu">-</span>is<span class="fu">:</span>             Main.hs             
-  <span class="co">-- other-modules:       </span>
-  <span class="co">-- other-extensions:    </span>
-  build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">&gt;=</span><span class="fl">4.7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span><span class="fl">4.8</span>
-  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src
-  default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span></code></pre>
-<p>Видите отступ в два пробела перед четырьмя последними строчками? Оказывается, этот отступ необходим, и без него проект не соберётся. Кроме того, отступ этот должен быть не менее двух пробелов. Я рекомендую четыре, для красоты. О важности отступов мы, кстати, поговорим в одной из будущих глав. А пока лишь скажу, что форматирование Haskell-кода имеет важное значение. Поэтому, если какой-то кусочек кода, взятый из этой книги, отказывает компилироваться, убедитесь в том, что вы скопировали его <em>точно</em>.</p>
-<p>И ещё одна деталь. Это необязательно, но лишним не будет. Допишем в секцию executable Real ещё одну строку:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">  ghc<span class="fu">-</span>options<span class="fu">:</span>         <span class="fu">-</span><span class="dt">W</span></code></pre>
-<p>Параметр <code>ghc-options</code> позволяет задавать компиляторные флаги. В частности, флаг <code>-W</code> вежливо попросит <code>ghc</code> показывать все основные предупреждения при компиляции. Не стоит пренебрегать этой возможностью, поверьте мне на слово.</p>
-<h2 id="собираем">Собираем</h2>
-<p>Выполняем:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> build
-<span class="kw">Resolving</span> dependencies...
-<span class="kw">Configuring</span> Real-0.1.0.0...
-<span class="kw">Building</span> Real-0.1.0.0...
-<span class="kw">Preprocessing</span> executable <span class="st">'Real'</span> for Real-0.1.0.0...
-[<span class="kw">1</span> of 1] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
-<span class="kw">Linking</span> dist/build/Real/Real ...</code></pre>
-<p>Готово. В нашем каталоге появилось кое-что новенькое:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">LICENSE</span>
-<span class="kw">Real.cabal</span>
-<span class="kw">Setup.hs</span>
-<span class="kw">cabal.sandbox.config</span>
-<span class="kw">dist/</span>
-    <span class="kw">build/</span>
-        <span class="kw">Real/</span>
-            <span class="kw">Real</span>  <span class="kw">&lt;</span>- Это и есть исполняемый файл.
-<span class="kw">...</span></code></pre>
-<p>Остальное содержимое каталога <code>dist</code> нас сейчас не интересует.</p>
-<h2 id="запускаем">Запускаем</h2>
-<p>Находясь в корне проекта, выполняем:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./dist/build/Real/Real</span>
-<span class="kw">Hi</span> haskeller!</code></pre>
-<p>Вот и всё. Теперь вы знаете, как создавать, настраивать и собирать настоящий Haskell-проект. Вероятно, вас интересует, зачем мы создавали файл <code>Helpers.hs</code> в подкаталоге <code>Utils</code>? Какой в нём смысл, если он всё равно остался пустым? В следующей главе вы это узнаете.</p>
+  exposed<span class="fu">-</span>modules<span class="fu">:</span>     <span class="dt">Lib</span>
+  build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">&gt;=</span> <span class="fl">4.7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span> <span class="dv">5</span>
+  default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span>
+
+executable <span class="dt">Real</span><span class="fu">-</span>exe
+  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      app
+  main<span class="fu">-</span>is<span class="fu">:</span>             Main.hs
+  ghc<span class="fu">-</span>options<span class="fu">:</span>         <span class="fu">-</span>threaded <span class="fu">-</span>rtsopts <span class="fu">-</span>with<span class="fu">-</span>rtsopts<span class="fu">=-</span><span class="dt">N</span>
+  build<span class="fu">-</span>depends<span class="fu">:</span>       base
+                     , <span class="dt">Real</span>
+  default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span>
+
+test<span class="fu">-</span>suite <span class="dt">Real</span><span class="fu">-</span>test
+  <span class="kw">type</span><span class="fu">:</span>                exitcode<span class="fu">-</span>stdio<span class="fu">-</span><span class="fl">1.0</span>
+  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      test
+  main<span class="fu">-</span>is<span class="fu">:</span>             Spec.hs
+  build<span class="fu">-</span>depends<span class="fu">:</span>       base
+                     , <span class="dt">Real</span>
+  ghc<span class="fu">-</span>options<span class="fu">:</span>         <span class="fu">-</span>threaded <span class="fu">-</span>rtsopts <span class="fu">-</span>with<span class="fu">-</span>rtsopts<span class="fu">=-</span><span class="dt">N</span>
+  default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span>
+
+source<span class="fu">-</span>repository head
+  <span class="kw">type</span><span class="fu">:</span>     git
+  location<span class="fu">:</span> https<span class="fu">://</span>github<span class="fu">.</span>com<span class="fu">/</span>githubuser<span class="fu">/</span><span class="dt">Real</span></code></pre></div>
+<p>Структура этого файла, как видите, предельно проста. Здесь содержится, во-первых, общая информация о проекте (такая, как название, версия и репозиторий проекта), а во-вторых, собственно настройки проекта, необходимые для сборки. Пока не думайте обо всех полях данного файла, мы будем рассматривать их постепенно, по мере необходимости.</p>
+<p>На что необходимо обратить внимание сейчас, так это на секции <code>library</code> и <code>executable Real-exe</code>.</p>
+<h3 id="секция-приложения">Секция приложения</h3>
+<p>Секция <code>executable Real-exe</code> определяет базовые правила сборки нашего приложения.</p>
+<p>Во-первых, здесь задано имя исполняемого файла, <code>Real-exe</code>. Если не нравится - можете его поменять.</p>
+<p>Во-вторых, вот основные поля:</p>
+<ol style="list-style-type: decimal">
+<li><code>hs-source-dirs</code> - содержит основной подкаталог для исходников.</li>
+<li><code>main-is</code> - содержит имя основного модуля приложения. Об этом - в следующей главе.</li>
+<li><code>ghc-options</code> - флаги компилятора <code>ghc</code>.</li>
+<li><code>build-depends</code> - упоминает библиотеки, от которых зависит приложение.</li>
+<li><code>default-language</code> - указывает стандарт языка Haskell. По умолчанию это Haskell 2010 года.</li>
+</ol>
+<p>Как видите, приложение состоит из одного-единственного файла, <code>Main.hs</code>. Расширение <code>.hs</code> - это стандартное расширение для Haskell-исходников. Библиотеки же, от которых зависит приложение, две: <code>base</code> - это стандартная Haskell-библиотека (она используется всегда), а <code>Real</code> - наша собственная библиотека.</p>
+<h3 id="секция-библиотеки">Секция библиотеки</h3>
+<p>Секция <code>library</code> задаёт правила для сборки нашей собственной библиотеки <code>Real</code>, содержащей функциональность, которую будет использовать приложение. Обратите внимание на каталог <code>src</code>, содержащий файл <code>Lib.hs</code>. Из этого единственного файла и будет состоять библиотека.</p>
+<p>Разумеется, столь примитивный проект можно было бы и не разбивать на библиотеку и использующее её приложение (мы могли бы ограничиться только приложением). Просто знайте о такой возможности.</p>
+<p>А теперь пришла пора узнать о модулях.</p>
 
 <div class="row">
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">

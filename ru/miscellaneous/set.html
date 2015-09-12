@@ -63,7 +63,7 @@
             <p>Этот контейнер используется почти столь же часто, как и <code>Map</code>. Он отражает математическое понятие “множество” и гарантирует, что все хранящиеся в нём значения уникальны. Можете воспринимать <code>Set</code> как список, в котором не может быть одинаковых элементов. Рассмотрим работу с этим контейнером.</p>
 <h2 id="проверяем-дубляж">Проверяем дубляж</h2>
 <p>Этот пример - воистину канонический:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Main</span> <span class="kw">where</span>
 
 <span class="kw">import </span><span class="dt">Data.List.Split</span> (splitOn)
 <span class="kw">import qualified</span> <span class="dt">Data.Set</span> <span class="kw">as</span> <span class="dt">S</span>
@@ -79,7 +79,7 @@ main <span class="fu">=</span> <span class="kw">do</span>
                <span class="kw">then</span> <span class="st">&quot;Thanks, you inputed &quot;</span> 
                     <span class="fu">++</span> show numbersQuantity 
                     <span class="fu">++</span> <span class="st">&quot; unique numbers.&quot;</span>
-               <span class="kw">else</span> <span class="st">&quot;Sorry, your numbers are not unique...&quot;</span></code></pre>
+               <span class="kw">else</span> <span class="st">&quot;Sorry, your numbers are not unique...&quot;</span></code></pre></div>
 <p>Раз уж <code>Set</code> гарантирует уникальность своих элементов, этим мы и воспользуемся: если количество введённых пользователем значений совпадёт с количеством уникальных значений - значит все они разные, в противном случае имеется дубляж. Естественно, чтобы всё это работало, тип значений, которые мы собираемся запихнуть в <code>Set</code>, обязан входить в контекст стандартного класса типов <code>Ord</code>.</p>
 <p>Вот, собственно, и всё. Главное назначение контейнера <code>Set</code> заключается именно в гарантии уникальности его элементов. В остальном этот контейнер тривиален: можно создать, можно проверить/поискать, можно отфильтровать, можно свернуть, можно отсортировать. Всё как обычно.</p>
 <h2 id="и-снова-о-скорости">И снова о скорости</h2>

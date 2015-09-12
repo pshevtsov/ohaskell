@@ -68,36 +68,36 @@
 <pre><code>[1..10]</code></pre>
 <p>Done.</p>
 <p>Of course, such trick may be done not just with numbers. For example, that’s how we may get a list of all lowercase letters of English alphabet:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="ch">'a'</span><span class="fu">..</span><span class="ch">'z'</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="ch">'a'</span><span class="fu">..</span><span class="ch">'z'</span>]</code></pre></div>
 <p>On the output we’ll get a beautiful list of symbols, or simple string.</p>
 <blockquote>
 <p>“abcdefghijklmnopqrstuvwxyz”</p>
 </blockquote>
 <h2 id="smart-ranges">Smart ranges</h2>
 <p>Ranges can be specified quite flexibly. That’s how we may get a list of all even numbers from 2 to 30:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="dv">2</span>,<span class="dv">4</span><span class="fu">..</span><span class="dv">30</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="dv">2</span>,<span class="dv">4</span><span class="fu">..</span><span class="dv">30</span>]</code></pre></div>
 <p>We specified a step between the value of elements, other values was created automatically.</p>
 <p>It is also possible to make a descending list:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="dv">120</span>,<span class="dv">110</span><span class="fu">..</span><span class="dv">10</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="dv">120</span>,<span class="dv">110</span><span class="fu">..</span><span class="dv">10</span>]</code></pre></div>
 <p>On the output we get a list of tens:</p>
 <blockquote>
 <p>[120,110,100,90,80,70,60,50,40,30,20,10]</p>
 </blockquote>
 <p>However, the compiler wouldn’t tolerate the explicit guidance. Therefore, don’t write it this way:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span><span class="fu">..</span><span class="dv">30</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print [<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">6</span><span class="fu">..</span><span class="dv">30</span>]</code></pre></div>
 <p>Complier will get offended, as you are trying to explain it the thing that it perfectly understand itself.</p>
 <h2 id="infinite">Infinite</h2>
 <p>As you remember, the laziness of Haskell lets us operate on infinite lists. We can create such a list with a range.</p>
 <p>For example such a range:</p>
 <pre><code>[1..]</code></pre>
 <p>creates an infinite list of integers starting from 1. However, as you already know that list is actually not infinite, but just long <strong>enough</strong>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> take <span class="dv">5</span> [<span class="dv">1</span><span class="fu">..</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> take <span class="dv">5</span> [<span class="dv">1</span><span class="fu">..</span>]</code></pre></div>
 <p>Output:</p>
 <blockquote>
 <p>[1,2,3,4,5]</p>
 </blockquote>
 <p>We also may specify a step:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> take <span class="dv">5</span> [<span class="dv">2</span>,<span class="dv">4</span><span class="fu">..</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> take <span class="dv">5</span> [<span class="dv">2</span>,<span class="dv">4</span><span class="fu">..</span>]</code></pre></div>
 <p>This gives us:</p>
 <blockquote>
 <p>[2,4,6,8,10]</p>

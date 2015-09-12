@@ -64,37 +64,37 @@
 <p>Source files in a Haskell project are modules. One file is one module. So there are two modules in our project now: <code>Main.hs</code> and <code>Helpers.hs</code>.</p>
 <p>Haskell has no header files. Each module is considered as a separate unit, containing different stuff. And in order to use this stuff you need to import a module.</p>
 <p>Let’s open empty file <code>Helpers.hs</code> and write</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Helpers</span> <span class="kw">where</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">module</span> <span class="dt">Helpers</span> <span class="kw">where</span>
 	
-hello user <span class="fu">=</span> <span class="st">&quot;Hi, &quot;</span> <span class="fu">++</span> user</code></pre>
+hello user <span class="fu">=</span> <span class="st">&quot;Hi, &quot;</span> <span class="fu">++</span> user</code></pre></div>
 <p>The first string declares the name of the module - <code>Helpers</code>. Then, after <code>where</code> keyword, we fill our module with contents. The content we have is really simple, but don’t ask me yet, what <code>hello</code> is. We will soon find out.</p>
 <h2 id="importing">Importing</h2>
 <p>Now we open <code>Main.hs</code> file and change it a little bit:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Helpers</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Helpers</span>
 
-main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot;</span>)</code></pre>
+main <span class="fu">=</span> putStrLn (hello <span class="st">&quot;denis&quot;</span>)</code></pre></div>
 <p>We included the <code>Helpers</code> module using <code>import</code> statement. Now we can use the contents of the module, namely that thing by the name <code>hello</code>.</p>
 <h2 id="mentioning">Mentioning</h2>
 <p>Now we need to tell the build file <code>Real.cabal</code> about the <code>Helpers</code> module. Let’s open it and write:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">    executable <span class="dt">Real</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">    executable <span class="dt">Real</span>
         main<span class="fu">-</span>is<span class="fu">:</span>        Main.hs
         other<span class="fu">-</span>modules<span class="fu">:</span>  <span class="dt">Helpers</span>
         build<span class="fu">-</span>depends<span class="fu">:</span>  base <span class="fu">==</span><span class="fl">4.6</span><span class="fu">.*</span>
-        hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span> src</code></pre>
+        hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span> src</code></pre></div>
 <p>We have uncommented the string with <code>other-modules</code> and mentioned the name of our module there. Pay attention: you need to specify the name of the module, not the filename.</p>
 <p>But since we specified the name of the module, we need to specify the place where to look for it. After all, it is not in the <code>src</code> folder, but in the <code>src/Utils</code> subfolder. So we need to add something to <code>hs-source-dirs</code> parameter:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">    hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span> src
-                    src<span class="fu">/</span><span class="dt">Utils</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">    hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span> src
+                    src<span class="fu">/</span><span class="dt">Utils</span></code></pre></div>
 <p>Now save and build.</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> build
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> build
 <span class="kw">Building</span> Real-0.1.0.0...
 <span class="kw">Preprocessing</span> executable <span class="st">'Real'</span> for Real-0.1.0.0...
 [<span class="kw">1</span> of 2] Compiling Helpers          ( src/Utils/Helpers.hs, dist/build/Real/Real-tmp/Helpers.o )
 [<span class="kw">2</span> of 2] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
-<span class="kw">Linking</span> dist/build/Real/Real ...</code></pre>
+<span class="kw">Linking</span> dist/build/Real/Real ...</code></pre></div>
 <p>It worked - not one, but two modules were compiled. Now launch.</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./dist/build/Real/Real</span>
-<span class="kw">Hi</span>, denis</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./dist/build/Real/Real</span>
+<span class="kw">Hi</span>, denis</code></pre></div>
 <p>And it works.</p>
 <h2 id="about-names">About names</h2>
 <p>There are two rules.</p>

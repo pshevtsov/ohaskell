@@ -62,85 +62,85 @@
 
             <p>Списки в Haskell - это наборы элементов одного типа. И когда вы видите в коде квадратные скобки - значит, список где-то рядом.</p>
 <p>Вот список из трёх целочисленных элементов:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</code></pre></div>
 <p>а вот пустой список:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">[]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[]</code></pre></div>
 <p>Элементами списка могут быть значения любого типа, в том числе и другие списки. Мы даже можем создать список функций, но после прочтения предыдущих глав вас этот факт не должен удивлять.</p>
 <h2 id="простейшие-действия">Простейшие действия</h2>
 <p>Если списки создаются - значит это кому-нибудь нужно. Вот функция, возвращающая список из трёх строк:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">listOfNames ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">listOfNames ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>]
 listOfNames prefix <span class="fu">=</span>
     [prefix <span class="fu">++</span> <span class="st">&quot;John&quot;</span>, prefix <span class="fu">++</span> <span class="st">&quot;Anna&quot;</span>, prefix <span class="fu">++</span> <span class="st">&quot;Andrew&quot;</span>]
 
-main <span class="fu">=</span> print <span class="fu">$</span> listOfNames <span class="st">&quot;Dear &quot;</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> listOfNames <span class="st">&quot;Dear &quot;</span></code></pre></div>
 <p>Результат:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Dear John&quot;</span>,<span class="st">&quot;Dear Anna&quot;</span>,<span class="st">&quot;Dear Andrew&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;Dear John&quot;</span>,<span class="st">&quot;Dear Anna&quot;</span>,<span class="st">&quot;Dear Andrew&quot;</span>]</code></pre></div>
 <p>Обратите внимание на объявление этой функции:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">listOfNames ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">listOfNames ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>]</code></pre></div>
 <p>Тип <code>[String]</code> - это тип списка строк. А, например, список символов объявляется как <code>[Char]</code>. Кстати, строка - это и есть список символов, то есть тип <code>String</code> эквивалентен типу <code>[Char]</code>. Поэтому объявление может быть и таким:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">listOfNames ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [[<span class="dt">Char</span>]]  <span class="co">-- Возвращает список списков символов.</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">listOfNames ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [[<span class="dt">Char</span>]]  <span class="co">-- Возвращает список списков символов.</span></code></pre></div>
 <p>Вот так можно узнать размер списка:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
     print <span class="fu">$</span> length listOfAnimals
-    where listOfAnimals <span class="fu">=</span> [<span class="st">&quot;Bear&quot;</span>, <span class="st">&quot;Tiger&quot;</span>, <span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Wolf&quot;</span>]</code></pre>
+    where listOfAnimals <span class="fu">=</span> [<span class="st">&quot;Bear&quot;</span>, <span class="st">&quot;Tiger&quot;</span>, <span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Wolf&quot;</span>]</code></pre></div>
 <p>А так можно узнать, присутствует ли заданное значение в списке:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">thisIsAWildAnimal ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">thisIsAWildAnimal ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
 thisIsAWildAnimal name <span class="fu">=</span>
     name <span class="ot">`elem`</span> wildAnimals
     where wildAnimals <span class="fu">=</span> [<span class="st">&quot;Bear&quot;</span>, <span class="st">&quot;Tiger&quot;</span>, <span class="st">&quot;Lion&quot;</span>, <span class="st">&quot;Wolf&quot;</span>]
 
-main <span class="fu">=</span> print <span class="fu">$</span> <span class="kw">if</span> thisIsAWildAnimal <span class="st">&quot;Cat&quot;</span> <span class="kw">then</span> <span class="st">&quot;Yes!&quot;</span> <span class="kw">else</span> <span class="st">&quot;No!&quot;</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> <span class="kw">if</span> thisIsAWildAnimal <span class="st">&quot;Cat&quot;</span> <span class="kw">then</span> <span class="st">&quot;Yes!&quot;</span> <span class="kw">else</span> <span class="st">&quot;No!&quot;</span></code></pre></div>
 <p>Здесь стандартная функция <code>elem</code>, записанная в инфиксной форме (то есть между двумя своими аргументами), проверяет наличие строки <code>&quot;Cat&quot;</code> в списке диких животных.</p>
 <h2 id="неизменность-списка">Неизменность списка</h2>
 <p>Как вы знаете, все значения в Haskell неизменны, как Египетские пирамиды. Списки - не исключение: мы не можем изменить список, мы можем лишь создать на его основе новый список. Например:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addNewHostToFront ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">addNewHostToFront ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
 addNewHostToFront newHost listOfHosts <span class="fu">=</span> newHost <span class="fu">:</span> listOfHosts
 
 main <span class="fu">=</span>
     print <span class="fu">$</span> addNewHostToFront <span class="st">&quot;124.67.54.90&quot;</span> listOfHosts
-    where listOfHosts <span class="fu">=</span> [<span class="st">&quot;45.67.78.89&quot;</span>, <span class="st">&quot;123.45.65.54&quot;</span>, <span class="st">&quot;127.0.0.1&quot;</span>]</code></pre>
+    where listOfHosts <span class="fu">=</span> [<span class="st">&quot;45.67.78.89&quot;</span>, <span class="st">&quot;123.45.65.54&quot;</span>, <span class="st">&quot;127.0.0.1&quot;</span>]</code></pre></div>
 <p>Вывод:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;124.67.54.90&quot;</span>,<span class="st">&quot;45.67.78.89&quot;</span>,<span class="st">&quot;123.45.65.54&quot;</span>,<span class="st">&quot;127.0.0.1&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;124.67.54.90&quot;</span>,<span class="st">&quot;45.67.78.89&quot;</span>,<span class="st">&quot;123.45.65.54&quot;</span>,<span class="st">&quot;127.0.0.1&quot;</span>]</code></pre></div>
 <p>Оператор <code>:</code> добавляет значение, являющееся левым операндом, в начало списка, являющегося правым операндом:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">newHost <span class="fu">:</span> listOfHosts</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">newHost <span class="fu">:</span> listOfHosts</code></pre></div>
 <p>С концептуальной точки зрения функция <code>addNewHostToFront</code> добавила новый адрес в начало переданного ей списка. Но в действительности никакого добавления не произошло: функция просто взяла значение <code>newHost</code> и список <code>listOfHosts</code> и создала на их основе новый список, содержащий уже четыре адреса вместо трёх.</p>
 <h2 id="действия-над-элементами">Действия над элементами</h2>
 <p>Мы создаём список для того, чтобы что-то делать с его элементами. Например, такая функция:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">removeAllEmptyNamesFrom ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">removeAllEmptyNamesFrom ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
 removeAllEmptyNamesFrom listOfNames <span class="fu">=</span>
     filter notEmptyName listOfNames
     where notEmptyName <span class="fu">=</span> not <span class="fu">.</span> null
 
 main <span class="fu">=</span>
     print <span class="fu">$</span> removeAllEmptyNamesFrom listOfNames
-    where listOfNames <span class="fu">=</span> [<span class="st">&quot;John&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;Ann&quot;</span>]</code></pre>
+    where listOfNames <span class="fu">=</span> [<span class="st">&quot;John&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="st">&quot;Ann&quot;</span>]</code></pre></div>
 <p>Стандартная функция <code>filter</code> последовательно применяет предикат <code>notEmptyName</code> к каждой строке в списке и конструирует новый список лишь из тех строк, которые удовлетворяют этому предикату. В качестве предиката выступает композиция функций. Эта композиция применяется к одной строке и возвращает <code>True</code> в том случае, если эта строка не <code>null</code> (то есть непустая). Обратите внимание, мы вновь использовали короткую форму записи функции <code>notEmptyName</code>, опустив имя аргумента.</p>
 <h2 id="сворачивание">Сворачивание</h2>
 <p>Об этом механизме я не могу промолчать, уж очень он занимательный и полезный. Речь идёт о сворачивании (folding) списка. Суть его очень проста и элегантна, и поэтому сворачивание очень часто используется на практике.</p>
 <p>Сворачивание - это процесс превращения всех элементов списка в одно значение. Сразу пример:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
-    putStrLn <span class="fu">$</span> foldl (<span class="fu">++</span>) <span class="st">&quot;http&quot;</span> [<span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google.com&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+    putStrLn <span class="fu">$</span> foldl (<span class="fu">++</span>) <span class="st">&quot;http&quot;</span> [<span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google.com&quot;</span>]</code></pre></div>
 <p>Вывод будет следующим:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">http</span>://www.google.com</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">http</span>://www.google.com</code></pre></div>
 <p>Стандартная функция <code>foldl</code> сворачивает список слева (название собрано из слов “fold left”). Рассмотрим, как же она работает.</p>
 <p>Для сворачивания элементов используется бинарная функция, в данном случае оператор <code>(++)</code>. На первом шаге функция <code>foldl</code> берёт начальное значение <code>&quot;http&quot;</code> и первый элемент <code>&quot;://&quot;</code>, а затем применяет к ним оператор конкатенации. В результате получается строка <code>&quot;http://&quot;</code>. На втором шаге оператор конкатенации применяется уже к этой строке и ко второму элементу <code>&quot;www&quot;</code>, в результате чего получаем <code>&quot;http://www&quot;</code>. На третьем шаге складываем эту строку с третьим элементом <code>&quot;.&quot;</code>, получив <code>&quot;http://www.&quot;</code>. И на последнем шаге складываем получившееся с четвёртым элементом, и вот перед нами полная строка <code>&quot;http://www.google.com&quot;</code>. Таким образом, функция <code>foldl</code> постепенно скомкала (свернула) все строки в одну.</p>
 <p>Впрочем, вы можете увидеть все эти шаги воочию, достаточно воспользоваться стандартной функцией <code>scanl</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
-    print <span class="fu">$</span> scanl (<span class="fu">++</span>) <span class="st">&quot;http&quot;</span> [<span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google.com&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+    print <span class="fu">$</span> scanl (<span class="fu">++</span>) <span class="st">&quot;http&quot;</span> [<span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google.com&quot;</span>]</code></pre></div>
 <p>Результат будет таким:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;http&quot;</span>,<span class="st">&quot;http://&quot;</span>,<span class="st">&quot;http://www&quot;</span>,<span class="st">&quot;http://www.&quot;</span>,<span class="st">&quot;http://www.google.com&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;http&quot;</span>,<span class="st">&quot;http://&quot;</span>,<span class="st">&quot;http://www&quot;</span>,<span class="st">&quot;http://www.&quot;</span>,<span class="st">&quot;http://www.google.com&quot;</span>]</code></pre></div>
 <p>Функция <code>scanl</code> выступает в роли эдакого рентгена для функции <code>foldl</code>, показывая внутреннюю работу последней: в возвращённом списке строк мы видим, как постепенно сворачивается наш изначальный список.</p>
 <p>Разумеется, сворачивать список можно не только слева, но и справа. Для этого, как вы уже догадались, следует использовать функцию <code>foldr</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
-    putStrLn <span class="fu">$</span> foldr (<span class="fu">++</span>) <span class="st">&quot;.com&quot;</span> [<span class="st">&quot;http&quot;</span>, <span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+    putStrLn <span class="fu">$</span> foldr (<span class="fu">++</span>) <span class="st">&quot;.com&quot;</span> [<span class="st">&quot;http&quot;</span>, <span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google&quot;</span>]</code></pre></div>
 <p>Результат будет таким же, мы просто свернули строки справа, о чём нам может поведать функция <code>scanr</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
-    print <span class="fu">$</span> scanr (<span class="fu">++</span>) <span class="st">&quot;.com&quot;</span> [<span class="st">&quot;http&quot;</span>, <span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+    print <span class="fu">$</span> scanr (<span class="fu">++</span>) <span class="st">&quot;.com&quot;</span> [<span class="st">&quot;http&quot;</span>, <span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google&quot;</span>]</code></pre></div>
 <p>Вывод:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;http://www.google.com&quot;</span>,<span class="st">&quot;://www.google.com&quot;</span>,<span class="st">&quot;www.google.com&quot;</span>,<span class="st">&quot;.google.com&quot;</span>,<span class="st">&quot;google.com&quot;</span>,<span class="st">&quot;.com&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">[<span class="st">&quot;http://www.google.com&quot;</span>,<span class="st">&quot;://www.google.com&quot;</span>,<span class="st">&quot;www.google.com&quot;</span>,<span class="st">&quot;.google.com&quot;</span>,<span class="st">&quot;google.com&quot;</span>,<span class="st">&quot;.com&quot;</span>]</code></pre></div>
 <p>Взгляните на этот список справа налево - и вы сразу поймёте, <em>как</em> происходило сворачивание на этот раз. Кстати, если вам не нужно начальное значение, на помощь придут функции <code>foldl1</code> и <code>foldr1</code>. Да, название не очень, но уж какое есть. Этим функциям не требуется начальное значение, они сразу же начинают работать с элементами списка. Упростим наш первый пример:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
-    putStrLn <span class="fu">$</span> foldl1 (<span class="fu">++</span>) [<span class="st">&quot;http&quot;</span>, <span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google&quot;</span>, <span class="st">&quot;.com&quot;</span>]</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span>
+    putStrLn <span class="fu">$</span> foldl1 (<span class="fu">++</span>) [<span class="st">&quot;http&quot;</span>, <span class="st">&quot;://&quot;</span>, <span class="st">&quot;www&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="st">&quot;google&quot;</span>, <span class="st">&quot;.com&quot;</span>]</code></pre></div>
 <p>Таким образом, механизм сворачивания даёт нам простой и очень элегантный способ объединения элементов списка в единое значение.</p>
 <p>Вот и всё, что хотелось рассмотреть. Помимо функций, рассмотренных выше, в стандартной библиотеке Haskell присутствуют и многие другие вкусности для работы с элементами (проверки, замены, сортировки, перестановки и тому подобное).</p>
 <h2 id="в-сухом-остатке">В сухом остатке</h2>

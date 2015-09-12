@@ -62,20 +62,20 @@
 
             <p>We all aim at creating error-free software. Nevertheless, errors sometimes emerge, and therefore, we have to deal with them. Let’s discuss exceptions, that topic is especially important as many packages from Hackage contain code which throws exceptions.</p>
 <p>First of all, we need module <code>Control.Exception</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span></code></pre></div>
 <p>That standard module is made for throwing and catching exceptions, either standard ones or our own. It’s significant that we can throw exception from either a pure function or from a function with side effect, but we can’t catch it in pure function.</p>
 <h2 id="problem-with-file">Problem with file</h2>
 <p>Usually we’ll be dealing with exceptions which are thrown from functions which interact with the outside world. Canonical example: we want to read the content of the non-existent file:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     fileContent <span class="ot">&lt;-</span> readFile <span class="st">&quot;Users/shevchenko/test.c&quot;</span>  <span class="co">-- Incorrect path...</span>
-    putStrLn fileContent</code></pre>
+    putStrLn fileContent</code></pre></div>
 <p>That gives us output:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real</span>: Users/shevchenko/test.c: openFile: does not exist (No such file or directory)</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Real</span>: Users/shevchenko/test.c: openFile: does not exist (No such file or directory)</code></pre></div>
 <p>Function <code>readFile</code> had thrown an exception, as it’s the only way it could report about a problem with file. Exception haven’t found any barriers on its way and was caught on application’s top level, after that a message about error was printed out and the application died on its feet.</p>
 <h2 id="catching">Catching</h2>
 <p>So:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span> 
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span> 
 
 <span class="ot">tryToOpenFile ::</span> FilePath <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
 tryToOpenFile path <span class="fu">=</span>
@@ -87,31 +87,31 @@ tryToOpenFile path <span class="fu">=</span>
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     fileContent <span class="ot">&lt;-</span> tryToOpenFile <span class="st">&quot;Users/shevchenko/test.c&quot;</span>
-    putStrLn fileContent</code></pre>
+    putStrLn fileContent</code></pre></div>
 <p>Now we have a function <code>tryToOpenFile</code>, which opens file at given path, but does it carefully, utilizing function <code>catch</code>. As you already understood, function <code>catch</code> (defined in module <code>Control.Exception</code>) knows how to catch an exception. Consider its type:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">catch<span class="ot"> ::</span> <span class="dt">Exception</span> e <span class="ot">=&gt;</span> <span class="dt">IO</span> a <span class="ot">-&gt;</span> (e <span class="ot">-&gt;</span> <span class="dt">IO</span> a) <span class="ot">-&gt;</span> <span class="dt">IO</span> a</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">catch<span class="ot"> ::</span> <span class="dt">Exception</span> e <span class="ot">=&gt;</span> <span class="dt">IO</span> a <span class="ot">-&gt;</span> (e <span class="ot">-&gt;</span> <span class="dt">IO</span> a) <span class="ot">-&gt;</span> <span class="dt">IO</span> a</code></pre></div>
 <p>Function takes two arguments: first is an <code>IO</code>-action, second is a handling-function. If action thrown an exception (represented with polymorphic type <code>e</code>) that exception is passed to the handler.</p>
 <p>Watch out: the type of exception is in the context of <code>Exception</code> class, which is defined in the same module <code>Control.Exception</code>. Any exception in our application must implement that class.</p>
 <p>In order to improve readability we use function <code>catch</code> in infix notation, which keeps up with the name of our handler:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">readFile path <span class="ot">`catch`</span> possibleErrors</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">readFile path <span class="ot">`catch`</span> possibleErrors</code></pre></div>
 <p>If we get an error while reading a file the corresponding exception is passed to our handler:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">possibleErrors ::</span> <span class="dt">IOException</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
-possibleErrors error <span class="fu">=</span> return <span class="fu">$</span> show error</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">possibleErrors ::</span> <span class="dt">IOException</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
+possibleErrors error <span class="fu">=</span> return <span class="fu">$</span> show error</code></pre></div>
 <p>Handler takes a value of type <code>IOException</code>. In the handler’s body we stringify the resultant exception, then we take the resultant string that contains a description of an error and wrap it into an action <code>IO String</code>. In case if you are not happy with existing error message provide your own:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">possibleErrors error <span class="fu">=</span> return <span class="st">&quot;Unable to open this file. Please check it.&quot;</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">possibleErrors error <span class="fu">=</span> return <span class="st">&quot;Unable to open this file. Please check it.&quot;</span></code></pre></div>
 <p>That message would be printed if the problem occurs.</p>
 <h2 id="catch-the-other-way">Catch the other way</h2>
 <p>Let’s rewrite our function:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">tryToOpenFile ::</span> FilePath <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">tryToOpenFile ::</span> FilePath <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
 tryToOpenFile path <span class="fu">=</span>
     handle possibleErrors (readFile path)  <span class="co">-- Same thing but the other way.</span>
     where
         <span class="ot">possibleErrors ::</span> <span class="dt">IOException</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">String</span>
-        possibleErrors error <span class="fu">=</span> return <span class="st">&quot;Aaaaa!!! Please check file.&quot;</span></code></pre>
+        possibleErrors error <span class="fu">=</span> return <span class="st">&quot;Aaaaa!!! Please check file.&quot;</span></code></pre></div>
 <p>We replaced function <code>catch</code> with <code>handle</code>. There is absolutely no difference, except the order of arguments <code>catch</code> takes handler as a second argument, whereas <code>handle</code> takes it as first. Thus, <code>catch</code> is more readable in infix form and <code>handle</code> is more readable in simple form. So, take your choice.</p>
 <h2 id="trying">Trying</h2>
 <p>Standard function <code>try</code> takes different approach. For example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
@@ -119,17 +119,17 @@ main <span class="fu">=</span> <span class="kw">do</span>
     case result <span class="kw">of</span>
         <span class="dt">Left</span> exception <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;Fault: &quot;</span> <span class="fu">++</span> show exception
         <span class="dt">Right</span> content <span class="ot">-&gt;</span> putStrLn content
-    where path <span class="fu">=</span> <span class="st">&quot;Users/dshevchenko/test.c&quot;</span></code></pre>
+    where path <span class="fu">=</span> <span class="st">&quot;Users/dshevchenko/test.c&quot;</span></code></pre></div>
 <p>Let’s line it out.</p>
 <p>Here is a type of function <code>try</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">try ::</span> <span class="dt">Exception</span> e <span class="ot">=&gt;</span> <span class="dt">IO</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Either</span> e a)</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">try ::</span> <span class="dt">Exception</span> e <span class="ot">=&gt;</span> <span class="dt">IO</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Either</span> e a)</code></pre></div>
 <p>That function takes our <code>IO</code>-action and returns another <code>IO</code>-action, which returns value of standard type <code>Either e a</code>. <code>Either</code> is a type constructor designed to store either value which represents good result or value which represents bad result. Note, we explicitly specified type of value which function <code>try</code> returns.</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">try <span class="fu">$</span> readFile<span class="ot"> path ::</span> <span class="dt">IO</span> (<span class="dt">Either</span> <span class="dt">IOException</span> <span class="dt">String</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">try <span class="fu">$</span> readFile<span class="ot"> path ::</span> <span class="dt">IO</span> (<span class="dt">Either</span> <span class="dt">IOException</span> <span class="dt">String</span>)</code></pre></div>
 <p>We said, “Let function <code>try</code> return us a value of type <code>Either IOException String</code>, which contains either value of type <code>IOException</code> (when something happened while reading a file) or a value of type <code>String</code> with the contents of file”.</p>
 <p>Next, check if it was successful:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">case</span> result <span class="kw">of</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">case</span> result <span class="kw">of</span>
     <span class="dt">Left</span> exception <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;Fault: &quot;</span> <span class="fu">++</span> show exception
-    <span class="dt">Right</span> content <span class="ot">-&gt;</span> putStrLn content</code></pre>
+    <span class="dt">Right</span> content <span class="ot">-&gt;</span> putStrLn content</code></pre></div>
 <p>Type <code>Either</code> has two constructors, <code>Left</code> and <code>Right</code>. In our case it can be displayed it this way:</p>
 <pre><code>Either IOException String
        |           |
@@ -137,16 +137,16 @@ main <span class="fu">=</span> <span class="kw">do</span>
 <p>Using these constructors we can comprehend what happened. Structure <code>case-of</code> will help us. We say, “If <code>result</code> conforms to left value it’s a value of type <code>IOException</code>. Something went wrong, print an exception! And if <code>result</code> conforms to right value – we’ve got <code>String</code>. Great success, print the contents of the file.”</p>
 <h2 id="in-the-pure-world">In the Pure World</h2>
 <p>Sometimes we need to catch an exception which was thrown from pure function. For example:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
     result <span class="ot">&lt;-</span> try <span class="fu">$</span> <span class="dv">2</span> <span class="ot">`div`</span> <span class="dv">0</span><span class="ot"> ::</span> <span class="dt">IO</span> (<span class="dt">Either</span> <span class="dt">SomeException</span> <span class="dt">Integer</span>)
     case result <span class="kw">of</span>
         <span class="dt">Left</span> exception <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;Fault: &quot;</span> <span class="fu">++</span> show exception
-        <span class="dt">Right</span> value <span class="ot">-&gt;</span> print value</code></pre>
+        <span class="dt">Right</span> value <span class="ot">-&gt;</span> print value</code></pre></div>
 <p>Here we tried to check the result of dividing 2 by zero. However, that wouldn’t pass the compilation. Function <code>try</code> expects to get <code>IO</code>-action on input, however standard function <code>div</code> is pure and returns normal number. Therefore, we need a small trick:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Control.Exception</span>
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
 main <span class="fu">=</span> <span class="kw">do</span>
@@ -154,11 +154,11 @@ main <span class="fu">=</span> <span class="kw">do</span>
                     <span class="ot">::</span> <span class="dt">IO</span> (<span class="dt">Either</span> <span class="dt">SomeException</span> <span class="dt">Integer</span>)
     case result <span class="kw">of</span>
         <span class="dt">Left</span> exception <span class="ot">-&gt;</span> putStrLn <span class="fu">$</span> <span class="st">&quot;Fault: &quot;</span> <span class="fu">++</span> show exception
-        <span class="dt">Right</span> value <span class="ot">-&gt;</span> print value</code></pre>
+        <span class="dt">Right</span> value <span class="ot">-&gt;</span> print value</code></pre></div>
 <p>We wrapped the call to function <code>div</code> into a standard function <code>evaluate</code>. Now everything compiles, and on execution we get an expected angry message:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Fault</span>: divide by zero</code></pre>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Fault</span>: divide by zero</code></pre></div>
 <p>The type of function <code>evaluate</code>:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">evaluate ::</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> a</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">evaluate ::</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> a</code></pre></div>
 <p>That function plays the role of adapter: it kind of turns the result into an <code>IO</code>-action which returns that result. After function <code>div</code> returned us a normal number function <code>evaluate</code> wrapped that number into an action expected by function <code>try</code>.</p>
 <h2 id="so">So</h2>
 <ul>

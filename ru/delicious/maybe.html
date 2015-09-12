@@ -63,12 +63,12 @@
             <p>Есть в Haskell ещё один механизм обработки ошибок, не связанный ни с исключениями, ни с <code>IO</code>. Используется он весьма часто, поэтому знать о нём нужно. Речь идёт о стандартном типе <code>Maybe</code>.</p>
 <h2 id="что-за-зверь">Что за зверь</h2>
 <p>Тип <code>Maybe</code> - это опциональное значение. Оно говорит нам: “Может быть во мне есть некое реальное значение, а может быть и нету”. Вот его определение:  </p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="dt">Nothing</span> <span class="fu">|</span> <span class="dt">Just</span> a
-               deriving (<span class="dt">Eq</span>, <span class="dt">Ord</span>)</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe</span> a <span class="fu">=</span> <span class="dt">Nothing</span> <span class="fu">|</span> <span class="dt">Just</span> a
+               deriving (<span class="dt">Eq</span>, <span class="dt">Ord</span>)</code></pre></div>
 <p>Тип представлен двумя конструкторами: нульарным <code>Nothing</code> и унарным <code>Just</code>. Если значение было создано с конструктором <code>Nothing</code> - значит оно представляет собой пустышку, если же с конструктором <code>Just</code> - оно содержит в себе нечто полезное.</p>
 <h2 id="для-чего-он">Для чего он</h2>
 <p>Простой пример:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Char</span>
 
 <span class="ot">coefficientFromString ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span>
 coefficientFromString str <span class="fu">=</span>
@@ -81,15 +81,15 @@ check aCoefficient
     <span class="fu">|</span> otherwise <span class="fu">=</span> show aCoefficient
 
 <span class="ot">main ::</span> <span class="dt">IO</span> ()
-main <span class="fu">=</span> print <span class="fu">$</span> check <span class="fu">$</span> coefficientFromString <span class="st">&quot;0&quot;</span></code></pre>
+main <span class="fu">=</span> print <span class="fu">$</span> check <span class="fu">$</span> coefficientFromString <span class="st">&quot;0&quot;</span></code></pre></div>
 <p>Мы пытаемся извлечь цифру из полученной строки, но что делать, если первым символом этой строки является нечисловой символ? Возвращать <code>-1</code>? Это не всегда приемлемо. Поэтому мы возвращаем значение типа <code>Maybe Int</code>, которое может содержать в себе извлечённую цифру, а может и не содержать. И уже в функции <code>check</code> мы проверяем, с каким конструктором было создано значение <code>aCoefficient</code>. Если с конструктором <code>Nothing</code> - значит извлечь цифру не удалось.</p>
 <p>Обратите внимание: мы явно проверяем аргумент на равенство с нульарным конструктором:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">aCoefficient <span class="fu">==</span> <span class="dt">Nothing</span></code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">aCoefficient <span class="fu">==</span> <span class="dt">Nothing</span></code></pre></div>
 <p>Однако в модуле <code>Data.Maybe</code> есть два удобных предиката, <code>isJust</code> и <code>isNothing</code>. Поэтому мы могли бы написать так:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">isNothing aCoefficient</code></pre>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">isNothing aCoefficient</code></pre></div>
 <h2 id="ещё-и-монада">Ещё и монада</h2>
 <p>Как уже было сказано в предыдущей главе, тип <code>Maybe</code> - это не просто опциональная обёртка, это ещё и монада. Поэтому мы можем делать вот такие вещи:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.List</span>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.List</span>
 <span class="kw">import </span><span class="dt">Data.Maybe</span>
 
 <span class="ot">result ::</span> <span class="dt">Maybe</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span>
@@ -101,7 +101,7 @@ main <span class="fu">=</span>
     where checkFormat email <span class="fu">=</span>
               if <span class="ch">'@'</span> <span class="ot">`elem`</span> email <span class="kw">then</span> return email <span class="kw">else</span> <span class="dt">Nothing</span>
           checkDomain email <span class="fu">=</span>
-              if <span class="st">&quot;.com&quot;</span> <span class="ot">`isSuffixOf`</span> email <span class="kw">then</span> return email <span class="kw">else</span> <span class="dt">Nothing</span></code></pre>
+              if <span class="st">&quot;.com&quot;</span> <span class="ot">`isSuffixOf`</span> email <span class="kw">then</span> return email <span class="kw">else</span> <span class="dt">Nothing</span></code></pre></div>
 <p>Обмотали почтовый адрес в <code>Maybe</code>, прогнали его через проверочный конвейер и сделали вывод о корректности адреса. Если адрес некорректен - нам неважно, на какой стадии будет обнаружена ошибка, в любом случае конечный вывод будет однозначен.</p>
 <p>Ну вот, теперь вы знаете о <code>Maybe</code>.</p>
 
