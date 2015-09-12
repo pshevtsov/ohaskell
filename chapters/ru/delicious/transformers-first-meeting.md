@@ -17,7 +17,7 @@ nextChapter: /ru/delicious/transformers-reader.html
 Прежде всего, нам понадобится пакет `transformers`. Однако устанавливать его вам едва ли придётся, поскольку вместе с ранее установленными пакетами он, скорее всего, уже установился автоматически (как вы помните, многие пакеты используют трансформеры, поэтому указывают пакет `transformers` в своих зависимостях). Но, на всякий случай, выполним:
 
 ```bash
-$ cabal install transformers
+$ stack install transformers
 ```
 
 Вам следует знать и о втором пакете с трансформерами, а именно `mtl` (аббревиатура от **Monad Transformer Library**). Оба эти пакета являются стандартными библиотеками для работы с трансформерами, к тому же, они - братья-близнецы (между ними очень много общего). Устанавливать `mtl` вам точно не придётся, поскольку он установился вместе с уже имеющимся у вас пакетом `MissingH`.
@@ -73,16 +73,16 @@ getEmail = do
 Перепишем:
 
 ```haskell
-import Control.Monad.Trans.Maybe 
-import Control.Monad.Trans.Class 
-import Control.Monad 
+import Control.Monad.Trans.Maybe
+import Control.Monad.Trans.Class
+import Control.Monad
 
 emailIsValid :: String -> Bool
 emailIsValid email = '@' `elem` email
 
 getEmail :: MaybeT IO String
 getEmail = do
-    email <- lift getLine 
+    email <- lift getLine
     guard $ emailIsValid email
     return email
 
@@ -104,7 +104,7 @@ getEmail :: MaybeT IO String
 А это и есть наш первый трансформер. Вот что он собою представляет:
 
 ```haskell
-newtype MaybeT m a 
+newtype MaybeT m a
 ```
 
 Конструктор типа `MaybeT` параметризуется двумя типами, `m` и `a`. `m` - некоторый монадный тип, а `a` - тип конкретного значения, содержащегося внутри. Таким образом, видя тип:
@@ -187,7 +187,7 @@ runMaybeT :: MaybeT IO String -> IO (Maybe String)
     А здесь уже обыкновенная Maybe String.
 ```
 
-После этого мы можем узнать, что же там с нашим пользовательским вводом: 
+После этого мы можем узнать, что же там с нашим пользовательским вводом:
 
 ```haskell
     case email of
@@ -203,4 +203,3 @@ runMaybeT :: MaybeT IO String -> IO (Maybe String)
 * Склеив два монадных фантика в один, мы можем расклеить их обратно.
 
 Таков наш первый пример использования трансформеров. Он очень простой, но уже демонстрирует элегантность трансформеров, а в следующих главах мы увидим значительно более интересные примеры.
-
