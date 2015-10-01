@@ -363,6 +363,19 @@ p>code {
     color: #000;
 }
 
+li>code {
+    font-family: 'Ubuntu Mono', monospace !important;
+    font-size: 100% !important;
+    border-radius: 3px;
+    border: 1px solid #FBE7D8; /* Параметры границы */
+    background: #fdf6e3; /* Цвет фона */
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    color: #000;
+}
+
 #socialButtons {
     padding-top: 35px;
     padding-bottom: 30px;
