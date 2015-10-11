@@ -502,3 +502,7 @@ span#languagesSeparator {
     border-bottom: none !important;
 }
 
+.side-nav a {
+    line-height: 1.3;
+    text-align: left;
+}
