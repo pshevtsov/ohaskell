@@ -2,4 +2,4 @@
 
 Книга о прекрасном и удивительном языке программирования Haskell. Для обыкновенных программистов.
 
-Создана с помощью блистательного [Hakyll](http://jaspervdj.be/hakyll/).
+Создана с помощью блистательных [Hakyll](http://jaspervdj.be/hakyll/) и [Materialize](http://materializecss.com/).
