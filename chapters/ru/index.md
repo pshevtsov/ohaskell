@@ -17,6 +17,6 @@ nextChapter: _
 Функциональное программирование — это своеобразное гетто посреди мирового мегаполиса программной разработки. Доля функциональных языков на рынке очень мала, а программистов, использующих эти языки, считают либо недосягаемой элитой, либо асоциальными идиотами. Цель этой книги — разрушить такое представление.
 
 <div style="padding-top: 20px; padding-bottom: 50px;" class="right">
-<a href="/ru/intro/index.html" class="btn-floating btn-large waves-effect waves-light"><span class="fa fa-angle-double-right chapter-arrow"></span></a>
+<a href="/ru/intro/index.html" class="btn waves-effect waves-light"><span class="fa fa-angle-double-right chapter-arrow"></span></a>
 </div>
 
