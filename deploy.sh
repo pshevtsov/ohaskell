@@ -40,6 +40,12 @@ cp -R _site /tmp/
 echo "Переключаемся на ветку 'gh-pages'..."
 git checkout gh-pages
 
+echo "Готовим локальную сборку..."
+mkdir -p ohaskell/html
+cp -R /tmp/_site/* ohaskell/html/
+zip -r ohaskell.zip ohaskell
+rm -rf ohaskell
+
 echo "Копируем прямо в корень содержимое подготовленного каталога _site..."
 cp -R /tmp/_site/* .
 
