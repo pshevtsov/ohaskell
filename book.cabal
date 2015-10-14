@@ -21,7 +21,6 @@ executable book
   main-is:             Main.hs
 
   other-modules:       Copiers
-                       Context 
                        Chapters 
                        IndexPage
                        Misc 

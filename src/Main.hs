@@ -12,8 +12,7 @@ import Copiers              (justCopy,
                              justCreateAndCopy,
                              justCompressAndCopy)
 import Chapters             (createIndexPagesForEachLanguage,
-                             createChaptersForEachLanguage,
-                             createTableOfContentsForEachLanguage)
+                             createChaptersForEachLanguage)
 import Misc                 (prepareAllTemplates,
                              languages)
 import IndexPage            (createIndexPage)
@@ -32,8 +31,8 @@ main = hakyll $ do
     prepareAllTemplates
 
     -- Языки нужны всем, поэтому для удобства запускаем читателя.
-    runReaderT (createIndexPage
-                >> createIndexPagesForEachLanguage
-                >> createChaptersForEachLanguage
-                >> createTableOfContentsForEachLanguage) languages
+    runReaderT ( createIndexPage
+                 >> createIndexPagesForEachLanguage
+                 >> createChaptersForEachLanguage )
+               languages
 

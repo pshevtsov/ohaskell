@@ -8,11 +8,9 @@
 
 module Chapters (
     createIndexPagesForEachLanguage,
-    createChaptersForEachLanguage,
-    createTableOfContentsForEachLanguage
+    createChaptersForEachLanguage
 ) where
 
-import Context              (chapterContext)
 import Misc                 (LanguagesReader)
 import Control.Monad.Reader
 import Hakyll
@@ -28,7 +26,7 @@ createIndexPageFor languageMark =
     match markdownPage $ do
         route $ removeChaptersDirectoryFromURLs `composeRoutes` 
                 setExtension "html"
-        compile $ pandocCompiler >>= loadAndApplyTemplate templateName chapterContext
+        compile $ pandocCompiler >>= loadAndApplyTemplate templateName defaultContext
                                  >>= relativizeUrls
 
 createIndexPagesForEachLanguage :: LanguagesReader
@@ -46,8 +44,8 @@ createChaptersFor languageMark =
     match chapters $ do
         route $ removeChaptersDirectoryFromURLs `composeRoutes`
                 setExtension "html"
-        compile $ pandocCompiler >>= loadAndApplyTemplate chapterTemplateName chapterContext
-                                 >>= loadAndApplyTemplate defaulTemplateName chapterContext
+        compile $ pandocCompiler >>= loadAndApplyTemplate chapterTemplateName defaultContext
+                                 >>= loadAndApplyTemplate defaulTemplateName defaultContext
                                  >>= relativizeUrls
 
 createChaptersForEachLanguage :: LanguagesReader
@@ -55,23 +53,3 @@ createChaptersForEachLanguage = do
     languages <- ask
     lift $ mapM createChaptersFor languages
     return ()
-
-createTableOfContentsFor :: String -> Rules ()
-createTableOfContentsFor languageMark =
-    let markdownPage = fromGlob $ "chapters/" ++ languageMark ++ "_chapters.md"
-        defaulTemplateName = fromFilePath $ "templates/" ++ languageMark ++ "_default.html"
-        routePattern = "chapters/" ++ languageMark ++ "_"
-        languageSubDirectory = languageMark ++ "/"
-    in
-    match markdownPage $ do
-        route $ gsubRoute routePattern (const languageSubDirectory) `composeRoutes`
-                setExtension "html"
-        compile $ pandocCompiler >>= loadAndApplyTemplate defaulTemplateName chapterContext
-                                 >>= relativizeUrls
-
-createTableOfContentsForEachLanguage :: LanguagesReader
-createTableOfContentsForEachLanguage = do
-    languages <- ask
-    lift $ mapM createTableOfContentsFor languages
-    return ()
-

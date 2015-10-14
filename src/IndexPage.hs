@@ -10,8 +10,6 @@ module IndexPage (
     createIndexPage
 ) where
 
-import Data.Monoid          (mconcat)
-import Context              (chapterContext)
 import Misc                 (LanguagesReader)
 import Control.Monad.Reader
 import Hakyll
@@ -21,8 +19,7 @@ createIndexPage = do
     lift $ create ["index.html"] $ do
         route idRoute
         compile $ do
-            let indexContext = mconcat [ constField "title" "Выберите язык"
-                                       , chapterContext
+            let indexContext = mconcat [ constField "title" "#ohaskell"
                                        , defaultContext
                                        ]
             
