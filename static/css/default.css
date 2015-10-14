@@ -223,12 +223,6 @@ div#header #navigation a:hover {
     font-size: 14px;
 }
 
-div#social {
-    float: left;
-    font-family: 'Menlo', 'Monaco', monospace;
-    font-size: 16px;
-}
-
 span#root_link {
     font-family: 'Menlo', 'Monaco', monospace;
     font-size: 18px;
