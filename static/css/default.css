@@ -1,5 +1,12 @@
-@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700&subset=cyrillic,latin);
-@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,400italic,700&subset=latin,cyrillic);
+@font-face {
+    font-family: 'PT Sans';
+    src: url('../fonts/PT_Sans/PT_Sans-Web-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Ubuntu Mono';
+    src: url('../fonts/Ubuntu_Mono/UbuntuMono-Regular.ttf');
+}
 
 body {
     color: black;

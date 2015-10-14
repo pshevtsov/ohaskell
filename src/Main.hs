@@ -23,7 +23,8 @@ main :: IO ()
 main = hakyll $ do
     justCopy            "static/images/*"
     justCompressAndCopy "static/css/*"
-    justCompressAndCopy "static/js/*"
+    justCopy            "static/js/*"
+    justCopy            "static/fonts/**"
     justCopy            "README.md"
     justCopy            "CNAME"
     justCreateAndCopy   ".nojekyll"
