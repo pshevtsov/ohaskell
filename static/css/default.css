@@ -141,17 +141,6 @@ span#github-link a {
     border-bottom: 0;
 }
 
-span#rss-link {
-    color: #FF9132;
-    padding-right: 6px;
-}
-
-span#rss-link a {
-    text-decoration: none !important;
-    color: #FF9132 !important;
-    border-bottom: 0;
-}
-
 .monospace-follow {
     font-size: 19px;
     font-family: 'Ubuntu Mono', monospace;
