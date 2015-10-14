@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content="Денис Шевченко">
+        <link rel="icon" href="../../static/images/favicon.ico">
+
+        <title>Types at a glance</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../static/css/default.css" rel="stylesheet">
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
+    </head>
+
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="logo">
+                <a class="navbar-brand" href="../../en/index.html" title="Home">
+                  About Haskell humanly
+                </a>
+              </div>
+            </div>
+            
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../../en/chapters.html">Contents</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div id="content">
+            <h1>Types at a glance</h1>
+
+            <p>In the real projects we definitely need our own types. Let’s talk about them.</p>
+<p>First of all, there are new keywords. The word <code>data</code> is used to create a new type. The word <code>class</code> is used to define the type class. And the word <code>instance</code> is used to declare the class instance.</p>
+<h2 id="our-first-type">Our first type</h2>
+<p>This is type for IP-address:  </p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">IPAddress</span> <span class="fu">=</span> <span class="dt">IPAddress</span> <span class="dt">String</span></code></pre></div>
+<p>Done. It’s a very simple type. In fact, value of this type will be just a string with a label <code>IPAddress</code>. Label is an explanatory identifier. Many types don’t have labels, so you can initialize values of such a types directly. For example, if we have a function that takes a value of type <code>Int</code>, then when we’ll call it, we’ll can write just:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">show <span class="dv">6</span></code></pre></div>
+<p>But if this function will be applied to value of our type <code>IPAddress</code>, we must specify it explicitly:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre></div>
+<p>Expression <code>IPAddress &quot;127.0.0.1&quot;</code> will create a value of type <code>IPAddress</code> with a string <code>&quot;127.0.0.1&quot;</code> inside.</p>
+<p>By the way, label is called a <em>value constructor</em>.</p>
+<p>And remember: name of type (as well as name of value constructor) cannot starts with lowercase letter. So such a code:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> ipAddress <span class="fu">=</span> ipAddress <span class="dt">String</span></code></pre></div>
+<p>will be rejected by compiler.</p>
+<h2 id="type-class">Type class</h2>
+<p>The problem is that our type is a very primitive. If we create a value of <code>IPAddress</code> we’ll cannot even print it on the terminal. And if we’ll write like this:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre></div>
+<p>compiler will show us an error:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">No</span> instance for (Show IPAddress) <span class="kw">arising</span> from a use of <span class="kw">`show</span><span class="st">'</span></code></pre></div>
+<p>And compiler is absolutely right: standard function <code>show</code> that converts its argument to a string form, doesn’t have a clue about how to present a value of type <code>IPAddress</code> as a string. So that where we meet a type class.</p>
+<p>Type class is a logical group of types. It has some features common to all these types. And these features represented as a methods declared in this class. Every type that is relevant to type class should implement methods of this class. Type class can be viewed as an abstract interface.</p>
+<p>For example, standard class <code>Show</code> unites all the types that can be “shown” (i.e. printed in a string form). This is declaration of this type class:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Show</span> a <span class="kw">where</span>
+    <span class="ot">show ::</span> a <span class="ot">-&gt;</span> <span class="dt">String</span></code></pre></div>
+<p>As you see there’s a single method called <code>show</code>. It takes just one argument of the type <code>a</code> and returns its string form.</p>
+<p>You ask, what is this type <code>a</code>? Earlier I mentioned the term “polymorphic type”, and <code>a</code> in this example is a polymorphic type. This mean that method <code>show</code> can be applied to a values of different types. Traditionally polymorphic types is called by a single letter, but you can call them whatever you like.</p>
+<p>But how did <code>show</code> knows <em>how to</em> stringificate value of <code>IPAddress</code>? We understand that different types can be printed differently. Class instance is here!</p>
+<h2 id="class-instance">Class instance</h2>
+<p>Whereas type class <code>Show</code> is a logical group of the types that can be “shown”, the instance of this class is an <em>explanation</em> of how to print a value of particular type. So if we want to print our IP-addresses we must provide an instance of the class <code>Show</code> for type <code>IPAddress</code>. Let’s do it:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Show</span> <span class="dt">IPAddress</span> <span class="kw">where</span>
+    show (<span class="dt">IPAddress</span> address) <span class="fu">=</span>
+        if address <span class="fu">==</span> <span class="st">&quot;127.0.0.1&quot;</span> <span class="kw">then</span> <span class="st">&quot;localhost&quot;</span> <span class="kw">else</span> address</code></pre></div>
+<p>We’ve used keyword <code>instance</code>, and polymorphic type <code>a</code> was replaced by type <code>IPAddress</code>. And after that we define method <code>show</code> for owr IP-addresses. This method take a value of type <code>IPAddress</code> that was created by expression <code>IPAddress address</code>. So if address string is equal to <code>&quot;127.0.0.1&quot;</code>, string <code>&quot;localhost&quot;</code> will be printed.</p>
+<p>And our <code>main</code>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="fu">$</span> show <span class="fu">$</span> <span class="dt">IPAddress</span> <span class="st">&quot;127.0.0.1&quot;</span></code></pre></div>
+<p>Result:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">localhost</span></code></pre></div>
+<p>It works.</p>
+<h2 id="so">So</h2>
+<ul>
+<li>If we see keyword <code>data</code> - it’s a user type.</li>
+<li>Type class - it’s an abstract interface that unites group of types by some common traits.</li>
+<li>If some type wants to be related to some class, it should present its own instance of this class.</li>
+</ul>
+
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/about-user-types/index.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/about-user-types/about-value-constructors.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="padding-top: 40px;"><div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+
+        </div> 
+
+        <footer class="footer">
+            Book created with <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> and lives on <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Source code and contents of this site are distributed on terms of <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">MIT license</a>.
+            </div>
+        </footer>
+    </div>
+  </body>
+</html>
+

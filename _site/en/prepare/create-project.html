@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content="Денис Шевченко">
+        <link rel="icon" href="../../static/images/favicon.ico">
+
+        <title>Creating a project</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../static/css/default.css" rel="stylesheet">
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
+    </head>
+
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="logo">
+                <a class="navbar-brand" href="../../en/index.html" title="Home">
+                  About Haskell humanly
+                </a>
+              </div>
+            </div>
+            
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../../en/chapters.html">Contents</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div id="content">
+            <h1>Creating a project</h1>
+
+            <p>We can’t start studying the language without a basis. Thus, download and install <a href="http://www.haskell.org/platform"><code>Haskell Platform</code></a>.</p>
+<p>Haskell Platform contains two essential components, which you should know about:</p>
+<ol style="list-style-type: decimal">
+<li><code>ghc</code>, Haskell Compiler (<strong>G</strong>lasgow <strong>H</strong>askell <strong>C</strong>ompiler);</li>
+<li><code>ghci</code>, Haskell interpreter.</li>
+</ol>
+<p>Got it? Now feel free to forget. Especially about the interpreter. Cause you gonna use Haskell in real world and therefore all your projects would be compiled. Moreover, the direct usage of <code>ghc</code> compiler will hardly be necessary for you. Of course, <code>ghci</code> interpreter may be useful sometimes, but you can do without it.</p>
+<p>In real world you ain’t no need creating file <a href=".hs%20--%20standard%20file%20extension%20for%20source-code%20written%20in%20Haskell"><code>Main.hs</code></a> on your desktop and then feeding it to compiler. Instead, you will create a normal working project with logical inner structure. So let’s start with it. A convenient utility from Haskell Platform with unusual name <a href="Acronym%20formed%20from%20**c**ommon%20**a**rchitecture%20for%20**b**uilding%20**a**pplications%20and%20**l**ibraries."><code>cabal</code></a> will be our assistant.</p>
+<p><code>Cabal</code> utility is intended for compiling projects. Sure, you heard about things like <code>cmake</code> or <code>qmake</code>, take <code>cabal</code> as “cmake specially for Haskell”.</p>
+<p>Let us create. Of course, all actions described below imply your strong friendship with a command line. I will demonstrate Unix commands, if you are using Windows – adapt these examples for yourself.</p>
+<h2 id="preparing-the-structure">Preparing the structure</h2>
+<p>Open the terminal and start creating:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">mkdir</span> -p Real/src/Utils
+$ <span class="kw">touch</span> Real/src/Main.hs
+$ <span class="kw">touch</span> Real/src/Utils/Helpers.hs</code></pre></div>
+<p>Now we have a directory <code>Real</code> with a regular structure:</p>
+<pre><code>Real/
+    src/
+	    Main.hs
+	    Utils/
+		    Helpers.hs</code></pre>
+<p>The root directory <code>src</code>, contains all our sources logically grouped.</p>
+<p>Concerning names, you probably wondering why names of files and directories inside directory <code>src</code> are uppercased? I will explain the reason a while after. Now, let’s open file <code>Main.hs</code> and write in there:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> putStrLn <span class="st">&quot;Hi, haskeller!&quot;</span>	</code></pre></div>
+<p>Now close it and get back to the root of the project.</p>
+<h2 id="configuring">Configuring</h2>
+<p>Execute a command:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> init</code></pre></div>
+<p>You will get into an interactive dialog in which you will be offered to answer a few questions about your project. At the end of the dialog project files are created automatically and the content of our directory is structured as follows:</p>
+<pre><code>Real.cabal
+Setup.hs
+src/
+    Main.hs
+    Utils/
+        Helpers.hs</code></pre>
+<p>By the way, in case if you see such warning:</p>
+<pre><code>Generating LICENSE...
+Warning: unknown license type, you must put a copy in LICENSE yourself.</code></pre>
+<p>don’t worry. Just add <code>LICENSE</code> file by hand in order to keep the classical project structure.</p>
+<p>As was said before, the root directory of our project got two more files, <code>Real.cabal</code> and <code>Setup.hs</code>. We are not really <a href="Official%20documentation%20says%20that%20you%20will%20lately%20need%20to%20touch%20the%20`Setup.hs`%20file.">interested</a> in the second, but the first is the actual makefile of our project. Let’s open it.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">	<span class="co">-- Initial Real.cabal generated by cabal init.</span>
+	<span class="dt">For</span> further documentation,
+	<span class="co">-- see http://haskell.org/cabal/users-guide/</span>
+	name<span class="fu">:</span>               <span class="dt">Real</span>
+	version<span class="fu">:</span>            <span class="fl">0.1</span><span class="fu">.</span><span class="fl">0.0</span>
+	synopsis<span class="fu">:</span>           <span class="dt">Real</span> project <span class="kw">in</span> <span class="dt">Haskell</span>
+	<span class="co">-- description:</span>
+	<span class="co">-- license:</span>
+	license<span class="fu">-</span>file<span class="fu">:</span>       <span class="dt">LICENSE</span>
+	author<span class="fu">:</span>             <span class="dt">Denis</span> <span class="dt">Shevchenko</span>
+	maintainer<span class="fu">:</span>         me<span class="fu">@</span>dshevchenko<span class="fu">.</span>biz
+	<span class="co">-- copyright:</span>
+	<span class="co">-- category:</span>
+	build<span class="fu">-</span><span class="kw">type</span><span class="fu">:</span>         <span class="dt">Simple</span>
+	cabal<span class="fu">-</span>version<span class="fu">:</span>      <span class="fu">&gt;=</span><span class="fl">1.8</span>
+	executable <span class="dt">Real</span>
+	  <span class="co">-- main-is:</span>
+	  <span class="co">-- other-modules:</span>
+	  build<span class="fu">-</span>depends<span class="fu">:</span>      base <span class="fu">==</span><span class="fl">4.6</span><span class="fu">.*</span>
+	  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>     src</code></pre></div>
+<p>The values which we input in dialog mentioned above are already saved here. However we can’t actually build the project at the moment as the line:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">	<span class="co">-- main-is:</span></code></pre></div>
+<p>is commented. The syntax used in this file is similar to one of Haskell, that’s why one-line comments here, as well as in the source code, begin with two minuses in the row. Multi-line comment which you also need, are enclosed between the symbols <code>{-</code> and `-}.</p>
+<p>What we should do is to uncomment that line and put there a name of the <code>Main.hs</code> file which contains function <a href="Function%20`main`%20--%20the%20main%20function%20of%20application,%20similar%20to%20`int%20main()`%20in%20the%20C%20language."><code>main</code></a>.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">	main<span class="fu">-</span>is<span class="fu">:</span> Main.hs</code></pre></div>
+<h2 id="configuring-1">Configuring</h2>
+<p>Execute:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> configure</code></pre></div>
+<p>In result, the project would be prepared to building. But before we move to it, I draw your attention to the last part of the file <code>Real.cabal</code>.</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">	executable <span class="dt">Real</span>
+	  main<span class="fu">-</span>is<span class="fu">:</span>
+	  <span class="co">-- other-modules:</span>
+	  build<span class="fu">-</span>depends<span class="fu">:</span>      base <span class="fu">==</span><span class="fl">4.6</span><span class="fu">.*</span>
+	  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>     src</code></pre></div>
+<p>Can you see the two-space indentation of the last four lines? It turns out that such indent is essential and the project wouldn’t build without it. Furthermore, this indent should be at least two spaces. I recommend to use four spaces for beauty.</p>
+<p>One more detail. It is not necessary but wouldn’t be superfluous. Append section <code>executable Real</code> with this line:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">	ghc<span class="fu">-</span>options<span class="fu">:</span>        <span class="fu">-</span><span class="dt">W</span></code></pre></div>
+<p><code>ghc-options</code> parameter allows to set options for <code>ghc</code>. Particularly, option <code>-W</code> politely asks <code>ghc</code> to show basic compilation warnings. Do not miss such an opportunity.</p>
+<h2 id="building">Building</h2>
+<p>Execute:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> build
+<span class="kw">Building</span> Real-0.1.0.0...
+<span class="kw">Preprocessing</span> executable <span class="st">'Real'</span> for Real-0.1.0.0...
+[<span class="kw">1</span> of 1] Compiling Main             ( src/Main.hs, dist/build/Real/Real-tmp/Main.o )
+<span class="kw">Linking</span> dist/build/Real/Real ...</code></pre></div>
+<p>Done. We got something new in our directory.</p>
+<pre><code>LICENSE
+Real.cabal
+Setup.hs
+dist/
+    build/
+        Real/
+            Real  &lt;&lt;&lt;--- Here is our executable.
+...</code></pre>
+<p>At that point, we are not interested in the rest of the <code>dist</code> directory.</p>
+<h2 id="running">Running</h2>
+<p>It’s time to run our application. Being in the root directory of project, run:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">./dist/build/Real/Real</span>
+<span class="kw">Hi</span> haskeller!</code></pre></div>
+<p>That’s it. Now you know how to create, configure and build a Haskell project. Probably you are wondering why did we create file <code>Helpers.hs</code> in the subdirectory <code>Utils</code>? What’s the point of that, if it is left empty? You will find it out in the following chapter.</p>
+
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/prepare/index.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/prepare/about-modules-minimum.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="padding-top: 40px;"><div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+
+        </div> 
+
+        <footer class="footer">
+            Book created with <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> and lives on <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Source code and contents of this site are distributed on terms of <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">MIT license</a>.
+            </div>
+        </footer>
+    </div>
+  </body>
+</html>
+

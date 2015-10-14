@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="О Haskell по-человечески. Книга о прекрасном и удивительном языке. Для обыкновенных программистов.">
+        <meta name="author" content="Денис Шевченко">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+        
+        <link rel="icon" href="../../static/images/favicon.ico">
+
+        <title>Создаём проект</title>
+
+        <link rel="stylesheet" href="../../static/fonts/font-awesome/css/font-awesome.min.css">
+
+        <script src="../../static/js/jquery-2.1.4.min.js"></script>
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="../../static/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="../../static/js/materialize.min.js"></script>
+        
+        <!-- Own css and js -->
+        <link href="../../static/css/default.css" rel="stylesheet">
+        <script src="../../static/js/default.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
+    </head>
+
+    <body>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="../../ru/index.html" class="brand-logo center">
+                        #ohaskell
+                    </a>
+
+                    <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large" style="padding-left: 15px;">
+                        <!-- <i class="material-icons">toc</i> -->
+                        <i class="fa fa-list-ul" style="font-size: 30px;"></i>
+                    </a>
+
+                    <ul class="side-nav" id="mobile-demo">
+                        <li><a href="../../ru/intro/index.html">Лирическое вступление</a></li>
+                          <li><a href="../../ru/intro/who.html">Кто</a></li>
+                          <li><a href="../../ru/intro/why.html">Почему</a></li>
+                          <li><a href="../../ru/intro/what-for.html">Зачем</a></li>
+                          <li><a href="../../ru/intro/for-whom.html">Для кого</a></li>
+                        
+                        <li><a href="../../ru/prepare/index.html">Готовимся к работе</a></li>
+                          <li><a href="../../ru/prepare/create-project.html">Создаём проект</a></li>
+                          <li><a href="../../ru/prepare/about-modules-minimum.html">О модулях, минимум</a></li>
+                          <li><a href="../../ru/prepare/about-hackage.html">О Hackage</a></li>
+                          <li><a href="../../ru/prepare/about-sandbox.html">О песочнице</a></li>
+
+                        <li><a href="../../ru/about-haskell/index.html">Несколько слов о Haskell</a></li>
+                          <li><a href="../../ru/about-haskell/pure-functionality.html">Чистая функциональность</a></li>
+                          <li><a href="../../ru/about-haskell/types-three-foundations.html">Три кита типизации</a></li>
+                          <li><a href="../../ru/about-haskell/immutability.html">Неизменность данных</a></li>
+                          <li><a href="../../ru/about-haskell/laziness.html">Лень</a></li>
+                          <li><a href="../../ru/about-haskell/where.html">Где его использовать</a></li>
+
+                        <li><a href="../../ru/about-functions/index.html">О функциях</a></li>
+                          <li><a href="../../ru/about-functions/pure-functions.html">Чистые функции</a></li>
+                          <li><a href="../../ru/about-functions/lambda-functions.html">λ-функции</a></li>
+                          <li><a href="../../ru/about-functions/higher-order-functions.html">Функции высшего порядка</a></li>
+                          <li><a href="../../ru/about-functions/functional-chains.html">Функциональные цепочки</a></li>
+                          <li><a href="../../ru/about-functions/functions-and-operators.html">Функции и операторы</a></li>
+
+                        <li><a href="../../ru/about-lists/index.html">О списках</a></li>
+                          <li><a href="../../ru/about-lists/lists-at-a-glance.html">Списки &mdash; одним взглядом</a></li>
+                          <li><a href="../../ru/about-lists/ranges.html">Диапазоны</a></li>
+                          <li><a href="../../ru/about-lists/tuples.html">Кортежи</a></li>
+                          <li><a href="../../ru/about-lists/list-comprehension.html">Генераторы списков</a></li>
+
+                        <li><a href="../../ru/about-user-types/index.html">О пользовательских типах</a></li>
+                          <li><a href="../../ru/about-user-types/types-at-a-glance.html">Типы &mdash; одним взглядом</a></li>
+                          <li><a href="../../ru/about-user-types/about-value-constructors.html">О конструкторах значений</a></li>
+                          <li><a href="../../ru/about-user-types/type-context.html">Контекст типа</a></li>
+                          <li><a href="../../ru/about-user-types/composite-types.html">Составные типы</a></li>
+                          <li><a href="../../ru/about-user-types/deriving.html">Наследуемые типы</a></li>
+                          <li><a href="../../ru/about-user-types/own-type-classes.html">Собственные классы типов</a></li>
+                          <li><a href="../../ru/about-user-types/newtype.html">Новый тип</a></li>
+
+                        <li><a href="../../ru/io/index.html">Ввод и вывод</a></li>
+                          <li><a href="../../ru/io/functions-with-side-effects.html">Побочные эффекты</a></li>
+                          <li><a href="../../ru/io/IO-a.html">IO a</a></li>
+                          <li><a href="../../ru/io/do-imperative-world.html">do: императивный мир</a></li>
+                          <li><a href="../../ru/io/exceptions-handling.html">Обработка исключений</a></li>
+                          <li><a href="../../ru/io/own-exceptions.html">Собственные исключения</a></li>
+
+                        <li><a href="../../ru/delicious/index.html">Деликатесы</a></li>
+                          <li><a href="../../ru/delicious/monads-essence.html">Монады: суть</a></li>
+                          <li><a href="../../ru/delicious/monads-IO.html">Монады: на примере IO</a></li>
+                          <li><a href="../../ru/delicious/monads-practice.html">Монады: практика</a></li>
+                          <li><a href="../../ru/delicious/maybe.html">Может быть</a></li>
+                          <li><a href="../../ru/delicious/functors.html">Функторы</a></li>
+                          <li><a href="../../ru/delicious/applicative-functors.html">Аппликативные функторы</a></li>
+                          <li><a href="../../ru/delicious/transformers-first-meeting.html">Трансформеры: начало</a></li>
+                          <li><a href="../../ru/delicious/transformers-reader.html">Трансформеры: читатель</a></li>
+                          <li><a href="../../ru/delicious/transformers-writer.html">Трансформеры: писатель</a></li>
+                          <li><a href="../../ru/delicious/transformers-state.html">Трансформеры: состояние</a></li>
+                          <li><a href="../../ru/delicious/transformers-error.html">Трансформеры: ошибка</a></li>
+
+                        <li><a href="../../ru/miscellaneous/index.html">Разное</a></li>
+                          <li><a href="../../ru/miscellaneous/about-modules.html">О модулях</a></li>
+                          <li><a href="../../ru/miscellaneous/pattern-matching.html">Сравнение с образцом</a></li>
+                          <li><a href="../../ru/miscellaneous/map.html">Контейнеры: словарь</a></li>
+                          <li><a href="../../ru/miscellaneous/set.html">Контейнеры: множество</a></li>
+                          <li><a href="../../ru/miscellaneous/recursive-functions.html">Рекурсивные функции</a></li>
+                          <li><a href="../../ru/miscellaneous/about-apostrophe.html">Про апостроф</a></li>
+                          <li><a href="../../ru/miscellaneous/about-formatting.html">О форматировании</a></li>
+                          <li><a href="../../ru/miscellaneous/about-hlint.html">Про hlint</a></li>
+
+                        <li><a href="../../ru/integration/index.html">Интеграция</a></li>
+                          <li><a href="../../ru/integration/c-from-haskell.html">C из Haskell</a></li>
+
+                        <li><a href="../../ru/end/index.html">Заключение</a></li>
+                          <li><a href="../../ru/end/is-this-end.html">И что, это всё??</a></li>
+                          <li><a href="../../ru/end/gratitudes.html">Благодарности</a></li>
+                    </ul>
+
+                    <ul id="nav-mobile" class="right">
+                        <li><a href="https://github.com/denisshevchenko/ohaskell" target="_blank"><span class="fa fa-github"></span></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+        <div class="container">
+            <h1>Создаём проект</h1>
+
+            <p>Мы не можем начать изучение языка без испытательного полигона. Давайте установим Haskell.</p>
+<p>Строго говоря, сделать это можно несколькими способами, однако мы выберем самый простой и самый удобный. Называется он <a href="https://github.com/commercialhaskell/stack">Haskell Tool Stack</a>. Этот инструмент представляет собой одну-единственную утилиту, однако это всё, что вам понадобится для настоящей работы с Haskell.</p>
+<p><strong>Внимание!</strong> Haskell - кроссплатформенный язык, прекрасно работающий и в OS X, и в Linux и даже в Windows. Однако я с 2008 года оставил мир Windows, поэтому все последующие примеры взаимодействия с командной строкой используют Unix-way.</p>
+<h2 id="устанавливаем">Устанавливаем</h2>
+<p>Идём <a href="https://github.com/commercialhaskell/stack/releases/latest">сюда</a> и скачиваем архив для нужной нам ОС. Распаковываем архив - и перед нами утилитка под названием <code>stack</code>. Если вы используете Windows - переименуйте файл в <code>stack.exe</code>.</p>
+<p>Для удобства располагаем утилиту где-нибудь в <code>PATH</code> (для Windows - в <code>%PATH%</code>), чтобы она была легко доступна из командной строки. Рекомендуемый путь для Unix:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">$HOME</span><span class="kw">/.local/bin</span></code></pre></div>
+<p>Для Windows:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">%APPDATA%</span>\local\bin</code></pre></div>
+<p>Готово.</p>
+<h2 id="устанавливаем-на-os-x">Устанавливаем на OS X</h2>
+<p>Если вы живёте в мире Mac и пользуетесь замечательным инструментом <a href="http://brew.sh/">Homebrew</a>, то вам ещё проще. Делаете:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">brew</span> update
+$ <span class="kw">brew</span> install haskell-stack</code></pre></div>
+<p>Всё.</p>
+<h2 id="и-что-же-это-такое">И что же это такое?</h2>
+<p>Главное, что умеет делать утилита <code>stack</code> - это три вещи:</p>
+<ol style="list-style-type: decimal">
+<li>Подготавливать Haskell-инфраструктуру.</li>
+<li>Собирать ваши Haskell-проекты.</li>
+<li>Устанавливать нужные вам Haskell-библиотеки.</li>
+</ol>
+<p>Haskell-инфраструктура - это базовая техническая экосистема, краеугольным камнем которой является компилятор <code>ghc</code> (Glasgow Haskell Compiler). Haskell - это компилируемый язык: приложение представляет собой обыкновенный, канонический исполняемый файл.</p>
+<p>Haskell-проект - это среда для создания настоящих приложений и библиотек.</p>
+<p>Haskell-библиотеки - это готовые решения, спасающие вас от изобретения сотен велосипедов.</p>
+<p>Приступим.</p>
+<h2 id="создаём-скелет-проекта">Создаём скелет проекта</h2>
+<p>Итак:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cd</span>
+$ <span class="kw">stack</span> new Real
+$ <span class="kw">cd</span> Real/</code></pre></div>
+<p>У нас появился каталог <code>Real</code>, и это - крошечный, но самый настоящий Haskell-проект, сгенерированный утилитой <code>stack</code> по простейшему шаблону. Как вы поняли, имя <code>Real</code> мы выбрали сами, оно могло быть и другим.</p>
+<p>Теперь мы готовы собрать проект. Впрочем, нет, пока ещё не готовы, ведь нам нужно подготовить Haskell-инфраструктуру.</p>
+<h2 id="готовим-инфораструктуру">Готовим инфораструктуру</h2>
+<p>Делаем:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> setup</code></pre></div>
+<p>В результате на ваш компьютер будет установлена Haskell-инфраструктура последней стабильной версии. Жить всё это хозяйство будет не внутри каталога проекта <code>Real</code>, а в только что созданном скрытом каталоге <code>$HOME/.stack/</code>. Именно поэтому устанавливать инфраструктуру для последующих Haskell-проектов вам уже не придётся: единожды развернули, используем всегда.</p>
+<h2 id="собираем">Собираем</h2>
+<p>И вот теперь мы можем собрать наш проект:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> build</code></pre></div>
+<p>В результате мы получим обыкновенный исполняемый файл, готовый к запуску. Живёт этот файл глубоко в недрах только что созданного скрытого каталога <code>Real/.stack-work/</code>. Поэтому сделаем следующее:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">stack</span> install</code></pre></div>
+<p>Теперь исполняемый файл переместился в упомянутый выше каталог <code>$HOME/.local/bin/</code>. Можем запускать его:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">Real-exe</span>
+<span class="kw">someFunc</span></code></pre></div>
+<p>Поздравляю! Вы только что установили Haskell-инфраструктуру на ваш компьютер, создали реальный Haskell-проект и запустили вашу первую Haskell-программу. Согласитесь, ничего сложного.</p>
+<p>А кстати, что это за <code>someFunc</code> появилась после запуска нашего приложения? Об этом - в следующих главах.</p>
+<h2 id="о-внутренностях-проекта">О внутренностях проекта</h2>
+<p>Один из самых главных файлов внутри каталога <code>Real</code> - файл <code>Real.cabal</code>. Это - сборочный файл нашего проекта. Откроем его:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">name<span class="fu">:</span>                <span class="dt">Real</span>
+version<span class="fu">:</span>             <span class="fl">0.1</span><span class="fu">.</span><span class="fl">0.0</span>
+synopsis<span class="fu">:</span>            <span class="dt">Initial</span> project template from stack
+description<span class="fu">:</span>         <span class="dt">Please</span> see README.md
+homepage<span class="fu">:</span>            http<span class="fu">://</span>github<span class="fu">.</span>com<span class="fu">/</span>githubuser<span class="fu">/</span><span class="dt">Real</span><span class="fu">#</span>readme
+license<span class="fu">:</span>             <span class="dt">BSD3</span>
+license<span class="fu">-</span>file<span class="fu">:</span>        <span class="dt">LICENSE</span>
+author<span class="fu">:</span>              <span class="dt">Author</span> name here
+maintainer<span class="fu">:</span>          example<span class="fu">@</span>example<span class="fu">.</span>com
+copyright<span class="fu">:</span>           <span class="dv">2010</span> <span class="dt">Author</span> <span class="dt">Here</span>
+category<span class="fu">:</span>            <span class="dt">Web</span>
+build<span class="fu">-</span><span class="kw">type</span><span class="fu">:</span>          <span class="dt">Simple</span>
+<span class="co">-- extra-source-files:</span>
+cabal<span class="fu">-</span>version<span class="fu">:</span>       <span class="fu">&gt;=</span><span class="fl">1.10</span>
+
+library
+  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      src
+  exposed<span class="fu">-</span>modules<span class="fu">:</span>     <span class="dt">Lib</span>
+  build<span class="fu">-</span>depends<span class="fu">:</span>       base <span class="fu">&gt;=</span> <span class="fl">4.7</span> <span class="fu">&amp;&amp;</span> <span class="fu">&lt;</span> <span class="dv">5</span>
+  default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span>
+
+executable <span class="dt">Real</span><span class="fu">-</span>exe
+  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      app
+  main<span class="fu">-</span>is<span class="fu">:</span>             Main.hs
+  ghc<span class="fu">-</span>options<span class="fu">:</span>         <span class="fu">-</span>threaded <span class="fu">-</span>rtsopts <span class="fu">-</span>with<span class="fu">-</span>rtsopts<span class="fu">=-</span><span class="dt">N</span>
+  build<span class="fu">-</span>depends<span class="fu">:</span>       base
+                     , <span class="dt">Real</span>
+  default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span>
+
+test<span class="fu">-</span>suite <span class="dt">Real</span><span class="fu">-</span>test
+  <span class="kw">type</span><span class="fu">:</span>                exitcode<span class="fu">-</span>stdio<span class="fu">-</span><span class="fl">1.0</span>
+  hs<span class="fu">-</span>source<span class="fu">-</span>dirs<span class="fu">:</span>      test
+  main<span class="fu">-</span>is<span class="fu">:</span>             Spec.hs
+  build<span class="fu">-</span>depends<span class="fu">:</span>       base
+                     , <span class="dt">Real</span>
+  ghc<span class="fu">-</span>options<span class="fu">:</span>         <span class="fu">-</span>threaded <span class="fu">-</span>rtsopts <span class="fu">-</span>with<span class="fu">-</span>rtsopts<span class="fu">=-</span><span class="dt">N</span>
+  default<span class="fu">-</span>language<span class="fu">:</span>    <span class="dt">Haskell2010</span>
+
+source<span class="fu">-</span>repository head
+  <span class="kw">type</span><span class="fu">:</span>     git
+  location<span class="fu">:</span> https<span class="fu">://</span>github<span class="fu">.</span>com<span class="fu">/</span>githubuser<span class="fu">/</span><span class="dt">Real</span></code></pre></div>
+<p>Структура этого файла, как видите, предельно проста. Здесь содержится, во-первых, общая информация о проекте (такая, как название, версия и репозиторий проекта), а во-вторых, собственно настройки проекта, необходимые для сборки. Пока не думайте обо всех полях данного файла, мы будем рассматривать их постепенно, по мере необходимости.</p>
+<p>На что необходимо обратить внимание сейчас, так это на секции <code>library</code> и <code>executable Real-exe</code>.</p>
+<h3 id="секция-приложения">Секция приложения</h3>
+<p>Секция <code>executable Real-exe</code> определяет базовые правила сборки нашего приложения.</p>
+<p>Во-первых, здесь задано имя исполняемого файла, <code>Real-exe</code>. Если не нравится - можете его поменять.</p>
+<p>Во-вторых, вот основные поля:</p>
+<ol style="list-style-type: decimal">
+<li><code>hs-source-dirs</code> - содержит основной подкаталог для исходников.</li>
+<li><code>main-is</code> - содержит имя основного модуля приложения. Об этом - в следующей главе.</li>
+<li><code>ghc-options</code> - флаги компилятора <code>ghc</code>.</li>
+<li><code>build-depends</code> - упоминает библиотеки, от которых зависит приложение.</li>
+<li><code>default-language</code> - указывает стандарт языка Haskell. По умолчанию это Haskell 2010 года.</li>
+</ol>
+<p>Как видите, приложение состоит из одного-единственного файла, <code>Main.hs</code>. Расширение <code>.hs</code> - это стандартное расширение для Haskell-исходников. Библиотеки же, от которых зависит приложение, две: <code>base</code> - это стандартная Haskell-библиотека (она используется всегда), а <code>Real</code> - наша собственная библиотека.</p>
+<h3 id="секция-библиотеки">Секция библиотеки</h3>
+<p>Секция <code>library</code> задаёт правила для сборки нашей собственной библиотеки <code>Real</code>, содержащей функциональность, которую будет использовать приложение. Обратите внимание на каталог <code>src</code>, содержащий файл <code>Lib.hs</code>. Из этого единственного файла и будет состоять библиотека.</p>
+<p>Разумеется, столь примитивный проект можно было бы и не разбивать на библиотеку и использующее её приложение (мы могли бы ограничиться только приложением). Просто знайте о такой возможности.</p>
+<p>А теперь пришла пора узнать о модулях.</p>
+
+<div style="padding-top: 30px;"><div>
+<div class="row">
+    <div class="col s6">
+        <div class="left">
+            <a href="../../ru/prepare/index.html" class="btn waves-effect waves-light chapter-arrow">
+                <span class="fa fa-angle-double-left"></span>
+            </a>
+        </div>
+    </div>
+    
+    <div class="col s6">
+        <div class="right">
+            <a href="../../ru/prepare/about-modules-minimum.html" class="btn waves-effect waves-light chapter-arrow">
+                <span class="fa fa-angle-double-right"></span>
+            </a>
+        </div>
+    </div>
+</div>
+<div style="padding-top: 40px;"><div>
+
+<!--
+<div>
+    <script>
+      (function() {
+        var cx = '007697214108744450483:au850gpbupm';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+    <gcse:search></gcse:search>
+</div>
+-->
+
+<!--
+<div>
+    <div class="row">
+        <form class="col s12" 
+              id="searchbox_007697214108744450483:au850gpbupm" 
+              action="http://www.google.com/cse">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">search</i>
+
+              <input value="007697214108744450483:au850gpbupm" name="cx" type="hidden"/>
+              <input value="FORID:11" name="cof" type="hidden"/>
+
+              <input id="icon_prefix" name="q" type="text"/>
+              <label for="icon_prefix">Что ищем?</label>
+            </div>
+          </div>
+        </form>
+    </div>
+</div>
+-->
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content>
+        <meta name="author" content="Денис Шевченко">
+        <link rel="icon" href="../../static/images/favicon.ico">
+
+        <title>Tuples</title>
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <link href="../../static/css/default.css" rel="stylesheet">
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+        <script>
+          window.___gcfg = {
+            lang: 'ru'
+          };
+        </script>
+
+        <script src="https://apis.google.com/js/platform.js" async defer>
+        </script>
+    </head>
+
+  <body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <div id="logo">
+                <a class="navbar-brand" href="../../en/index.html" title="Home">
+                  About Haskell humanly
+                </a>
+              </div>
+            </div>
+            
+            <div id="navbar" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="../../en/chapters.html">Contents</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div id="content">
+            <h1>Tuples</h1>
+
+            <p>Tuple is a special kind of a list. It contains an elements, but there’s three main differences:</p>
+<ol style="list-style-type: decimal">
+<li>parentheses instead of square brackets;</li>
+<li>heterogeneity;</li>
+<li>type that depends on the size.</li>
+</ol>
+<p>First difference is a quite obvious:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>]  <span class="co">-- This is a list with two strings.</span>
+(<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>)  <span class="co">-- This is a tuple with two strings.</span></code></pre></div>
+<p>Second difference - a heterogeneity - is an ability to store an elements of different types:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;Denis&quot;</span>, <span class="fl">1.234</span>]  <span class="co">-- Be sure, it will not be compiled...</span>
+(<span class="st">&quot;Denis&quot;</span>, <span class="fl">1.234</span>)  <span class="co">-- That's OK!</span></code></pre></div>
+<p>Third difference is a little more interesting. If we have two such lists:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">[<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Vasil`evich&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>]
+[<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>]</code></pre></div>
+<p>their types are the same, <code>[String]</code>, because type of the list doesn’t depend on its size.</p>
+<p>Tuples are a quite another stuff. If we have two such tuples:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">(<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Vasil`evich&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>)
+(<span class="st">&quot;Denis&quot;</span>, <span class="st">&quot;Shevchenko&quot;</span>)</code></pre></div>
+<p>their types are widely different: type of the first one is <code>(String, String, String)</code>, but type of the second is <code>(String, String)</code>. So if we have a functions that works with two-element tuple, and we’ll try to apply it to three-element tuple, compiler will reject it:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">Couldn</span><span class="st">'t match expected type `(String, String)'</span>
+            <span class="kw">with</span> actual type <span class="kw">`(</span>[<span class="kw">Char</span>], [Char], [Char]<span class="kw">)</span><span class="st">'</span></code></pre></div>
+<p>Type of the tuple totally depends on its size. By the way, tuple can be an empty, i.e. without any elements. Empty tuple is used for “nothing”. Soon we’ll see the cases when empty tuples are useful.</p>
+<h2 id="what-we-can-do-with-it">What we can do with it</h2>
+<p>The only thing we can do with a tuple is to obtain its elements. Nothing more.</p>
+<p>In practice often use tuples with two elements. Such a tuple is also called as a <em>pair</em>. To extract element from a pair we can use standard functions <code>fst</code> and <code>snd</code>.</p>
+<p>For example, this is a function for work with a pair that stores chess move:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">chessMove ::</span> (<span class="dt">String</span>, <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span>
+chessMove pair <span class="fu">=</span> fst pair <span class="fu">++</span> <span class="st">&quot;-&quot;</span> <span class="fu">++</span> snd pair
+
+main <span class="fu">=</span> print <span class="fu">$</span> chessMove (<span class="st">&quot;e2&quot;</span>, <span class="st">&quot;e4&quot;</span>)</code></pre></div>
+<p>We extracted first and second elements of the pair and made a single line from it:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">e2-e4</span></code></pre></div>
+<p>But what we’ll do if number of tuple’s elements is greater that two? In this case <code>fst</code> and <code>snd</code> are useless. So we need another way.</p>
+<h2 id="inconvenient-way">Inconvenient way</h2>
+<p>This way is inconvenient because we need to define functions-extractors. But let’s do it:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">get1 (element, _, _, _) <span class="fu">=</span> element
+get2 (_, element, _, _) <span class="fu">=</span> element
+get3 (_, _, element, _) <span class="fu">=</span> element
+get4 (_, _, _, element) <span class="fu">=</span> element</code></pre></div>
+<p>Assumed that we’ll work with 4-elements tuple. In this case there are only four cases of extraction: first element, second, third and fourth. By the way, saying “the first element”, we mean it’s a <em>first</em>: number <code>1</code> in the name <code>get1</code> is a number, not an index.</p>
+<p>So, this is owr first extractor:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">get1 (element, _, _, _) <span class="fu">=</span> element</code></pre></div>
+<p>This function applies to a tuple of four elements, and returns the first one. Note the strange underscores here. Think of this as about “something”. We say: “Yes, this tuple has four elements, but we don’t care about second element and about third elements and about fourth element. We just want first element.”</p>
+<p>So second function-extractor is a similar:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">get2 (_, element, _, _) <span class="fu">=</span> element</code></pre></div>
+<p>We don’t care about first, third and fourth elements. Only second.</p>
+<p>And now we write <code>main</code>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">main <span class="fu">=</span> print <span class="fu">$</span> get3 (<span class="st">&quot;One&quot;</span>, <span class="st">&quot;Two&quot;</span>, <span class="st">&quot;Three&quot;</span>, <span class="st">&quot;Four&quot;</span>)</code></pre></div>
+<p>And this is our result:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="st">&quot;Three&quot;</span></code></pre></div>
+<h2 id="convenient-way">Convenient way</h2>
+<p>Why reinvent the wheel? There is <code>tuple</code> package in Hackage. Let’s install it:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">cabal</span> install tuple</code></pre></div>
+<p>Now we have to add name of this package to <code>build-depends</code> parameter in <code>Real.cabal</code> file:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell">    build<span class="fu">-</span>depends<span class="fu">:</span>  base <span class="fu">==</span><span class="fl">4.6</span><span class="fu">.</span>\<span class="fu">*</span>, <span class="dt">MissingH</span>, tuple</code></pre></div>
+<p>And now we have to import module <code>Data.Tuple.Select</code>:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Tuple.Select</span>
+
+main <span class="fu">=</span> print <span class="fu">$</span> sel3 (<span class="st">&quot;One&quot;</span>, <span class="st">&quot;Two&quot;</span>, <span class="st">&quot;Three&quot;</span>, <span class="st">&quot;Four&quot;</span>)</code></pre></div>
+<p>Function <code>sel3</code> extracts third element from a tuple. Convenient and easy. By the way, <code>tuple</code> package has functions from <code>sel1</code> till <code>sel15</code>. Author of this package assumed that no one developer will create tuple with 128 elements… ;-)</p>
+<p>So, what about safety? What if we’ll try to obtain fifth element from this tuple? Let’s do it:</p>
+<div class="sourceCode"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.Tuple.Select</span>
+
+main <span class="fu">=</span> print <span class="fu">$</span> sel5 (<span class="st">&quot;One&quot;</span>, <span class="st">&quot;Two&quot;</span>, <span class="st">&quot;Three&quot;</span>, <span class="st">&quot;Four&quot;</span>)</code></pre></div>
+<p>What we’ll get in this case? Error? Exception? No. Such a code will not be compiled:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">src</span>/Main.hs:<span class="kw">23</span>:12:
+    <span class="kw">No</span> instance for (Sel5 ([Char], [Char], [Char], [Char]) <span class="kw">a0</span>)
+      <span class="kw">arising</span> from a use of <span class="kw">`sel5</span><span class="st">'</span></code></pre></div>
+<p>As we remember, type of the tuple depends on its size, so all overrunning errors will be catched on compile time.</p>
+<h2 id="so">So</h2>
+<ul>
+<li>Tuple is a simple kind of list that can store values of different types.</li>
+<li>Type of the tuple depends on its size and types of its elements.</li>
+<li>The only thing we can do with a tuple is to obtain its elements.</li>
+</ul>
+
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-left">
+            <div class="chapters-selector">
+                <a href="../../en/about-lists/ranges.html" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <div class="clear-button text-right">
+            <div class="chapters-selector">
+                <a href="../../en/about-lists/list-comprehension.html" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="padding-top: 40px;"><div>
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'ohaskell'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+ 
+
+        </div> 
+
+        <footer class="footer">
+            Book created with <strong><a href="http://jaspervdj.be/hakyll/" target="_blank">Hakyll</a></strong> and lives on <strong><a href="https://github.com/denisshevchenko/ohaskell" target="_blank">GitHub</a></strong>.
+            <div class="copyright-note">
+                Source code and contents of this site are distributed on terms of <a href="https://github.com/denisshevchenko/ohaskell/blob/master/LICENSE" target="_blank">MIT license</a>.
+            </div>
+        </footer>
+    </div>
+  </body>
+</html>
+
