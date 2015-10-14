@@ -119,17 +119,6 @@ nav ul a {
     text-align: right;
 }
 
-span#google-plus-link {
-    color: #E34839;
-    padding-right: 6px;
-}
-
-span#google-plus-link a {
-    text-decoration: none !important;
-    color: #E34839 !important;
-    border-bottom: 0;
-}
-
 span#github-link {
     color: #000;
     padding-right: 6px;
