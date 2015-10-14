@@ -502,3 +502,7 @@ span#languagesSeparator {
     text-align: left;
     font-size: 16px;
 }
+
+pre.sourceCode span.co {
+    font-style: normal !important;
+}
