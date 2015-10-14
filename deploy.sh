@@ -15,17 +15,20 @@ set -e
 # Устанавливаем переменную, для нашего коммит-сообщения...  
 COMMIT_MESSAGE=$1
 
-if [ "$1" = "" ]
-then
-    echo "А сообщение о коммите где?"
-    echo "${USAGE}"
-    exit 1
-fi
+#if [ "$1" = "" ]
+#then
+#    echo "А сообщение о коммите где?"
+#    echo "${USAGE}"
+#    exit 1
+#fi
 
 echo "Учитываем изменения в ветке master..."
-git add .
-git commit -a -m "$COMMIT_MESSAGE"
-git push -f origin master
+if [ "$1" != "" ]
+then
+    git add .
+    git commit -a -m "$COMMIT_MESSAGE"
+    git push -f origin master
+fi
 
 echo "Собираем новую версию сайта..."
 ./just_build.sh
@@ -42,7 +45,13 @@ cp -R /tmp/_site/* .
 
 echo "Учитываем все последние новшества, если таковые имеются, и публикуем на GitHub Pages..."
 git add .
-git commit -a -m "$COMMIT_MESSAGE"
+if [ "$1" != "" ]
+then
+    git commit -a -m "$COMMIT_MESSAGE"
+else
+    git commit -a -m "Обновление после слияния."
+fi
+
 git push -f origin gh-pages
 
 echo "Возвращаемся в мастер..."
