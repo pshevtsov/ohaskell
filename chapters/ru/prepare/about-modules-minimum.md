@@ -13,9 +13,9 @@ nextChapter: /ru/prepare/about-hackage.html
 Откроем наш файл `src/Lib.hs`:
 
 ```haskell
-module Lib
-    ( someFunc
-    ) where
+module Lib (
+    someFunc
+) where
 
 someFunc :: IO ()
 someFunc = putStrLn "someFunc"

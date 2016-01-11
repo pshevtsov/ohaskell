@@ -1,23 +1,64 @@
 $body$
 
+<div style="padding-top: 30px;"><div>
 <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-left">
-            <div class="chapters-selector">
-                <a href="$prevChapter$" title="Previous chapter"><span class="fa fa-hand-o-left"></span></a>
-            </div>
+    <div class="col s6">
+        <div class="left">
+            <a href="$prevChapter$" class="btn waves-effect waves-light chapter-arrow">
+                <span class="fa fa-angle-double-left"></span>
+            </a>
         </div>
     </div>
     
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <div class="clear-button text-right">
-            <div class="chapters-selector">
-                <a href="$nextChapter$" title="Next chapter"><span class="fa fa-hand-o-right"></span></a>
-            </div>
+    <div class="col s6">
+        <div class="right">
+            <a href="$nextChapter$" class="btn waves-effect waves-light chapter-arrow">
+                <span class="fa fa-angle-double-right"></span>
+            </a>
         </div>
     </div>
 </div>
-<div class="padding-top: 40px;"><div>
+<div style="padding-top: 40px;"><div>
+
+<!--
+<div>
+    <script>
+      (function() {
+        var cx = '007697214108744450483:au850gpbupm';
+        var gcse = document.createElement('script');
+        gcse.type = 'text/javascript';
+        gcse.async = true;
+        gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+            '//cse.google.com/cse.js?cx=' + cx;
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+    <gcse:search></gcse:search>
+</div>
+-->
+
+<!--
+<div>
+    <div class="row">
+        <form class="col s12" 
+              id="searchbox_007697214108744450483:au850gpbupm" 
+              action="http://www.google.com/cse">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="material-icons prefix">search</i>
+
+              <input value="007697214108744450483:au850gpbupm" name="cx" type="hidden"/>
+              <input value="FORID:11" name="cof" type="hidden"/>
+
+              <input id="icon_prefix" name="q" type="text"/>
+              <label for="icon_prefix">Что ищем?</label>
+            </div>
+          </div>
+        </form>
+    </div>
+</div>
+-->
 
 <div id="disqus_thread"></div>
 <script type="text/javascript">
